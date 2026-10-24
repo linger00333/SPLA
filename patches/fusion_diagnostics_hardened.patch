@@ -1,0 +1,555 @@
+--- a/kit/tools/run_sequences.py
++++ b/kit/tools/run_sequences.py
+@@ -103,6 +103,28 @@
+     out = np.array(th, float).copy()
+     out[:, 2] += np.asarray(d_px, float) / np.array([w, h])
+     return out
++
++
++def model_input(rgb, ir, in_ch, input_mode='auto', blank='none'):
++    """Build the channel tensor without mutating either source image."""
++    if in_ch not in (3, 4, 6) or (input_mode != 'auto' and in_ch != 3):
++        raise ValueError('Explicit modality selection requires a 3-channel detector')
++    if blank == 'rgb':
++        rgb = np.full_like(rgb, 114)
++    elif blank == 'ir':
++        ir = np.full_like(ir, 114)
++    if in_ch == 3:
++        return rgb if input_mode == 'rgb' else np.repeat(ir[..., None], 3, -1)
++    return np.concatenate([rgb, ir[..., None]], -1)
++
++
++def frame_box(box, lm, ir_width, output_wh):
++    """Convert a canvas xyxy box to xywh in the specified original frame."""
++    # The released converter and this runner stretch RGB to the IR dimensions.
++    return [(box[0] - lm[0, 2]) / lm[0, 0] * output_wh[0],
++            (box[1] - lm[1, 2]) / lm[1, 1] * output_wh[1],
++            (box[2] - box[0]) / lm[0, 0] * output_wh[0],
++            (box[3] - box[1]) / lm[1, 1] * output_wh[1]]
+ 
+ 
+ def main():
+@@ -130,6 +152,13 @@
+     ap.add_argument("--prior-noise-px", type=float, default=0.0, help="oracle mode: per-video translation error (IR px)")
+     ap.add_argument("--init-offset-px", type=float, default=0.0, help="online mode: start the prior this far off (IR px)")
+     ap.add_argument("--max-seq", type=int, default=0, help="only the first k sequences (smoke tests)")
++    ap.add_argument('--max-frames', type=int, default=0, help='per-sequence frame limit for runtime validation only')
++    ap.add_argument("--blank", default="none", choices=["none", "rgb", "ir"],
++                    help="modality ablation: replace one input with flat grey (the letterbox fill, 114) on every "
++                         "frame, to measure how much the model relies on it")
++    ap.add_argument("--input", default="auto", choices=["auto", "ir", "rgb"],
++                    help="3-channel models only: feed the IR frame (A0) or the stretched RGB frame (an RGB-only "
++                         "detector). With rgb, saved boxes are in ORIGINAL RGB pixels, for scoring against RGB labels")
+     ap.add_argument("--device", default="cuda:0")
+     args = ap.parse_args()
+ 
+@@ -145,6 +174,8 @@
+     has_spla = bool(spla_layers)
+     obs_layer = spla_layers[args.level] if has_spla else None
+     in_ch = int(getattr(model, "yaml", {}).get("ch", 6))
++    model_input(np.zeros((1, 1, 3), np.uint8), np.zeros((1, 1), np.uint8), in_ch, args.input, args.blank)
++    args.output_coordinates = 'RGB_pixels' if in_ch == 3 and args.input == 'rgb' else 'IR_pixels'
+     if not has_spla:
+         # A0 (IR only, 3 channels) or A1 (RGB + IR, 4 channels): no prior input exists, so
+         # these runs measure detection only; the prior is reported as identity
+@@ -174,10 +205,7 @@
+ 
+     def forward(rgb, ir, th, lm):
+         th_c = (lm @ np.vstack([th, [0, 0, 1]]) @ np.linalg.inv(lm))[:2]
+-        if in_ch == 3:                                   # A0: the IR frame read as a 3-channel image
+-            x = np.repeat(ir[..., None], 3, -1)
+-        else:                                            # R, G, B, IR (the fork's 4-channel order)
+-            x = np.concatenate([rgb, ir[..., None]], -1)
++        x = model_input(rgb, ir, in_ch, args.input, args.blank)
+         x = torch.from_numpy(x.transpose(2, 0, 1)[None].astype(np.float32) / 255).to(args.device)
+         if in_ch == 6:
+             thc = torch.as_tensor(th_c[None], dtype=torch.float32, device=args.device)
+@@ -213,6 +241,8 @@
+         est = OnlinePriorEstimator(cfg, init_params=init, init_cov=cov)
+         results, dets_all, t = [], [], 0
+         while True:
++            if args.max_frames and t >= args.max_frames:
++                break
+             ok_i, fi = cap_i.read()
+             ok_v, fv = cap_v.read()
+             if not (ok_i and ok_v):
+@@ -236,6 +266,8 @@
+             det, total = forward(rgb, ir, th, lm)
+             s, px, py = lm[0, 0] / wi, lm[0, 2], lm[1, 2]
+             to_ir = lambda b: [(b[0] - px) / s, (b[1] - py) / s, (b[2] - b[0]) / s, (b[3] - b[1]) / s]
++            if in_ch == 3 and args.input == "rgb":       # stretched-RGB frame -> original RGB pixels
++                to_ir = lambda b: frame_box(b, lm, wi, (wv, hv))
+             dets_all.append([to_ir(d[:4].tolist()) + [float(d[4])] for d in det])
+             results.append(to_ir(det[0, :4].tolist()) if len(det) and float(det[0, 4]) >= args.conf else [])
+             # observations for the prior: confident detections and the offset SPLA found there
+--- a/kit/tools/make_rgb_only.py
++++ b/kit/tools/make_rgb_only.py
+@@ -0,0 +1,131 @@
++#!/usr/bin/env python3
++"""Build an RGB-only detection set from an existing conversion (no frame extraction).
++
++It reuses the stretched RGB frames that convert_antiuav.py already wrote and
++labels them with the RGB boxes (the converter's labels are IR boxes). Train a
++plain YOLO11 on it to measure how much the RGB stream can see on its own:
++
++  OUT/rgbonly/images/<split>/*  hard links to OUT/images/visible/<split>/* (no copies)
++  OUT/rgbonly/labels/<split>/<stem>.txt   YOLO labels from the RGB box at that frame
++  OUT/antiuav_rgbonly.yaml
++
++The stretched frame keeps normalised RGB coordinates, so the RGB box
++normalised by the original RGB size is also correct in the stretched image.
++
++Usage:
++  python tools/make_rgb_only.py --root /data/Anti-UAV-RGBT --out /data/antiuav_yolo
++  python tools/train_spla.py --stage 0 --data /data/antiuav_yolo/antiuav_rgbonly.yaml --seed 0 --name A0rgb_s0
++"""
++from __future__ import annotations
++
++import argparse
++import json
++import os
++import hashlib
++import shutil
++import sys
++from pathlib import Path
++
++import numpy as np
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from spla.antiuav_io import find_files, read_labels  # noqa: E402
++
++
++def video_wh(path, default):
++    try:
++        import cv2
++        cap = cv2.VideoCapture(str(path))
++        wh = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
++        cap.release()
++        if min(wh) > 0:
++            return wh
++    except Exception:
++        pass
++    if default is not None and min(default) > 0:
++        return tuple(default)
++    raise ValueError(f'Cannot establish original RGB dimensions: {path}')
++
++
++def main(argv=None):
++    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    ap.add_argument("--root", required=True, help="original Anti-UAV RGB-T folder")
++    ap.add_argument("--out", required=True, help="folder written by convert_antiuav.py")
++    ap.add_argument('--source', help='read-only existing conversion; defaults to --out')
++    ap.add_argument("--splits", nargs="+", choices=['train', 'val'], default=["train", "val"])
++    ap.add_argument("--box-format", default="xywh", choices=["xywh", "xyxy"])
++    ap.add_argument("--rgb-size", nargs=2, type=int, default=None, help="explicit dimensions for synthetic/offline inputs only")
++    args = ap.parse_args(argv)
++
++    out = Path(args.out).resolve()
++    source = Path(args.source).resolve() if args.source else out
++    base = out / "rgbonly"
++    if base.exists() or base.is_symlink():
++        raise FileExistsError(f'Refusing to modify existing dataset: {base}')
++    counts = {}
++    for split in args.splits:
++        meta_p = source / f"spla_meta_{split}.json"
++        src = source / "images" / "visible" / split
++        if not meta_p.exists() or not src.exists():
++            raise FileNotFoundError(f'Missing metadata or images for {split}')
++        meta = json.loads(meta_p.read_text())
++        expected = {stem + '.jpg' for stem in meta}
++        actual = {p.name for p in src.iterdir() if p.is_file()}
++        if expected != actual:
++            raise ValueError(f'Image/metadata mismatch: {split}; missing={len(expected-actual)}, extra={len(actual-expected)}')
++        # A real folder of per-file links, NOT a folder symlink: Ultralytics resolves the split path,
++        # and a resolved folder symlink would make it read labels/visible/<split> (the converter's
++        # labels) instead of the RGB labels written here.
++        img_dir = base / "images" / split
++        if img_dir.is_symlink():
++            raise SystemExit(f"{img_dir} is a folder symlink from an older run; delete it and rerun")
++        img_dir.mkdir(parents=True, exist_ok=True)
++        links = copies = 0
++        for f in sorted(src.iterdir()):
++            dst = img_dir / f.name
++            if dst.exists() or dst.is_symlink():
++                continue
++            try:
++                os.link(f, dst)               # hard link: no copy, and nothing for a resolve() to follow
++                links += 1
++            except OSError:
++                shutil.copy2(f, dst)  # preserve path-based label lookup if hard links are unavailable
++                copies += 1
++        lab_dir = base / "labels" / split
++        lab_dir.mkdir(parents=True, exist_ok=True)
++        cache = {}
++        n_pos = 0
++        for stem, m in meta.items():
++            seq = m["seq"]
++            if seq not in cache:
++                fs = find_files(Path(args.root) / split / seq)
++                raw = json.loads(fs['rgb_label'].read_text())
++                if len(raw['exist']) != len(raw['gt_rect']):
++                    raise ValueError(f'RGB annotation lengths differ: {split}/{seq}')
++                e, b = read_labels(fs["rgb_label"], args.box_format)
++                wh = video_wh(fs['rgb_video'], args.rgb_size)
++                cache[seq] = (e, b, wh)
++            e, b, (wv, hv) = cache[seq]
++            t = m["frame"]
++            if not isinstance(t, int) or t < 0 or t >= len(e):
++                raise ValueError(f'Frame outside RGB annotations: {stem}')
++            line = ""
++            if t < len(e) and e[t] and np.all(np.isfinite(b[t])):
++                x, y, w, h = b[t]
++                cx, cy = np.clip([(x + w / 2) / wv, (y + h / 2) / hv], 0, 1)
++                line = f"0 {cx:.6f} {cy:.6f} {min(w / wv, 1):.6f} {min(h / hv, 1):.6f}\n"
++                n_pos += 1
++            (lab_dir / f"{stem}.txt").write_text(line)
++        counts[split] = {"images": len(meta), "with_rgb_target": n_pos,
++                         'hardlinks': links, 'copies': copies, 'file_symlinks': 0,
++                         'sampling_metadata_sha256': hashlib.sha256(meta_p.read_bytes()).hexdigest(),
++                         'source_rgb_dimensions': {k: list(v[2]) for k, v in cache.items()}}
++        print(f"{split}: {len(meta)} images, {n_pos} with an RGB target")
++    (out / "antiuav_rgbonly.yaml").write_text(
++        f"path: {base.as_posix()}\n" + ''.join(f'{s}: images/{s}\n' for s in args.splits) + "nc: 1\nnames: ['uav']\n")
++    (base / "summary.json").write_text(json.dumps(counts, indent=1))
++    print("written:", out / "antiuav_rgbonly.yaml")
++
++
++if __name__ == "__main__":
++    main()
+--- a/kit/tools/complementarity.py
++++ b/kit/tools/complementarity.py
+@@ -0,0 +1,160 @@
++#!/usr/bin/env python3
++"""Measure complementarity of two fixed detectors in their own label coordinates.
++
++Compares an IR detector (A0, boxes in IR pixels) with an RGB-only detector
++(run_sequences.py --input rgb, boxes in RGB pixels), each against its OWN
++modality's labels, on frames where the drone is labelled in both. A frame is
++a success for a modality when its top box has IoU >= --iou with that
++modality's label. Then:
++
++  rescue share  = frames RGB succeeds but IR fails / frames IR fails
++  oracle gain   = success rate if each frame took the better modality,
++                  minus IR's success rate
++
++The oracle selects the better of these two fixed outputs on each frame.
++It is not an upper bound on learned fusion or IR-coordinate detection gains.
++Intervals: paired bootstrap over videos.
++
++Usage:
++  python tools/complementarity.py --root /data/Anti-UAV-RGBT --split val \
++      --ir-run results/val/A0_s0 --rgb-run results/val/A0rgb_s0 --out reports/complementarity_val.json
++"""
++from __future__ import annotations
++
++import argparse
++import json
++import sys
++from pathlib import Path
++
++import numpy as np
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from spla.antiuav_io import find_files, read_labels, KNOWN_LABEL_ISSUES  # noqa: E402
++
++try:
++    from score_runs import iou_xywh
++except ImportError:  # run from elsewhere
++    sys.path.insert(0, str(Path(__file__).resolve().parent))
++    from score_runs import iou_xywh
++
++
++def frame_success(pred, exist, boxes, thr):
++    """Per-frame success (bool) of a run's top boxes against labels; NaN-free arrays."""
++    if len(pred) != len(exist) or len(boxes) != len(exist):
++        raise ValueError('Prediction and annotation lengths must match exactly')
++    n = len(exist)
++    s = np.zeros(n, bool)
++    for t in range(n):
++        if exist[t] and len(pred[t]) == 4:
++            s[t] = iou_xywh(pred[t], boxes[t]) >= thr
++    return s
++
++
++def counts_for(s_ir, s_rgb, both_exist):
++    if len(s_ir) != len(s_rgb) or len(s_ir) != len(both_exist):
++        raise ValueError('Modality and mask lengths must match exactly')
++    m = both_exist
++    a, b = s_ir[: len(m)][m], s_rgb[: len(m)][m]
++    return {"n": int(m.sum()), "both": int(np.sum(a & b)), "ir_only": int(np.sum(a & ~b)),
++            "rgb_only": int(np.sum(~a & b)), "neither": int(np.sum(~a & ~b))}
++
++
++def summarise(c):
++    n = c["n"]
++    ir_fail = c["rgb_only"] + c["neither"]
++    return {"frames": c["n"], "ir_success": (c["both"] + c["ir_only"]) / n if n else None,
++            "rgb_success": (c["both"] + c["rgb_only"]) / n if n else None,
++            "oracle_success": (c["both"] + c["ir_only"] + c["rgb_only"]) / n if n else None,
++            "oracle_gain": c["rgb_only"] / n if n else None,
++            "rescue_share": c["rgb_only"] / ir_fail if ir_fail else None,
++            "ir_failures": ir_fail}
++
++
++def add(c1, c2):
++    return {k: c1[k] + c2[k] for k in c1}
++
++
++def main(argv=None):
++    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    ap.add_argument("--root", required=True)
++    ap.add_argument("--split", default="val")
++    ap.add_argument("--box-format", default="xywh", choices=["xywh", "xyxy"])
++    ap.add_argument("--ir-run", required=True, help="run_sequences output of the IR model (boxes in IR px)")
++    ap.add_argument("--rgb-run", required=True, help="run_sequences --input rgb output (boxes in RGB px)")
++    ap.add_argument("--iou", type=float, default=0.5)
++    ap.add_argument("--boot", type=int, default=10000)
++    ap.add_argument("--out", default="complementarity.json")
++    args = ap.parse_args(argv)
++    if not 0 < args.iou <= 1 or args.boot < 1:
++        raise ValueError('Require 0 < IoU <= 1 and positive bootstrap count')
++
++    per = {}
++    seqs = sorted(p for p in (Path(args.root) / args.split).iterdir() if p.is_dir())
++    for directory, expected in ((args.ir_run, 'IR_pixels'), (args.rgb_run, 'RGB_pixels')):
++        cfg = json.loads((Path(directory) / 'run_config.json').read_text())
++        actual = cfg.get('output_coordinates', 'RGB_pixels' if cfg.get('input') == 'rgb' else 'IR_pixels')
++        if actual != expected or cfg.get('split') != args.split:
++            raise ValueError(f'Incorrect coordinates or split in {directory}')
++    for seq in seqs:
++        pi, pr = Path(args.ir_run) / f"{seq.name}_IR.txt", Path(args.rgb_run) / f"{seq.name}_IR.txt"
++        if not (pi.exists() and pr.exists()):
++            raise FileNotFoundError(f'Missing prediction for {seq.name}')
++        fs = find_files(seq)
++        for role in ('ir_label', 'rgb_label'):
++            obj = json.loads(fs[role].read_text())
++            if len(obj['exist']) != len(obj['gt_rect']):
++                raise ValueError(f'Annotation lengths differ: {seq.name}/{role}')
++        ei, bi = read_labels(fs["ir_label"], args.box_format)
++        er, br = read_labels(fs["rgb_label"], args.box_format)
++        if len(ei) != len(er):
++            raise ValueError(f'Modality annotation lengths differ: {seq.name}')
++        both = (ei == 1) & (er == 1)
++        s_ir = frame_success(json.loads(pi.read_text())["res"], ei, bi, args.iou)
++        s_rgb = frame_success(json.loads(pr.read_text())["res"], er, br, args.iou)
++        per[seq.name] = counts_for(s_ir, s_rgb, both)
++    if not per:
++        raise SystemExit("no video has predictions in both runs")
++    names = sorted(per)
++    total = {"n": 0, "both": 0, "ir_only": 0, "rgb_only": 0, "neither": 0}
++    for k in names:
++        total = add(total, per[k])
++    report = {"split": args.split, "iou": args.iou, "videos": len(names), "pooled": summarise(total),
++              'scope': 'Fixed-detector frame selection, each scored in its own modality coordinates; not a bound on learned fusion',
++              'known_label_issues': {k: KNOWN_LABEL_ISSUES[k] for k in names if k in KNOWN_LABEL_ISSUES},
++              'coverage': {'all_sequences_required': True, 'lengths_exact': True,
++                           'total_frames': sum(len(json.loads((Path(args.ir_run) / f'{k}_IR.txt').read_text())['res']) for k in names)}}
++    rng = np.random.default_rng(0)
++    boot = {"oracle_gain": [], "rescue_share": []}
++    for _ in range(args.boot):
++        c = {"n": 0, "both": 0, "ir_only": 0, "rgb_only": 0, "neither": 0}
++        for i in rng.integers(0, len(names), len(names)):
++            c = add(c, per[names[i]])
++        s = summarise(c)
++        for k in boot:
++            boot[k].append(s[k] if s[k] is not None else float('nan'))
++    for k, v in boot.items():
++        v = np.asarray(v, float)
++        v = v[np.isfinite(v)]
++        if len(v):
++            report[f"{k}_ci95"] = [float(np.percentile(v, 2.5)), float(np.percentile(v, 97.5))]
++        else:
++            report[f"{k}_ci95"] = None
++        report[f'{k}_bootstrap_valid'] = int(len(v))
++    clean = dict.fromkeys(total, 0)
++    for k in names:
++        if k not in KNOWN_LABEL_ISSUES:
++            clean = add(clean, per[k])
++    report['excluding_known_label_issues'] = summarise(clean)
++    report['bootstrap'] = {'unit': 'sequence', 'seed': 0, 'replicates': args.boot,
++                           'aggregation': 'pooled counts after sampling sequences with replacement'}
++    report["per_video"] = {k: dict(per[k], **summarise(per[k])) for k in names}
++    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
++    Path(args.out).write_text(json.dumps(report, indent=1, allow_nan=False))
++    p = report["pooled"]
++    print(f"videos {len(names)}, frames with both labels {p['frames']}")
++    print('Pooled metrics:', json.dumps(p, allow_nan=False))
++    print("written:", args.out)
++
++
++if __name__ == "__main__":
++    main()
+--- a/kit/tests/test_fusion_diagnostics.py
++++ b/kit/tests/test_fusion_diagnostics.py
+@@ -0,0 +1,171 @@
++"""Checks for the RGB-only label builder and the complementarity count (no video, no torch)."""
++import importlib.util
++import json
++from pathlib import Path
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++
++TOOLS = Path(__file__).parents[1] / "tools"
++sys.path.insert(0, str(TOOLS))
++
++
++def load(name):
++    spec = importlib.util.spec_from_file_location(name, TOOLS / f"{name}.py")
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    return mod
++
++
++def write_seq(root, split, name, ir, rgb):
++    d = Path(root) / split / name
++    d.mkdir(parents=True)
++    (d / "infrared.json").write_text(json.dumps({"exist": [int(b is not None) for b in ir],
++                                                 "gt_rect": [b or [] for b in ir]}))
++    (d / "visible.json").write_text(json.dumps({"exist": [int(b is not None) for b in rgb],
++                                                "gt_rect": [b or [] for b in rgb]}))
++    return d
++
++
++class RgbOnlyLabels(unittest.TestCase):
++    def test_labels_use_rgb_boxes_normalised_by_rgb_size(self):
++        mk = load("make_rgb_only")
++        with tempfile.TemporaryDirectory() as tmp:
++            root, out = Path(tmp) / "raw", Path(tmp) / "yolo"
++            write_seq(root, "val", "v1", [[10, 10, 4, 4], None], [[960, 540, 192, 108], None])
++            (out / "images/visible/val").mkdir(parents=True)
++            (out / "images/visible/val/v1_000000.jpg").write_bytes(b"x")
++            (out / "images/visible/val/v1_000001.jpg").write_bytes(b"x")
++            (out / "spla_meta_val.json").write_text(json.dumps(
++                {"v1_000000": {"seq": "v1", "frame": 0}, "v1_000001": {"seq": "v1", "frame": 1}}))
++            mk.main(["--root", str(root), "--out", str(out), "--splits", "val", '--rgb-size', '1920', '1080'])
++            pos = (out / "rgbonly/labels/val/v1_000000.txt").read_text().split()
++            neg = (out / "rgbonly/labels/val/v1_000001.txt").read_text()
++            self.assertEqual(pos[0], "0")
++            for got, want in zip(map(float, pos[1:]), [0.55, 0.55, 0.1, 0.1]):
++                self.assertAlmostEqual(got, want, places=5)
++            self.assertEqual(neg, "")
++            img_dir = out / "rgbonly/images/val"
++            # a folder symlink would resolve to images/visible/val and pick up the IR-box labels
++            self.assertFalse(img_dir.is_symlink())
++            self.assertEqual(img_dir.resolve(), img_dir.absolute().resolve())
++            self.assertTrue((img_dir / "v1_000000.jpg").exists())
++            self.assertIn("images/val", (out / "antiuav_rgbonly.yaml").read_text())
++
++    def test_missing_source_image_is_an_error(self):
++        mk = load("make_rgb_only")
++        with tempfile.TemporaryDirectory() as tmp:
++            root, out = Path(tmp) / "raw", Path(tmp) / "yolo"
++            write_seq(root, "val", "v1", [None], [None])
++            (out / "images/visible/val").mkdir(parents=True)
++            (out / "spla_meta_val.json").write_text(json.dumps({"v1_000000": {"seq": "v1", "frame": 0}}))
++            with self.assertRaises((ValueError, FileNotFoundError)):
++                mk.main(["--root", str(root), "--out", str(out), "--splits", "val"])
++
++
++class Complementarity(unittest.TestCase):
++    def test_missing_prediction_is_not_silently_skipped(self):
++        cp = load('complementarity')
++        with tempfile.TemporaryDirectory() as tmp:
++            root = Path(tmp) / 'raw'
++            box = [1, 1, 10, 10]
++            write_seq(root, 'val', 'present', [box], [box])
++            write_seq(root, 'val', 'missing', [box], [box])
++            for run in ('ir', 'rgb'):
++                d = Path(tmp) / run; d.mkdir()
++                (d / 'present_IR.txt').write_text(json.dumps({'res': [box]}))
++                (d / 'run_config.json').write_text(json.dumps({'split': 'val', 'input': 'rgb' if run == 'rgb' else 'auto'}))
++            with self.assertRaises(FileNotFoundError):
++                cp.main(['--root', str(root), '--ir-run', str(Path(tmp) / 'ir'), '--rgb-run', str(Path(tmp) / 'rgb'),
++                         '--boot', '10', '--out', str(Path(tmp) / 'out.json')])
++
++    def test_no_both_positive_frames_is_valid_null_json(self):
++        cp = load('complementarity')
++        with tempfile.TemporaryDirectory() as tmp:
++            root = Path(tmp) / 'raw'
++            write_seq(root, 'val', 'v1', [None], [None])
++            for run in ('ir', 'rgb'):
++                d = Path(tmp) / run; d.mkdir()
++                (d / 'v1_IR.txt').write_text(json.dumps({'res': [[]]}))
++                (d / 'run_config.json').write_text(json.dumps({'split': 'val', 'input': 'rgb' if run == 'rgb' else 'auto'}))
++            out = Path(tmp) / 'out.json'
++            cp.main(['--root', str(root), '--ir-run', str(Path(tmp) / 'ir'), '--rgb-run', str(Path(tmp) / 'rgb'),
++                     '--boot', '10', '--out', str(out)])
++            result = json.loads(out.read_text())
++            self.assertIsNone(result['pooled']['oracle_gain'])
++            self.assertIsNone(result['oracle_gain_ci95'])
++            self.assertEqual(result['oracle_gain_bootstrap_valid'], 0)
++
++    def test_lengths_must_match(self):
++        cp = load("complementarity")
++        with self.assertRaises(ValueError):
++            cp.frame_success([[]], [1, 1], [[1, 1, 1, 1]] * 2, 0.5)
++        import numpy as np
++        with self.assertRaises(ValueError):
++            cp.counts_for(np.array([True]), np.array([True, False]), np.array([True, True]))
++
++    def test_empty_denominators_are_null(self):
++        cp = load("complementarity")
++        c = {"n": 0, "both": 0, "ir_only": 0, "rgb_only": 0, "neither": 0}
++        s = cp.summarise(c)
++        self.assertIsNone(s["oracle_gain"])
++        self.assertIsNone(s["rescue_share"])
++
++    def test_counts_and_oracle_gain(self):
++        cp = load("complementarity")
++        box_i, box_r = [100, 100, 10, 10], [500, 300, 30, 30]
++        ir_lab = [box_i] * 4 + [None]
++        rgb_lab = [box_r] * 4 + [box_r]
++        # frame: 0 both hit, 1 IR only, 2 RGB only, 3 neither, 4 IR has no label (excluded)
++        ir_pred = [box_i, box_i, [], [0, 0, 5, 5], []]
++        rgb_pred = [box_r, [], box_r, [], box_r]
++        with tempfile.TemporaryDirectory() as tmp:
++            root = Path(tmp) / "raw"
++            write_seq(root, "val", "v1", ir_lab, rgb_lab)
++            for run, pred in (("ir", ir_pred), ("rgb", rgb_pred)):
++                (Path(tmp) / run).mkdir()
++                (Path(tmp) / run / "v1_IR.txt").write_text(json.dumps({"res": pred}))
++                (Path(tmp) / run / 'run_config.json').write_text(json.dumps(
++                    {'split': 'val', 'input': 'rgb' if run == 'rgb' else 'auto'}))
++            outp = Path(tmp) / "c.json"
++            cp.main(["--root", str(root), "--split", "val", "--ir-run", str(Path(tmp) / "ir"),
++                     "--rgb-run", str(Path(tmp) / "rgb"), "--boot", "50", "--out", str(outp)])
++            rep = json.loads(outp.read_text())
++        v = rep["per_video"]["v1"]
++        self.assertEqual((v["n"], v["both"], v["ir_only"], v["rgb_only"], v["neither"]), (4, 1, 1, 1, 1))
++        self.assertAlmostEqual(rep["pooled"]["ir_success"], 0.5)
++        self.assertAlmostEqual(rep["pooled"]["oracle_gain"], 0.25)
++        self.assertAlmostEqual(rep["pooled"]["rescue_share"], 0.5)
++
++
++class InputAndCoordinates(unittest.TestCase):
++    def test_defaults_and_blanking(self):
++        import numpy as np
++        runner = load('run_sequences')
++        rgb = np.arange(12, dtype=np.uint8).reshape(2, 2, 3)
++        ir = np.arange(4, dtype=np.uint8).reshape(2, 2)
++        np.testing.assert_array_equal(runner.model_input(rgb, ir, 4), np.concatenate([rgb, ir[..., None]], -1))
++        np.testing.assert_array_equal(runner.model_input(rgb, ir, 3), np.repeat(ir[..., None], 3, -1))
++        x = runner.model_input(rgb, ir, 4, blank='rgb')
++        self.assertTrue((x[..., :3] == 114).all())
++        np.testing.assert_array_equal(x[..., 3], ir)
++        x = runner.model_input(rgb, ir, 4, blank='ir')
++        self.assertTrue((x[..., 3] == 114).all())
++        np.testing.assert_array_equal(x[..., :3], rgb)
++        np.testing.assert_array_equal(runner.model_input(rgb, ir, 3, input_mode='rgb'), rgb)
++        with self.assertRaises(ValueError):
++            runner.model_input(rgb, ir, 4, input_mode='rgb')
++
++    def test_rgb_output_uses_original_anisotropic_dimensions(self):
++        import numpy as np
++        runner = load('run_sequences')
++        # 640x512 IR is padded by 64 on the 640 canvas; original RGB is 1920x1080.
++        lm = np.array([[640, 0, 0], [0, 512, 64], [0, 0, 1]])
++        box = [100, 164, 120, 184]
++        np.testing.assert_allclose(runner.frame_box(box, lm, 640, (640, 512)), [100, 100, 20, 20])
++        np.testing.assert_allclose(runner.frame_box(box, lm, 640, (1920, 1080)), [300, 210.9375, 60, 42.1875])
++
++
++if __name__ == "__main__":
++    unittest.main()

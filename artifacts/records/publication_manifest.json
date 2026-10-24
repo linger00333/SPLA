@@ -11231,6 +11231,21 @@
       "sha256": "0310a1b10454d6d737f3dd3728a00a4b15d296d610682dbb8e357aeeeb43ced3"
     },
     {
+      "path": "artifacts/v6/PROTOCOL.md",
+      "bytes": 5146,
+      "sha256": "e9c98ce13dcf91b84bf41b9b8fc8930131ea964e1a0621267b4a92602251770b"
+    },
+    {
+      "path": "artifacts/v6/records/implementation_review.json",
+      "bytes": 2114,
+      "sha256": "b038cc6e54c21e71ea957c5e794f1bebc7c322274a6803818d67a04184c3fe03"
+    },
+    {
+      "path": "artifacts/v6/records/visual_review.json",
+      "bytes": 700,
+      "sha256": "5cc873a530b4000d24a286711a53c9a6a0dfa41c5d0c9966cba22ea8c77c843b"
+    },
+    {
       "path": "docs/EVALUATION.md",
       "bytes": 6219,
       "sha256": "8a7689db8de1995301be81f0418a9f427b24e901f5cfc98fd4bb7a0090492927"
@@ -11239,6 +11254,11 @@
       "path": "docs/EXPERIMENTS.md",
       "bytes": 7296,
       "sha256": "308003ab9973d1dfd20e1ea147e095da2a62ccd89376aaa36f979301e1e8db36"
+    },
+    {
+      "path": "docs/FUSION_DIAGNOSTICS.md",
+      "bytes": 4386,
+      "sha256": "ad6d7ee8e47b695ec989b600a759c4174ad6416e3af6e4d1084eaf80a6cb3087"
     },
     {
       "path": "docs/INSTALL.md",
@@ -13966,6 +13986,11 @@
       "sha256": "72087c203645285e6f1fda9eaaa859ed194ec0fa38a53b5540505572caac2bfe"
     },
     {
+      "path": "kit/tests/test_fusion_diagnostics.py",
+      "bytes": 8831,
+      "sha256": "db26b5fcda30aa2ecd5ab26b38bc6d4fd9b8cbe4ef975686dbae8a244d7b8601"
+    },
+    {
       "path": "kit/tests/test_score_per_seq.py",
       "bytes": 3159,
       "sha256": "2715cec0113b367e680a4b2d32f773f4e6606b47f6d73d35bcd1f37bad6f6458"
@@ -13981,6 +14006,11 @@
       "sha256": "00adf057247439370a5d1171e5a045ff0b81f7b7c83f71bc5ae28c980bec9654"
     },
     {
+      "path": "kit/tools/complementarity.py",
+      "bytes": 7584,
+      "sha256": "ef80a45737c5d12d51e34ee6760f2a9cb0f12ef4c616d515b9630e81441d145c"
+    },
+    {
       "path": "kit/tools/convert_antiuav.py",
       "bytes": 9353,
       "sha256": "9f5e3b4c4c82224b1ae1a703436ae94c50a11311549eab3a83ed72ab13fdbe95"
@@ -13989,6 +14019,11 @@
       "path": "kit/tools/inspect_dataset.py",
       "bytes": 8172,
       "sha256": "2bf4fd62e941ce6e53f930ce2eced203d2c2ecb6bae760d5afb4444e69905536"
+    },
+    {
+      "path": "kit/tools/make_rgb_only.py",
+      "bytes": 6177,
+      "sha256": "1b5e5addef502af5cc0c948fe51af325c9e53237f810315681c22a3f2320520f"
     },
     {
       "path": "kit/tools/patch_ultralytics.py",
@@ -14002,8 +14037,8 @@
     },
     {
       "path": "kit/tools/run_sequences.py",
-      "bytes": 15839,
-      "sha256": "082c1e0d4cc6852b7036f28b2e2a83f7ec90ab5dcff44f2781bda2f70d35df60"
+      "bytes": 17750,
+      "sha256": "bad41e7cc23fe5d7df00d2d5a6d187f167a546a0d5e339c17551eca60ee0be3f"
     },
     {
       "path": "kit/tools/score_runs.py",
@@ -14081,6 +14116,16 @@
       "sha256": "3a96a711e418c6486bc0f53d03e959b0115aec0d1ab90d163c736f000f7f2e90"
     },
     {
+      "path": "patches/fusion_diagnostics_hardened.patch",
+      "bytes": 28069,
+      "sha256": "b90c612b20506b37ca6d32b843c883305b57dff7e3465a7ddc0e850346f7a4da"
+    },
+    {
+      "path": "patches/fusion_diagnostics_supplied_source.patch",
+      "bytes": 18778,
+      "sha256": "5e8c8d2272b787c29e50034de5b0be4695065084be42f44c32298537a1229571"
+    },
+    {
       "path": "patches/per_seq_scores.patch",
       "bytes": 2045,
       "sha256": "44306ee8b2b0c70be43050c1a1f1f3ef040b31c2c09071bd75a3f5f574932e64"
@@ -14099,6 +14144,51 @@
       "path": "scripts/check_release.py",
       "bytes": 3283,
       "sha256": "a38c303c3466e2f1d690c543618f08a746c719c09a45426ddb2e3c90042f9267"
+    },
+    {
+      "path": "study/v6/controller_step1.py",
+      "bytes": 2601,
+      "sha256": "c3659f7730cb4e9a96086839a01837a42b834fa0a290b88aa866c8baa4dd6c3f"
+    },
+    {
+      "path": "study/v6/controller_step2.py",
+      "bytes": 5061,
+      "sha256": "756f34c59a8be2664d640602f5d5339fd3331f205dce09177b0d1d740ad05060"
+    },
+    {
+      "path": "study/v6/export_study.py",
+      "bytes": 5717,
+      "sha256": "e40de4921e8b88e4c1c1f33102d5e188fa054498022c6908aad68a1c6a1c16a3"
+    },
+    {
+      "path": "study/v6/launch_step1.py",
+      "bytes": 443,
+      "sha256": "8514e92cc7842266f87c7b2881aa3dab03a74b187a624baec5c3e35e2fda87ec"
+    },
+    {
+      "path": "study/v6/launch_step2.py",
+      "bytes": 735,
+      "sha256": "21b5476d2cefa6982d7ec8ba346a7e919229f15b6d8c92e1bd5a3abddaa1a324"
+    },
+    {
+      "path": "study/v6/prepare_dataset.py",
+      "bytes": 5935,
+      "sha256": "cb8a6e94a283eeccf36f1858e0f0587dc96f0f280874982332f551d1d6465a3e"
+    },
+    {
+      "path": "study/v6/runtime.py",
+      "bytes": 1142,
+      "sha256": "940118c3b4527e9c41e175e6bf7ecced232814d9eb1d66b3ce522df1bbd7cb1a"
+    },
+    {
+      "path": "study/v6/setup_remote.py",
+      "bytes": 2187,
+      "sha256": "ec4548769bb5546f36fe16af512a4082a364411051552c87bdc84e115c61fdae"
+    },
+    {
+      "path": "study/v6/validate_runtime.py",
+      "bytes": 2922,
+      "sha256": "cc041cb3eea67e6acdb396e31c6adfc93f13d931baa7a0778d2f220077388d51"
     }
   ],
   "text_policy": "ASCII filenames, source, configuration, decompressed predictions and model headers; tensor payloads are binary numerical data"

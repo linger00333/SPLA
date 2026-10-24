@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "samples_inspected": 4,
+  "reviewer": "Primary agent visual inspection of full frames and enlarged target crops",
+  "selection": "First positive sampled frame in each of the first four validation sequences, chosen before model results",
+  "finding": "RGB-normalized boxes enclose the visible targets at the expected positions, including an edge target. No coordinate ambiguity observed in these samples.",
+  "limits": "Four samples validate visible coordinate plausibility, not annotation quality over all frames. Full loader audit separately checks every sampled label.",
+  "publication": "Visuals remain private because they contain dataset images. Publish the audit only."
+}

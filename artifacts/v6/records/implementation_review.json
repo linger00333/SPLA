@@ -1,0 +1,40 @@
+{
+  "scope": "New blank/input options and strict fixed-detector complementarity; independent RGB-only dataset and one gated scratch training run",
+  "supplied_patch_sha256": "32050f546e96f8fd3ba0a3a6a933dcad47dab85efeaee33e37a340e63be1144b",
+  "source_only_patch_sha256": "5e8c8d2272b787c29e50034de5b0be4695065084be42f44c32298537a1229571",
+  "cache_binary_differences_installed": false,
+  "tests": {
+    "local": 12,
+    "actual_remote_runtime": 12,
+    "initial_failures": "Missing tools; then demonstrated silent truncation, absent image acceptance and invalid empty-denominator results",
+    "regressions": "Full candidate and top-box prefix matches original A1 exactly on five real frames",
+    "real_gpu_options": [
+      "default A1",
+      "A1 blank RGB",
+      "A1 blank IR",
+      "RGB input using old A0 weights for plumbing only"
+    ]
+  },
+  "data_audit": {
+    "train": 29708,
+    "val": 12158,
+    "test_processed": false,
+    "all_images_hardlinked": true,
+    "actual_loader_labels_verified": true,
+    "four_real_visual_samples_inspected": true,
+    "initial_audit_failure": "np.round versus Python six-decimal formatting at halfway values; failed evidence retained; only audit fixed"
+  },
+  "review": {
+    "correctness": "Strict exact prediction/annotation lengths; missing predictions raise; modality-coordinate metadata checked; null empty ratios",
+    "readability": "Input construction and coordinate conversion have small tested helpers",
+    "architecture": "Independent study and dataset; existing scorer unchanged",
+    "security": "No new dependencies, caches or raw dataset publication; portable aliases for execution metadata",
+    "performance": "Hard links avoid image duplication; full video decoding remains necessary"
+  },
+  "evidence_limits": [
+    "Blank inputs are OOD interventions, not strict causal bounds",
+    "Fixed-output oracle is not an upper bound on learned fusion",
+    "Each modality uses its own coordinates; cross-modality success is not IR-coordinate improvement",
+    "Single seed, validation only, IR-based frame sampling and stretched RGB resolution"
+  ]
+}

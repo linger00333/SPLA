@@ -105,6 +105,28 @@ def translate_theta(th, d_px, w, h):
     return out
 
 
+def model_input(rgb, ir, in_ch, input_mode='auto', blank='none'):
+    """Build the channel tensor without mutating either source image."""
+    if in_ch not in (3, 4, 6) or (input_mode != 'auto' and in_ch != 3):
+        raise ValueError('Explicit modality selection requires a 3-channel detector')
+    if blank == 'rgb':
+        rgb = np.full_like(rgb, 114)
+    elif blank == 'ir':
+        ir = np.full_like(ir, 114)
+    if in_ch == 3:
+        return rgb if input_mode == 'rgb' else np.repeat(ir[..., None], 3, -1)
+    return np.concatenate([rgb, ir[..., None]], -1)
+
+
+def frame_box(box, lm, ir_width, output_wh):
+    """Convert a canvas xyxy box to xywh in the specified original frame."""
+    # The released converter and this runner stretch RGB to the IR dimensions.
+    return [(box[0] - lm[0, 2]) / lm[0, 0] * output_wh[0],
+            (box[1] - lm[1, 2]) / lm[1, 1] * output_wh[1],
+            (box[2] - box[0]) / lm[0, 0] * output_wh[0],
+            (box[3] - box[1]) / lm[1, 1] * output_wh[1]]
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--weights", required=True)
@@ -130,6 +152,13 @@ def main():
     ap.add_argument("--prior-noise-px", type=float, default=0.0, help="oracle mode: per-video translation error (IR px)")
     ap.add_argument("--init-offset-px", type=float, default=0.0, help="online mode: start the prior this far off (IR px)")
     ap.add_argument("--max-seq", type=int, default=0, help="only the first k sequences (smoke tests)")
+    ap.add_argument('--max-frames', type=int, default=0, help='per-sequence frame limit for runtime validation only')
+    ap.add_argument("--blank", default="none", choices=["none", "rgb", "ir"],
+                    help="modality ablation: replace one input with flat grey (the letterbox fill, 114) on every "
+                         "frame, to measure how much the model relies on it")
+    ap.add_argument("--input", default="auto", choices=["auto", "ir", "rgb"],
+                    help="3-channel models only: feed the IR frame (A0) or the stretched RGB frame (an RGB-only "
+                         "detector). With rgb, saved boxes are in ORIGINAL RGB pixels, for scoring against RGB labels")
     ap.add_argument("--device", default="cuda:0")
     args = ap.parse_args()
 
@@ -145,6 +174,8 @@ def main():
     has_spla = bool(spla_layers)
     obs_layer = spla_layers[args.level] if has_spla else None
     in_ch = int(getattr(model, "yaml", {}).get("ch", 6))
+    model_input(np.zeros((1, 1, 3), np.uint8), np.zeros((1, 1), np.uint8), in_ch, args.input, args.blank)
+    args.output_coordinates = 'RGB_pixels' if in_ch == 3 and args.input == 'rgb' else 'IR_pixels'
     if not has_spla:
         # A0 (IR only, 3 channels) or A1 (RGB + IR, 4 channels): no prior input exists, so
         # these runs measure detection only; the prior is reported as identity
@@ -174,10 +205,7 @@ def main():
 
     def forward(rgb, ir, th, lm):
         th_c = (lm @ np.vstack([th, [0, 0, 1]]) @ np.linalg.inv(lm))[:2]
-        if in_ch == 3:                                   # A0: the IR frame read as a 3-channel image
-            x = np.repeat(ir[..., None], 3, -1)
-        else:                                            # R, G, B, IR (the fork's 4-channel order)
-            x = np.concatenate([rgb, ir[..., None]], -1)
+        x = model_input(rgb, ir, in_ch, args.input, args.blank)
         x = torch.from_numpy(x.transpose(2, 0, 1)[None].astype(np.float32) / 255).to(args.device)
         if in_ch == 6:
             thc = torch.as_tensor(th_c[None], dtype=torch.float32, device=args.device)
@@ -213,6 +241,8 @@ def main():
         est = OnlinePriorEstimator(cfg, init_params=init, init_cov=cov)
         results, dets_all, t = [], [], 0
         while True:
+            if args.max_frames and t >= args.max_frames:
+                break
             ok_i, fi = cap_i.read()
             ok_v, fv = cap_v.read()
             if not (ok_i and ok_v):
@@ -236,6 +266,8 @@ def main():
             det, total = forward(rgb, ir, th, lm)
             s, px, py = lm[0, 0] / wi, lm[0, 2], lm[1, 2]
             to_ir = lambda b: [(b[0] - px) / s, (b[1] - py) / s, (b[2] - b[0]) / s, (b[3] - b[1]) / s]
+            if in_ch == 3 and args.input == "rgb":       # stretched-RGB frame -> original RGB pixels
+                to_ir = lambda b: frame_box(b, lm, wi, (wv, hv))
             dets_all.append([to_ir(d[:4].tolist()) + [float(d[4])] for d in det])
             results.append(to_ir(det[0, :4].tolist()) if len(det) and float(det[0, 4]) >= args.conf else [])
             # observations for the prior: confident detections and the offset SPLA found there
