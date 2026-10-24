@@ -1,0 +1,11 @@
+{
+  "source_checkpoint_sha256": "0938fa5a8dfe6c3e506586f72e085ed4340395b9bec639497bb08c7d8ce7d503",
+  "tensor_sha256": "a1f8b7a1fb91473a8072bbfff5cf28c81b77f253e02779dcb369555a8b94b9a8",
+  "config_sha256": "bc7ac111aca7dface173ac816a0839830febc56f7b7f5c18ffc21930f2e7a812",
+  "channels": 3,
+  "seed": 0,
+  "epochs": 100,
+  "initialization": "scratch",
+  "output_coordinates": "RGB_pixels",
+  "export_parity": "Exact CPU output equality on seeded tensor"
+}

@@ -1,9 +1,9 @@
 {
-  "phase": "ablation_inference",
+  "phase": "complete",
   "pid": 2867895,
   "jobs": {
     "A1_blankrgb_s0": {
-      "state": "running",
+      "state": "complete",
       "pid": 2867896,
       "command": [
         "experiments/v6/venv/bin/python",
@@ -35,10 +35,12 @@
         "--blank",
         "rgb"
       ],
-      "started": 1792857937.5659707
+      "started": 1792857937.5659707,
+      "returncode": 0,
+      "finished": 1792859997.7179806
     },
     "A1_blankir_s0": {
-      "state": "running",
+      "state": "complete",
       "pid": 2867897,
       "command": [
         "experiments/v6/venv/bin/python",
@@ -70,9 +72,40 @@
         "--blank",
         "ir"
       ],
-      "started": 1792857937.5667164
+      "started": 1792857937.5667164,
+      "returncode": 0,
+      "finished": 1792859997.71854
+    },
+    "score_ablation": {
+      "state": "complete",
+      "pid": 2893869,
+      "command": [
+        "experiments/v6/venv/bin/python",
+        "experiments/v6/kit/tools/score_runs.py",
+        "--root",
+        "data/raw",
+        "--split",
+        "val",
+        "--baseline",
+        "A1",
+        "--run",
+        "A1=experiments/v3/results/val/A1_s0",
+        "--run",
+        "A1_blankrgb=experiments/v6/results/A1_blankrgb_s0",
+        "--run",
+        "A1_blankir=experiments/v6/results/A1_blankir_s0",
+        "--boot",
+        "10000",
+        "--out",
+        "experiments/v6/reports/ablation_scores.json",
+        "--per-seq",
+        "experiments/v6/reports/ablation_per_sequence.csv"
+      ],
+      "started": 1792859998.1579673,
+      "returncode": 0,
+      "finished": 1792860460.452785
     }
   },
   "training_launched": false,
-  "updated_at": "2026-10-25T00:05:37.566721+08:00"
+  "updated_at": "2026-10-25T00:47:40.453362+08:00"
 }

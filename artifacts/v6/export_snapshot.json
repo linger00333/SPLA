@@ -1,8 +1,8 @@
 {
-  "exported_at": "2026-10-25T00:26:33.463244+08:00",
-  "step1_phase": "ablation_inference",
-  "step2_phase": "waiting_for_step1",
+  "exported_at": "2026-10-25T05:38:25.053373+08:00",
+  "step1_phase": "complete",
+  "step2_phase": "complete_report_ready",
   "test_evaluated": false,
   "recurring_automation": false,
-  "training_completed": false
+  "training_completed": true
 }
