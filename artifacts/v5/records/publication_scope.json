@@ -1,0 +1,7 @@
+{
+  "frame_level_prediction_publication_explicitly_authorized": true,
+  "authorization_date": "2026-10-24",
+  "scope": "Six complete validation prediction sets: bounding boxes, confidence values, alignment diagnostics and evaluation records",
+  "raw_videos_images_and_original_annotations_included": false,
+  "aggregate_and_per_video_reports_included": true
+}

@@ -11161,6 +11161,11 @@
       "sha256": "afb67cccd3b7901e9adf1d5224430560706193b62dca47dca5e393f78ddc54cb"
     },
     {
+      "path": "artifacts/v5/records/publication_scope.json",
+      "bytes": 360,
+      "sha256": "5bb03e9ee3dd4179478bde47b334cd6b74c30e1b6ce9e9a48d7daafd68bb0395"
+    },
+    {
       "path": "artifacts/v5/records/scorer_reproduction.json",
       "bytes": 131,
       "sha256": "d799c1369b50616e995ad701c7104f50660dbfbfff1658e3ff5a1b704b862883"
