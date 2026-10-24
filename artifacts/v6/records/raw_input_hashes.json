@@ -1,0 +1,3548 @@
+{
+  "raw_inputs": [
+    {
+      "input": "train/20190925_101846_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 36280,
+      "sha256": "dca65788344d43f69327c96814eaf60cf3933e6a47528cc1159b76fa8374447c"
+    },
+    {
+      "input": "train/20190925_101846_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 37263,
+      "sha256": "28b5cf776a003a7d63e196ad4e440dbdae6f546d226937815209fa8a2fe8c326"
+    },
+    {
+      "input": "train/20190925_101846_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43019,
+      "sha256": "9e4c40e7736c8f4938c11e57025a4effd6dc3aea5df9e4774511f0575919f818"
+    },
+    {
+      "input": "train/20190925_101846_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 44271,
+      "sha256": "92e586758f22adbc8c745542cea0ec2ca4bc75b126f2974de97f256d3fb33c3a"
+    },
+    {
+      "input": "train/20190925_101846_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "9b72b7438c8c48944c00a81e11be87e9902a92d787c9acddc9fff87ffb955678"
+    },
+    {
+      "input": "train/20190925_101846_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 43298,
+      "sha256": "9b6ec0658ef0eb957126fa48705765794713e254ddca7f8a26e881d2253d9475"
+    },
+    {
+      "input": "train/20190925_101846_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "466b82632aa5ef002114dbbc74ad613f287133b6daf77fc718f0b7f1c36a08f4"
+    },
+    {
+      "input": "train/20190925_101846_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 43195,
+      "sha256": "b93b1b10c78c5ff85680bbbb23116be412a9992be6bb56feec4cec0f584eb768"
+    },
+    {
+      "input": "train/20190925_101846_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43005,
+      "sha256": "d1aa06b8a33c7da39787a2358ef69639a3f8847b4f7bb64889e65959a29894d2"
+    },
+    {
+      "input": "train/20190925_101846_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 43388,
+      "sha256": "8f2df25b166147d16e124d6ca462edc4df4c1916821cf572269da8c9e38b11bb"
+    },
+    {
+      "input": "train/20190925_101846_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 38643,
+      "sha256": "9dd3d19e17867777d32175121a99e0e7d8d0f595e78f0c0b016f95bd5833c70b"
+    },
+    {
+      "input": "train/20190925_101846_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 39580,
+      "sha256": "7fb4cf9b15998a3a746976ce798548730ad2c808b5692517b4e747286fc769af"
+    },
+    {
+      "input": "train/20190925_130434_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 41048,
+      "sha256": "9ed8863af9323932b61592ddc2068fd8c6f2e819b8ef2b1684f2e48f64298c73"
+    },
+    {
+      "input": "train/20190925_130434_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 42310,
+      "sha256": "354d38ee9e6a107f0a14f6b8e97f5e49abfa0384e7e43389d265d6af795a9d05"
+    },
+    {
+      "input": "train/20190925_130434_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43152,
+      "sha256": "2e7718418c7dda90228a9607bd608a3e387fa9be04934001f79adf6eb73892a9"
+    },
+    {
+      "input": "train/20190925_130434_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 45056,
+      "sha256": "963eefca10ca27294f47ba7b5998b647b01655b07ad53ea18ab4b21c0e7b586a"
+    },
+    {
+      "input": "train/20190925_130434_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "fda428f2f956745bbb480419e640a98700aa7bb8044c663b919f2010c048ca35"
+    },
+    {
+      "input": "train/20190925_130434_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 44556,
+      "sha256": "962941a6ee58af40586675ca8e433caed3d041edfc21b8493f2a702a78b5867e"
+    },
+    {
+      "input": "train/20190925_130434_1_9/infrared.json",
+      "role": "ir_label",
+      "bytes": 37401,
+      "sha256": "de1083eeb24940a2d1d978445e410881caf456f4ded6edcad1c1e9541af09624"
+    },
+    {
+      "input": "train/20190925_130434_1_9/visible.json",
+      "role": "rgb_label",
+      "bytes": 35588,
+      "sha256": "492621ffcb1545f6701a07d2a65e4fb7324d186e6fc98338d63e123c262217dc"
+    },
+    {
+      "input": "train/20190925_131530_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "4ce2281b8c3095ea120c5b05ed3ddd2105ff36dad4fe411f1e534080d4db6541"
+    },
+    {
+      "input": "train/20190925_131530_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 43625,
+      "sha256": "14059ef3357a62cfc6011bb9bbcc2286e412f80f477e96006921c2ec22869adc"
+    },
+    {
+      "input": "train/20190925_131530_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "c29f239ce8c7272c84af5eaa1051653f0e0fcbd9b72f4ac8d85d5909d1d38559"
+    },
+    {
+      "input": "train/20190925_131530_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 43619,
+      "sha256": "f3f56e7e6379af20ca7afc5b9ffb9a23fb3853655c762bb6f56936f9cb28ce1b"
+    },
+    {
+      "input": "train/20190925_131530_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "052bc624491490dd021116f3c457410f64ef0dea12ae91d8dd97940a8dc3440a"
+    },
+    {
+      "input": "train/20190925_131530_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44066,
+      "sha256": "dab68b88ceea07b9f37613b294fa236d853edf4235f5ae804f1d0680b7ae6e21"
+    },
+    {
+      "input": "train/20190925_131530_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43017,
+      "sha256": "08f9d7d8abf06cd222f5d5ffde77eee38b82298e14221d00350cadbd071ef25d"
+    },
+    {
+      "input": "train/20190925_131530_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 44048,
+      "sha256": "6e5012282fbe2be0c48e43df59f04080de526eb4d253d857686fbad443fbc70a"
+    },
+    {
+      "input": "train/20190925_131530_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "f3d65cdb5681c8498a7faa72bff453a1e6309384805e95ac6461c289ca0d6994"
+    },
+    {
+      "input": "train/20190925_131530_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 44348,
+      "sha256": "a58eabdc430f9d3ca4fea39702b2d129f9b837d51dcd6860c62dfc02dd574ec1"
+    },
+    {
+      "input": "train/20190925_131530_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 39717,
+      "sha256": "14113dda2712fdf72e6ca65965c168f40736f74aa68b393110ac0e9d3341ddad"
+    },
+    {
+      "input": "train/20190925_131530_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 40105,
+      "sha256": "e314596b14b324b5978ef5b57aa1f8a62641edbf2cfc4e6922356a7bc16d7a53"
+    },
+    {
+      "input": "train/20190925_133630_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "0a86628990e17fa2651fc23a59c8237e7383d59b0785e3324f0b0b1368c0e7eb"
+    },
+    {
+      "input": "train/20190925_133630_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 43542,
+      "sha256": "e97e5d9b4308a45375f8547a23451f52307709416366a48ca93f90c3bdc264ac"
+    },
+    {
+      "input": "train/20190925_133630_1_10/infrared.json",
+      "role": "ir_label",
+      "bytes": 28328,
+      "sha256": "a5cbd57090386a83ec3cab870aa7cbe320092b6c92cb60c6f2d3fa3ad713fa61"
+    },
+    {
+      "input": "train/20190925_133630_1_10/visible.json",
+      "role": "rgb_label",
+      "bytes": 27912,
+      "sha256": "fb707e2ebe7087d31e0187c5d7cacf701d3e8e15f00529ef442527049a2ace33"
+    },
+    {
+      "input": "train/20190925_133630_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "2d5c48df4ed5da275a3238b03ff15f2c4b15f2de929e76494dbd9fcc0352984c"
+    },
+    {
+      "input": "train/20190925_133630_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 43359,
+      "sha256": "d6660241a7814e4c71e27654afc3da0a922f9fd522e81b65aa0c14f5d12c6bc7"
+    },
+    {
+      "input": "train/20190925_133630_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "c350911c9558c816a49f8fe8b5f6021a10b2a145a3d1b424cc7dd3c463c46127"
+    },
+    {
+      "input": "train/20190925_133630_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 43126,
+      "sha256": "b05c015e330c4a6db08978baf00239c9d70a5a68e4b714136733f6d9246ec0c1"
+    },
+    {
+      "input": "train/20190925_133630_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "812675cb58c5cb31fa5cfc31fc44656308ddaa6fba5271dce75b61c38a37e445"
+    },
+    {
+      "input": "train/20190925_133630_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 43286,
+      "sha256": "9a5af6bf131a9d78621871a2a0ac4a84f11846d626f01343caa4b5a1794cdf71"
+    },
+    {
+      "input": "train/20190925_133630_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "94671bb54acc00ecc7b47807c727682eecbc07190ecc362c6d065527394664fc"
+    },
+    {
+      "input": "train/20190925_133630_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 43600,
+      "sha256": "9faa30dd16fbd93df90a5be0d2a8325316f619380af1229b98ca8211607f95f0"
+    },
+    {
+      "input": "train/20190925_133630_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "2aee14bcd835466340e78eff63fdc677841ae02b81b61e6222287255d3df4d5f"
+    },
+    {
+      "input": "train/20190925_133630_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 43294,
+      "sha256": "49edc3f331ffd9deafbfe75b02a12cddc95976053b6d4567e6f564747ebb1162"
+    },
+    {
+      "input": "train/20190925_133630_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "1d5d43d88162a55cc8f4a56e4533cab1e704e9eb29a1f325acb8316067d076ae"
+    },
+    {
+      "input": "train/20190925_133630_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 43548,
+      "sha256": "b259d5b45bfee469d4e4a3196c523e93f0f6ef83215244a4e07936e6c803c539"
+    },
+    {
+      "input": "train/20190925_133630_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "69a4245129ec85d1933449fb16f68d73369c87b9ce5e82e95d57f5ecb4d949b5"
+    },
+    {
+      "input": "train/20190925_133630_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 40378,
+      "sha256": "9fff34abaf7be9ddcb156601caf634212257663d0abd010e86786d968c3bd0ab"
+    },
+    {
+      "input": "train/20190925_140917_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43025,
+      "sha256": "20113efb25c8b81d4c06c5cca2499b02d2b47ce4b5f12e849767d83d0d678300"
+    },
+    {
+      "input": "train/20190925_140917_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 43542,
+      "sha256": "3e848b5020f8d77784a2c88915612295cba9a3c1094378304ebd310bcbaac41f"
+    },
+    {
+      "input": "train/20190925_140917_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43017,
+      "sha256": "5da66840122c69900c95d6a599365b0daef5d31e7bdcde20196dc8c2c6ecc95b"
+    },
+    {
+      "input": "train/20190925_140917_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 43595,
+      "sha256": "ff321e7405b33fdc605e4572cb0d8ff9ee741d71593eb2c20fe2e5251e6e5bf5"
+    },
+    {
+      "input": "train/20190925_140917_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "deffe40b171c8c153379cea59202b676603fe57644f72f81d52b735522598919"
+    },
+    {
+      "input": "train/20190925_140917_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 43651,
+      "sha256": "217d2733a1dc430e72ffdd25907f64624ebac4d01e8007f92eebf849eaef895f"
+    },
+    {
+      "input": "train/20190925_140917_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "17d1d508d578fb35b300ef4d9e424ead8bf7389bccdea5a80f54fb985a0e0312"
+    },
+    {
+      "input": "train/20190925_140917_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 42380,
+      "sha256": "b655a3ff233911918fb746af3bc7470a452b6d50dfd4956f1d120979e6f4fd48"
+    },
+    {
+      "input": "train/20190925_140917_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "f8f3d3a8cd855ecac83900ed33fce603c857f218f63378507fa8ec25298b89aa"
+    },
+    {
+      "input": "train/20190925_140917_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 42813,
+      "sha256": "0afd6b52590c3623a5efcf00b1294e909cf65a1a57636e499be9fdf8152fbecd"
+    },
+    {
+      "input": "train/20190925_140917_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 17406,
+      "sha256": "df578043d62210857b36cde3f37a774c8fc000e5d8379f0de3f29d8540dae363"
+    },
+    {
+      "input": "train/20190925_140917_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 17444,
+      "sha256": "aea7af4eaa558d2a0f55e96677faf12c632c2f810b45cac8e6d52a85b08bfb1f"
+    },
+    {
+      "input": "train/20190925_141417_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43029,
+      "sha256": "fa214a2622bf84e4af3864afcb8c7a3ba615efbae5e99dd8d4075309ebba12bd"
+    },
+    {
+      "input": "train/20190925_141417_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 42606,
+      "sha256": "7708fa925b74650857853a6b9775cc3f3cea17e582a00600df3b227f53caa9ff"
+    },
+    {
+      "input": "train/20190925_141417_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43030,
+      "sha256": "c1c90b5e108cd42591fc1987243dc7fd0017c2b3520486ec13bfdeaca2d1d14a"
+    },
+    {
+      "input": "train/20190925_141417_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 43064,
+      "sha256": "50bf6bc766501a43a856474126b449526689ab4c1a4a5198cb606ebce161e79b"
+    },
+    {
+      "input": "train/20190925_141417_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "67f2e6ad52cba9f5bc8a77e32175ea6c7151bdebd1573d09c29442151d8abaed"
+    },
+    {
+      "input": "train/20190925_141417_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 43035,
+      "sha256": "5af0ef635144cee5bd3fed1df9b141e30184c338079630a4b2923a4ce917e2ca"
+    },
+    {
+      "input": "train/20190925_141417_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "2f564b2783c71754509003de774d4f7f98e07e4f8cdabd7daa11216597f6167d"
+    },
+    {
+      "input": "train/20190925_141417_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 43175,
+      "sha256": "cb56f47148c7bac057f82e27ac54a8faa60880adf67e80cce57fce94ac48294c"
+    },
+    {
+      "input": "train/20190925_141417_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 16294,
+      "sha256": "5b3553bad2f13e2a93f0eca17096751763913e6299f4b9ccb5bed42fcf7c5fe5"
+    },
+    {
+      "input": "train/20190925_141417_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 16335,
+      "sha256": "18e5275400166226c34ddf364296b1ecb1f92456628d40eb3a8e9a2babdf0827"
+    },
+    {
+      "input": "train/20190925_143900_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 42858,
+      "sha256": "ef69033ca977d591029d23819be5b43a73fe61d83219258c9c7521ecb1638538"
+    },
+    {
+      "input": "train/20190925_143900_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 42672,
+      "sha256": "d59f30da7e1ec3df7ee3c8b20d3145ee55808abf8baf6276630850fe838a1f91"
+    },
+    {
+      "input": "train/20190925_143900_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "c2e8fe639a28f338041fda0385a974046a41c0a90f37ac1078ad1a2b0d1a23e3"
+    },
+    {
+      "input": "train/20190925_143900_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 35743,
+      "sha256": "6695b4d4fc3531b7622c4f8e27d13c92ed489aa5a8f0cab5233989f223f4681b"
+    },
+    {
+      "input": "train/20190925_143900_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43028,
+      "sha256": "c051a7d6dcfd8ec2ff088e98f45431b1b7a4a8daf3235cf7cbf9f96d094038ff"
+    },
+    {
+      "input": "train/20190925_143900_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 41172,
+      "sha256": "516ccfb54ad5d63afd5e8c82010c475ea58b352ebac7115186ee7232e487514b"
+    },
+    {
+      "input": "train/20190925_143900_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 42310,
+      "sha256": "54b8a527743b68856c1c649357dd3153a74bf94d94e76293d781540710e6e584"
+    },
+    {
+      "input": "train/20190925_143900_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 43054,
+      "sha256": "d0939ed8ad7b220423424b55c34c6917d24f3832f6586ed4eef45332064cb2c6"
+    },
+    {
+      "input": "train/20190925_143900_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 22996,
+      "sha256": "98610c619a794f59f823b418d2f9a723a09dc8e082a5f6aa7e7c75d154081f05"
+    },
+    {
+      "input": "train/20190925_143900_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 23494,
+      "sha256": "e61205cab2668e8d60aa4a8f78f258ca2b41c67049c6da30cd371def153d0c0d"
+    },
+    {
+      "input": "train/20190925_152412_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 42461,
+      "sha256": "eb41fc2ad4a819a4e5852e0c2e4a72e4fec20c6405c21fdb911c1e0f1de514cd"
+    },
+    {
+      "input": "train/20190925_152412_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 41653,
+      "sha256": "23e83d04743527645e0e88d0bcfb8ca956481e1644191a07902521bcebeda772"
+    },
+    {
+      "input": "train/20190925_152412_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 42922,
+      "sha256": "404a32c7158a3f60ef1edec7bcce226b17aedfc4aa4a8c8e47fa73a47e69ced7"
+    },
+    {
+      "input": "train/20190925_152412_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 43808,
+      "sha256": "c1ed8af1be4718a0af59710125f9889e83dca857361208333472907f4f1cd94e"
+    },
+    {
+      "input": "train/20190925_152412_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 42930,
+      "sha256": "89d7eee4b469e25379b0b93e487b2f2c35a8d178e5953c81fd8b4355d922831f"
+    },
+    {
+      "input": "train/20190925_152412_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 42477,
+      "sha256": "da525382570455ea38d6ad939dbf278a49bac4023456f36dbf33275b1902759f"
+    },
+    {
+      "input": "train/20190925_152412_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "6f9847c23545534458dd6f55248d54799a39b5a07bc4f0f203abb3ac80db541f"
+    },
+    {
+      "input": "train/20190925_152412_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 42692,
+      "sha256": "e3956ff45a936c2d49a24d02eb9fc0869f1fd80101c36d806b0f1572062aeb9a"
+    },
+    {
+      "input": "train/20190925_152412_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43029,
+      "sha256": "2d1b06ce8c58632d9dd8c6d01a2ee1eeafc4add2d5d25d79acc83d0a75ba498c"
+    },
+    {
+      "input": "train/20190925_152412_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 42627,
+      "sha256": "f90da9d7b0e9d90b680b924b5d4e6fde5e4a3d35a980404006164e93ec9434e2"
+    },
+    {
+      "input": "train/20190925_152412_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 26006,
+      "sha256": "2b2c9042ded96657d311ae8710a634a6ac4c263793bc4d31a069c809250e8dc8"
+    },
+    {
+      "input": "train/20190925_152412_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 25250,
+      "sha256": "9932613c4a946cac2fa66a469dd8ff0c1a41066aa087218459d68602c4708754"
+    },
+    {
+      "input": "train/20190925_183946_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 42131,
+      "sha256": "24f83b779e92c3ed746e3661708acf653aec035e096bea2b1ab95b5853cb9464"
+    },
+    {
+      "input": "train/20190925_183946_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 43528,
+      "sha256": "fae8422a346153c020f9e810595a394d51391eb34b269f8d4e1b7a310340ec14"
+    },
+    {
+      "input": "train/20190925_183946_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 39279,
+      "sha256": "3ad1ba6e7cb6c7b6511c7eea7ab5c0e33210beb44e8b84bdf3da427c0c26406c"
+    },
+    {
+      "input": "train/20190925_183946_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 40248,
+      "sha256": "17c4bf1aad314894971e0569e0929770d70677a13f7ab5efeb36cb3d9614132f"
+    },
+    {
+      "input": "train/20190925_183946_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 39980,
+      "sha256": "1d74bb9e120bbe2f4fd163cac9034a4fda219a7349efa6faf5798807ba72a818"
+    },
+    {
+      "input": "train/20190925_183946_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 40814,
+      "sha256": "cf7e38805257f0ac13a735e88db4af9bb01d3494eaba98de8bf57488815df00f"
+    },
+    {
+      "input": "train/20190925_183946_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 39594,
+      "sha256": "49956783656ed8c0eb20034c443ac5340da3102c3df28e4bd25cae297e6ef75a"
+    },
+    {
+      "input": "train/20190925_183946_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 40560,
+      "sha256": "f2fe7bd5b52a0f73cb4c07a71ad95b19d26b80c940f8f21a63da4d3e97b2a7b4"
+    },
+    {
+      "input": "train/20190925_183946_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 23641,
+      "sha256": "24a747df3bef391e1db27a6ad7733be0d1dcaecb11a80abe101a880e3cdf17f9"
+    },
+    {
+      "input": "train/20190925_183946_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 24230,
+      "sha256": "8eb013b42f80b487fb965fa268352d63f71aec512dd1b20c4f5564f0a65f5fbb"
+    },
+    {
+      "input": "train/20190925_194211_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 40526,
+      "sha256": "96b81c9ae494c2058d984faa80d44dd3dc8f3d8e0b1fbd39281b83ae6b14f295"
+    },
+    {
+      "input": "train/20190925_194211_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 40823,
+      "sha256": "dbbc18dfab5d2460f5bdce356531a1949afde5cc2854d278a22aefb99bf04e41"
+    },
+    {
+      "input": "train/20190925_194211_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 33818,
+      "sha256": "fb17dc07027d7520d8b6258649d92d15a9a142532bdcd93a5aec8646b24e6d03"
+    },
+    {
+      "input": "train/20190925_194211_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 34845,
+      "sha256": "19746b7046a813fdebf5a554a930635952b263b2fd004ef14f9688f817eecf7c"
+    },
+    {
+      "input": "train/20190925_194211_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 40066,
+      "sha256": "78472c1ad1896c093df9c58972531d57e0830ada37ca0a037002994fac95e610"
+    },
+    {
+      "input": "train/20190925_194211_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 38658,
+      "sha256": "a86d1bf4b94b1fd94be636bf0f64d20ce8fc5c69f08c63d779fff20fdf1a069b"
+    },
+    {
+      "input": "train/20190925_194211_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 40503,
+      "sha256": "5338df3c9d708cf582bce05604605f0213cc0430cb781181f3fca0c7389e999e"
+    },
+    {
+      "input": "train/20190925_194211_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 40724,
+      "sha256": "d39630dd69adba09c4da0ad8ec242c981eea18aae821a07937af8a6eca5eb7fc"
+    },
+    {
+      "input": "train/20190925_194211_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 39665,
+      "sha256": "78507743197cfcf6fa72c8a200062c3066b1d4de3e1f2c5afc116b5e9e12f1d8"
+    },
+    {
+      "input": "train/20190925_194211_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 39992,
+      "sha256": "12cdc9baa2f882dd964c0272a204d5b463e810885306054483ff54185b98d52f"
+    },
+    {
+      "input": "train/20190925_194211_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 34842,
+      "sha256": "fc33fe6003e4249dd17cac159aae72181702d05e9ef65797de7d8c7768a9bad4"
+    },
+    {
+      "input": "train/20190925_194211_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 35113,
+      "sha256": "e0d73c4391e8ead2eb31603d584912c988b3fd7b773b85fc862ad6a80c706fe0"
+    },
+    {
+      "input": "train/20190925_200320_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 40291,
+      "sha256": "489c7ed39fb0bf7441cbd776e01b776367e1478dc960caf539c2b9b2976711c3"
+    },
+    {
+      "input": "train/20190925_200320_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 40669,
+      "sha256": "dfb66104ecab36284e792bd1d470085175dca9895e65ea9e00350704350ef8b6"
+    },
+    {
+      "input": "train/20190925_200320_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 39375,
+      "sha256": "37588c26dc134b2fc9df03cc0c3bbde701f69c41549068af3bfcab880ae8e759"
+    },
+    {
+      "input": "train/20190925_200320_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 39088,
+      "sha256": "a7cdee70f84201ffb91a42b02c14ee64e20ec027f6b09e963fe683bd88b337c3"
+    },
+    {
+      "input": "train/20190925_200320_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 36863,
+      "sha256": "688ccf3abc755652b903242e41633006c84e44349fbac0694d80d697d40bd3fc"
+    },
+    {
+      "input": "train/20190925_200320_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 37164,
+      "sha256": "f0c43caa888cf5043034146b2cf689cf0dda65ca280d5ca835051a9ff9c972d3"
+    },
+    {
+      "input": "train/20190925_200320_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 40368,
+      "sha256": "c276cea413f64216feaa5d256cf7e9f8146efc303229bb895fd5b29e0c1bac71"
+    },
+    {
+      "input": "train/20190925_200320_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 40629,
+      "sha256": "162782656cab76d04440c509d09082c88058d0c427d49a9616c3020e05511942"
+    },
+    {
+      "input": "train/20190925_200320_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 38648,
+      "sha256": "c5b5fe604c8c505255c8a183e59fea2cdb2fac4b902536c5ac538a6175ed39c8"
+    },
+    {
+      "input": "train/20190925_200320_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 39126,
+      "sha256": "bd6b945e8e0817a1b7fe1134994f2f1e50e80fe5a73a4329f5fb4c6d2cfbff22"
+    },
+    {
+      "input": "train/20190925_200320_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 40024,
+      "sha256": "f6bed375bdfdf0012296401eb2e970da1066d65da87fa173238b3b172dbac4b7"
+    },
+    {
+      "input": "train/20190925_200320_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 40410,
+      "sha256": "2495f8a50aedaf3d112414e64e4837bff989a1d2c4a377c8860b8467fd47dd4b"
+    },
+    {
+      "input": "train/20190925_205804_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 38267,
+      "sha256": "6b923fe8a13e75f6d664d5af262d28f06813cad25869b1393e5a32f49a802012"
+    },
+    {
+      "input": "train/20190925_205804_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 39842,
+      "sha256": "9e28cc729ee42f90482347e3388d6961dc7c42fdc948dcd8e087f003e2a31c82"
+    },
+    {
+      "input": "train/20190925_205804_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 38390,
+      "sha256": "05973ea23627a46adcda4fd9ab573f3f3d04214ad733910d410f3d73153ef447"
+    },
+    {
+      "input": "train/20190925_205804_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 39396,
+      "sha256": "07c6f80c92a4af75409bf7b6838d9ff3e168c59f73330bf2b63663942590804d"
+    },
+    {
+      "input": "train/20190925_205804_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 39551,
+      "sha256": "01e04f33a308d7df8b12fed160f8464b70089a4610a18b996acae6d7154aa103"
+    },
+    {
+      "input": "train/20190925_205804_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 90310,
+      "sha256": "1270bf4879c9f63440c09b33b8d2f1b7ee75b8f08b1900d05e796ad29c840bb5"
+    },
+    {
+      "input": "train/20190925_205804_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 40540,
+      "sha256": "f906fda06cf122ca35b9814e9def27addbbb808c8fdb6aee3937fe4de2e83a45"
+    },
+    {
+      "input": "train/20190925_205804_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 41340,
+      "sha256": "eb6a8a0cac994e4e6fdf011cbaa35733dd2a8f5b81381e2e22055d35f44b2cdd"
+    },
+    {
+      "input": "train/20190925_205804_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 40871,
+      "sha256": "49308469fb9de5b0460c1c058e420239c5f58ff1bdc17de66d786f8d09892384"
+    },
+    {
+      "input": "train/20190925_205804_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 41806,
+      "sha256": "38a6bdfb5f516d31746bf2da7aefabfa060eb8b7c2b03500a28f964696596723"
+    },
+    {
+      "input": "train/20190925_205804_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 22766,
+      "sha256": "7b0cb0acf3e7c691846552521a9322717316275c94749f11d678c4d1dd531e78"
+    },
+    {
+      "input": "train/20190925_205804_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 23448,
+      "sha256": "a1ddddd7895c1a77dff9e9faff14a70450450d03a1bff20deae913a63cafafef"
+    },
+    {
+      "input": "train/20190925_210802_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 40596,
+      "sha256": "d94f977a4875878a19c5a6d5b603d8e1afa98079076d6882af8436afc11865d6"
+    },
+    {
+      "input": "train/20190925_210802_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 42088,
+      "sha256": "606f9fb9ddcd1f8c72da03c0e37f9f0f1f029ffe40400f89fe452b92e2692de3"
+    },
+    {
+      "input": "train/20190925_210802_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 38116,
+      "sha256": "bf589cb9aeab4a8d10843ca2684089f860370994c5dd09602728fc3897f96bea"
+    },
+    {
+      "input": "train/20190925_210802_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 39619,
+      "sha256": "96b6c589bd12be911a89848b11ee393ad9ce2b889e3918e6668ab7e5230918e0"
+    },
+    {
+      "input": "train/20190925_210802_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 39003,
+      "sha256": "66eb9adbfced04f739ec95e519ad707d6cb413d636bfd247cacf377471411152"
+    },
+    {
+      "input": "train/20190925_210802_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 40413,
+      "sha256": "3737ca19dbf2879fcc0b72e94411d16b4a694cbabdc7cb8919efef8092b8ba81"
+    },
+    {
+      "input": "train/20190925_210802_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 38725,
+      "sha256": "c00a7cadb2a37e97ca2a4d6fc49aa5a88116eb123e0ae601d34731b98a2cece1"
+    },
+    {
+      "input": "train/20190925_210802_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 40013,
+      "sha256": "b22b17a4b0e040af491099319159566ada10527c95001886d44fac57cffd312f"
+    },
+    {
+      "input": "train/20190925_210802_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 40170,
+      "sha256": "eae5027f84d200f51b1a9606ffbe87bdf6df810800a3f131c7eb743e865c9b06"
+    },
+    {
+      "input": "train/20190925_210802_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 41245,
+      "sha256": "f8234be0bb838249ca618e22a2695b2472434f57cc4e9bc2c06a8f8ea984b443"
+    },
+    {
+      "input": "train/20190925_213001_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 39772,
+      "sha256": "ade4219ec267a537ee15250d83a924f2a782bebf6a47ca0d2e62889d08805532"
+    },
+    {
+      "input": "train/20190925_213001_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 40107,
+      "sha256": "bc4b06bc0a97d2dce53709a76ca718b034d863b6daa071864eb24ed2bfb92bf5"
+    },
+    {
+      "input": "train/20190925_213001_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 40518,
+      "sha256": "75e73d3d204fc69dd5d9af0bcfd7f9d78d83a18d6ab7e7830cdb6f9407221bc9"
+    },
+    {
+      "input": "train/20190925_213001_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 40855,
+      "sha256": "c0003cee656dc2e27ca42233fc9373ce9682e82908aa8f2a5bf35fd8a2261a06"
+    },
+    {
+      "input": "train/20190925_213001_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 39922,
+      "sha256": "0203021432b9768e37579ceadf36d4f081f4dbff91c4d57558b0c4c118900c85"
+    },
+    {
+      "input": "train/20190925_213001_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 40503,
+      "sha256": "199adeef5861ea0b2a7c6b35439023151fff0c02060ae46af31e4f6fd8eef852"
+    },
+    {
+      "input": "train/20190925_213001_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 41943,
+      "sha256": "c27955d48c1c879d1e56c74e0157268e20c187d0a469c71a78b827652785c77e"
+    },
+    {
+      "input": "train/20190925_213001_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 42977,
+      "sha256": "08558bd0574e223b9a3469dfd3b8917fd8eb429f90dc5b200963356780cfd056"
+    },
+    {
+      "input": "train/20190925_213001_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 40798,
+      "sha256": "892194f9e8915373ade2ef40c158808459ad895dfff09f70f2f8c1725d872ef1"
+    },
+    {
+      "input": "train/20190925_213001_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 41289,
+      "sha256": "39d01150341c360d6675ac575383e275e58e311c5b0f7754ac07a55ef31a6c8d"
+    },
+    {
+      "input": "train/20190925_213001_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 29618,
+      "sha256": "12fd08c9cb1efbcae4217a717fd71c0f320b6009afdc20e7a37fade8244e3ef7"
+    },
+    {
+      "input": "train/20190925_213001_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 30301,
+      "sha256": "6f9fbcd589cd3ccd74e18c95a947730100e84f9a767e227d46f4b8ea71c411e1"
+    },
+    {
+      "input": "train/20190925_222534_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 42113,
+      "sha256": "dc606ac11121bb4a1a47f433a854f30f114d9ecede84f25eee140cc60c8bdb98"
+    },
+    {
+      "input": "train/20190925_222534_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 43098,
+      "sha256": "cfa65f22b87f2082d15f9147017ec877329bb7a91b914a11a7820dd6217d39c3"
+    },
+    {
+      "input": "train/20190925_222534_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "0a993d57d3bcb1cdc9169b49a8c16ed1bb2f844c9c3eaca544dd3248cc56ae22"
+    },
+    {
+      "input": "train/20190925_222534_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 44681,
+      "sha256": "93d0906bd6ed3b80a31c112ef88a746568ed5ca68d72d864a1ba86a08fad3f12"
+    },
+    {
+      "input": "train/20190925_222534_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 42432,
+      "sha256": "8a6f63c952c5432935027004ad85f26b83ce962c21d254711ddd1c66af0aa671"
+    },
+    {
+      "input": "train/20190925_222534_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44399,
+      "sha256": "71e389f71bbbfbfdd0c11b37477e2518f8935cb17dab77a101392782738ffc70"
+    },
+    {
+      "input": "train/20190925_222534_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 42475,
+      "sha256": "6dd74f240dee2fe4ce0e4d8231424c843c59b9c944c5d60ec72bd8e0be3b27f1"
+    },
+    {
+      "input": "train/20190925_222534_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 37002,
+      "sha256": "88e2a690702e460f465b5a43d3f84951e8a718cf70d974f7676d53e8a61c8de3"
+    },
+    {
+      "input": "train/20190925_222534_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 42982,
+      "sha256": "0faa5abec151d48ef5aa512fc5d29a95b497607018a89d0e5fe326e1836015c8"
+    },
+    {
+      "input": "train/20190925_222534_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 32493,
+      "sha256": "2f5960d6770dcbc4c8b47bde1d69c7c4313cfb07b958d0dcfa924096f7b1c35b"
+    },
+    {
+      "input": "train/20190926_103046_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "5e78437c1f9ef05996e8be9ac47a3ef01e5883f9da745a368e3158498eaa84e8"
+    },
+    {
+      "input": "train/20190926_103046_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 44165,
+      "sha256": "14022ddce6c8f9bf079d4617491669b33a9f60db9d7bb2324777f639659f3458"
+    },
+    {
+      "input": "train/20190926_103046_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 42045,
+      "sha256": "85492496e8602ff92a64314fed725b8eaac299c33194ed04a7bbc7c648401532"
+    },
+    {
+      "input": "train/20190926_103046_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 41858,
+      "sha256": "49c71d9bee9c38360b6f01d958b096579736552016267c77802f4e94a5551d9e"
+    },
+    {
+      "input": "train/20190926_103046_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "8b311cf904ef878f6ef2190073e477996c6f3c9d8d64208d6419f429b2fc04b2"
+    },
+    {
+      "input": "train/20190926_103046_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44592,
+      "sha256": "126ba348b9d4f49c252f086780b460e1dcbec8d38377bcba2ac6596cec896b35"
+    },
+    {
+      "input": "train/20190926_103046_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "f176fa499e0907ee8bdaddcd20775aa78e4c096ca8a62aa8a544c5af02312ae0"
+    },
+    {
+      "input": "train/20190926_103046_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 40457,
+      "sha256": "880729c1f6824275e66b99e29fb84400ad0b3041b068efa408f4fbde9284162a"
+    },
+    {
+      "input": "train/20190926_103046_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "1863ba8647db88dd481cd0c78c1ff8962860f4aca5834ba3c952b5cee70f1a6e"
+    },
+    {
+      "input": "train/20190926_103046_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 40752,
+      "sha256": "6ff4b13e58645e05e953f4601b001eec54ef893b9854964c387dabc27d5c997b"
+    },
+    {
+      "input": "train/20190926_103046_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 42930,
+      "sha256": "7a25e9fe7bec6ce458bdadc1e1d7ff2bc2e60fc4d8c116130c0befc16b9479b2"
+    },
+    {
+      "input": "train/20190926_103046_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 40932,
+      "sha256": "960ccbdc5210314b39c11fd6ce3719cc23cb9ba9684c4fde44f31d9d02715b90"
+    },
+    {
+      "input": "train/20190926_130341_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "769524976be3285665df52b6020d3b5eac93b05467045e7c668b31972945d774"
+    },
+    {
+      "input": "train/20190926_130341_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 45063,
+      "sha256": "4c33fc7bdc09499ce5d769e021e33e70852729ce3693a4faa1f2b3825a81f897"
+    },
+    {
+      "input": "train/20190926_130341_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "cb9e949b0bb5130fe37316cbf20f4f4c2c7d0ac367cab8f3d1bf2554da784db1"
+    },
+    {
+      "input": "train/20190926_130341_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 44433,
+      "sha256": "936d30209d9cd2de80fd423bb7b45a535886145ce35907747e179d7c2b7ce08c"
+    },
+    {
+      "input": "train/20190926_130341_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 42979,
+      "sha256": "33bfd0f8a683563504b3ef3580596e8160467cc2b4ef6e43373bc7e22d16df11"
+    },
+    {
+      "input": "train/20190926_130341_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44518,
+      "sha256": "1def710656b390cbd453f8437d89a95fae4389b2f06b6aeb1a5654aba4686124"
+    },
+    {
+      "input": "train/20190926_130341_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43003,
+      "sha256": "ab5b2f1f60c5312e7d9d5dab9e2281e38f7eb31fba8fe18af2382d6a80efa6b7"
+    },
+    {
+      "input": "train/20190926_130341_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44178,
+      "sha256": "8cbc61546af57a9d00231c92e393e582046c2997c629b3d5a76da3b94bf18de0"
+    },
+    {
+      "input": "train/20190926_130341_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "82557adef870fe3111a7fb221c4857975ebb874de8b6a4c4a27a03ac09151383"
+    },
+    {
+      "input": "train/20190926_130341_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 44034,
+      "sha256": "fa71f01f9efbdea5efbfcf034f56ea5b733a854b0bdbf81d1e912704ff53d603"
+    },
+    {
+      "input": "train/20190926_130341_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "41bebd3411fb4fcf702f677b6d089db3caa5f4cc53c34dbe37e9e9ddbd0a5bb9"
+    },
+    {
+      "input": "train/20190926_130341_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 44036,
+      "sha256": "652ebe57b1d09bd603edaceb8ec044624d687f7bc37f9c0ba648c5ae6d85cdab"
+    },
+    {
+      "input": "train/20190926_130341_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 1238,
+      "sha256": "7f2447b8bdee8892c75bbec43dc9550be42ea9c0dc2b8fa7429a419150b0ac0b"
+    },
+    {
+      "input": "train/20190926_130341_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 1266,
+      "sha256": "1530bf538b044066d709b65fd7772c3148bca4467980561973351c9c39d7a0b8"
+    },
+    {
+      "input": "train/20190926_133516_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43275,
+      "sha256": "169caa7b2349dba098c853b2ed4dcd96e8339cee4ff45e6f7a9fc1bd6c03d9fd"
+    },
+    {
+      "input": "train/20190926_133516_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 45025,
+      "sha256": "2c498efced93c7755468cebce981cc06801a824f2eb5252077c2ba0a16d3c2d5"
+    },
+    {
+      "input": "train/20190926_133516_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "c95a68f1d8cc33d158ff0ee18c0278a1eb0a3eddb60842a9793e350f6ad799c4"
+    },
+    {
+      "input": "train/20190926_133516_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44601,
+      "sha256": "1b270b626681d68f4f4ef028ee347749bc7d6522996ff67a0ed6e07faa5d0ed3"
+    },
+    {
+      "input": "train/20190926_133516_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 42921,
+      "sha256": "85974b2f49bdf30db8716412e03673f9d5b69bba1be30dd5644976acbf7001b4"
+    },
+    {
+      "input": "train/20190926_133516_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 41731,
+      "sha256": "ff81af8ecf3aecd716e3927e630f1e74dcfd5682ee09aa86ed03bab2cffac92f"
+    },
+    {
+      "input": "train/20190926_133516_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 43023,
+      "sha256": "f3f006ea7edb75235ff175023aced013d65468f5a13528ebfcd836f7894f3876"
+    },
+    {
+      "input": "train/20190926_133516_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 42879,
+      "sha256": "5b59801d66b602fee3ab14cf16a9ccb48875172ca3586a5a4dd2e4ce6fd0f267"
+    },
+    {
+      "input": "train/20190926_133516_1_9/infrared.json",
+      "role": "ir_label",
+      "bytes": 13493,
+      "sha256": "7a0a109bdc57b70eaee0cae4147fa8da2ee074a26b09be8a5d8152d466605792"
+    },
+    {
+      "input": "train/20190926_133516_1_9/visible.json",
+      "role": "rgb_label",
+      "bytes": 13778,
+      "sha256": "e2f5c351a2da761f28183ffd7064f5c758b6b4f0b893668562e961b4a1f88c24"
+    },
+    {
+      "input": "train/20190926_141816_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 44034,
+      "sha256": "7e46c0f3101471096198efc62a996f24590e4d00fa990852f044f807122bb707"
+    },
+    {
+      "input": "train/20190926_141816_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 44976,
+      "sha256": "32c9da75fd2e2d6f8f45fcaf69b65657ca58ec9284d5af977feabf0095d1226e"
+    },
+    {
+      "input": "train/20190926_141816_1_10/infrared.json",
+      "role": "ir_label",
+      "bytes": 15686,
+      "sha256": "3a7258114b884cab8b3d0cb8dd83acea725b33d50c9031a5169b097d3057b767"
+    },
+    {
+      "input": "train/20190926_141816_1_10/visible.json",
+      "role": "rgb_label",
+      "bytes": 15410,
+      "sha256": "a227ed232398c951c3cdd55ecf27886899ad9bad11d11420a695582bfd5cb51d"
+    },
+    {
+      "input": "train/20190926_141816_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43462,
+      "sha256": "84920cc34bf2088dfbc350c187c2de8857eab41441af26eccb261f6dc460796d"
+    },
+    {
+      "input": "train/20190926_141816_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44026,
+      "sha256": "e58cfa1241c0ee3d86af2ea3ed50b509902fe4e6d12960a71851d243bd818b68"
+    },
+    {
+      "input": "train/20190926_141816_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43025,
+      "sha256": "8c9abd3dad43697972029a4603a6b009583ae1db9839336e6952c3e55c538457"
+    },
+    {
+      "input": "train/20190926_141816_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 44056,
+      "sha256": "59cf7b56d3d3a533d4844f4ad080984809dbf0efd4bac9f8f27563955323d1c1"
+    },
+    {
+      "input": "train/20190926_141816_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "26e8d7ddddd8e812cc9927d030b45be280ecca18479d18c8eb2afe9dd64080b4"
+    },
+    {
+      "input": "train/20190926_141816_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 44526,
+      "sha256": "696e11dc4d615c82e05f2511143595fbf8c9f29aadfb90ae3f0c1eb5737b3f7d"
+    },
+    {
+      "input": "train/20190926_141816_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "e186e65ccfaf1a1fe8e611e0caae0df2b79c771cf13c48e1218ca593765c8487"
+    },
+    {
+      "input": "train/20190926_141816_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 40659,
+      "sha256": "6fa3d23851c9b1045e8aeda41971ce8a4bf500b1a228ae992d8c6cc1395841dc"
+    },
+    {
+      "input": "train/20190926_142435_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 42996,
+      "sha256": "9dc3d7598ec52b2357e0f2337d9d56ca1be4a91b1ade87691f0d90a106988255"
+    },
+    {
+      "input": "train/20190926_142435_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 44172,
+      "sha256": "7adfa02b0c36dd2166ecc023e7cca442c93b7373aad7e37fda98d9c45cb667d3"
+    },
+    {
+      "input": "train/20190926_142435_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43032,
+      "sha256": "8ed8e8f5038964cb5c10596039267fb04b18b5676d38964994d6086b420fef7c"
+    },
+    {
+      "input": "train/20190926_142435_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 38671,
+      "sha256": "6fa3d9a676f0852382fcc750fb00e4c8beb0c1a8d2e1e4dc5f4c1203aff47dcf"
+    },
+    {
+      "input": "train/20190926_142435_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43028,
+      "sha256": "b84b0d511fd279cad0f0127f915be1e01b2838bb8aa478495242651ee6430275"
+    },
+    {
+      "input": "train/20190926_142435_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44116,
+      "sha256": "09cf8046b997701512846f2183d6e5b5c4b70cac988955028389ab6f7a343fb7"
+    },
+    {
+      "input": "train/20190926_142435_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43035,
+      "sha256": "cb86d2bfd705c4cfe4cd21461fde35433071cf8500b444f98202acc6afcbcb73"
+    },
+    {
+      "input": "train/20190926_142435_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44049,
+      "sha256": "909d32d776acf9f6f5e437dde5639bb966ea44c3a69a379a4344e6660f6ffc63"
+    },
+    {
+      "input": "train/20190926_142435_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43186,
+      "sha256": "ae91adb69f9928c87b62ddef1a10960bf74cf843ef39cddfce6b367383612a30"
+    },
+    {
+      "input": "train/20190926_142435_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 44078,
+      "sha256": "dedae095c59cf45dde87a5e07baaaf4285b680b5ee98c17f0e7acf300b7b2358"
+    },
+    {
+      "input": "train/20190926_142435_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43078,
+      "sha256": "955e15513c4b242bdcb2fcbc82f33138a9830490ad8d9984c1727092bc4ee1e2"
+    },
+    {
+      "input": "train/20190926_142435_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 44299,
+      "sha256": "e89c8fcf57f5cd8b05c3c440d1a5837d0ca4a6dc1198b39e8a11ce141d502839"
+    },
+    {
+      "input": "train/20190926_142435_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43050,
+      "sha256": "6c69f7b3fbd1559a0dfffc700f53eaa5b2d54914afcb9b5ba14d4cabb58523ae"
+    },
+    {
+      "input": "train/20190926_142435_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 44140,
+      "sha256": "9aab9c77393a99fd388b9c01094c7859bce0c9cb1ccefd771cd7f885d66eaaf1"
+    },
+    {
+      "input": "train/20190926_142435_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 42574,
+      "sha256": "b18c7988298636069c3c81a8e24ac12f74a20b03a36982a63ebe266bc511f865"
+    },
+    {
+      "input": "train/20190926_142435_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 40869,
+      "sha256": "692d76a497fbe9ef08ada74f6830ac5aa7dc54d2f94e11dcdd02b5ec2ef8da34"
+    },
+    {
+      "input": "train/20190926_143632_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43060,
+      "sha256": "5e376b521cbc384c9fea6e357f7af2b8dfb63e5576648f87807972303535b305"
+    },
+    {
+      "input": "train/20190926_143632_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 44125,
+      "sha256": "ee054a0368250456b0fc00de7084407cb449645d2cca1ee9ba88e963d2fba552"
+    },
+    {
+      "input": "train/20190926_143632_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "d3b8a88de97a0feeac80ec41af53fbe43d54041814e8e5aec76d2a65b1a24c83"
+    },
+    {
+      "input": "train/20190926_143632_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44268,
+      "sha256": "7c0ea7ef58fe5aeb811e40fd1a1f7aef3f3994889bc3668ef2b13a41d5435a71"
+    },
+    {
+      "input": "train/20190926_143632_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43030,
+      "sha256": "29b862d9cc59530d238fc213d86ae8d1a7b19602de0d27037cd92502100f8e3f"
+    },
+    {
+      "input": "train/20190926_143632_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 42818,
+      "sha256": "7a64a80be38b7a1df772f62aab60e96a5c0f0f3084a1c246d75230db7919cc6d"
+    },
+    {
+      "input": "train/20190926_143632_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 42958,
+      "sha256": "b076f893a4002187312be81af7060f78c943362a30b13d10ce7a7c90419db609"
+    },
+    {
+      "input": "train/20190926_143632_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 43755,
+      "sha256": "2504dda343d8f2bbd0d64c48bd95cd4fe88dc7d99d1e9e10d4629ef3fe8d7068"
+    },
+    {
+      "input": "train/20190926_143632_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 42985,
+      "sha256": "836b80972394a408edb3067e1fe1627bc879679c09cbc3fd9d03d324a5a17a21"
+    },
+    {
+      "input": "train/20190926_143632_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 25848,
+      "sha256": "b50873a332a9ff4b96376512cda51c5baa7f6b642e4b32cda07e7e8cd6ff7cfc"
+    },
+    {
+      "input": "train/20190926_144550_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "ea7e4375c108d9d0e140a307e228c1bd76ae00815af06b54b7d76d44a2e49c66"
+    },
+    {
+      "input": "train/20190926_144550_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 44034,
+      "sha256": "0eeb92eb70c2d7860c4f9249287b329b4d799d10998165d493a9f70af3c91ab5"
+    },
+    {
+      "input": "train/20190926_144550_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "b6e2aa9c30a380347594bba3724defe4078a2fef2fc0ff8acd060e4dfe6b62ef"
+    },
+    {
+      "input": "train/20190926_144550_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44293,
+      "sha256": "4ebbf9d6128e7f651543fbe64d6c63ef8e82e42014d9755f819079e0133de736"
+    },
+    {
+      "input": "train/20190926_144550_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "49aa8171c199e0d93b6472546934e0de517a8c4d212f601d137fe76cd67883bb"
+    },
+    {
+      "input": "train/20190926_144550_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 44034,
+      "sha256": "ad0567c811349683cfab852cef79f3ab16a7dd10416a49e6ecb92e6e884af2a5"
+    },
+    {
+      "input": "train/20190926_144550_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "cab33ace217347f2a6b825d9214875e8f3dc1453394cffe9dd0a80d9dbba5152"
+    },
+    {
+      "input": "train/20190926_144550_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 44131,
+      "sha256": "976baf1521d7acedd6da83977b733222bbf2cdc0b155be8ddd04e6c090678eba"
+    },
+    {
+      "input": "train/20190926_144550_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "1616ccde9a4da92eeb422d3082accf5fad337e1c285d60227e84ddec3d045173"
+    },
+    {
+      "input": "train/20190926_144550_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 44035,
+      "sha256": "6b7978eaff06ff980f64c1d21ad5bbcbee4b949d883a77fe3446dc6f90650085"
+    },
+    {
+      "input": "train/20190926_144550_1_9/infrared.json",
+      "role": "ir_label",
+      "bytes": 42959,
+      "sha256": "8c55d1d018bf7676eb53d492a7fd72f363ad5c8862c97458ba51a949ad360a92"
+    },
+    {
+      "input": "train/20190926_144550_1_9/visible.json",
+      "role": "rgb_label",
+      "bytes": 43531,
+      "sha256": "8b11ad5e714e147423175677f3c8e1180496d228dc4ef29a1a2e2c479fee0f6a"
+    },
+    {
+      "input": "train/20190926_183400_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 42133,
+      "sha256": "3622ca65cfe9aa4029424c33b969cfa7f8f2194811fe5b7379d645c56ac611bc"
+    },
+    {
+      "input": "train/20190926_183400_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 43134,
+      "sha256": "96aee486843752f91d779939c06142add77ce2e0c8f50b46a840384bd5dd3706"
+    },
+    {
+      "input": "train/20190926_183400_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "c7f4335eedd7da5491b1003afdb87947744b9dfaaffe42a26ad35c694bc163d8"
+    },
+    {
+      "input": "train/20190926_183400_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44113,
+      "sha256": "3dc5d43df03c917c7067a7c54a330b155d79e3701363506efd99dd775b90800a"
+    },
+    {
+      "input": "train/20190926_183400_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "c57e651a624d9997cee2c2ed49ac088b44b91f139127036cbdf3fbc008b183bc"
+    },
+    {
+      "input": "train/20190926_183400_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 44263,
+      "sha256": "74786bdf2c781cb5017e2289f64a3fcf898860477210c3c3716dcccba086a1a2"
+    },
+    {
+      "input": "train/20190926_183400_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "c0b44a2379e1cd6b9ad3b52b9a45b1ae8f95b285fa22e91c9914c4a6cb19c9c9"
+    },
+    {
+      "input": "train/20190926_183400_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 44396,
+      "sha256": "7f1e34495f71f8856df892bd4decd57630a78a11809b5ad0e8a02d4a1e63c467"
+    },
+    {
+      "input": "train/20190926_183400_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 43019,
+      "sha256": "8a3743584fb2688f28a90b6e1c4afe62d0d7ba5be394d6dd231730962ed8fce2"
+    },
+    {
+      "input": "train/20190926_183400_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 44164,
+      "sha256": "817018d671903b792038227573a5be2abfd69cea51a25c17c6ccb06aac1dc17f"
+    },
+    {
+      "input": "train/20190926_183400_1_9/infrared.json",
+      "role": "ir_label",
+      "bytes": 13987,
+      "sha256": "38f56e8f9585c5e656389a9371b1e83602f2d83bb294872e1e0127d14ef22041"
+    },
+    {
+      "input": "train/20190926_183400_1_9/visible.json",
+      "role": "rgb_label",
+      "bytes": 14397,
+      "sha256": "be5282729a8957d780cc2a952d4bebfc1f4e1064fa2fb74479033f87144fd98d"
+    },
+    {
+      "input": "train/20190926_183941_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "e9130e34543731a57d2bd6fb7722c71eebf708215eef08d9128b0ac8df0f0ab2"
+    },
+    {
+      "input": "train/20190926_183941_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 43857,
+      "sha256": "8c0e6b80f79a0d889ce813a0507bdd2d25ae9394d1ead630d6f758af123121b0"
+    },
+    {
+      "input": "train/20190926_183941_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 42042,
+      "sha256": "ff9aa1abf887c5fdc1ae51c51a974ecb35c0ebb7d970f12c3615a28624cb17e3"
+    },
+    {
+      "input": "train/20190926_183941_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 41334,
+      "sha256": "8078e49654d785b8b3d6a7b7b34136f8da0e13cbc8ef0057038289ec60dcc068"
+    },
+    {
+      "input": "train/20190926_183941_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 42359,
+      "sha256": "d6896c850f344e6151a44f4cf7fa51bbc437d7d2ff0fefc6a43a4af01e4ec24e"
+    },
+    {
+      "input": "train/20190926_183941_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 38096,
+      "sha256": "0385d956b32e254bb3a84e3538455c7991d6037e959a4058efabdf10e98a5443"
+    },
+    {
+      "input": "train/20190926_183941_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "a55e9b3ac1cab39ddda0a8d774ff7c99d8629b47a7de1545ab310fe81aaf4d57"
+    },
+    {
+      "input": "train/20190926_183941_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 43775,
+      "sha256": "255d69d8988de33917460a9f635febb839ba7f3dca892e3af8922fa9cd80042d"
+    },
+    {
+      "input": "train/20190926_183941_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43028,
+      "sha256": "510291491cb1971a0ded04d4691924dbfd0edd792a7a922e6380f5dc21c3ec78"
+    },
+    {
+      "input": "train/20190926_183941_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 44180,
+      "sha256": "635c4cff8a88be06ada2bfffb23889d9663ee97822c5f797d499d472f90a1926"
+    },
+    {
+      "input": "train/20190926_183941_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 43436,
+      "sha256": "e56d59038765da5066acc1c40ac1186aee7d7ce7e42ae4c3e3cef07a44483c1d"
+    },
+    {
+      "input": "train/20190926_183941_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 44242,
+      "sha256": "4e9654954a42e979cb6a8b5edddc6a6b245a9afbd0ab1a817c99c2bce701cfac"
+    },
+    {
+      "input": "train/20190926_183941_1_9/infrared.json",
+      "role": "ir_label",
+      "bytes": 7206,
+      "sha256": "07e92bbf0aac2878880926c702803b0d89a7ad3d6693495af3cb2c7e99052c7d"
+    },
+    {
+      "input": "train/20190926_183941_1_9/visible.json",
+      "role": "rgb_label",
+      "bytes": 7205,
+      "sha256": "d2ed3d7e24e10ad66bc70a26aeb0e13c31449e55dc34a61f8753d4071a28c104"
+    },
+    {
+      "input": "train/20190926_193515_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 42861,
+      "sha256": "c271c280ff4f6dd5e13721c307f4b9237500e70037ae6d0b03e160271b968d30"
+    },
+    {
+      "input": "train/20190926_193515_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 39044,
+      "sha256": "96f4d6e09369e28816e680680f0625bad2cad318d73bd36d253dec156e9ae9d3"
+    },
+    {
+      "input": "train/20190926_193515_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 42249,
+      "sha256": "a91ea888fd103a42006c63642061c8dd4137d86167485a4c3e5665bd50bc53ca"
+    },
+    {
+      "input": "train/20190926_193515_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 25207,
+      "sha256": "423b14642447952137060bf1725558442c949738ad9cc10f8fd588ae4172b707"
+    },
+    {
+      "input": "train/20190926_193515_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 42553,
+      "sha256": "10fe251bd350062eab252d9214b2ac44a8e0adadd96b332e76e2e75259f8018f"
+    },
+    {
+      "input": "train/20190926_193515_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 22715,
+      "sha256": "e443a093399b9a1540215674bca36e6144b21f7f8f27db4d97780f9fb18490e9"
+    },
+    {
+      "input": "train/20190926_193515_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 42723,
+      "sha256": "d7a53fd2ddf0b0c60c1a581f79e4f6d538498439919c8701b1d81c66e93df164"
+    },
+    {
+      "input": "train/20190926_193515_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 26811,
+      "sha256": "4c3ec127ee3ce54d846113d1999011cc6f602bc29619f7f4980e672747a1a0cc"
+    },
+    {
+      "input": "train/20190926_193515_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 42905,
+      "sha256": "e540b04b81abbbff2833f708886abbc3939762bf7cb7a3f799dfab7f2776f495"
+    },
+    {
+      "input": "train/20190926_193515_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 29251,
+      "sha256": "73f90032a8128c05c1537786cc894ff8cfbe594ee2ecba6eb4b00512351b85c7"
+    },
+    {
+      "input": "train/20190926_193515_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 42984,
+      "sha256": "8eb681ece5f1a5241a0fbf8b2316a3577112c863e587734c0bb47fe0692d35bf"
+    },
+    {
+      "input": "train/20190926_193515_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 42442,
+      "sha256": "79a0f5287d3543791ccb19f91b3b4791e93cdcc7724c28b6a22d6374169b1f16"
+    },
+    {
+      "input": "train/20190926_193515_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43036,
+      "sha256": "c15374cf9f1ab6d38be61e56348548c130e966a7cabdc8d151dbfdebf4a745e6"
+    },
+    {
+      "input": "train/20190926_193515_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 44378,
+      "sha256": "98c34f5195c6d463fa5a12771d59bb9ad373bc0c1e18fa8e0e72cd3e10335397"
+    },
+    {
+      "input": "train/20190926_193515_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 40437,
+      "sha256": "5df0549ea0b2dd2aedbdc60fe7422f9c4fa9888ff1a2dabd2029dccd16ed335f"
+    },
+    {
+      "input": "train/20190926_193515_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 41171,
+      "sha256": "ff4e1359af06d4d00fc4cc6c5033136cc701941aeb33f28411fb69fe06cb4ef7"
+    },
+    {
+      "input": "train/20190926_195921_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "4296bd82b158f17da4d2d2a4c7c25b881fd20c3bcd711833c67e5da468ba069a"
+    },
+    {
+      "input": "train/20190926_195921_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 43158,
+      "sha256": "f4ea74708e35a664357e9e08bc298086dd9b4d2dfcd265cc49139786a300b410"
+    },
+    {
+      "input": "train/20190926_195921_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "f1dd116dbec4f176c898ff54ba14f80796e9de5f42b311fe20607377c8e426cb"
+    },
+    {
+      "input": "train/20190926_195921_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 29317,
+      "sha256": "4a2baaf7dbced3862852221bd70e258d2c4dcc642869857ecd5d48f83ccb8b47"
+    },
+    {
+      "input": "train/20190926_195921_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "95d899fa4812006c3815b4aecb16ab800c2c0e5340e3377c712ecc877c76382a"
+    },
+    {
+      "input": "train/20190926_195921_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 39668,
+      "sha256": "2a3ccf3c5935eaa9ec62b18c06a2e5ac3604026f22afa9fb0bbac6cf8f9ed3b1"
+    },
+    {
+      "input": "train/20190926_195921_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 42997,
+      "sha256": "38eaaa7e4ad400b8181dc5d643943fe99f1b6e497f34468c816c2e7b285362fd"
+    },
+    {
+      "input": "train/20190926_195921_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 42529,
+      "sha256": "cc096febff3a81a39d21d5ef021152623afc82404dad21c1b4f2e581a3c65085"
+    },
+    {
+      "input": "train/20190926_195921_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "3d5416eeb074bb9614520ecfe13d5d03a221e694170810c23a04ecb9abc6fee8"
+    },
+    {
+      "input": "train/20190926_195921_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 43400,
+      "sha256": "c8f63717297492cbee1b12c832bf2a2a06cf1c16f9d43eab6e435ac9ee60b90a"
+    },
+    {
+      "input": "train/20190926_195921_1_9/infrared.json",
+      "role": "ir_label",
+      "bytes": 27941,
+      "sha256": "d91c455689234ea7083ecf5d503a627d39b4caad02a76651e4f9fd551198a44d"
+    },
+    {
+      "input": "train/20190926_195921_1_9/visible.json",
+      "role": "rgb_label",
+      "bytes": 23976,
+      "sha256": "be40112fd661dd36781c0f893ef9081af57ff1bafe435db5c374573bb21dfc19"
+    },
+    {
+      "input": "train/20190926_200510_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "7e3e1a012c2f12a9567588cfa7c08a28055367a68d8391217aa7d75af58a4791"
+    },
+    {
+      "input": "train/20190926_200510_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 43151,
+      "sha256": "63bdfce015f4e352d9e7cabd1753aa80f64e1cb411016d97c403f9890b25dbc7"
+    },
+    {
+      "input": "train/20190926_200510_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "485f99b3f318cfd85abff5df0bcaebd126752d526bbacfeefe91adf6ba4d20d2"
+    },
+    {
+      "input": "train/20190926_200510_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 44326,
+      "sha256": "36b842cdb807889cec374393a409354e34966aa5861883763d3d0607a48c1e8e"
+    },
+    {
+      "input": "train/20190926_200510_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "c04b59768d14e87a7d6c4b7f72b25b74031d6dcd805bd703d6a6d3ff423781dd"
+    },
+    {
+      "input": "train/20190926_200510_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 43727,
+      "sha256": "0d719f2d566350db2534fdb2f8706d51407c62f7beb48b1a4474f3b587cf4829"
+    },
+    {
+      "input": "train/20190926_200510_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "d344320de544c70e2293b445b10e16c1c3cec695247e606c9451f27da0b1a872"
+    },
+    {
+      "input": "train/20190926_200510_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 43428,
+      "sha256": "caabdf7122a5cbcf14436db3b5eca3b2c12490e3f055f6620b5c3d19aa69b457"
+    },
+    {
+      "input": "val/20190925_101846_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "b3c30b23b4b0579ea2bdc421db31f729dd202d083a17d8613286556afa35fb82"
+    },
+    {
+      "input": "val/20190925_101846_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 43259,
+      "sha256": "20586a99c82729c86f730d3f4357a162f1cc9bbca77fdc6f921681a11fdfadd0"
+    },
+    {
+      "input": "val/20190925_101846_1_4/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2652153,
+      "sha256": "6d873a57897005b62cd92bab982d692b78e15b1470f8b45351cda757fa7db372"
+    },
+    {
+      "input": "val/20190925_101846_1_4/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 10400283,
+      "sha256": "90f902801911778275d652a3af72759dd2d85e1d39d7c97da0dd995561ea6ed2"
+    },
+    {
+      "input": "val/20190925_101846_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "19c499591555188c7eecfd0dc84b162937c7e39732261569ebebc7253cdff96b"
+    },
+    {
+      "input": "val/20190925_101846_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 43113,
+      "sha256": "3178d8cc8f5c0c22612917509df6f757029722cacceafdfa9850cc16c7dec8d9"
+    },
+    {
+      "input": "val/20190925_101846_1_5/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2933180,
+      "sha256": "1f2258a93b73e668a130d6fe26630b64f860056d673dfc6153edd65c37ac7484"
+    },
+    {
+      "input": "val/20190925_101846_1_5/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 10695414,
+      "sha256": "e2a902ac7eb594a9f6df4ad016be29b78a8ef8d86f942883a48351836f173a7f"
+    },
+    {
+      "input": "val/20190925_130434_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43934,
+      "sha256": "f44392a509f7b70c21071485816526cdf28bcde9a28d984ef79e2d270541c8f7"
+    },
+    {
+      "input": "val/20190925_130434_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 45253,
+      "sha256": "96959642bc48d5562451d48f8e730cf0c4db87188ca0b388818c29e64f0f5e75"
+    },
+    {
+      "input": "val/20190925_130434_1_1/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2521829,
+      "sha256": "5a00e8619e2fb13c68f427b65798822260141a39360d55094572034837411997"
+    },
+    {
+      "input": "val/20190925_130434_1_1/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 11001797,
+      "sha256": "24dedd031fde20685f8a5052bd78eeb31045aee0627525fe40426cd80c12af08"
+    },
+    {
+      "input": "val/20190925_130434_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 13467,
+      "sha256": "a1a747acf319e17f0c3c026deee03e3863e77aeb952b7e4b80e7966ebfc4db7c"
+    },
+    {
+      "input": "val/20190925_130434_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 13532,
+      "sha256": "85c7e0a61005e784e2ddd403a20a0497ce7874eb2fdee4ac87400351cae5be6d"
+    },
+    {
+      "input": "val/20190925_130434_1_2/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3708516,
+      "sha256": "a48d32b6a4b90b526ad83e35af3726db2c5bf61c55b3331cb566c7e3b5ef7252"
+    },
+    {
+      "input": "val/20190925_130434_1_2/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 11717347,
+      "sha256": "922718c7756df33d54161abf20b81ef262a82d2643a022dcbe9ce73080705211"
+    },
+    {
+      "input": "val/20190925_130434_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43027,
+      "sha256": "9becd785c9abc759bd26301228c20e3cb0a4770b0429a003e3553b987cb73127"
+    },
+    {
+      "input": "val/20190925_130434_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 44979,
+      "sha256": "f975fa66b8239bd7d33bf5feb36ff4224bbca402584cf98b9989954199f0dadd"
+    },
+    {
+      "input": "val/20190925_130434_1_5/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3264535,
+      "sha256": "92f927065110ed8de8ff119593fc8b676d80e9245362dbf28d6b32a7c3607773"
+    },
+    {
+      "input": "val/20190925_130434_1_5/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 10909102,
+      "sha256": "2f3eb7986a825b409656afa794ce8a351b4bf70aaeba20b90c944cf6b8114c63"
+    },
+    {
+      "input": "val/20190925_130434_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43030,
+      "sha256": "8b5c667aa5b81c002f03a5ca2de290c4e458fc04d5ce4ff161558b866f74e3db"
+    },
+    {
+      "input": "val/20190925_130434_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 44736,
+      "sha256": "a5aba7d0b768429dec68c94821ad3e724aa11c1bff28da92ea3afebec04ffbdd"
+    },
+    {
+      "input": "val/20190925_130434_1_6/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3298415,
+      "sha256": "204fef33ea6568ee07b50c577ee94b2b09aa910a9c43eb747258efe63e541290"
+    },
+    {
+      "input": "val/20190925_130434_1_6/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 11620210,
+      "sha256": "06c0249d533189493f5efc5ea2c1b304f773b0cb1a3e20ec4195a997e4f13e4b"
+    },
+    {
+      "input": "val/20190925_130434_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 43009,
+      "sha256": "7cb4b84e1dc9822ac9e7a187ce207ce9428cc14862dd6e49dae86ba1df33dc01"
+    },
+    {
+      "input": "val/20190925_130434_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 43278,
+      "sha256": "70ffc96e6f281bbdef05836f5339d1bbdca5de56580ff183fdaf46c9e219f618"
+    },
+    {
+      "input": "val/20190925_130434_1_8/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3780120,
+      "sha256": "6e9147cbbb943d86aaefa0037289198ad6e3931c8092711edcb0296c57d466a5"
+    },
+    {
+      "input": "val/20190925_130434_1_8/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 13053326,
+      "sha256": "1ddd6906f54f7556b334b2b6e9ff5a1d06e7c9e59d87ea028916e500e148a50f"
+    },
+    {
+      "input": "val/20190925_131530_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "8c97824beaa057fa398ea6812268c4269b6b1cfb53b9a460ed9cd7db18e00361"
+    },
+    {
+      "input": "val/20190925_131530_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44049,
+      "sha256": "76869bef2c8ae7861637347b9bd1b9379fc6a0144269fe2074e602b2f5c7846d"
+    },
+    {
+      "input": "val/20190925_131530_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 5511861,
+      "sha256": "24ee5bf3e71adda1579497a2be13d7fa55f9cea84ee6bd1ce3c0ca0739b81cc8"
+    },
+    {
+      "input": "val/20190925_131530_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 17788366,
+      "sha256": "2a60ee451248dcf12dfca27eaf84a845279a022a9ad9b148edf68db8299a8d73"
+    },
+    {
+      "input": "val/20190925_133630_1_9/infrared.json",
+      "role": "ir_label",
+      "bytes": 43024,
+      "sha256": "16f9d6f381c17170a54ef41fc00694aa8dfa0d1c84dffd8ea29ab6aa0484abe1"
+    },
+    {
+      "input": "val/20190925_133630_1_9/visible.json",
+      "role": "rgb_label",
+      "bytes": 39876,
+      "sha256": "3e244dccb40cdbf3a9caa6977a1c102b3d878499c50ac59f309818cd82c02125"
+    },
+    {
+      "input": "val/20190925_133630_1_9/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 6700889,
+      "sha256": "8c9b01ac96487ebfd37e13a9144e3fb887219513684757c852a1c31fc308759c"
+    },
+    {
+      "input": "val/20190925_133630_1_9/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 17951032,
+      "sha256": "90ec59c2dd127e2468983fd9088be434bdc1903aa2bddb19f90e1ff294b2284c"
+    },
+    {
+      "input": "val/20190925_140917_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43011,
+      "sha256": "3f031b35941eed6ec32b6ed0987685ba0ff260b60e46fb81e496d6004ff6438d"
+    },
+    {
+      "input": "val/20190925_140917_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 42676,
+      "sha256": "343f1553671f084f4daf6d7aad06ba48033618da12b7b90585debf0baf118ef2"
+    },
+    {
+      "input": "val/20190925_140917_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 4673026,
+      "sha256": "8986fe41442dcb0d5742d69bdeed41a8e517ae454f3848f35eb348aefc616ab1"
+    },
+    {
+      "input": "val/20190925_140917_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 14853104,
+      "sha256": "62685994c5800492bd8076adabf6143f814dc1fe1e48a6f3268617d9a4bfadae"
+    },
+    {
+      "input": "val/20190925_140917_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "9f60b749892f12ed05e3d7763b66f663c6cf340d4c5cb6fa8759242bdcef85c3"
+    },
+    {
+      "input": "val/20190925_140917_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 42919,
+      "sha256": "f0185ade3e7a76f57e8c93f54ccc7eb1367c4244eafb01ac6555961b25559140"
+    },
+    {
+      "input": "val/20190925_140917_1_6/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 7103522,
+      "sha256": "cee591d09d10d6d4905dbef3b3069b257cae3b0ba3f4ce70ce30491e02dbac0f"
+    },
+    {
+      "input": "val/20190925_140917_1_6/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 20135121,
+      "sha256": "9969acd1fac01a21cb56cc34ef1ec6c3689f2a0fcd2c261297d99f066b104e1c"
+    },
+    {
+      "input": "val/20190925_141417_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43005,
+      "sha256": "23b14666c65143d9d3516318703d3182d6bdbec787da629b7d2d1e85d57f0043"
+    },
+    {
+      "input": "val/20190925_141417_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 42631,
+      "sha256": "be68ce6602074b899f1e35d4c6c7654e45d2f275fce7e81087941776b3b0e923"
+    },
+    {
+      "input": "val/20190925_141417_1_1/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 7046488,
+      "sha256": "5c729e0c146749613b4998b110ddd511147078b64f22582fb9e8904b92f1644f"
+    },
+    {
+      "input": "val/20190925_141417_1_1/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 18060021,
+      "sha256": "88995d208d6f86aea8b049050a1c85a1a8cefd85051f39a3ec1736fc6689306e"
+    },
+    {
+      "input": "val/20190925_141417_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43033,
+      "sha256": "a788e587ad3fbf3f21de9bccdf9115197b595808af099eb1a548e4e0471c8ea8"
+    },
+    {
+      "input": "val/20190925_141417_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 43107,
+      "sha256": "13394055c844ffbe65fd14271c3901c3ef38942cbecaf59b4e793aad1cc62d66"
+    },
+    {
+      "input": "val/20190925_141417_1_6/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 5348586,
+      "sha256": "391f74ab8bcf11e0906c496fb4bb5cc2c807ef454f358d4265f90333bf25553f"
+    },
+    {
+      "input": "val/20190925_141417_1_6/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 16192974,
+      "sha256": "03c5810711714d63cfae0c18d00da5bfce67b7cfd4b41dbab7e992384a584adc"
+    },
+    {
+      "input": "val/20190925_141417_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "8d87332f36459a912c6722fce8cf101cad7159e7dcb8041a89cde29a9188d2f7"
+    },
+    {
+      "input": "val/20190925_141417_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 43117,
+      "sha256": "81c96465ad632264b41e98c6112d549e8b8f36315def57c56d28edb056abf32e"
+    },
+    {
+      "input": "val/20190925_141417_1_7/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2620483,
+      "sha256": "70197291b9457cc021cad3e033e63bca97ee6a1c849432c997e14158c502a505"
+    },
+    {
+      "input": "val/20190925_141417_1_7/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 11608535,
+      "sha256": "f6654978f084de86a2f4bde45c47148b6a0d271c23b93ceae444d9e6e4197382"
+    },
+    {
+      "input": "val/20190925_143900_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "b7cd8d447b37c2ae7fdd45292c40cad72852f096e0146a15d6b582b57206f170"
+    },
+    {
+      "input": "val/20190925_143900_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 43891,
+      "sha256": "c48cb511ae3d2576981dcf6b6745d6b0e7b116f0737257cce7ef6d6d1958975c"
+    },
+    {
+      "input": "val/20190925_143900_1_1/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3182504,
+      "sha256": "caf4edb3f33cf76be6903168799ae921e71c4343883b587f07a121cceb0e646c"
+    },
+    {
+      "input": "val/20190925_143900_1_1/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 10812545,
+      "sha256": "40fe4410d8475c36cc77045afbdfa979955d9a21c3085990465dfe249e199e88"
+    },
+    {
+      "input": "val/20190925_143900_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 42971,
+      "sha256": "f077291dedbef98f29a70d056ee381b36bce9a93069aaece06bf991d955b3286"
+    },
+    {
+      "input": "val/20190925_143900_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 43391,
+      "sha256": "80a48726bfdda97a672537c7d91c85c62c9012b9a6333c43ed4c45b32b20a919"
+    },
+    {
+      "input": "val/20190925_143900_1_2/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3185186,
+      "sha256": "f64afe90f6c80e3bb92ec179a2cbe5907a49a4b6893aa4f1663ec74e7d9bacb8"
+    },
+    {
+      "input": "val/20190925_143900_1_2/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 11883047,
+      "sha256": "f1603d091e20cd6cd2796ea66a9dd21340763567c521d802d32f6ea133f78ad1"
+    },
+    {
+      "input": "val/20190925_143900_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "701f29eee19a39aa8a97dc04cd3b6f904232496c11323011e0193684f111d61c"
+    },
+    {
+      "input": "val/20190925_143900_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 44341,
+      "sha256": "eb616c1c82fe7d68ae04894671365450adaf2fbba8f2902c5f63d1b78566aeb7"
+    },
+    {
+      "input": "val/20190925_143900_1_7/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 5161335,
+      "sha256": "a4da4e5cdefc83d4e3f2f94cc32179e8c6abf403665c9ce050a16d506ea6c983"
+    },
+    {
+      "input": "val/20190925_143900_1_7/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 12708320,
+      "sha256": "c14e789d067c2bf1398a47450b8c5c56cc44507b3b51bb9eb76f3eda186f7977"
+    },
+    {
+      "input": "val/20190925_152412_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 42972,
+      "sha256": "6a506a716e918d9b75e01d67ea8be092cc9c47b07d221a68e4e1e70664eeb5ae"
+    },
+    {
+      "input": "val/20190925_152412_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 42637,
+      "sha256": "cb8ac8f7af7e6a66056140c7ff35c32e1049569705b67dd534565a518dd8d1f6"
+    },
+    {
+      "input": "val/20190925_152412_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 4575805,
+      "sha256": "401f62f0d6695b308301399cadc441ebb12b238cd97ea0fd7060dc8aff14917b"
+    },
+    {
+      "input": "val/20190925_152412_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 19013130,
+      "sha256": "9870d5b7f1eb6feface1eb4eb67238fad8fc3e8cc61dcbdb5f565fce84176b18"
+    },
+    {
+      "input": "val/20190925_152412_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 42940,
+      "sha256": "86c74b790d1601e39c772b7a200ce6da7b6112642eabbb16a8945fef6c1a6d24"
+    },
+    {
+      "input": "val/20190925_152412_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 42080,
+      "sha256": "1a57b143bd82919dc26bf4bb45e09524f02ee15815414e0954af5fdce727e3b1"
+    },
+    {
+      "input": "val/20190925_152412_1_5/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 4426472,
+      "sha256": "efef958dc34e60ddf3904c97815d55b5f900988598655e70b75327980d86975c"
+    },
+    {
+      "input": "val/20190925_152412_1_5/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 18476012,
+      "sha256": "d3d10af144187214052c4dd657fda5b758b0cb66950f38a6a31177888188768d"
+    },
+    {
+      "input": "val/20190925_183946_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 39980,
+      "sha256": "c96b9d46cddc0851c97ebc87c0e8fe35956e4cc76f80fa312297cf4b57fca018"
+    },
+    {
+      "input": "val/20190925_183946_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 41182,
+      "sha256": "a619a162a93cfcb884c877e21e639b4abbe2d92c815bd07640479b214b98a7bf"
+    },
+    {
+      "input": "val/20190925_183946_1_1/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2196269,
+      "sha256": "93603a0fa98e2f3118f5010b17f7dee03e56341e9e6f818090aa2dc2d2b2a537"
+    },
+    {
+      "input": "val/20190925_183946_1_1/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 40719656,
+      "sha256": "acbd8f16345bc6c915d8888ea88b28b77eb4f78ab8bd3010dfd0588632458e18"
+    },
+    {
+      "input": "val/20190925_183946_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 36928,
+      "sha256": "5056653df164f11773d50f50dccb6dae976915e706afb9bc123c31eea0c5fd8b"
+    },
+    {
+      "input": "val/20190925_183946_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 38110,
+      "sha256": "1bae63ceca84b4bcfe9c9b012ede31211e10b5d2de6478c41c9aa261633cefc0"
+    },
+    {
+      "input": "val/20190925_183946_1_2/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2339316,
+      "sha256": "b0e1bc3df408d11f6ef6dce03a98d741eaf2d41cd1f6e99ae6512b48d8081a1d"
+    },
+    {
+      "input": "val/20190925_183946_1_2/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 38515125,
+      "sha256": "a3f687a6210d227e288bc7e5250565e94950f42ab1d0dd53d16e089c534f1fe5"
+    },
+    {
+      "input": "val/20190925_183946_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "8ef4870e650d27b95c4e30342bdea79a766afec5fe74f8adeac06db11bc20893"
+    },
+    {
+      "input": "val/20190925_183946_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44273,
+      "sha256": "928108faf384bc7b194fb5a08ad0173a21c8a045d6f34dbeffb98bd5b9b9e3a0"
+    },
+    {
+      "input": "val/20190925_183946_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2628858,
+      "sha256": "42e026c1085cb2ebedcc6c7a384fb946a2b2726817d68ff8ef859550c6bf54ed"
+    },
+    {
+      "input": "val/20190925_183946_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 40488056,
+      "sha256": "50d21ad501077b57ef0feae74b5918b49ebe57ddbb3a54241b1a973a61f6665b"
+    },
+    {
+      "input": "val/20190925_194211_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 39371,
+      "sha256": "fd2a9a6570ac88c0dc0053d4939fd2528bcb11ba9b8b3415f148ee598aee984c"
+    },
+    {
+      "input": "val/20190925_194211_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 37937,
+      "sha256": "0f387b235a401c28ca2a23b200b8158e8941af17318b3071e0ff5e5fbcee3695"
+    },
+    {
+      "input": "val/20190925_194211_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2676194,
+      "sha256": "38fce61f7b20e422de70d9855a760a83a1127fbc7a2149b6e7bf28931102f445"
+    },
+    {
+      "input": "val/20190925_194211_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 23930199,
+      "sha256": "aa1dcf9c86b7400417f94779d21e5bbecf0b5163f92887d086cc030753de6fe6"
+    },
+    {
+      "input": "val/20190925_194211_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 40595,
+      "sha256": "2fdc2cb1bd8038f80c2d41468211412a3ccb425744b751d4472e9a86f1fbe4bc"
+    },
+    {
+      "input": "val/20190925_194211_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 41083,
+      "sha256": "ce4c5045ac5deedc435cbad7c6600f0060adc6d6451477e722156441f63cea45"
+    },
+    {
+      "input": "val/20190925_194211_1_4/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2137783,
+      "sha256": "1987d454a95813a24bd918e0942a64efa98759e9c7b9ad13d9dbef0f4623599d"
+    },
+    {
+      "input": "val/20190925_194211_1_4/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 23794110,
+      "sha256": "ec1438d54182b71675ee6ea6179d986c635df534592321be7c5cf28a5eb88253"
+    },
+    {
+      "input": "val/20190925_200320_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 40239,
+      "sha256": "4dbb660597b5dba20848ba49e88559fa73787848405b42da0a923047adc46050"
+    },
+    {
+      "input": "val/20190925_200320_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 40512,
+      "sha256": "469311e036e1557bf87b29f1b3ac0e52b7718457bea401f530c4b394bb4ccdfa"
+    },
+    {
+      "input": "val/20190925_200320_1_4/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2152906,
+      "sha256": "99dc916adc63b2669d33db446b24769ffab36b4187cf9f47ab0f4da26eb7dd98"
+    },
+    {
+      "input": "val/20190925_200320_1_4/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 22690710,
+      "sha256": "b1bc49d349cb618b120ba6ba9bfbbd02d10ecf04e12cf8d01d40ed69b9c72564"
+    },
+    {
+      "input": "val/20190925_200320_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 1711,
+      "sha256": "184a8d908539df7b77573d0641c7ba1e882131c9d7ab9f1cda7516598e2005a3"
+    },
+    {
+      "input": "val/20190925_200320_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 1725,
+      "sha256": "66dfb4e7d146c5a251525139a5e6010116d0bf29673ace2f927ae38b77b9ec18"
+    },
+    {
+      "input": "val/20190925_200320_1_8/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 121572,
+      "sha256": "6997cbdeb88ec0fa6edc1734a6ccf04a477c72c26b3a974178143da2e0681665"
+    },
+    {
+      "input": "val/20190925_200320_1_8/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 908845,
+      "sha256": "8f81613605459ce502a367c0a7406a22e57ffc425c05356cbbe40f62b7dccf0e"
+    },
+    {
+      "input": "val/20190925_205804_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 39652,
+      "sha256": "23a129fa88fd034beb882b905ff2d7fc7ba6972062490d0877ca4bbb14c8feb2"
+    },
+    {
+      "input": "val/20190925_205804_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 40495,
+      "sha256": "842548e47e9a9389eeea3d6e522b05f114f78dc0f96e43ad469c3f24eedad264"
+    },
+    {
+      "input": "val/20190925_205804_1_5/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2857162,
+      "sha256": "a3dc15ad2e9a84b030487bdf74677278e2b8cbdc24b70c7f2b5600a96ea109cb"
+    },
+    {
+      "input": "val/20190925_205804_1_5/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 21072810,
+      "sha256": "b59f56f7a32f8920a1f6e59b1b3e3a1e05973402d576340279fd9e64eeafbf13"
+    },
+    {
+      "input": "val/20190925_205804_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 38769,
+      "sha256": "944489778ea168fbe8bef8e2040a5efda6afc4b2fbcbdfc8f8498d18c21fb419"
+    },
+    {
+      "input": "val/20190925_205804_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 40885,
+      "sha256": "3292db6433bacac9da3c07f34bd7f04c622a8c5c704c016826ca8b0dc9f03bbb"
+    },
+    {
+      "input": "val/20190925_205804_1_6/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2636435,
+      "sha256": "691702e060f46543263373c78ea48dfa2c36c11142a6ff6131db22402f4412b2"
+    },
+    {
+      "input": "val/20190925_205804_1_6/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 20923599,
+      "sha256": "62ddd90b4d8d00f37d01c6b6aba444348697845dfe99f0fe69e31a58755bfaf8"
+    },
+    {
+      "input": "val/20190925_210802_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 39655,
+      "sha256": "4b8ce73a68d6ecfa1d86657def85205e476f3a7f74de79a2d0846effa689bcd9"
+    },
+    {
+      "input": "val/20190925_210802_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 40277,
+      "sha256": "156dcfb573b2040d33863bc242b6ae318b508b7c7df83b5887062e8bd1bbdb1a"
+    },
+    {
+      "input": "val/20190925_210802_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2476978,
+      "sha256": "548dcdb9802615e1090ae70c188d7c9407473f2faa3e17beda4fe6e0b0271003"
+    },
+    {
+      "input": "val/20190925_210802_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 22884298,
+      "sha256": "89459a1c40b3204708acf348c8c93f21f368b76097359ebb165ef6534a673440"
+    },
+    {
+      "input": "val/20190925_210802_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 40298,
+      "sha256": "ae9106a659f3414eef29383279e25a64c2f64bcddffa7f1d094bde90fa5cf14f"
+    },
+    {
+      "input": "val/20190925_210802_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 41744,
+      "sha256": "57c24215285a91daa9002f46c2f32e3e018e417f89731ed82229700c800f2581"
+    },
+    {
+      "input": "val/20190925_210802_1_6/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2617820,
+      "sha256": "9fce85cac95796b486371faecc5660ff90a964212f836276b7f8fb0c139670f3"
+    },
+    {
+      "input": "val/20190925_210802_1_6/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 23339422,
+      "sha256": "2d9c11ccc2520eeb6e8630ed4914c9d92a11d3f7c5a118645ccaefeecd3965c9"
+    },
+    {
+      "input": "val/20190925_210802_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 30212,
+      "sha256": "cf86c16b1bc18ebd50ec2670fe5099e8c3f618e509027597933f4ad8850cb5d6"
+    },
+    {
+      "input": "val/20190925_210802_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 31225,
+      "sha256": "3d0e6dfb7e30b98e91c32390bd3d5b870b9bc9aa985724cc853dc66237cf6ddc"
+    },
+    {
+      "input": "val/20190925_210802_1_8/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2204105,
+      "sha256": "cbc7896d84b63821fc3d08988d44566702aa40129c0e55a913520d0e9c798eb5"
+    },
+    {
+      "input": "val/20190925_210802_1_8/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 16949422,
+      "sha256": "977fe61940530a23e2cd282eafb244314fc8568a580f5b77695c1e16443b05dc"
+    },
+    {
+      "input": "val/20190925_213001_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 38812,
+      "sha256": "28d014f67c7b98c3194d509185bec9a0b32f1e56d71964784905f272ba6dd41d"
+    },
+    {
+      "input": "val/20190925_213001_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 35813,
+      "sha256": "83129b95624dacbc2c26b9526e39207df1403c44c62de7d10c6d8ca5b74a1ec1"
+    },
+    {
+      "input": "val/20190925_213001_1_1/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2590526,
+      "sha256": "0bee73f8d441df36f6777e9fcef3958d02ca47c214f02febbd3b36994c5d3215"
+    },
+    {
+      "input": "val/20190925_213001_1_1/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 22310889,
+      "sha256": "a27378e03af00a8fa7224dae3ccb198d44d59d67b1fac06f5972810730d62b4a"
+    },
+    {
+      "input": "val/20190925_213001_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 39769,
+      "sha256": "98f1a12c1ecc9f40acdde9bd3f624b41dfd4777dee1d94766f01d57449103d23"
+    },
+    {
+      "input": "val/20190925_213001_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 40841,
+      "sha256": "adc9fd77bf5bcb1afafd960910d8da008a72d095ca59107d41234b12a741a99c"
+    },
+    {
+      "input": "val/20190925_213001_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2605416,
+      "sha256": "8ec4c2ab8253b0f13262926ec13024a8befb055b6c2ca7794ca44cb8935eb1bd"
+    },
+    {
+      "input": "val/20190925_213001_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 21113223,
+      "sha256": "fdb4d8eac46a7e8d3ece1d12db97593aa4b79d36efaa8b2718fa3e30fdb4f5d4"
+    },
+    {
+      "input": "val/20190925_222534_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "aa5810e2f55e24e1070c743c04d1a00a4ac1db227eea7d5170c574ac810e0354"
+    },
+    {
+      "input": "val/20190925_222534_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 22337,
+      "sha256": "de099f8e311b0bf9aa67c17d88416675c378aa0617710b8ec7c3e8cf10185b20"
+    },
+    {
+      "input": "val/20190925_222534_1_5/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2302669,
+      "sha256": "0bec4558ad5221a6644808285c26b7dc49bd72fd63c75e07a5f802f72e93d49d"
+    },
+    {
+      "input": "val/20190925_222534_1_5/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 24045386,
+      "sha256": "dbccf452a86db1f6c6587aefc226bc93553cde816384471fd6bd9d00319e2cb6"
+    },
+    {
+      "input": "val/20190925_222534_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43028,
+      "sha256": "62ca28741b0f576c7828b9d01697ad1ce1105b234d4299e8b07f58eefe11b176"
+    },
+    {
+      "input": "val/20190925_222534_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 41806,
+      "sha256": "9a82e6d25879b6170d352c7cc4711fb504521091427b6bd2021f9f690694f1ff"
+    },
+    {
+      "input": "val/20190925_222534_1_7/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2525051,
+      "sha256": "e161956572432406ea1dc5272ae7cb8b93ccb18d6e9acb76f88d7f05d8320f2a"
+    },
+    {
+      "input": "val/20190925_222534_1_7/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 23069638,
+      "sha256": "0f6d43b29284cc143177c4ac9471fd8d473ba18a2a079f5442b19268a9922cd7"
+    },
+    {
+      "input": "val/20190925_222534_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 40368,
+      "sha256": "3c09c0195f6c86c416d2b1ea422370f7483939b74e79408f08f308366fd68d7b"
+    },
+    {
+      "input": "val/20190925_222534_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 41323,
+      "sha256": "952eaaf4681c0dc23534a7fa48008c9d741bfc377970895b7d8a1c0963984d58"
+    },
+    {
+      "input": "val/20190925_222534_1_8/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2128370,
+      "sha256": "80c6a38ca7baeb2fa80b6a4bcb8346857574fd631562cb865b89ce40b035b522"
+    },
+    {
+      "input": "val/20190925_222534_1_8/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 22015785,
+      "sha256": "65c788c60f89d0d9fccd8e6284c34db61c0192c09e74f299bf13b710521bd605"
+    },
+    {
+      "input": "val/20190926_103046_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43014,
+      "sha256": "40194f97394a99f490e8dab8b2ffa1f109fea22e56e5be8fa3efac84c5e48fa5"
+    },
+    {
+      "input": "val/20190926_103046_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 44148,
+      "sha256": "0f34e68bb658bcc8e9aebbd3e901f13e2c16dc6a92dd6610950604958412074e"
+    },
+    {
+      "input": "val/20190926_103046_1_2/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3629862,
+      "sha256": "eb206d4fe4960c09db04c6c4f53d4a7462ce51af258a7980cc596682a42fe3e7"
+    },
+    {
+      "input": "val/20190926_103046_1_2/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 17503002,
+      "sha256": "9d433166c6d9f9e31752a38be7d2a840c70511c616bf0398c0cfaadddae9cd62"
+    },
+    {
+      "input": "val/20190926_103046_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 21921,
+      "sha256": "4b59f5dc97b47bc16d76bf07bafd4d46110ed341bd276a930468b3e2e2f48bf7"
+    },
+    {
+      "input": "val/20190926_103046_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 22527,
+      "sha256": "e47bc0149b8baa2f6b994e684a2a8357641fe6c59aa5e67caa3c44631af55601"
+    },
+    {
+      "input": "val/20190926_103046_1_8/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 1472131,
+      "sha256": "72f6d6948275b442d529054a0aaedcf6cbba323b2ebfe4dca152033b041943ad"
+    },
+    {
+      "input": "val/20190926_103046_1_8/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 5836704,
+      "sha256": "dfc33dd31a781180f4f45350ba87e9901dd3e64f0c73106abde704bfa0fecd28"
+    },
+    {
+      "input": "val/20190926_130341_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "aefcc52f86af96f97b89aaee582df9d0ecd50a2deb539ee10f2889df901490de"
+    },
+    {
+      "input": "val/20190926_130341_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 43135,
+      "sha256": "56ebb36d2899071d91783bbf3e3fd394f74a5cc6da42987f71d96355617e6c66"
+    },
+    {
+      "input": "val/20190926_130341_1_5/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3065704,
+      "sha256": "6141fc960ffbd7a080b4d972f8778a1b23561e4d11bed963b2f4d4533a674dff"
+    },
+    {
+      "input": "val/20190926_130341_1_5/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 14136642,
+      "sha256": "01974d1db289b3e365cf911eb37f26c2b79519ac5ab532421e9d78ca221d70fd"
+    },
+    {
+      "input": "val/20190926_133516_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "ca88e3864367b8d45a88e4098151cf953286349899df877bfce1b3c93966a2be"
+    },
+    {
+      "input": "val/20190926_133516_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 45113,
+      "sha256": "34b592fc127caab14c79658d7d4ecededa09c77c5a552ac9bf2c46292ad80392"
+    },
+    {
+      "input": "val/20190926_133516_1_2/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2378354,
+      "sha256": "6496763a41fb8756229108110e8ef65ca8532124753eee7b8e2e0cdaf2eb362d"
+    },
+    {
+      "input": "val/20190926_133516_1_2/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 17048793,
+      "sha256": "66f35868407be8d2b4e012c624d820b22e1dcba36bc862660061400a275368e3"
+    },
+    {
+      "input": "val/20190926_133516_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "17c03531470f8fca27ae8fbfb831b03e579b8844acd1874f38a73ddbb493e220"
+    },
+    {
+      "input": "val/20190926_133516_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 45012,
+      "sha256": "498f04b2a4697f3de4d153a3d4026f665c2bd6ef07014e3b03315229363c8cf8"
+    },
+    {
+      "input": "val/20190926_133516_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2319037,
+      "sha256": "2385421df212bad0e0648bf3600eb7904763e437868a9850b4750d8292bef6e9"
+    },
+    {
+      "input": "val/20190926_133516_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 20007410,
+      "sha256": "72f9f072856c23d0348b56f2264a087f2fd42989d69de92f76af073aff4c3676"
+    },
+    {
+      "input": "val/20190926_133516_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "b09ed61462256ca374c6f6a0b89c346f50abe02df0304596dbd6d70b46414bdd"
+    },
+    {
+      "input": "val/20190926_133516_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 44652,
+      "sha256": "53943cab0d94a6b247e73464521f3d94cd3c67d29d880bba389db9943c8927b4"
+    },
+    {
+      "input": "val/20190926_133516_1_5/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3394580,
+      "sha256": "595aa73078d95c5cc15d400cdadd6651dfb3d4aac1c9e178c180e25eb009f939"
+    },
+    {
+      "input": "val/20190926_133516_1_5/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 14759579,
+      "sha256": "4c8e6050b0b7bc1d5f5672a3b5ec7a475a60b90e5b62e48b2a00bdadc5e1bf81"
+    },
+    {
+      "input": "val/20190926_133516_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "5e267e74c97a5685b75da17b715dfbe0392eeb2fa343fa0d34d17031a616c99c"
+    },
+    {
+      "input": "val/20190926_133516_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 44303,
+      "sha256": "e66f1b5e1547db545fbd9c14058b6c9df53445aa56fc1da6583024047477a433"
+    },
+    {
+      "input": "val/20190926_133516_1_6/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3212757,
+      "sha256": "437dd7a66bbbfb5c60f45eeb22a9b05abe10b62ed84fdd836356620448abcc17"
+    },
+    {
+      "input": "val/20190926_133516_1_6/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 13540202,
+      "sha256": "71567d36a497e22013e4aedb8c982c8e2f46ec0440887fff3097694e2078133c"
+    },
+    {
+      "input": "val/20190926_141816_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 44034,
+      "sha256": "0b6fa36ec8b8d64a4217061e227f278911492932b895a7505228ea152645620d"
+    },
+    {
+      "input": "val/20190926_141816_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 44522,
+      "sha256": "a9e9ffbf33475c03a45501c21fb2fccd453851110024cb3ed6efc561ca2c4ac7"
+    },
+    {
+      "input": "val/20190926_141816_1_2/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2437221,
+      "sha256": "cb6e68bdd0e1e94e73abed29bfead2f3707cfb0eb9bf4201c85ef44ee1e77257"
+    },
+    {
+      "input": "val/20190926_141816_1_2/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 20595279,
+      "sha256": "7bdc50185fd86965fd9de699c3c6486af6c9765033d3d8e88cbee018605a1b3b"
+    },
+    {
+      "input": "val/20190926_141816_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "e854286431c387b9252f67ba62247195df2c02b20e0e4a6c04fe564f711be664"
+    },
+    {
+      "input": "val/20190926_141816_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44090,
+      "sha256": "a894458d05b87ce27273d970029d8ec72b564c48b2361f27e36668a54e50acbf"
+    },
+    {
+      "input": "val/20190926_141816_1_4/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2144518,
+      "sha256": "df9f15e4079091b26a8083191db9baee14ba21b8223c2e7b51021f77471faec3"
+    },
+    {
+      "input": "val/20190926_141816_1_4/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 18395798,
+      "sha256": "a2c3febb47b170a8ed4e5a4c9e2b828b2aa745aa3f2bc01a616cf5724d6f7e01"
+    },
+    {
+      "input": "val/20190926_141816_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "93b6457adcdaff27c65194687589d38ab7fd31d0d1c143480165b8e1f0385f67"
+    },
+    {
+      "input": "val/20190926_141816_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 44556,
+      "sha256": "c638fe2ab866314a33c46a2ac86aa8f67faa42db4e7eaf57fd0c901b3fcd4603"
+    },
+    {
+      "input": "val/20190926_141816_1_6/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 4606553,
+      "sha256": "8bdd1e3ef64b2ba8e7c98a1bbf9adacf76fde4e6885c4f11e7c9d5e4194999bb"
+    },
+    {
+      "input": "val/20190926_141816_1_6/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 18129774,
+      "sha256": "8d430ad0c517ca77b7d283958b13834afff35bb7713a5c907e69d5deda7f35e4"
+    },
+    {
+      "input": "val/20190926_141816_1_9/infrared.json",
+      "role": "ir_label",
+      "bytes": 41798,
+      "sha256": "82233ec8b5299895f8886a62750fffcedc6b57c506b5b6668d57be633ca1eb5d"
+    },
+    {
+      "input": "val/20190926_141816_1_9/visible.json",
+      "role": "rgb_label",
+      "bytes": 40269,
+      "sha256": "8c44a779d963425c59197a9415aec0b911cff195528e6e4a1c4299638a490848"
+    },
+    {
+      "input": "val/20190926_141816_1_9/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 4411561,
+      "sha256": "926f7b0d26c5f39329cfed304bbb320ad2ed51a8eba164e3caba4fff2dab9f62"
+    },
+    {
+      "input": "val/20190926_141816_1_9/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 17969400,
+      "sha256": "35b4e61b3c7b9d7b0e959123f57cdbbd56e9097f67e2376be09ea0e80599d24b"
+    },
+    {
+      "input": "val/20190926_142435_1_9/infrared.json",
+      "role": "ir_label",
+      "bytes": 13149,
+      "sha256": "8d8b7911373fda9aafa578ee8a4d3a8090e8e26ae1d3c02e7926c4fbdc599bb0"
+    },
+    {
+      "input": "val/20190926_142435_1_9/visible.json",
+      "role": "rgb_label",
+      "bytes": 13190,
+      "sha256": "b2b1c3940758a7d3b694010fd913e76fd19be28d023ab619079d0304b5814a51"
+    },
+    {
+      "input": "val/20190926_142435_1_9/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 793061,
+      "sha256": "5b14c8ea8922c76675396b707075e0e4103f5e200109456a0f635691c1e5cc01"
+    },
+    {
+      "input": "val/20190926_142435_1_9/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 3989080,
+      "sha256": "d5fe8e40b004ebd075a92a0fd79746ba85dc2ee3dc9235ccb9961e4580f1d326"
+    },
+    {
+      "input": "val/20190926_143632_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "dfefac173a5e6148a95a768ee7b71d21668249a0b4b0b1970d7bd1b36463faa4"
+    },
+    {
+      "input": "val/20190926_143632_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 44345,
+      "sha256": "1612ccaf195893d5a0bab7d41c39ce4de4f247ecf634e8a9e619a2ad6fa028ba"
+    },
+    {
+      "input": "val/20190926_143632_1_2/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2417367,
+      "sha256": "cae6c1cdf3f9fdcc0c3cc62f7f805e8551c68c1db88a731893dc27152b4949b1"
+    },
+    {
+      "input": "val/20190926_143632_1_2/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 19154630,
+      "sha256": "ba5e1e574a40c75a2eb4fef1ed92727352197f2bc3b2beab634c3298e211c914"
+    },
+    {
+      "input": "val/20190926_143632_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "6630d77fd5385d7840fa77a44c1964c59254989976d9dcaaa9b565bcfab93868"
+    },
+    {
+      "input": "val/20190926_143632_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44061,
+      "sha256": "43e72698adfe4491a1a461d2b502ee90160a174454f6a6918eee7be325e84c55"
+    },
+    {
+      "input": "val/20190926_143632_1_4/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2239344,
+      "sha256": "439dbb76e0cafc865e8bd3d3a6f3201d641919cf718d9b84ccd1a2f90958e736"
+    },
+    {
+      "input": "val/20190926_143632_1_4/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 12960755,
+      "sha256": "2eb58de88612d2fc367545dd8e909bef4dcd6a9473252ee6fc9767e2e1b32da8"
+    },
+    {
+      "input": "val/20190926_143632_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 25121,
+      "sha256": "fb555b9f88a4e013921d358894f7f91bc25404865c32276284d2616d27875ab8"
+    },
+    {
+      "input": "val/20190926_143632_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 26249,
+      "sha256": "ea868508a09618ed0ce691fa6d36e3e3a0057d9fc8eb84b4f5b2a6037da24a6c"
+    },
+    {
+      "input": "val/20190926_143632_1_8/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2044517,
+      "sha256": "c4d5deda8d49cf1ff3203105f8a69b4a91850594e5fc5667541ecd7956029fe6"
+    },
+    {
+      "input": "val/20190926_143632_1_8/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 9336957,
+      "sha256": "7201312485b31bc231f848a3fafb28e9eabb806cb8708c9b6b90485abbaca693"
+    },
+    {
+      "input": "val/20190926_144550_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "f28549bd5e154f7959ba8f1f80d3ca33f4a9ec54d67b97302e6786cca1bf7119"
+    },
+    {
+      "input": "val/20190926_144550_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 44048,
+      "sha256": "3808511950f13051eb783aa1998df82468781247f5ec320f8857068a5bf3ecaf"
+    },
+    {
+      "input": "val/20190926_144550_1_1/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3281680,
+      "sha256": "6ab587f44aa70b436d19c2f2ab0e979a08e5f9a66aa34e90b8917d66d1275d5f"
+    },
+    {
+      "input": "val/20190926_144550_1_1/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 12879696,
+      "sha256": "c75789d0f57762ace12fa9b57a5ad0062116b6ab15843275db2486b8a082238d"
+    },
+    {
+      "input": "val/20190926_144550_1_10/infrared.json",
+      "role": "ir_label",
+      "bytes": 7516,
+      "sha256": "6efad7b7a43f66499ab592baea5881b41edda2726691e2251b0c9dc847313752"
+    },
+    {
+      "input": "val/20190926_144550_1_10/visible.json",
+      "role": "rgb_label",
+      "bytes": 7690,
+      "sha256": "5a1a0b732d1097f09431099604df7857a6ff17755451e21e5f5f86622eafedb7"
+    },
+    {
+      "input": "val/20190926_144550_1_10/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 405478,
+      "sha256": "b441b43a6e1314e3643acaf11ab8608d52f0a48bc65e90ca3d83f29512466d3a"
+    },
+    {
+      "input": "val/20190926_144550_1_10/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 1954989,
+      "sha256": "24cf5be198ba1cd5c0ed19bd3d59591c599d169db8d4a27fdb1a4b4a6946f3e5"
+    },
+    {
+      "input": "val/20190926_144550_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "ba9bfd18d3109364504080bb8d06f676ef9cccf7611489c8fa596675d01b737b"
+    },
+    {
+      "input": "val/20190926_144550_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44043,
+      "sha256": "a737b6c9cf35a1eb7f888ba9187e87010b6f6857f93ed5ae2d8636b5dac877fd"
+    },
+    {
+      "input": "val/20190926_144550_1_4/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2650902,
+      "sha256": "ee8148bed24c964ef5c1941d69d04fe44be6c1f5fab08fb0934c32373b3104df"
+    },
+    {
+      "input": "val/20190926_144550_1_4/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 11809520,
+      "sha256": "487f01193bc88a8e847ffc4fd4363a5c944664b2aab73848a3ea0f065bc4c2c1"
+    },
+    {
+      "input": "val/20190926_144550_1_7/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "6e4d6cbca8cd9997571dbab61ff68186e0f411dbc34d03300b7319607e52af5f"
+    },
+    {
+      "input": "val/20190926_144550_1_7/visible.json",
+      "role": "rgb_label",
+      "bytes": 44041,
+      "sha256": "c5159f67aa34957e27096c806a947780c5d356a757859b9a3b9403789e3c1672"
+    },
+    {
+      "input": "val/20190926_144550_1_7/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2326173,
+      "sha256": "1e487bcc3557f0c261089fe32e3969ac15bc735c9b8579c50ca374609a669b45"
+    },
+    {
+      "input": "val/20190926_144550_1_7/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 11176135,
+      "sha256": "46e7ff7440a55c0941f44f29257e910e6f44c0dc0c2df03b65e8798a6f36f477"
+    },
+    {
+      "input": "val/20190926_183400_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43659,
+      "sha256": "2e0aed4f40019b56745f9eed3e6ba3f2fa4bca06df3eaad43371fc318c7338e9"
+    },
+    {
+      "input": "val/20190926_183400_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 44215,
+      "sha256": "822125d0334cc1e1f6a71a699cb06d0bb2999e5bf2d15186a20ece9c9ba019fb"
+    },
+    {
+      "input": "val/20190926_183400_1_1/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2517961,
+      "sha256": "2ddd2b764ca3ebf248bc63d79e4f775876abba31773c977069bb3871f79aa87e"
+    },
+    {
+      "input": "val/20190926_183400_1_1/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 56700273,
+      "sha256": "0ba21e611cf6a6dfe2c32eb0ec8d08877403ed4495fd445bd1babb5e788f6de7"
+    },
+    {
+      "input": "val/20190926_183400_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "a14f677d29efe7844c984db088f65010b931f8edbb074bd005d258f824efd73f"
+    },
+    {
+      "input": "val/20190926_183400_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44442,
+      "sha256": "5787360265c1ee24d91ef7616a614982343f20f0b24f56785e11ac6fd16c37b8"
+    },
+    {
+      "input": "val/20190926_183400_1_4/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2410541,
+      "sha256": "add904e40d1d0b51ac11c659c00990d54c36de5e70ef99acbca1024cf90bd116"
+    },
+    {
+      "input": "val/20190926_183400_1_4/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 33476039,
+      "sha256": "aad72a331e1730fb513d267491cb5d45dfb3f346d6ede7ab0e36bac430269845"
+    },
+    {
+      "input": "val/20190926_183400_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "e18b48949d4d0fac376001604511f26296a8658d9b1207a770891b7ea83a6f96"
+    },
+    {
+      "input": "val/20190926_183400_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 44769,
+      "sha256": "8fd9700d5058d334e0ba9b21a7492f71ce93194d62f29e1574f721a39c64d946"
+    },
+    {
+      "input": "val/20190926_183400_1_6/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2957458,
+      "sha256": "22d8c3b6a26f9dc0895214e8c6a8e35a43a6092f0c08234e6c57bce2a8d0d5ca"
+    },
+    {
+      "input": "val/20190926_183400_1_6/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 27516609,
+      "sha256": "ef64aab6bd5812ffd6e70593986e94ae480da57417df31ccb725547710675869"
+    },
+    {
+      "input": "val/20190926_183941_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 42442,
+      "sha256": "1580a7276d1e5485cbd71b7f649192a56c14902c42cfa1a55638af52fa0150c4"
+    },
+    {
+      "input": "val/20190926_183941_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 41084,
+      "sha256": "3eedd4befb75ace9dbf9e52e7e274260893e5a11fe65ec0a4ef14a17c87f5c66"
+    },
+    {
+      "input": "val/20190926_183941_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3186092,
+      "sha256": "c04e496885932685d901fdf27ea4f11ed0cfedaeccf7f55ebd7029cc71325c16"
+    },
+    {
+      "input": "val/20190926_183941_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 25199859,
+      "sha256": "08ac3b42c08cf84f487f7bdf41bc2441a04a3a9c1cfedf868f14195e2dcc39ed"
+    },
+    {
+      "input": "val/20190926_183941_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 42974,
+      "sha256": "17a59c4c96d5d5af6588e57a1ebe77850bce388e7711213b6df5dd30417d2aae"
+    },
+    {
+      "input": "val/20190926_183941_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 42778,
+      "sha256": "bc5f153024846aa531f2a0cdc8899d123fe11dac6a62b35a8584d8d77091ca62"
+    },
+    {
+      "input": "val/20190926_183941_1_5/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2468458,
+      "sha256": "c2914ebe2513065fca8415e928a5384af875cb3536973f6e85957b85977861d1"
+    },
+    {
+      "input": "val/20190926_183941_1_5/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 27788809,
+      "sha256": "37c4f694cd182f81291a246a376d752df9165d1fecdda652128f724c9f3f3e8a"
+    },
+    {
+      "input": "val/20190926_195921_1_1/infrared.json",
+      "role": "ir_label",
+      "bytes": 43026,
+      "sha256": "e5906c40ef03dc2653687e5a9069a11b32c623b4346b2c6ce527b92b7e15e809"
+    },
+    {
+      "input": "val/20190926_195921_1_1/visible.json",
+      "role": "rgb_label",
+      "bytes": 43366,
+      "sha256": "8a7e42430022f26e6d2a96043bca7900ca32df1a882ee8415c28ee6bd1eace26"
+    },
+    {
+      "input": "val/20190926_195921_1_1/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3947686,
+      "sha256": "a33a33788d2936e7c3ece17e7f45841acfa553505f75abbb7f431d99bf3df31d"
+    },
+    {
+      "input": "val/20190926_195921_1_1/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 22564622,
+      "sha256": "2bc23a0cf859fff62c2b0362407ab75352c62b9511dc6f1f469be525d122ab44"
+    },
+    {
+      "input": "val/20190926_195921_1_5/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "3a68633494ec0233f917af08de07c27f08177d44ce2ea1c4467b6fffe35677f7"
+    },
+    {
+      "input": "val/20190926_195921_1_5/visible.json",
+      "role": "rgb_label",
+      "bytes": 33720,
+      "sha256": "1ea7f27ad31cfc5870fb80d1aca83bc5ee81b5e9730fc9c65b3d7314e3b048b7"
+    },
+    {
+      "input": "val/20190926_195921_1_5/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 5671652,
+      "sha256": "a11710bfae91557364469bfceb67c9b87b32e66f6518f46fc2032e7e58979b98"
+    },
+    {
+      "input": "val/20190926_195921_1_5/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 22415337,
+      "sha256": "8b54e77e3078eb77796f00fc15d6b9f56e29c82f4ed0e65818cc1fdc97156743"
+    },
+    {
+      "input": "val/20190926_195921_1_6/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "09033009d248fd34ee70ac21210b7dca43f4bb6287cfb540368c7335f008747f"
+    },
+    {
+      "input": "val/20190926_195921_1_6/visible.json",
+      "role": "rgb_label",
+      "bytes": 25235,
+      "sha256": "419b9fadf9bd22eea5332161d86f37c9d303bf2c0e5a1fca5dab25d1af20a793"
+    },
+    {
+      "input": "val/20190926_195921_1_6/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 5471363,
+      "sha256": "5cbbfbd8c5994ff29218c7b86890b92917d60ff9fa7d6469ffd33dc222f39df0"
+    },
+    {
+      "input": "val/20190926_195921_1_6/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 25566618,
+      "sha256": "bf5507ba1d0410a99a16ba65a780c5d13f0e5ce18c435ec8c0cda98613099a0c"
+    },
+    {
+      "input": "val/20190926_200510_1_2/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "022b5192199fd140378561fe7c60610a4e11e07e80f0f9f29c408a867b57a855"
+    },
+    {
+      "input": "val/20190926_200510_1_2/visible.json",
+      "role": "rgb_label",
+      "bytes": 43575,
+      "sha256": "344365080ee1c61b99937aac7bb34cbe0371bd673ccc9bbfa023b8840cbf034c"
+    },
+    {
+      "input": "val/20190926_200510_1_2/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 3778616,
+      "sha256": "08a5ba8582919e158583c53c8daa1401508856e4106cf835de3318132fa6d8cd"
+    },
+    {
+      "input": "val/20190926_200510_1_2/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 21581868,
+      "sha256": "a837b212d28dec8d141649e5cb1e66332bf8cfad9c0e57023b41a6896c95ab26"
+    },
+    {
+      "input": "val/20190926_200510_1_3/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "fcc0e4b63ed89b0d5a0dd37248843e530755c11774242c9e6ecb3f595bd41d53"
+    },
+    {
+      "input": "val/20190926_200510_1_3/visible.json",
+      "role": "rgb_label",
+      "bytes": 44455,
+      "sha256": "9ba314a7eac5ac445b7239d28f99155af5da3fc40a6daab929ddb4f66bb25232"
+    },
+    {
+      "input": "val/20190926_200510_1_3/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2592393,
+      "sha256": "b373a9987d899849bdce75c214fef38dd53775cdb08451774ff3535a59720c36"
+    },
+    {
+      "input": "val/20190926_200510_1_3/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 21698702,
+      "sha256": "8c07e13bb8d01cf83ee9caf79ac45776f2afa341a2616c33a213d711fff72c7f"
+    },
+    {
+      "input": "val/20190926_200510_1_4/infrared.json",
+      "role": "ir_label",
+      "bytes": 43034,
+      "sha256": "32b5d85a13d21b860a1a5a553f1cc6f16a435e8ccce30e801efc40ec1d87f7b6"
+    },
+    {
+      "input": "val/20190926_200510_1_4/visible.json",
+      "role": "rgb_label",
+      "bytes": 44345,
+      "sha256": "a03428f2a4e9a21a9e2b18af526ebe2e791584529115740c4d804aa75ab52821"
+    },
+    {
+      "input": "val/20190926_200510_1_4/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 2640925,
+      "sha256": "cb5a45c07108810277d24abcf7cee5a488640c6b4a15cbac017ac0d069d1c924"
+    },
+    {
+      "input": "val/20190926_200510_1_4/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 20883135,
+      "sha256": "cec0db12b803f0de095ebb45ede22e0097dfaec6dcb9ca44a9047c344fd05f11"
+    },
+    {
+      "input": "val/20190926_200510_1_8/infrared.json",
+      "role": "ir_label",
+      "bytes": 20805,
+      "sha256": "9fef6ed1f3713bd6ef75356a2c562927122c238d967ee4fe61c0c1ab374f2ced"
+    },
+    {
+      "input": "val/20190926_200510_1_8/visible.json",
+      "role": "rgb_label",
+      "bytes": 20900,
+      "sha256": "4231f6655ccd4ffb8fea30a67e4983593b1bb437b9db96868a54e146fb676909"
+    },
+    {
+      "input": "val/20190926_200510_1_8/infrared.mp4",
+      "role": "ir_video",
+      "bytes": 1618313,
+      "sha256": "6074a6011fd8d3c1e548e2a25283d57827fb6ada925693d9bd39a3e5951c13aa"
+    },
+    {
+      "input": "val/20190926_200510_1_8/visible.mp4",
+      "role": "rgb_video",
+      "bytes": 11910532,
+      "sha256": "082e79a2dff03cd0d8a7a5d16309460f888d8e7ef79ef025b527f8a721471175"
+    }
+  ],
+  "training_input_manifests": {
+    "train": {
+      "file": "rgb_dataset_manifest_train.json",
+      "sha256": "f713ea76fad1c5ca32db36b967a57e2886298c917ff165f0b725653c72c2ffe5",
+      "images_and_labels": 29708,
+      "content": "Full per-image SHA256 and generated RGB-label SHA256 retained privately"
+    },
+    "val": {
+      "file": "rgb_dataset_manifest_val.json",
+      "sha256": "b77c495ae3267c9d4c4a901bd06f3246be9ec8fdfeb58c679fd46c00f85ee3eb",
+      "images_and_labels": 12158,
+      "content": "Full per-image SHA256 and generated RGB-label SHA256 retained privately"
+    }
+  },
+  "test_accessed": false,
+  "scope": "Full SHA256 for all validation videos and train/val modality labels; training uses the separately hashed sampled JPEGs"
+}

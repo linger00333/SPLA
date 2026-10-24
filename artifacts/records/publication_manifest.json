@@ -11261,6 +11261,11 @@
       "sha256": "455e090a0a666084b15be69fd0a8fbc0a9c310cacd05b17d6df9bf04905bb72e"
     },
     {
+      "path": "artifacts/v6/records/raw_input_hashes.json",
+      "bytes": 119207,
+      "sha256": "6cd35f1f5c209e016c0543e205c2e35b0c8b8c8fb16cdb8597009a6b9312d4a5"
+    },
+    {
       "path": "artifacts/v6/records/real_rgb_coordinate_audit.json",
       "bytes": 378,
       "sha256": "ba3e68894aac2f8611d70b97501a88b669eef2d91ada004034e142218461e907"
@@ -14212,8 +14217,13 @@
     },
     {
       "path": "study/v6/export_study.py",
-      "bytes": 5793,
-      "sha256": "abae054e01b8bdf057c285c3fe194ff34e995a975699e3ad88fd068870614e64"
+      "bytes": 5944,
+      "sha256": "80492837823a16586fa832c4058c868d83268d94606e8147366bcf005390690d"
+    },
+    {
+      "path": "study/v6/fingerprint_inputs.py",
+      "bytes": 1707,
+      "sha256": "a08f881d2b34f159a58088792df4e1c2a9a6aabab57873ce1af55f8a7983c4b7"
     },
     {
       "path": "study/v6/finish_publication.py",

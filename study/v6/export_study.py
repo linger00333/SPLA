@@ -49,6 +49,8 @@ for name in ('input_manifest.json', 'frozen_code.json', 'real_runtime_validation
     src = V / 'records' / name
     if src.exists():
         export(src, Path('artifacts/v6/records') / name)
+if (V / 'records/raw_input_hashes.json').exists():
+    export(V / 'records/raw_input_hashes.json', Path('artifacts/v6/records/raw_input_hashes.json'))
 for name in ('A1_blankrgb_s0', 'A1_blankir_s0', 'A0rgb_s0'):
     key = name if name.startswith('A1') else 'val_A0rgb_s0'
     state = states['step1' if name.startswith('A1') else 'step2']
