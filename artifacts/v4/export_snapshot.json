@@ -1,0 +1,9 @@
+{
+  "exported_at": "2026-10-24T17:55:04.124454+08:00",
+  "legacy_seven_conditions_complete": true,
+  "old_A1c_complete": true,
+  "pilot_status": "pilot_A1c_lr1e-4_s0",
+  "formal_status": "waiting_pilot_gate",
+  "recurring_automation": false,
+  "test_or_stress_evaluated": false
+}

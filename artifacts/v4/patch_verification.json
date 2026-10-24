@@ -1,0 +1,13 @@
+{
+  "original_patch_sha256": "3a96a711e418c6486bc0f53d03e959b0115aec0d1ab90d163c736f000f7f2e90",
+  "base_commit": "0f4d5446a1a9e6c637a9ed6a52ca505c13f926e9",
+  "clean_apply_verified": true,
+  "result_sha256": "d32b010edb037c59495dd746f6363b48fb53721c2a84d4ed7d2cdcffab88c0c7",
+  "difference_from_reconstruction": "freeze defaults to None rather than 0; both mean no layer freeze; pilot explicitly passes 0",
+  "empirical_A1_last_logged_lr": 0.000199,
+  "patch_help_lr_is_theoretical_endpoint": true,
+  "published_patch_lf_sha256": "3a96a711e418c6486bc0f53d03e959b0115aec0d1ab90d163c736f000f7f2e90",
+  "result_lf_sha256": "429fd48835882a9a96e671272e7bcfbdcb301822d49272d4cdbe28ed98422134",
+  "line_endings": "Original patch preserved privately; Git publication normalizes CRLF to LF",
+  "pilot_callback_source": "Same callback as executed, with portable source-root discovery"
+}

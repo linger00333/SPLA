@@ -1,0 +1,7 @@
+{
+  "error": "Audit callback accessed loss_items before the trainer created it",
+  "correction": "Preserve absence with a sentinel and restore/remove attributes after initial validation",
+  "training_batches_executed": 0,
+  "original_patch_applied": true,
+  "time": "2026-10-24T17:53:45.092888"
+}

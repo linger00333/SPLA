@@ -1,0 +1,43 @@
+{
+  "scratch": {
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "warmup_epochs": 3.0,
+    "optimizer": "auto"
+  },
+  "finetune": {
+    "lr0": 0.0001,
+    "lrf": 1.0,
+    "warmup_epochs": 0.0,
+    "optimizer": "SGD",
+    "epochs": 40
+  },
+  "override_and_freeze_passed": true,
+  "stage1_stage2_common_recipe_passed": true,
+  "expected_prechange_failure": "AssertionError: 0.001",
+  "source_patch": "finetune_recipe.patch",
+  "freeze21_backbone_layer_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "note": "CLI contract only; actual full-data PyTorch pilot recorded separately"
+}

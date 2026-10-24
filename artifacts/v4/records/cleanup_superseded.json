@@ -1,0 +1,39 @@
+{
+  "time": 1792835625.0604403,
+  "deleted": [
+    {
+      "path": "experiments/v4/recipe_check_tmp.py",
+      "bytes": 1952,
+      "sha256": "9a648104a6deac3f2a8c08e50888db4ce6a2146d8a19a1991c8dff94978889ce",
+      "reason": "temporary check or superseded unexecuted zoom controller"
+    },
+    {
+      "path": "experiments/v3/recipe_check_tmp.py",
+      "bytes": 1952,
+      "sha256": "9a648104a6deac3f2a8c08e50888db4ce6a2146d8a19a1991c8dff94978889ce",
+      "reason": "temporary check or superseded unexecuted zoom controller"
+    },
+    {
+      "path": "experiments/v3/phase4.py",
+      "bytes": 11427,
+      "sha256": "b1b71c144565f460b761f4e04291f87902241483ed8e4155a3fb4713a9f9df32",
+      "reason": "temporary check or superseded unexecuted zoom controller"
+    },
+    {
+      "path": "experiments/v3/__pycache__/phase4.cpython-310.pyc",
+      "bytes": 13227,
+      "sha256": "92bc1bc83a7c5210a6509c59d647bbe861f7094edf2c8d6c11abfce1f453d8b9",
+      "reason": "temporary check or superseded unexecuted zoom controller"
+    }
+  ],
+  "bytes": 28558,
+  "preserved": [
+    "all raw data",
+    "all formal legacy/v3 weights and predictions",
+    "all CSVs and scores",
+    "formal negative-result logs",
+    "original kit archive",
+    "current v3 controller",
+    "v4 gated experiment source"
+  ]
+}

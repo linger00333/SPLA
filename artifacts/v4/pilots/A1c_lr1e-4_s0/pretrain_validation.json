@@ -1,0 +1,15 @@
+{
+  "metrics": {
+    "metrics/precision(B)": 0.99386,
+    "metrics/recall(B)": 0.9868,
+    "metrics/mAP50(B)": 0.99261,
+    "metrics/mAP50-95(B)": 0.6464,
+    "fitness": 0.68103,
+    "val/box_loss": 1.33564,
+    "val/cls_loss": 0.41967,
+    "val/dfl_loss": 1.13377
+  },
+  "elapsed_seconds": 33.390456199645996,
+  "same_training_validator": true,
+  "random_states_restored": true
+}

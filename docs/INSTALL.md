@@ -51,9 +51,27 @@ python kit/tools/train_spla.py --stage 1 --continue-recipe --pretrained runs/det
 ```
 
 The first command trains 100 epochs. The continuation control trains 40 epochs
-with SGD, lr0=0.001, warmup=0, and no mosaic. Stage 2 uses the same fine-tuning
+with SGD, lr0=0.0001, lrf=1.0 (constant LR), warmup=0, and no mosaic.
+Stage 2 uses the same fine-tuning
 learning-rate defaults, with its own geometry augmentation and alignment loss.
 The continuation control does not have an SPLA layer.
+
+For the 10-epoch retention pilot, use the audited wrapper instead of the plain
+training entry point, adding `--epochs 10` and a fresh name:
+
+```bash
+python kit/tools/run_retention_pilot.py --stage 1 --continue-recipe --pretrained runs/detect/A1_s0/weights/best.pt --data /data/antiuav_yolo/antiuav_rgbt.yaml --epochs 10 --seed 0 --workers 4 --device 0 --project runs/detect --name A1c_lr1e-4_s0
+python kit/tools/check_retention_pilot.py --run runs/detect/A1c_lr1e-4_s0 --out reports/A1c_lr1e-4_s0_gate.json
+```
+
+The wrapper records the matched pre-training validation and runtime recipe.
+If the pilot fails the predeclared gate, restart from the original A1
+checkpoint with `--freeze 21`; do not continue the failed pilot checkpoint.
+`--freeze 21` freezes both backbones' parameters (layers 0-20); it does not
+explicitly freeze batch-normalization running statistics. `--lrf` overrides the
+final-to-initial learning-rate ratio. From-scratch defaults remain lr0=0.01,
+lrf=0.01 and three warmup epochs. Complete the pilot before starting matched
+40-epoch A1c/A3/A4 experiments.
 
 PyTorch 2.6 defaults to restricted loading of pickle checkpoints. For your own
 trusted, locally produced `.pt` training checkpoints, set

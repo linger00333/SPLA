@@ -9,30 +9,38 @@ from the detector's previous predictions.
 
 This repository contains the tested implementation, completed legacy seed-0
 models, training curves, completed prediction exports, and reproducibility
-records. It also contains a timestamped snapshot of the ongoing control study.
-It does not claim that the new three-seed zoom experiment has been completed.
+records. All seven conditions below were evaluated with the same current video
+runner and scored together in one invocation, on all 67 validation sequences.
 
-| Legacy validation run | SA | Penalized SA | AP50 |
-|---|---:|---:|---:|
-| A3, zero prior | 0.813385 | 0.797093 | 0.989535 |
-| A4, online prior | 0.815502 | 0.800971 | 0.990973 |
-
-The paired sequence bootstrap for A4 minus A3 is available in
-[`artifacts/legacy/val_scores.json`](artifacts/legacy/val_scores.json).
-These are validation results from the legacy four-parameter transform recipe,
-with one training seed. They do not establish superiority over A1, control for
-all extra fine-tuning effects, or measure variation across training seeds.
-
-The newer, completed baseline inference snapshot gives:
-
-| Baseline | SA | Penalized SA | AP50 |
+| Validation condition (legacy seed-0 weights) | SA | Penalized SA | AP50 |
 |---|---:|---:|---:|
 | A0, infrared only | 0.815417 | 0.799854 | 0.990056 |
 | A1, simple RGB-T fusion | 0.814932 | 0.798989 | 0.990287 |
+| A3, zero prior | 0.813385 | 0.797093 | 0.989535 |
+| A4, online prior | 0.815502 | 0.800971 | 0.990973 |
+| A4, fixed dataset prior | 0.815405 | 0.800911 | 0.991511 |
+| A4, annotation oracle | 0.815109 | 0.800424 | 0.991283 |
+| A4, zero prior | 0.815502 | 0.801348 | 0.990890 |
 
-This snapshot has no bootstrap interval. The complete seven-condition control
-comparison remains pending as of the exported status. Test and stress evaluation
-have not been executed.
+The unified report includes paired sequence bootstrap intervals relative to A1:
+[`artifacts/v3/val_scores_all.json`](artifacts/v3/val_scores_all.json).
+These are validation results from the legacy four-parameter transform recipe,
+with one training seed. A4 online and A4 zero have nearly identical SA; the
+A4-versus-A3 difference alone does not demonstrate a useful online inference
+prior. A0/A1 show no consistent RGB-T advantage across these metrics. Sequence
+bootstrap intervals do not measure variation across training seeds.
+
+The old A1c control completed 40 epochs at an initial LR of 0.001. Its selected
+checkpoint has SA 0.812468, penalized SA 0.796586, and AP50 0.990555; see the
+[control report](artifacts/v3/val_scores_A1c.json). Its recipe differs from legacy
+A3/A4 and cannot be used as their matched fine-tuning control.
+
+The supplied [fine-tuning patch](patches/finetune_recipe.patch) is applied.
+Fine-tuning now defaults to constant LR 0.0001 with no warmup. A full-data,
+10-epoch A1c pilot is running under a predeclared retention gate; the three-seed
+study waits for a passing pilot. The four-parameter `scale_translation` model
+is retained. See [experiment scope](docs/EXPERIMENTS.md) for the gate and live
+snapshot limitations. Test and stress evaluation have not been executed.
 
 ## Contents
 
@@ -43,7 +51,8 @@ have not been executed.
 - `models/legacy`: four completed models as Safetensors plus model configuration.
 - `artifacts/legacy`: completed legacy results and per-epoch training records.
 - `artifacts/predictions`: completed predictions, compressed per file.
-- `artifacts/v3`: a timestamped status and control-training snapshot.
+- `artifacts/v3`: complete seven-condition scores, coverage and old A1c curves.
+- `artifacts/v4`: low-LR pilot evidence and a timestamped execution snapshot.
 - `docs`: evaluation protocol, experiment scope, installation, and model use.
 - `scripts/check_release.py`: publication content and manifest verification.
 

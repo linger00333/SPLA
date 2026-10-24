@@ -1,0 +1,39 @@
+{
+  "phase": "pilot_A1c_lr1e-4_s0",
+  "controller_pid": 2703518,
+  "jobs": {
+    "A1c_lr1e-4_s0": {
+      "state": "running",
+      "pid": 2703519,
+      "command": [
+        "experiments/v4/venv/bin/python",
+        "experiments/v4/launch_pilot.py",
+        "--stage",
+        "1",
+        "--continue-recipe",
+        "--pretrained",
+        "experiments/v4/init/A1_s0_best_frozen.pt",
+        "--data",
+        "data/converted/antiuav_rgbt.yaml",
+        "--epochs",
+        "10",
+        "--seed",
+        "0",
+        "--name",
+        "A1c_lr1e-4_s0",
+        "--project",
+        "experiments/v4/runs/detect",
+        "--workers",
+        "4",
+        "--device",
+        "1",
+        "--freeze",
+        "0"
+      ],
+      "started_at": 1792835625.1241472,
+      "log": "experiments/v4/A1c_lr1e-4_s0.log"
+    }
+  },
+  "recurring_automation": false,
+  "updated_at": "2026-10-24T17:53:45.124160+08:00"
+}

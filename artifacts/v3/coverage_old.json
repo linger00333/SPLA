@@ -1,0 +1,4475 @@
+{
+  "experiments/v3/results/val/A0_s0": {
+    "n_sequences": 67,
+    "frames": 61999,
+    "known_issues": [
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      }
+    ],
+    "length_mismatches": [],
+    "sequences": [
+      {
+        "seq": "20190925_101846_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_101846_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_8",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_131530_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_133630_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_1",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_2",
+        "prediction_frames": 858,
+        "IR_label_frames": 858,
+        "RGB_label_frames": 858,
+        "scored_frames": 858,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_4",
+        "prediction_frames": 935,
+        "IR_label_frames": 935,
+        "RGB_label_frames": 935,
+        "scored_frames": 935,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_8",
+        "prediction_frames": 39,
+        "IR_label_frames": 39,
+        "RGB_label_frames": 39,
+        "scored_frames": 39,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_5",
+        "prediction_frames": 961,
+        "IR_label_frames": 961,
+        "RGB_label_frames": 961,
+        "scored_frames": 961,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_6",
+        "prediction_frames": 924,
+        "IR_label_frames": 924,
+        "RGB_label_frames": 924,
+        "scored_frames": 924,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_3",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_6",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_8",
+        "prediction_frames": 706,
+        "IR_label_frames": 706,
+        "RGB_label_frames": 706,
+        "scored_frames": 706,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_1",
+        "prediction_frames": 942,
+        "IR_label_frames": 942,
+        "RGB_label_frames": 942,
+        "scored_frames": 942,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_3",
+        "prediction_frames": 926,
+        "IR_label_frames": 926,
+        "RGB_label_frames": 926,
+        "scored_frames": 926,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_8",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_8",
+        "prediction_frames": 509,
+        "IR_label_frames": 509,
+        "RGB_label_frames": 509,
+        "scored_frames": 509,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_130341_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_142435_1_9",
+        "prediction_frames": 299,
+        "IR_label_frames": 299,
+        "RGB_label_frames": 299,
+        "scored_frames": 299,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_8",
+        "prediction_frames": 584,
+        "IR_label_frames": 584,
+        "RGB_label_frames": 584,
+        "scored_frames": 584,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_10",
+        "prediction_frames": 174,
+        "IR_label_frames": 174,
+        "RGB_label_frames": 174,
+        "scored_frames": 174,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_8",
+        "prediction_frames": 493,
+        "IR_label_frames": 493,
+        "RGB_label_frames": 493,
+        "scored_frames": 493,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      }
+    ]
+  },
+  "experiments/v3/results/val/A1_s0": {
+    "n_sequences": 67,
+    "frames": 61999,
+    "known_issues": [
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      }
+    ],
+    "length_mismatches": [],
+    "sequences": [
+      {
+        "seq": "20190925_101846_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_101846_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_8",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_131530_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_133630_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_1",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_2",
+        "prediction_frames": 858,
+        "IR_label_frames": 858,
+        "RGB_label_frames": 858,
+        "scored_frames": 858,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_4",
+        "prediction_frames": 935,
+        "IR_label_frames": 935,
+        "RGB_label_frames": 935,
+        "scored_frames": 935,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_8",
+        "prediction_frames": 39,
+        "IR_label_frames": 39,
+        "RGB_label_frames": 39,
+        "scored_frames": 39,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_5",
+        "prediction_frames": 961,
+        "IR_label_frames": 961,
+        "RGB_label_frames": 961,
+        "scored_frames": 961,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_6",
+        "prediction_frames": 924,
+        "IR_label_frames": 924,
+        "RGB_label_frames": 924,
+        "scored_frames": 924,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_3",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_6",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_8",
+        "prediction_frames": 706,
+        "IR_label_frames": 706,
+        "RGB_label_frames": 706,
+        "scored_frames": 706,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_1",
+        "prediction_frames": 942,
+        "IR_label_frames": 942,
+        "RGB_label_frames": 942,
+        "scored_frames": 942,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_3",
+        "prediction_frames": 926,
+        "IR_label_frames": 926,
+        "RGB_label_frames": 926,
+        "scored_frames": 926,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_8",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_8",
+        "prediction_frames": 509,
+        "IR_label_frames": 509,
+        "RGB_label_frames": 509,
+        "scored_frames": 509,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_130341_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_142435_1_9",
+        "prediction_frames": 299,
+        "IR_label_frames": 299,
+        "RGB_label_frames": 299,
+        "scored_frames": 299,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_8",
+        "prediction_frames": 584,
+        "IR_label_frames": 584,
+        "RGB_label_frames": 584,
+        "scored_frames": 584,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_10",
+        "prediction_frames": 174,
+        "IR_label_frames": 174,
+        "RGB_label_frames": 174,
+        "scored_frames": 174,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_8",
+        "prediction_frames": 493,
+        "IR_label_frames": 493,
+        "RGB_label_frames": 493,
+        "scored_frames": 493,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      }
+    ]
+  },
+  "experiments/v3/results/val/A3_s0": {
+    "n_sequences": 67,
+    "frames": 61999,
+    "known_issues": [
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      }
+    ],
+    "length_mismatches": [],
+    "sequences": [
+      {
+        "seq": "20190925_101846_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_101846_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_8",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_131530_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_133630_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_1",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_2",
+        "prediction_frames": 858,
+        "IR_label_frames": 858,
+        "RGB_label_frames": 858,
+        "scored_frames": 858,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_4",
+        "prediction_frames": 935,
+        "IR_label_frames": 935,
+        "RGB_label_frames": 935,
+        "scored_frames": 935,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_8",
+        "prediction_frames": 39,
+        "IR_label_frames": 39,
+        "RGB_label_frames": 39,
+        "scored_frames": 39,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_5",
+        "prediction_frames": 961,
+        "IR_label_frames": 961,
+        "RGB_label_frames": 961,
+        "scored_frames": 961,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_6",
+        "prediction_frames": 924,
+        "IR_label_frames": 924,
+        "RGB_label_frames": 924,
+        "scored_frames": 924,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_3",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_6",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_8",
+        "prediction_frames": 706,
+        "IR_label_frames": 706,
+        "RGB_label_frames": 706,
+        "scored_frames": 706,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_1",
+        "prediction_frames": 942,
+        "IR_label_frames": 942,
+        "RGB_label_frames": 942,
+        "scored_frames": 942,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_3",
+        "prediction_frames": 926,
+        "IR_label_frames": 926,
+        "RGB_label_frames": 926,
+        "scored_frames": 926,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_8",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_8",
+        "prediction_frames": 509,
+        "IR_label_frames": 509,
+        "RGB_label_frames": 509,
+        "scored_frames": 509,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_130341_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_142435_1_9",
+        "prediction_frames": 299,
+        "IR_label_frames": 299,
+        "RGB_label_frames": 299,
+        "scored_frames": 299,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_8",
+        "prediction_frames": 584,
+        "IR_label_frames": 584,
+        "RGB_label_frames": 584,
+        "scored_frames": 584,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_10",
+        "prediction_frames": 174,
+        "IR_label_frames": 174,
+        "RGB_label_frames": 174,
+        "scored_frames": 174,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_8",
+        "prediction_frames": 493,
+        "IR_label_frames": 493,
+        "RGB_label_frames": 493,
+        "scored_frames": 493,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      }
+    ]
+  },
+  "experiments/v3/results/val/A4_online_s0": {
+    "n_sequences": 67,
+    "frames": 61999,
+    "known_issues": [
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      }
+    ],
+    "length_mismatches": [],
+    "sequences": [
+      {
+        "seq": "20190925_101846_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_101846_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_8",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_131530_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_133630_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_1",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_2",
+        "prediction_frames": 858,
+        "IR_label_frames": 858,
+        "RGB_label_frames": 858,
+        "scored_frames": 858,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_4",
+        "prediction_frames": 935,
+        "IR_label_frames": 935,
+        "RGB_label_frames": 935,
+        "scored_frames": 935,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_8",
+        "prediction_frames": 39,
+        "IR_label_frames": 39,
+        "RGB_label_frames": 39,
+        "scored_frames": 39,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_5",
+        "prediction_frames": 961,
+        "IR_label_frames": 961,
+        "RGB_label_frames": 961,
+        "scored_frames": 961,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_6",
+        "prediction_frames": 924,
+        "IR_label_frames": 924,
+        "RGB_label_frames": 924,
+        "scored_frames": 924,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_3",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_6",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_8",
+        "prediction_frames": 706,
+        "IR_label_frames": 706,
+        "RGB_label_frames": 706,
+        "scored_frames": 706,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_1",
+        "prediction_frames": 942,
+        "IR_label_frames": 942,
+        "RGB_label_frames": 942,
+        "scored_frames": 942,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_3",
+        "prediction_frames": 926,
+        "IR_label_frames": 926,
+        "RGB_label_frames": 926,
+        "scored_frames": 926,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_8",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_8",
+        "prediction_frames": 509,
+        "IR_label_frames": 509,
+        "RGB_label_frames": 509,
+        "scored_frames": 509,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_130341_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_142435_1_9",
+        "prediction_frames": 299,
+        "IR_label_frames": 299,
+        "RGB_label_frames": 299,
+        "scored_frames": 299,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_8",
+        "prediction_frames": 584,
+        "IR_label_frames": 584,
+        "RGB_label_frames": 584,
+        "scored_frames": 584,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_10",
+        "prediction_frames": 174,
+        "IR_label_frames": 174,
+        "RGB_label_frames": 174,
+        "scored_frames": 174,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_8",
+        "prediction_frames": 493,
+        "IR_label_frames": 493,
+        "RGB_label_frames": 493,
+        "scored_frames": 493,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      }
+    ]
+  },
+  "experiments/v3/results/val/A4_dataset_s0": {
+    "n_sequences": 67,
+    "frames": 61999,
+    "known_issues": [
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      }
+    ],
+    "length_mismatches": [],
+    "sequences": [
+      {
+        "seq": "20190925_101846_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_101846_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_8",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_131530_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_133630_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_1",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_2",
+        "prediction_frames": 858,
+        "IR_label_frames": 858,
+        "RGB_label_frames": 858,
+        "scored_frames": 858,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_4",
+        "prediction_frames": 935,
+        "IR_label_frames": 935,
+        "RGB_label_frames": 935,
+        "scored_frames": 935,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_8",
+        "prediction_frames": 39,
+        "IR_label_frames": 39,
+        "RGB_label_frames": 39,
+        "scored_frames": 39,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_5",
+        "prediction_frames": 961,
+        "IR_label_frames": 961,
+        "RGB_label_frames": 961,
+        "scored_frames": 961,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_6",
+        "prediction_frames": 924,
+        "IR_label_frames": 924,
+        "RGB_label_frames": 924,
+        "scored_frames": 924,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_3",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_6",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_8",
+        "prediction_frames": 706,
+        "IR_label_frames": 706,
+        "RGB_label_frames": 706,
+        "scored_frames": 706,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_1",
+        "prediction_frames": 942,
+        "IR_label_frames": 942,
+        "RGB_label_frames": 942,
+        "scored_frames": 942,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_3",
+        "prediction_frames": 926,
+        "IR_label_frames": 926,
+        "RGB_label_frames": 926,
+        "scored_frames": 926,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_8",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_8",
+        "prediction_frames": 509,
+        "IR_label_frames": 509,
+        "RGB_label_frames": 509,
+        "scored_frames": 509,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_130341_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_142435_1_9",
+        "prediction_frames": 299,
+        "IR_label_frames": 299,
+        "RGB_label_frames": 299,
+        "scored_frames": 299,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_8",
+        "prediction_frames": 584,
+        "IR_label_frames": 584,
+        "RGB_label_frames": 584,
+        "scored_frames": 584,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_10",
+        "prediction_frames": 174,
+        "IR_label_frames": 174,
+        "RGB_label_frames": 174,
+        "scored_frames": 174,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_8",
+        "prediction_frames": 493,
+        "IR_label_frames": 493,
+        "RGB_label_frames": 493,
+        "scored_frames": 493,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      }
+    ]
+  },
+  "experiments/v3/results/val/A4_oracle_s0": {
+    "n_sequences": 67,
+    "frames": 61999,
+    "known_issues": [
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      }
+    ],
+    "length_mismatches": [],
+    "sequences": [
+      {
+        "seq": "20190925_101846_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_101846_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_8",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_131530_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_133630_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_1",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_2",
+        "prediction_frames": 858,
+        "IR_label_frames": 858,
+        "RGB_label_frames": 858,
+        "scored_frames": 858,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_4",
+        "prediction_frames": 935,
+        "IR_label_frames": 935,
+        "RGB_label_frames": 935,
+        "scored_frames": 935,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_8",
+        "prediction_frames": 39,
+        "IR_label_frames": 39,
+        "RGB_label_frames": 39,
+        "scored_frames": 39,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_5",
+        "prediction_frames": 961,
+        "IR_label_frames": 961,
+        "RGB_label_frames": 961,
+        "scored_frames": 961,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_6",
+        "prediction_frames": 924,
+        "IR_label_frames": 924,
+        "RGB_label_frames": 924,
+        "scored_frames": 924,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_3",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_6",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_8",
+        "prediction_frames": 706,
+        "IR_label_frames": 706,
+        "RGB_label_frames": 706,
+        "scored_frames": 706,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_1",
+        "prediction_frames": 942,
+        "IR_label_frames": 942,
+        "RGB_label_frames": 942,
+        "scored_frames": 942,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_3",
+        "prediction_frames": 926,
+        "IR_label_frames": 926,
+        "RGB_label_frames": 926,
+        "scored_frames": 926,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_8",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_8",
+        "prediction_frames": 509,
+        "IR_label_frames": 509,
+        "RGB_label_frames": 509,
+        "scored_frames": 509,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_130341_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_142435_1_9",
+        "prediction_frames": 299,
+        "IR_label_frames": 299,
+        "RGB_label_frames": 299,
+        "scored_frames": 299,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_8",
+        "prediction_frames": 584,
+        "IR_label_frames": 584,
+        "RGB_label_frames": 584,
+        "scored_frames": 584,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_10",
+        "prediction_frames": 174,
+        "IR_label_frames": 174,
+        "RGB_label_frames": 174,
+        "scored_frames": 174,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_8",
+        "prediction_frames": 493,
+        "IR_label_frames": 493,
+        "RGB_label_frames": 493,
+        "scored_frames": 493,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      }
+    ]
+  },
+  "experiments/v3/results/val/A4_zero_s0": {
+    "n_sequences": 67,
+    "frames": 61999,
+    "known_issues": [
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      }
+    ],
+    "length_mismatches": [],
+    "sequences": [
+      {
+        "seq": "20190925_101846_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_101846_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": "infrared labels: start frame 16",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_130434_1_8",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_131530_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_133630_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_140917_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_141417_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_143900_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_152412_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_1",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_2",
+        "prediction_frames": 858,
+        "IR_label_frames": 858,
+        "RGB_label_frames": 858,
+        "scored_frames": 858,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_183946_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_3",
+        "prediction_frames": 971,
+        "IR_label_frames": 971,
+        "RGB_label_frames": 971,
+        "scored_frames": 971,
+        "known_issue": "visible labels: start frame 150",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_194211_1_4",
+        "prediction_frames": 944,
+        "IR_label_frames": 944,
+        "RGB_label_frames": 944,
+        "scored_frames": 944,
+        "known_issue": "visible labels: start frame 1",
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_4",
+        "prediction_frames": 935,
+        "IR_label_frames": 935,
+        "RGB_label_frames": 935,
+        "scored_frames": 935,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_200320_1_8",
+        "prediction_frames": 39,
+        "IR_label_frames": 39,
+        "RGB_label_frames": 39,
+        "scored_frames": 39,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_5",
+        "prediction_frames": 961,
+        "IR_label_frames": 961,
+        "RGB_label_frames": 961,
+        "scored_frames": 961,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_205804_1_6",
+        "prediction_frames": 924,
+        "IR_label_frames": 924,
+        "RGB_label_frames": 924,
+        "scored_frames": 924,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_3",
+        "prediction_frames": 929,
+        "IR_label_frames": 929,
+        "RGB_label_frames": 929,
+        "scored_frames": 929,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_6",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_210802_1_8",
+        "prediction_frames": 706,
+        "IR_label_frames": 706,
+        "RGB_label_frames": 706,
+        "scored_frames": 706,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_1",
+        "prediction_frames": 942,
+        "IR_label_frames": 942,
+        "RGB_label_frames": 942,
+        "scored_frames": 942,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_213001_1_3",
+        "prediction_frames": 926,
+        "IR_label_frames": 926,
+        "RGB_label_frames": 926,
+        "scored_frames": 926,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190925_222534_1_8",
+        "prediction_frames": 938,
+        "IR_label_frames": 938,
+        "RGB_label_frames": 938,
+        "scored_frames": 938,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_103046_1_8",
+        "prediction_frames": 509,
+        "IR_label_frames": 509,
+        "RGB_label_frames": 509,
+        "scored_frames": 509,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_130341_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_133516_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_141816_1_9",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_142435_1_9",
+        "prediction_frames": 299,
+        "IR_label_frames": 299,
+        "RGB_label_frames": 299,
+        "scored_frames": 299,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_143632_1_8",
+        "prediction_frames": 584,
+        "IR_label_frames": 584,
+        "RGB_label_frames": 584,
+        "scored_frames": 584,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_10",
+        "prediction_frames": 174,
+        "IR_label_frames": 174,
+        "RGB_label_frames": 174,
+        "scored_frames": 174,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_144550_1_7",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183400_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_183941_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_1",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_5",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_195921_1_6",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_2",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_3",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_4",
+        "prediction_frames": 1000,
+        "IR_label_frames": 1000,
+        "RGB_label_frames": 1000,
+        "scored_frames": 1000,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      },
+      {
+        "seq": "20190926_200510_1_8",
+        "prediction_frames": 493,
+        "IR_label_frames": 493,
+        "RGB_label_frames": 493,
+        "scored_frames": 493,
+        "known_issue": null,
+        "original_labels_unchanged": true
+      }
+    ]
+  }
+}

@@ -59,7 +59,13 @@ def main():
     ap.add_argument("--prior-mode", default="sequence", choices=["sequence", "zero"])
     ap.add_argument("--val-prior", default="dataset", choices=["dataset", "replay", "noisy_oracle", "oracle", "zero"])
     # fine-tuning recipe (stage 2, and the stage-1 continuation control A1c)
-    ap.add_argument("--lr0", type=float, default=None, help="default 0.01 from scratch, 0.001 when fine-tuning")
+    ap.add_argument("--lr0", type=float, default=None,
+                    help="default 0.01 from scratch, 1e-4 when fine-tuning (the final LR of the 100-epoch A1 run, "
+                         "lr0 0.01 x lrf 0.01; restarting higher than that knocks a converged model off its optimum)")
+    ap.add_argument("--lrf", type=float, default=None, help="final LR as a share of lr0; default 0.01, 1.0 when fine-tuning")
+    ap.add_argument("--freeze", type=int, default=None,
+                    help="freeze the first N layers; 21 freezes both backbones (layers 0-20) so stage 2 trains only "
+                         "the alignment layers, neck and head")
     ap.add_argument("--warmup-epochs", type=float, default=None, help="default 3 from scratch, 0 when fine-tuning")
     ap.add_argument("--cos-lr", action="store_true")
     ap.add_argument("--continue-recipe", action="store_true",
@@ -68,13 +74,14 @@ def main():
                          "of the fine-tuning recipe from the effect of SPLA")
     args = ap.parse_args()
     finetune = args.stage == 2 or args.continue_recipe
-    lr0 = args.lr0 if args.lr0 is not None else (0.001 if finetune else 0.01)
+    lr0 = args.lr0 if args.lr0 is not None else (1e-4 if finetune else 0.01)
+    lrf = args.lrf if args.lrf is not None else (1.0 if finetune else 0.01)
     warm = args.warmup_epochs if args.warmup_epochs is not None else (0.0 if finetune else 3.0)
 
     common = dict(data=args.data, imgsz=args.imgsz, batch=args.batch, workers=args.workers, device=args.device,
                   seed=args.seed, deterministic=True, project=args.project, name=args.name, exist_ok=False, fraction=args.fraction,
                   epochs=args.epochs or (40 if finetune else 100), plots=False,
-                  lr0=lr0, warmup_epochs=warm, cos_lr=args.cos_lr,
+                  lr0=lr0, lrf=lrf, warmup_epochs=warm, cos_lr=args.cos_lr, freeze=args.freeze,
                   optimizer="SGD" if finetune else "auto")   # 'auto' would pick its own lr and ignore lr0
 
     if args.stage == 0:

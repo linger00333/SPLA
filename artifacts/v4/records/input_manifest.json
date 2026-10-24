@@ -1,0 +1,32 @@
+{
+  "created_from": "v3 tested runtime; only train_spla.py recipe changed",
+  "patch_origin": "reconstructed from the explicit user instructions; no patch attachment was found",
+  "transform": "scale_translation",
+  "test_metadata_included": false,
+  "A1_s0_best_sha256": "48e301f12dcd20e9356a3e2fc6f668bccc886d2efd067b90f573dcabd8c36354",
+  "inputs": {
+    "spla_meta.json": "9953102453eaf6b2805a63e214b9a575423f97d32f46d171af68bb1fb8788892",
+    "seq_theta_train.json": "b5e7b9698f834d4b9ee167ae1a55a086834f5b79fb284b25725ea3283f5bdb63",
+    "spla_meta_val.json": "6a58711aa22eb0dee3667679dafdace6517f0c3416506f8a07ee9022f0b18fed",
+    "spla_meta_train.json": "b56833170dcca80eb17204ea5bb30abdcf8c4a8aa1a3f53bba4b2f56b1414db1",
+    "seq_theta_val.json": "f5262977d5b7295e46db80595f289bce75ade5ad608f0383485a61eafa241de8"
+  },
+  "kit": {
+    "tools/run_sequences.py": "f0be2a3549de69f809791b996b243f7462994997f9d4c30c5788386f0eea4f2e",
+    "tools/tune_prior.py": "7c8da30fb0ed8dc77a30d36860eefa2412378cb782bc9514f32b04e2c60c2a23",
+    "tools/inspect_dataset.py": "2bf4fd62e941ce6e53f930ce2eced203d2c2ecb6bae760d5afb4444e69905536",
+    "tools/score_runs.py": "0654fdf5ce7ee8fa9d92d8415dd587c9a65f7a5b308832dc5ac654a308d86f84",
+    "tools/patch_ultralytics.py": "e8a18968920daa620a3900ff7d01444eb6fa24012914b8fd98b9058570b266f7",
+    "tools/convert_antiuav.py": "9f5e3b4c4c82224b1ae1a703436ae94c50a11311549eab3a83ed72ab13fdbe95",
+    "tools/audit_offsets.py": "18aaa382e08447c808ec515d249519c2680f0e2fccdf256fa4c62087b4224d66",
+    "tools/train_spla.py": "651f9948efa8c640534e9f18431dcadd8dddb4a60e74edb3bd5e756a5b5023fe",
+    "spla/modules.py": "b4dd4c482becee9f0525a64dec45cde45ba9dab12d29d4beaa0d1a80ad101106",
+    "spla/ultralytics_hooks.py": "72087c203645285e6f1fda9eaaa859ed194ec0fa38a53b5540505572caac2bfe",
+    "spla/__init__.py": "7461e9256f9069823a3fcde8d51a49448c9f6ac926beeba03900e998d39b4611",
+    "spla/prior_estimator.py": "b74583361f00154215d61c1e1ea811be7f2aa26a9ac118f719d03fecba9f6bca",
+    "spla/antiuav_io.py": "fd25dcc1f8284528756bc350631d23e966c419117b16ab6febbd6fb305d62e07",
+    "spla/geometry.py": "109206f634f7dd6f4936e2d8b60e44a4a63a01cdce1317793266140aeaa27fe3"
+  },
+  "reused_runtime": "experiments/v3",
+  "merged_replay_coverage": 41866
+}

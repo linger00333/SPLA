@@ -21,5 +21,7 @@ here. Never load an untrusted pickle model. Training initialization still uses
 the local `.pt` checkpoints produced by training; the public Safetensors bundles
 are inference exports rather than training-resumption checkpoints.
 
-No final A1c or new three-seed zoom model is claimed in this snapshot. Check the
-timestamped experiment status and model registry before assuming a run finished.
+The old A1c run is complete and its CSV and predictions are published; its
+weights are not part of the four-model portable bundle. Low-LR pilot and
+matched three-seed models are not claimed as finished. The zoom plan is
+superseded. Check the timestamped status and model registry for each run.
