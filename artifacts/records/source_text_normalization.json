@@ -1,0 +1,1842 @@
+[
+  {
+    "file": "framework/ultralytics/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/downloads.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/ops.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/torch_utils.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/errors.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/metrics.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/tuner.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/tal.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/instance.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/checks.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/patches.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/triton.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/atss.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/dist.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/autobatch.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/plotting.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/benchmarks.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/files.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/loss.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/mlflow.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/raytune.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/wb.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/dvc.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/tensorboard.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/base.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/comet.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/hub.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/clearml.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/utils/callbacks/neptune.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/hub/utils.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/hub/auth.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/hub/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/hub/session.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/hub/google/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/distance_calculation.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/analytics.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/trackzone.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/ai_gym.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/streamlit_inference.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/heatmap.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/parking_management.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/solutions.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/region_counter.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/queue_management.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/speed_estimation.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/object_counter.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/solutions/security_alarm.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/split_dota.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/utils.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/loaders.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/build.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/base.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/dataset.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/annotator.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/converter.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/data/augment.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/default.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/african-wildlife.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/VisDrone.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/M3FD_IF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/signature.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/SKU-110K.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/DOTAv1.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/coco128.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/medical-pills.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/Objects365.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/BCCD.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/open-images-v7.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/KAIST.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/brain-tumor.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/ImageNet.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/VEDAI_if.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/xView.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/M3FD-inf.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/M3FD.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/package-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/coco8.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/dota8.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/lvis.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/dog-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/dota8-multispectral.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/coco-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/carparts-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/LLVIP_r20.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/coco.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/crack-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/tiger-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/KAIST_IF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/Argoverse.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/multispectral-16bit-7ch-2c.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/DOTAv1.5.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/LLVIP-inf.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/coco8-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/coco8-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/KAIST8.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/VOC.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/hand-keypoints.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/coco8-multispectral.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/coco128-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/LLVIP.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/GlobalWheat2020.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/M3FD-rgbt.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/datasets/VEDAI.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/solutions/default.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/trackers/bytetrack.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/trackers/botsort.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v6/yolov6.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBRGB6C-midfusion-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-midfusion-DetectV8.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-midfusion-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBRGB6C-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-earlyfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-midfusion-DetectV8-C2fDeepDBB.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-midfusion-P3-PGI.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBT-midfusion-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8-RGBT/yolov8-RGBRGB6C-midfusion-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/PicoDet-RGBT/PicoDet-s-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/PicoDet-RGBT/PicoDet-s-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3/yolov3-spp.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3/yolov3-tiny.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3/yolov3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v7-RGBT/yolov7-RGBT-midfusion-P3-2.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/yolox-RGBT/yolox-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/yolox-RGBT/yolox-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/yolox-RGBT/yolox-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/yolox-RGBT/yolox-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/yolox-RGBT/yolox-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/yolox-RGBT/yolox-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5-RGBT/yolov5-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5-RGBT/yolov5-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5-RGBT/yolov5-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5-RGBT/yolov5-RGBT-midfusion-P3-PGI.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5-RGBT/yolov5-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5-RGBT/yolov5-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5-RGBT/yolov5-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5-RGBT/yolov5-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5-RGBT/yolov5-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/ppyoloe/ppyoloe-l.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/ppyoloe/ppyolo.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v4-RGBT/yolov4-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10m-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10x-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10n-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10x-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10n-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10l-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10x-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10l-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10s-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10s.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10n-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10m-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10m-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10l-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10x-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10l-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10b.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10b-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10b-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10b-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10s-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10s-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10l-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10l.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10m-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10b-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10b-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10s-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10m-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10n-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10l-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10s-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10x.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10n-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10s-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10b-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10m-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10s-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10l-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10b-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10x-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10x-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10m-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10s-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10n-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10l-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10b-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10x-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10n-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10n-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10x-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10-RGBT/yolov10m-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-tiny-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-tiny-RGBT-earlyfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-RGBT-earlyfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-tiny-RGBT-midfusion-CFT.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-RGBT-midfusion-CFT.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v3-RGBT/yolov3-tiny-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr-RGBT/rtdetr-resnet50-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr-RGBT/rtdetr-resnet50-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr-RGBT/rtdetr-resnet50-RGBT-earlyfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-seg-p6.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-cls-resnet50.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-p2.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-worldv2.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-ghost-p6.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-world.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-ghost-p2.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-pose-p6.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-obb.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-cls.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-cls-resnet101.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-rtdetr.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-ghost.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v8/yolov8-p6.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12/yolo12-cls.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12/yolo12-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12/yolo12.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12/yolo12-obb.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12/yolo12-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9/yolov9c.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9/yolov9s.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9/yolov9c-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9/yolov9t.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9/yolov9e-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9/yolov9e.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9/yolov9m.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5/yolov5.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v5/yolov5-p6.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9s-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9c.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9s-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9t-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9t-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9t-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9t-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9s.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9m-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9m-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9s-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9t-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9s-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9m-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9m-RGBT-scoreusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9c-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9s-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9t.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9t-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9m-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9m-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9t-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9e-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9s-RGBT-early-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9s-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9m-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9s-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9e.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9m-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v9-RGBT/yolov9m.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr/rtdetr-x.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr/rtdetr-p2.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr/rtdetr-r50.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr/rtdetr-resnet50.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr/rtdetr-r34.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr/rtdetr-r18.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr/rtdetr-l.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/rt-detr/rtdetr-resnet101.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/hyper-yolo-RGBT/hyper-yolo-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/hyper-yolo-RGBT/hyper-yolo-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/hyper-yolo-RGBT/hyper-yolo-RGBT-earlyfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/hyper-yolo-RGBT/hyper-yolo-RGBT-midfusion-B3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10/yolov10s.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10/yolov10n.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10/yolov10b.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10/yolov10l.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10/yolov10x.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v10/yolov10m.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12-RGBT/yolo12-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12-RGBT/yolo12-RGBT-earlyfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12-RGBT/yolo12-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12-RGBT/yolo12-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12-RGBT/yolo12-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12-RGBT/yolo12-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12-RGBT/yolo12-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/12-RGBT/yolo12-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-P3-PGI.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-CAS.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-MCF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-earlyfusion-10c.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-PGI-RDBB.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-CMA3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-P3-C3k2_DeepDBB.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-NiNfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBRGB6C-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-TransformerFusionBlock.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-P2.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-add.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBRGB6C-earlyfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-obb.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-CAS-test.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-P3P4.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-CAS2.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-DetectDeepDBB.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-DeepDBB.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBRGB6C-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-PGI.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-RGBRGB6C.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-CAS-CMA.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-CFT3_add.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBRGB6C-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-CAS3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-earlyfusion-7c.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-earlyfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-EFM.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion-RDBB.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11-RGBT/yolo11-RGBRGB6C-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-cls.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-cls-RGBRGB.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-pose.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-attention.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-PGI.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-gray.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-obb.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-cls-resnet18.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11-aux.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/11/yolo11.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/PicoDet/PicoDet.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/PicoDet/PicoDet-s.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/yolox/yolox.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v6-RGBT/yolov6-RGBT-mid-to-late-fusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v6-RGBT/yolov6-RGBT-midfusion-CTF.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v6-RGBT/yolov6-RGBT-latefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v6-RGBT/yolov6-RGBT-midfusion-P3.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v6-RGBT/yolov6-RGBT-earlyfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v6-RGBT/yolov6-RGBT-midfusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v6-RGBT/yolov6-RGBT-share.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v6-RGBT/yolov6-RGBT-scorefusion.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v4/yolov4-src.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/v4/yolov4.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/hyper-yolo/hyper-yolo.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/cfg/models/hyper-yolo/hyper-yolo-seg.yaml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/trackers/bot_sort.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/trackers/basetrack.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/trackers/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/trackers/track.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/trackers/byte_tracker.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/trackers/utils/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/trackers/utils/gmc.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/trackers/utils/kalman_filter.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/trackers/utils/matching.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/utils/ops.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/utils/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/utils/loss.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/nas/model.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/nas/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/nas/val.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/nas/predict.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/model.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/amg.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/build.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/predict.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/modules/memory_attention.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/modules/transformer.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/modules/utils.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/modules/blocks.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/modules/decoders.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/modules/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/modules/sam.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/modules/tiny_encoder.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/sam/modules/encoders.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/fastsam/model.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/fastsam/utils.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/fastsam/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/fastsam/val.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/fastsam/predict.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/rtdetr/model.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/rtdetr/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/rtdetr/train.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/rtdetr/val.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/rtdetr/predict.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/model.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/pose/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/pose/train.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/pose/val.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/pose/predict.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/segment/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/segment/train.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/segment/val.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/segment/predict.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/detect/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/detect/train.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/detect/val.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/detect/predict.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/obb/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/obb/train.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/obb/val.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/obb/predict.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/classify/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/classify/train.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/classify/val.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/classify/predict.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/world/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/world/train_world.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/models/yolo/world/train.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/autobackend.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/tasks.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/transformer.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/utils.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/block.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/attention.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/head.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/ppyolo.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/rep_block.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/activation.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/nn/modules/conv.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/engine/model.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/engine/results.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/engine/__init__.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/engine/tuner.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/engine/validator.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/engine/predictor.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/engine/exporter.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/ultralytics/engine/trainer.py",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/pyproject.toml",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  },
+  {
+    "file": "framework/requirements.txt",
+    "change": "Normalize documentation, comments and display text to ASCII; preserve executable structure."
+  }
+]

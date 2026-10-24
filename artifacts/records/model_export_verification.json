@@ -1,0 +1,27 @@
+{
+  "input_size": 640,
+  "inference_device": "CPU",
+  "models": {
+    "A0_s0": {
+      "forward_output_match": true,
+      "max_abs_difference": 0.0,
+      "strict_state_dict_load": true
+    },
+    "A1_s0": {
+      "forward_output_match": true,
+      "max_abs_difference": 0.0,
+      "strict_state_dict_load": true
+    },
+    "A3_s0": {
+      "forward_output_match": true,
+      "max_abs_difference": 0.0,
+      "strict_state_dict_load": true
+    },
+    "A4_s0": {
+      "forward_output_match": true,
+      "max_abs_difference": 0.0,
+      "strict_state_dict_load": true
+    }
+  },
+  "public_source_imports_verified": true
+}

@@ -1,0 +1,73 @@
+{
+  "weights": {
+    "A0_s0": {
+      "channels": 3,
+      "spla_layers": 0,
+      "forward_and_deepcopy": true,
+      "checkpoint_epoch": -1,
+      "best_fitness": null
+    },
+    "A1_s0": {
+      "channels": 4,
+      "spla_layers": 0,
+      "forward_and_deepcopy": true,
+      "checkpoint_epoch": -1,
+      "best_fitness": null
+    },
+    "A3_s0": {
+      "channels": 6,
+      "spla_layers": 3,
+      "forward_and_deepcopy": true,
+      "checkpoint_epoch": -1,
+      "best_fitness": null
+    },
+    "A4_s0": {
+      "channels": 6,
+      "spla_layers": 3,
+      "forward_and_deepcopy": true,
+      "checkpoint_epoch": -1,
+      "best_fitness": null
+    }
+  },
+  "temporary_training": {
+    "A1c_check": {
+      "returncode": 0,
+      "saved_and_reloaded": true,
+      "spla_layers": 0
+    },
+    "A4_check": {
+      "returncode": 0,
+      "saved_and_reloaded": true,
+      "spla_layers": 3
+    }
+  },
+  "unit_tests": [
+    "passed test_fit_recovers_similarity_with_outliers",
+    "passed test_bic_prefers_similarity_over_translation_when_scales_differ",
+    "passed test_canvas_and_augmentation_composition",
+    "passed test_online_prior_converges_and_resists_outliers",
+    "passed test_online_prior_recovers_after_geometry_change",
+    "passed test_audit_recovers_lag_model_and_h1",
+    "passed test_audit_diagnosis_names_the_residual_source",
+    "passed test_tune_prior_prefers_drift_tracking_when_geometry_drifts",
+    "passed test_zoom_model_resists_regression_dilution",
+    "passed test_online_update_units_in_run_sequences",
+    "passed test_label_reader_box_formats_and_file_names",
+    "passed test_scorer_metrics_and_bootstrap",
+    "passed test_synthetic_shift_and_oracle_update",
+    "ok test_warp_convention",
+    "ok test_prior_field_matches_numpy",
+    "ok test_spla_identity_at_init",
+    "ok test_spla_learns_shift",
+    "ok test_gradient_reaches_prior_path",
+    "ok test_affine_warp_matches_points"
+  ],
+  "temporary_training_sizes": {
+    "train": 16,
+    "val": 4,
+    "batch": 16,
+    "epochs": 1,
+    "gpu": 1
+  },
+  "numpy": "private 1.26.4 copied from validated v1; mixed shared NumPy failed array interoperability"
+}

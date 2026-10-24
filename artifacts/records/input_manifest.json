@@ -1,0 +1,20 @@
+{
+  "package_sha256": "d99655bc2818400803db842d932ff375da59b04b555f6d17f32f436bcfda2a81",
+  "frozen_data": {
+    "spla_meta_test.json": "fa0207cde7dfcae762619b98968ce20e1396acffecb89eac66452ea328a02508",
+    "spla_meta.json": "9953102453eaf6b2805a63e214b9a575423f97d32f46d171af68bb1fb8788892",
+    "antiuav_rgbt.yaml": "5172c82b895e241c0da1db167bd4fb377baa81258e9cb5c305bdb0934b02135c",
+    "seq_theta_train.json": "b5e7b9698f834d4b9ee167ae1a55a086834f5b79fb284b25725ea3283f5bdb63",
+    "spla_meta_val.json": "6a58711aa22eb0dee3667679dafdace6517f0c3416506f8a07ee9022f0b18fed",
+    "spla_meta_train.json": "b56833170dcca80eb17204ea5bb30abdcf8c4a8aa1a3f53bba4b2f56b1414db1",
+    "seq_theta_test.json": "9920c96c4f9dad8aec3a4d9347fb0a39f8f599d585dbfc5dd6f4333b807a420a",
+    "seq_theta_val.json": "f5262977d5b7295e46db80595f289bce75ade5ad608f0383485a61eafa241de8",
+    "antiuav_ir.yaml": "d38a17e145e0755fd188b54f05c10cc5e6b1bc9b22a090cb4716fb592392c0b0"
+  },
+  "old_weights": {
+    "A0_s0": "de42b636e29e67c44b532a0549814cc6e9cd2ae41a67194fad8a29996db8e1a8",
+    "A1_s0": "48e301f12dcd20e9356a3e2fc6f668bccc886d2efd067b90f573dcabd8c36354",
+    "A3_s0": "a1405fac17edaa82946dc602d02a3ed50c48119f169faef3af6e61a8dd201009",
+    "A4_s0": "f2171efd45b5a634aa630baf19d5781961411ba40b74bbd6e334c349232e6143"
+  }
+}

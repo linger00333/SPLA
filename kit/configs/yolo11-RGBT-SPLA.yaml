@@ -1,0 +1,64 @@
+# SPLA: sequence-prior local alignment on YOLO11 RGB-T mid-fusion (YOLOv11-RGBT fork).
+# Derived from ultralytics/cfg/models/11-RGBT/yolo11-RGBT-midfusion.yaml (AGPL-3.0).
+# Layer indices are IDENTICAL in yolo11-RGBT-SPLA.yaml and yolo11-RGBT-SPLA-base.yaml,
+# so stage-1 weights load into stage 2 by parameter name.
+nc: 1
+scales:
+  n: [0.50, 0.25, 1024]
+  s: [0.50, 0.50, 1024]
+  m: [0.50, 1.00, 512]
+  l: [1.00, 1.00, 512]
+  x: [1.00, 1.50, 512]
+
+ch: 6   # B,G,R, IR, prior dx, prior dy
+backbone:
+  - [-1, 1, Silence, []]                   # 0  input
+  # visible stream
+  - [0, 1, SilenceChannel, [0, 3]]         # 1
+  - [-1, 1, Conv, [64, 3, 2]]              # 2  P1/2
+  - [-1, 1, Conv, [128, 3, 2]]             # 3  P2/4
+  - [-1, 2, C3k2, [256, False, 0.25]]      # 4
+  - [-1, 1, Conv, [256, 3, 2]]             # 5  P3/8
+  - [-1, 2, C3k2, [512, False, 0.25]]      # 6  RGB P3
+  - [-1, 1, Conv, [512, 3, 2]]             # 7  P4/16
+  - [-1, 2, C3k2, [512, True]]             # 8  RGB P4
+  - [-1, 1, Conv, [1024, 3, 2]]            # 9  P5/32
+  - [-1, 2, C3k2, [1024, True]]            # 10 RGB P5
+  # infrared stream
+  - [0, 1, SilenceChannel, [3, 4]]         # 11
+  - [-1, 1, Conv, [64, 3, 2]]              # 12
+  - [-1, 1, Conv, [128, 3, 2]]             # 13
+  - [-1, 2, C3k2, [256, False, 0.25]]      # 14
+  - [-1, 1, Conv, [256, 3, 2]]             # 15
+  - [-1, 2, C3k2, [512, False, 0.25]]      # 16 IR P3
+  - [-1, 1, Conv, [512, 3, 2]]             # 17
+  - [-1, 2, C3k2, [512, True]]             # 18 IR P4
+  - [-1, 1, Conv, [1024, 3, 2]]            # 19
+  - [-1, 2, C3k2, [1024, True]]            # 20 IR P5
+  # SPLA alignment
+  - [0, 1, SilenceChannel, [4, 6]]         # 21 prior offset field (2 ch, canvas px)
+  - [[10, 20, 21], 1, GlobalOffsetHead, [32]]   # 22 prior + per-image global shift
+  - [[6, 16, 22], 1, SPLA, [8]]            # 23 aligned RGB P3
+  - [[8, 18, 22], 1, SPLA, [16]]           # 24 aligned RGB P4
+  - [[10, 20, 22], 1, SPLA, [32]]          # 25 aligned RGB P5
+  # fusion (RGB aligned to the IR grid, then concatenated)
+  - [[23, 16], 1, Concat, [1]]             # 26 fused P3
+  - [[24, 18], 1, Concat, [1]]             # 27 fused P4
+  - [[25, 20], 1, Concat, [1]]             # 28 fused P5
+  - [-1, 1, SPPF, [1024, 5]]               # 29
+  - [-1, 2, C2PSA, [1024]]                 # 30
+
+head:
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]  # 31
+  - [[-1, 27], 1, Concat, [1]]             # 32
+  - [-1, 2, C3k2, [512, False]]            # 33
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]]  # 34
+  - [[-1, 26], 1, Concat, [1]]             # 35
+  - [-1, 2, C3k2, [256, False]]            # 36 P3/8 out
+  - [-1, 1, Conv, [256, 3, 2]]             # 37
+  - [[-1, 33], 1, Concat, [1]]             # 38
+  - [-1, 2, C3k2, [512, False]]            # 39 P4/16 out
+  - [-1, 1, Conv, [512, 3, 2]]             # 40
+  - [[-1, 30], 1, Concat, [1]]             # 41
+  - [-1, 2, C3k2, [1024, True]]            # 42 P5/32 out
+  - [[36, 39, 42], 1, Detect, [nc]]        # 43

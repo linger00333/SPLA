@@ -1,0 +1,29 @@
+{
+  "split": "val",
+  "n_sequences": 67,
+  "runs": {
+    "A0": {
+      "SA": 0.8154171384084382,
+      "SA_pen": 0.7998538086775934,
+      "align_px": null,
+      "prior_px": 63.33338342622064,
+      "conv_frm": null,
+      "prior_tgt_px": 45.33082980356188,
+      "conv_tgt_frm": null,
+      "AP50": 0.9900560660231961,
+      "n_seeds": 1
+    },
+    "A1": {
+      "SA": 0.8149322666639478,
+      "SA_pen": 0.7989886229270493,
+      "align_px": null,
+      "prior_px": 63.33338342622064,
+      "conv_frm": null,
+      "prior_tgt_px": 45.33082980356188,
+      "conv_tgt_frm": null,
+      "AP50": 0.9902867954387802,
+      "n_seeds": 1
+    }
+  },
+  "vs_baseline": {}
+}

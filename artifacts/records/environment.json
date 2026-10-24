@@ -1,0 +1,13 @@
+{
+  "python": "3.10.20 (main, Jun 11 2026, 15:17:37) [GCC 14.3.0]",
+  "executable": "experiments/v3/venv/bin/python",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "torch": "2.6.0+cu118",
+  "cuda_build": "11.8",
+  "numpy": "1.26.4",
+  "numpy_file": "experiments/v3/venv/lib/python3.10/site-packages/numpy/__init__.py",
+  "opencv": "4.8.1",
+  "ultralytics": "experiments/v3/framework/ultralytics/__init__.py",
+  "spla": "experiments/v3/kit/spla/__init__.py",
+  "GPU1": "NVIDIA A100-SXM4-40GB"
+}

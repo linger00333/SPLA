@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spla"
+version = "0.1.0"
+description = "Sequence-prior local alignment for unregistered RGB-IR UAV detection"
+requires-python = ">=3.9"
+dependencies = ["numpy"]
+
+[tool.setuptools]
+packages = ["spla"]

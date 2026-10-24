@@ -1,0 +1,27 @@
+{
+  "model": "scale_translation",
+  "process_sigma": 0.001,
+  "meas_sigma": 0.008,
+  "tuning_split": "train",
+  "confirmation_split": "val",
+  "selection": "smallest process_sigma within 10% of the best training median",
+  "obs_rate_for_label_simulation": 0.5,
+  "obs_noise_px_for_label_simulation": 2.0,
+  "grid_process_sigma": [
+    0.0001,
+    0.0002,
+    0.0005,
+    0.001,
+    0.002,
+    0.005
+  ],
+  "grid_meas_sigma": [
+    0.004,
+    0.008,
+    0.016,
+    0.032
+  ],
+  "default_validation_prior": "dataset",
+  "replay_validation": "label-assisted bound only",
+  "test_used_for_tuning": false
+}

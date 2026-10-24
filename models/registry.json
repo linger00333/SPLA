@@ -1,0 +1,50 @@
+{
+  "A0_s0": {
+    "source_checkpoint_sha256": "de42b636e29e67c44b532a0549814cc6e9cd2ae41a67194fad8a29996db8e1a8",
+    "tensor_sha256": "26f96003e5d15e3c8175e10f2c40f7597b608a83fbcef4fdb728dd59afa11c77",
+    "config_sha256": "bc7ac111aca7dface173ac816a0839830febc56f7b7f5c18ffc21930f2e7a812",
+    "channels": 3,
+    "state_entries": 499,
+    "training_epochs": 100,
+    "status": "completed",
+    "seed": 0,
+    "training_recipe": "legacy",
+    "not_new_zoom_weights": true
+  },
+  "A1_s0": {
+    "source_checkpoint_sha256": "48e301f12dcd20e9356a3e2fc6f668bccc886d2efd067b90f573dcabd8c36354",
+    "tensor_sha256": "ee0e91ac2513440d639d1cc41252b5bc85025aabdec8aeb4c66639dc3acc95ca",
+    "config_sha256": "045016e62b7ecb000ddcfb15a90cb448a3ddf0e25d1f872c54f4a88b09c30bba",
+    "channels": 4,
+    "state_entries": 685,
+    "training_epochs": 100,
+    "status": "completed",
+    "seed": 0,
+    "training_recipe": "legacy",
+    "not_new_zoom_weights": true
+  },
+  "A3_s0": {
+    "source_checkpoint_sha256": "a1405fac17edaa82946dc602d02a3ed50c48119f169faef3af6e61a8dd201009",
+    "tensor_sha256": "08736c34ea325eaa2020e6e237c93d2c7bdf2d3479031763a0fec631c47093f2",
+    "config_sha256": "78da85d8f93f03e152b45e0248cfab0371643ff7b6e1ba55a8bf23e5a1f44c25",
+    "channels": 6,
+    "state_entries": 757,
+    "training_epochs": 40,
+    "status": "completed",
+    "seed": 0,
+    "training_recipe": "legacy",
+    "not_new_zoom_weights": true
+  },
+  "A4_s0": {
+    "source_checkpoint_sha256": "f2171efd45b5a634aa630baf19d5781961411ba40b74bbd6e334c349232e6143",
+    "tensor_sha256": "63cedca1c25ea0f6fb649c23a522e7b52ee0ae806f1902bc36eb2c188d4c3cce",
+    "config_sha256": "78da85d8f93f03e152b45e0248cfab0371643ff7b6e1ba55a8bf23e5a1f44c25",
+    "channels": 6,
+    "state_entries": 757,
+    "training_epochs": 40,
+    "status": "completed",
+    "seed": 0,
+    "training_recipe": "legacy",
+    "not_new_zoom_weights": true
+  }
+}

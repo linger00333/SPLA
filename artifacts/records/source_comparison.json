@@ -1,0 +1,11 @@
+{
+  "yolo11-RGBT-SPLA-base.yaml": {
+    "old": "8f7b946fb29792553bb60774fff8de93f42aee891e77a94a4e6bc9dbf3dbc695",
+    "new": "8f7b946fb29792553bb60774fff8de93f42aee891e77a94a4e6bc9dbf3dbc695"
+  },
+  "yolo11-RGBT-SPLA.yaml": {
+    "old": "da8e55126c49450cf12308e6106c2deda12a8bbe9bf791489414a413dc872963",
+    "new": "da8e55126c49450cf12308e6106c2deda12a8bbe9bf791489414a413dc872963"
+  },
+  "framework_py_differences": []
+}

@@ -1,0 +1,14 @@
+{
+  "exported_at": "2026-10-24T14:35:01.700705+08:00",
+  "prediction_sets": [
+    "legacy/A3_s0",
+    "legacy/A4_s0",
+    "v3/A0_s0",
+    "v3/A1_s0"
+  ],
+  "data_files_included": false,
+  "test_evaluated": false,
+  "v3_three_seed_training_started": false,
+  "path_aliases_applied": true,
+  "unicode_display_text_normalized": true
+}

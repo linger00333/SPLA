@@ -1,0 +1,1038 @@
+{
+  "zoom": {
+    "train_tuning": {
+      "split": "train",
+      "model": "zoom",
+      "obs_rate": 0.5,
+      "obs_noise_px": 2.0,
+      "references": {
+        "dataset_prior": {
+          "median_err_px": 20.632259610656458,
+          "median_err_px_second_half": 20.328101868566602,
+          "p90_err_px_all_frames": 54.29737722447046,
+          "n_videos": 160
+        },
+        "oracle_per_video": {
+          "median_err_px": 6.241546177586612,
+          "median_err_px_second_half": 5.8632139675426025,
+          "p90_err_px_all_frames": 35.51067264820597,
+          "n_videos": 160
+        }
+      },
+      "grid": [
+        {
+          "process_sigma": 0.002,
+          "meas_sigma": 0.008,
+          "median_err_px": 3.363010513679966,
+          "median_err_px_second_half": 3.0431727566295206,
+          "p90_err_px_all_frames": 41.61069886313742,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.005,
+          "meas_sigma": 0.008,
+          "median_err_px": 3.461761441132395,
+          "median_err_px_second_half": 3.3969535785561225,
+          "p90_err_px_all_frames": 41.61085752348207,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.005,
+          "meas_sigma": 0.016,
+          "median_err_px": 3.5859824055753187,
+          "median_err_px_second_half": 3.2531538251786785,
+          "p90_err_px_all_frames": 33.711126057180834,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.002,
+          "meas_sigma": 0.004,
+          "median_err_px": 3.64101657619899,
+          "median_err_px_second_half": 3.3047229077437184,
+          "p90_err_px_all_frames": 42.32299332629942,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.008,
+          "median_err_px": 3.690731899395966,
+          "median_err_px_second_half": 3.259567239350576,
+          "p90_err_px_all_frames": 41.940594870426864,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.004,
+          "median_err_px": 3.743166492581773,
+          "median_err_px_second_half": 3.283224668597747,
+          "p90_err_px_all_frames": 42.24250962584131,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.005,
+          "meas_sigma": 0.004,
+          "median_err_px": 3.8745953220800686,
+          "median_err_px_second_half": 3.7615420900772154,
+          "p90_err_px_all_frames": 44.0729856798254,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.002,
+          "meas_sigma": 0.016,
+          "median_err_px": 3.929656232484887,
+          "median_err_px_second_half": 3.644461516843207,
+          "p90_err_px_all_frames": 36.83031240790986,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0005,
+          "meas_sigma": 0.008,
+          "median_err_px": 3.966436273505404,
+          "median_err_px_second_half": 3.7272096899574683,
+          "p90_err_px_all_frames": 42.239921995655266,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.005,
+          "meas_sigma": 0.032,
+          "median_err_px": 4.17927158457128,
+          "median_err_px_second_half": 3.9816118352269445,
+          "p90_err_px_all_frames": 30.06919323895719,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0005,
+          "meas_sigma": 0.004,
+          "median_err_px": 4.196015772604706,
+          "median_err_px_second_half": 3.73792448804688,
+          "p90_err_px_all_frames": 42.16384123415145,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.016,
+          "median_err_px": 4.217938401705805,
+          "median_err_px_second_half": 3.8367768092669876,
+          "p90_err_px_all_frames": 38.5293086288992,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0005,
+          "meas_sigma": 0.016,
+          "median_err_px": 4.705575157165221,
+          "median_err_px_second_half": 4.6678630940709,
+          "p90_err_px_all_frames": 39.01389809256326,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0002,
+          "meas_sigma": 0.008,
+          "median_err_px": 4.761410090798627,
+          "median_err_px_second_half": 4.3831186802324495,
+          "p90_err_px_all_frames": 42.110851170453216,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.002,
+          "meas_sigma": 0.032,
+          "median_err_px": 4.89422970390153,
+          "median_err_px_second_half": 4.702790323059304,
+          "p90_err_px_all_frames": 32.724201446340786,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0002,
+          "meas_sigma": 0.004,
+          "median_err_px": 5.331655115925534,
+          "median_err_px_second_half": 4.385383489402228,
+          "p90_err_px_all_frames": 42.58321927950407,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0001,
+          "meas_sigma": 0.008,
+          "median_err_px": 5.332900066282848,
+          "median_err_px_second_half": 5.091385668768845,
+          "p90_err_px_all_frames": 42.04403543546535,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.032,
+          "median_err_px": 5.352713256161106,
+          "median_err_px_second_half": 5.117508320276297,
+          "p90_err_px_all_frames": 34.37668867187824,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0002,
+          "meas_sigma": 0.016,
+          "median_err_px": 5.5336090880256155,
+          "median_err_px_second_half": 5.360199182888284,
+          "p90_err_px_all_frames": 39.447229651783545,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0001,
+          "meas_sigma": 0.004,
+          "median_err_px": 5.910844938012179,
+          "median_err_px_second_half": 5.569560395159027,
+          "p90_err_px_all_frames": 42.816880039170286,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0001,
+          "meas_sigma": 0.016,
+          "median_err_px": 5.946716951799351,
+          "median_err_px_second_half": 6.011055370146844,
+          "p90_err_px_all_frames": 39.42920770070447,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0005,
+          "meas_sigma": 0.032,
+          "median_err_px": 6.028713353562814,
+          "median_err_px_second_half": 5.437720516103341,
+          "p90_err_px_all_frames": 35.91360493828154,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0002,
+          "meas_sigma": 0.032,
+          "median_err_px": 6.147899105168287,
+          "median_err_px_second_half": 6.092414943972288,
+          "p90_err_px_all_frames": 36.91939284695023,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0001,
+          "meas_sigma": 0.032,
+          "median_err_px": 6.655430805891611,
+          "median_err_px_second_half": 6.796044600584737,
+          "p90_err_px_all_frames": 36.978733505265566,
+          "n_videos": 160
+        }
+      ],
+      "best": {
+        "process_sigma": 0.002,
+        "meas_sigma": 0.008,
+        "median_err_px": 3.363010513679966,
+        "median_err_px_second_half": 3.0431727566295206,
+        "p90_err_px_all_frames": 41.61069886313742,
+        "n_videos": 160
+      },
+      "chosen": {
+        "process_sigma": 0.001,
+        "meas_sigma": 0.008,
+        "median_err_px": 3.690731899395966,
+        "median_err_px_second_half": 3.259567239350576,
+        "p90_err_px_all_frames": 41.940594870426864,
+        "n_videos": 160
+      },
+      "best_at_grid_edge": []
+    },
+    "val_confirmation": {
+      "split": "val",
+      "model": "zoom",
+      "obs_rate": 0.5,
+      "obs_noise_px": 2.0,
+      "references": {
+        "dataset_prior": {
+          "median_err_px": 17.665282767013096,
+          "median_err_px_second_half": 18.090708490289877,
+          "p90_err_px_all_frames": 39.24998614597881,
+          "n_videos": 64
+        },
+        "oracle_per_video": {
+          "median_err_px": 5.208417161589352,
+          "median_err_px_second_half": 5.231486155428081,
+          "p90_err_px_all_frames": 28.15086254002938,
+          "n_videos": 64
+        }
+      },
+      "grid": [
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.008,
+          "median_err_px": 3.4746536870377556,
+          "median_err_px_second_half": 3.2977449231698417,
+          "p90_err_px_all_frames": 33.63060163662529,
+          "n_videos": 64
+        }
+      ],
+      "best": {
+        "process_sigma": 0.001,
+        "meas_sigma": 0.008,
+        "median_err_px": 3.4746536870377556,
+        "median_err_px_second_half": 3.2977449231698417,
+        "p90_err_px_all_frames": 33.63060163662529,
+        "n_videos": 64
+      },
+      "chosen": {
+        "process_sigma": 0.001,
+        "meas_sigma": 0.008,
+        "median_err_px": 3.4746536870377556,
+        "median_err_px_second_half": 3.2977449231698417,
+        "p90_err_px_all_frames": 33.63060163662529,
+        "n_videos": 64
+      },
+      "best_at_grid_edge": [
+        "process_sigma",
+        "meas_sigma"
+      ]
+    },
+    "audits": {
+      "train": {
+        "sequences": 160,
+        "usable": 160,
+        "excluded_known_label_issues": {},
+        "all": {
+          "n": 160,
+          "within_var_mean": 0.0035988751077402335,
+          "between_var": 0.002068721562179495,
+          "within_over_between": 1.7396614283599625,
+          "H1_pass(<=0.30)": false,
+          "median_rms_px": {
+            "translation": 20.67114676285737,
+            "zoom": 11.013635158921058,
+            "scale_translation": 10.93156293388693,
+            "similarity": 17.785241704548884,
+            "affine": 10.826130760223391
+          },
+          "median_explained_by_sequence_transform": {
+            "translation": 0.20025918187514474,
+            "zoom": 0.7367659343950501,
+            "scale_translation": 0.748448205655178,
+            "similarity": 0.4097168994179228,
+            "affine": 0.7631064732869852
+          },
+          "best_model_counts": {
+            "scale_translation": 29,
+            "zoom": 32,
+            "affine": 95,
+            "similarity": 1,
+            "translation": 3
+          },
+          "median_lag_frames": 0.0972229142244612,
+          "share_lag_significant(|tau|>2se)": 0.91875,
+          "median_speed_resid_spearman": 0.3805381830909277,
+          "diagnostics": {
+            "median_err_px_whole_video": 6.241546177586612,
+            "median_err_px_window": {
+              "50": 3.4045948825204415,
+              "100": 3.8781291888007137,
+              "200": 4.883279515777653
+            },
+            "median_label_floor_px": 0.5562951063355932,
+            "median_label_noise_ir_px": 0.4279897545502878,
+            "median_label_noise_rgb_px": 0.24756731941591062,
+            "median_lag_frames(best model)": 0.0972229142244612,
+            "share_abs_lag_gt_1_frame": 0.575,
+            "median_lag_gain": 0.08441566106441811,
+            "median_zoom_ratio_win100": 1.3531158201712574,
+            "share_zoom_change_gt_5pct": 0.875,
+            "share_videos_err_gt_24px": 0.0875,
+            "between_video_spread_px": 18.90311242535616,
+            "residual_over_between": 0.33018616390464667,
+            "p90_err_px_whole_video": 21.820159486991113,
+            "drift_share": 0.45452700570471793,
+            "G1_pass": false,
+            "verdict": "G1 borderline: the geometry drifts within videos (45 % of the residual): use a time-varying prior and tune PriorConfig.process_sigma on train"
+          }
+        },
+        "fine": {
+          "n": 159,
+          "within_var_mean": 0.0036147992573755537,
+          "between_var": 0.0020552535533712984,
+          "within_over_between": 1.7588093943183227,
+          "H1_pass(<=0.30)": false,
+          "median_rms_px": {
+            "translation": 20.689027850693122,
+            "zoom": 11.03608737394941,
+            "scale_translation": 11.008454896925803,
+            "similarity": 17.84858508093338,
+            "affine": 10.983738192541662
+          },
+          "median_explained_by_sequence_transform": {
+            "translation": 0.19894939001852407,
+            "zoom": 0.7352668435002789,
+            "scale_translation": 0.739171140465755,
+            "similarity": 0.4062995453163213,
+            "affine": 0.7573365247116177
+          },
+          "best_model_counts": {
+            "scale_translation": 29,
+            "zoom": 32,
+            "affine": 94,
+            "similarity": 1,
+            "translation": 3
+          },
+          "median_lag_frames": 0.09877180830748447,
+          "share_lag_significant(|tau|>2se)": 0.9245283018867925,
+          "median_speed_resid_spearman": 0.3816651843373214,
+          "diagnostics": {
+            "median_err_px_whole_video": 6.251729751085942,
+            "median_err_px_window": {
+              "50": 3.5116220602863124,
+              "100": 3.940642588977883,
+              "200": 4.894398574277801
+            },
+            "median_label_floor_px": 0.5612837876622548,
+            "median_label_noise_ir_px": 0.4279897545502878,
+            "median_label_noise_rgb_px": 0.24756731941591062,
+            "median_lag_frames(best model)": 0.09877180830748447,
+            "share_abs_lag_gt_1_frame": 0.5786163522012578,
+            "median_lag_gain": 0.08575920373478707,
+            "median_zoom_ratio_win100": 1.3559536664976315,
+            "share_zoom_change_gt_5pct": 0.8742138364779874,
+            "share_videos_err_gt_24px": 0.0880503144654088,
+            "between_video_spread_px": 18.898138221508304,
+            "residual_over_between": 0.3308119391343396,
+            "p90_err_px_whole_video": 21.925519416560125,
+            "drift_share": 0.43829592767084435,
+            "G1_pass": false,
+            "verdict": "G1 borderline: the geometry drifts within videos (44 % of the residual): use a time-varying prior and tune PriorConfig.process_sigma on train"
+          }
+        },
+        "coarse": {
+          "n": 1
+        }
+      },
+      "val": {
+        "sequences": 67,
+        "usable": 64,
+        "excluded_known_label_issues": {
+          "20190925_130434_1_2": "infrared labels: start frame 16",
+          "20190925_194211_1_3": "visible labels: start frame 150",
+          "20190925_194211_1_4": "visible labels: start frame 1"
+        },
+        "all": {
+          "n": 64,
+          "within_var_mean": 0.002447089307404611,
+          "between_var": 0.002032132262615558,
+          "within_over_between": 1.204197852877431,
+          "H1_pass(<=0.30)": false,
+          "median_rms_px": {
+            "translation": 17.478320186511716,
+            "zoom": 9.811515326690389,
+            "scale_translation": 9.820808419226129,
+            "similarity": 15.780578423802705,
+            "affine": 9.753392727371594
+          },
+          "median_explained_by_sequence_transform": {
+            "translation": 0.21668800346132383,
+            "zoom": 0.7445660553333352,
+            "scale_translation": 0.7530262226273721,
+            "similarity": 0.360067403962471,
+            "affine": 0.7584465065251671
+          },
+          "best_model_counts": {
+            "affine": 36,
+            "scale_translation": 15,
+            "zoom": 12,
+            "similarity": 1
+          },
+          "median_lag_frames": 0.09956104846075525,
+          "share_lag_significant(|tau|>2se)": 0.984375,
+          "median_speed_resid_spearman": 0.3631355747590199,
+          "diagnostics": {
+            "median_err_px_whole_video": 5.208417161589352,
+            "median_err_px_window": {
+              "50": 3.0251236798773093,
+              "100": 3.651185480171665,
+              "200": 4.335238896282196
+            },
+            "median_label_floor_px": 0.5380795410927276,
+            "median_label_noise_ir_px": 0.4279897545502878,
+            "median_label_noise_rgb_px": 0.2475673194159156,
+            "median_lag_frames(best model)": 0.09956104846075525,
+            "share_abs_lag_gt_1_frame": 0.5625,
+            "median_lag_gain": 0.08070516740347877,
+            "median_zoom_ratio_win100": 1.267338832133495,
+            "share_zoom_change_gt_5pct": 0.921875,
+            "share_videos_err_gt_24px": 0.015625,
+            "between_video_spread_px": 15.524555551655592,
+            "residual_over_between": 0.33549541204314276,
+            "p90_err_px_whole_video": 19.22618436803632,
+            "drift_share": 0.41918560168590824,
+            "G1_pass": false,
+            "verdict": "G1 borderline: the geometry drifts within videos (42 % of the residual): use a time-varying prior and tune PriorConfig.process_sigma on train"
+          }
+        },
+        "fine": {
+          "n": 63,
+          "within_var_mean": 0.0024856768157220754,
+          "between_var": 0.002006505544905685,
+          "within_over_between": 1.23880884457706,
+          "H1_pass(<=0.30)": false,
+          "median_rms_px": {
+            "translation": 17.48240207171729,
+            "zoom": 9.95079070464733,
+            "scale_translation": 9.954812353824051,
+            "similarity": 15.785531104959086,
+            "affine": 9.808997553412569
+          },
+          "median_explained_by_sequence_transform": {
+            "translation": 0.21882476417231178,
+            "zoom": 0.7457915326404616,
+            "scale_translation": 0.7572161483785691,
+            "similarity": 0.3533416060911968,
+            "affine": 0.7602277394168615
+          },
+          "best_model_counts": {
+            "affine": 36,
+            "scale_translation": 15,
+            "zoom": 12
+          },
+          "median_lag_frames": 0.13020740849691353,
+          "share_lag_significant(|tau|>2se)": 1.0,
+          "median_speed_resid_spearman": 0.38747981493757677,
+          "diagnostics": {
+            "median_err_px_whole_video": 5.230900454184091,
+            "median_err_px_window": {
+              "50": 3.049700738748455,
+              "100": 3.8134813542166617,
+              "200": 4.3494365840877975
+            },
+            "median_label_floor_px": 0.5427582389938526,
+            "median_label_noise_ir_px": 0.4279897545502878,
+            "median_label_noise_rgb_px": 0.24756731941592058,
+            "median_lag_frames(best model)": 0.13020740849691353,
+            "share_abs_lag_gt_1_frame": 0.5714285714285714,
+            "median_lag_gain": 0.08094118802944239,
+            "median_zoom_ratio_win100": 1.267880926161511,
+            "share_zoom_change_gt_5pct": 0.9365079365079365,
+            "share_videos_err_gt_24px": 0.015873015873015872,
+            "between_video_spread_px": 15.539580435794814,
+            "residual_over_between": 0.33661786917585734,
+            "p90_err_px_whole_video": 19.26235337614584,
+            "drift_share": 0.4169836024485878,
+            "G1_pass": false,
+            "verdict": "G1 borderline: the geometry drifts within videos (42 % of the residual): use a time-varying prior and tune PriorConfig.process_sigma on train"
+          }
+        },
+        "coarse": {
+          "n": 1
+        }
+      }
+    }
+  },
+  "scale_translation": {
+    "train_tuning": {
+      "split": "train",
+      "model": "scale_translation",
+      "obs_rate": 0.5,
+      "obs_noise_px": 2.0,
+      "references": {
+        "dataset_prior": {
+          "median_err_px": 20.757313131887255,
+          "median_err_px_second_half": 20.469571133759885,
+          "p90_err_px_all_frames": 54.013281344603975,
+          "n_videos": 160
+        },
+        "oracle_per_video": {
+          "median_err_px": 5.9168852706126245,
+          "median_err_px_second_half": 5.928503221932861,
+          "p90_err_px_all_frames": 35.46700824621746,
+          "n_videos": 160
+        }
+      },
+      "grid": [
+        {
+          "process_sigma": 0.002,
+          "meas_sigma": 0.008,
+          "median_err_px": 3.3172994513926883,
+          "median_err_px_second_half": 3.0502803741200952,
+          "p90_err_px_all_frames": 42.88709158960019,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.005,
+          "meas_sigma": 0.008,
+          "median_err_px": 3.469928344981576,
+          "median_err_px_second_half": 3.41284547156067,
+          "p90_err_px_all_frames": 41.82962445211514,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.005,
+          "meas_sigma": 0.016,
+          "median_err_px": 3.4813999699050076,
+          "median_err_px_second_half": 3.274950268349801,
+          "p90_err_px_all_frames": 34.06266450324014,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.008,
+          "median_err_px": 3.5259894928643534,
+          "median_err_px_second_half": 3.320997066461749,
+          "p90_err_px_all_frames": 42.58631873354368,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.002,
+          "meas_sigma": 0.004,
+          "median_err_px": 3.6085341913657327,
+          "median_err_px_second_half": 3.2882351363524562,
+          "p90_err_px_all_frames": 44.60493517839039,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.004,
+          "median_err_px": 3.754634513121568,
+          "median_err_px_second_half": 3.429491683952369,
+          "p90_err_px_all_frames": 44.46568880436364,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.005,
+          "meas_sigma": 0.004,
+          "median_err_px": 3.8257767091257824,
+          "median_err_px_second_half": 3.629122191230659,
+          "p90_err_px_all_frames": 45.151627530253286,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.002,
+          "meas_sigma": 0.016,
+          "median_err_px": 3.925843018620383,
+          "median_err_px_second_half": 3.4998559590161484,
+          "p90_err_px_all_frames": 37.7694281082763,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0005,
+          "meas_sigma": 0.008,
+          "median_err_px": 4.061795505665478,
+          "median_err_px_second_half": 3.7837123179016157,
+          "p90_err_px_all_frames": 43.19775463027206,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.016,
+          "median_err_px": 4.299525093230514,
+          "median_err_px_second_half": 4.004123043297351,
+          "p90_err_px_all_frames": 39.80137350842196,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0005,
+          "meas_sigma": 0.004,
+          "median_err_px": 4.311076275846163,
+          "median_err_px_second_half": 3.957730541316968,
+          "p90_err_px_all_frames": 43.7589734747103,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.005,
+          "meas_sigma": 0.032,
+          "median_err_px": 4.445641245356491,
+          "median_err_px_second_half": 3.9854201315159408,
+          "p90_err_px_all_frames": 30.02907760920783,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0002,
+          "meas_sigma": 0.008,
+          "median_err_px": 4.79019750399832,
+          "median_err_px_second_half": 4.557751082022967,
+          "p90_err_px_all_frames": 42.8423086518124,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0005,
+          "meas_sigma": 0.016,
+          "median_err_px": 4.800688447690261,
+          "median_err_px_second_half": 4.645820653676971,
+          "p90_err_px_all_frames": 39.36918197952234,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.002,
+          "meas_sigma": 0.032,
+          "median_err_px": 5.323593095568329,
+          "median_err_px_second_half": 4.69412379916505,
+          "p90_err_px_all_frames": 33.61799350875734,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0001,
+          "meas_sigma": 0.008,
+          "median_err_px": 5.522352544905335,
+          "median_err_px_second_half": 5.244243750133689,
+          "p90_err_px_all_frames": 42.97660525111788,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0002,
+          "meas_sigma": 0.004,
+          "median_err_px": 5.554011200465485,
+          "median_err_px_second_half": 4.920649912206969,
+          "p90_err_px_all_frames": 43.608528900360284,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0002,
+          "meas_sigma": 0.016,
+          "median_err_px": 5.707147725164116,
+          "median_err_px_second_half": 5.477896085983005,
+          "p90_err_px_all_frames": 39.921541250261875,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.032,
+          "median_err_px": 5.839108174409469,
+          "median_err_px_second_half": 4.976739536339145,
+          "p90_err_px_all_frames": 35.28872870346272,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0001,
+          "meas_sigma": 0.016,
+          "median_err_px": 5.8973239506215425,
+          "median_err_px_second_half": 6.090676530899257,
+          "p90_err_px_all_frames": 39.92037018801659,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0005,
+          "meas_sigma": 0.032,
+          "median_err_px": 6.012054814548392,
+          "median_err_px_second_half": 5.560512636429962,
+          "p90_err_px_all_frames": 36.77084635884631,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0001,
+          "meas_sigma": 0.004,
+          "median_err_px": 6.26024239580015,
+          "median_err_px_second_half": 5.504081297123075,
+          "p90_err_px_all_frames": 44.03196538971517,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0002,
+          "meas_sigma": 0.032,
+          "median_err_px": 6.771877562545924,
+          "median_err_px_second_half": 6.305630211909245,
+          "p90_err_px_all_frames": 37.63719313171339,
+          "n_videos": 160
+        },
+        {
+          "process_sigma": 0.0001,
+          "meas_sigma": 0.032,
+          "median_err_px": 6.923351874445094,
+          "median_err_px_second_half": 6.838016930022154,
+          "p90_err_px_all_frames": 37.85325333702886,
+          "n_videos": 160
+        }
+      ],
+      "best": {
+        "process_sigma": 0.002,
+        "meas_sigma": 0.008,
+        "median_err_px": 3.3172994513926883,
+        "median_err_px_second_half": 3.0502803741200952,
+        "p90_err_px_all_frames": 42.88709158960019,
+        "n_videos": 160
+      },
+      "chosen": {
+        "process_sigma": 0.001,
+        "meas_sigma": 0.008,
+        "median_err_px": 3.5259894928643534,
+        "median_err_px_second_half": 3.320997066461749,
+        "p90_err_px_all_frames": 42.58631873354368,
+        "n_videos": 160
+      },
+      "best_at_grid_edge": []
+    },
+    "val_confirmation": {
+      "split": "val",
+      "model": "scale_translation",
+      "obs_rate": 0.5,
+      "obs_noise_px": 2.0,
+      "references": {
+        "dataset_prior": {
+          "median_err_px": 17.838421798076666,
+          "median_err_px_second_half": 18.11286852497777,
+          "p90_err_px_all_frames": 39.53947973353307,
+          "n_videos": 64
+        },
+        "oracle_per_video": {
+          "median_err_px": 5.115365731673302,
+          "median_err_px_second_half": 5.018631720443622,
+          "p90_err_px_all_frames": 28.180960724358417,
+          "n_videos": 64
+        }
+      },
+      "grid": [
+        {
+          "process_sigma": 0.001,
+          "meas_sigma": 0.008,
+          "median_err_px": 3.35332327455324,
+          "median_err_px_second_half": 3.359989921785962,
+          "p90_err_px_all_frames": 35.17131713785745,
+          "n_videos": 64
+        }
+      ],
+      "best": {
+        "process_sigma": 0.001,
+        "meas_sigma": 0.008,
+        "median_err_px": 3.35332327455324,
+        "median_err_px_second_half": 3.359989921785962,
+        "p90_err_px_all_frames": 35.17131713785745,
+        "n_videos": 64
+      },
+      "chosen": {
+        "process_sigma": 0.001,
+        "meas_sigma": 0.008,
+        "median_err_px": 3.35332327455324,
+        "median_err_px_second_half": 3.359989921785962,
+        "p90_err_px_all_frames": 35.17131713785745,
+        "n_videos": 64
+      },
+      "best_at_grid_edge": [
+        "process_sigma",
+        "meas_sigma"
+      ]
+    },
+    "audits": {
+      "train": {
+        "sequences": 160,
+        "usable": 160,
+        "excluded_known_label_issues": {},
+        "all": {
+          "n": 160,
+          "within_var_mean": 0.0035988751077402335,
+          "between_var": 0.002068721562179495,
+          "within_over_between": 1.7396614283599625,
+          "H1_pass(<=0.30)": false,
+          "median_rms_px": {
+            "translation": 20.67114676285737,
+            "zoom": 11.013635158921058,
+            "scale_translation": 10.93156293388693,
+            "similarity": 17.785241704548884,
+            "affine": 10.826130760223391
+          },
+          "median_explained_by_sequence_transform": {
+            "translation": 0.20025918187514474,
+            "zoom": 0.7367659343950501,
+            "scale_translation": 0.748448205655178,
+            "similarity": 0.4097168994179228,
+            "affine": 0.7631064732869852
+          },
+          "best_model_counts": {
+            "scale_translation": 29,
+            "zoom": 32,
+            "affine": 95,
+            "similarity": 1,
+            "translation": 3
+          },
+          "median_lag_frames": 0.09562465458169571,
+          "share_lag_significant(|tau|>2se)": 0.91875,
+          "median_speed_resid_spearman": 0.37528417714297957,
+          "diagnostics": {
+            "median_err_px_whole_video": 5.9168852706126245,
+            "median_err_px_window": {
+              "50": 3.40049569663225,
+              "100": 3.8519123465700513,
+              "200": 4.627077833958214
+            },
+            "median_label_floor_px": 0.548806236154752,
+            "median_label_noise_ir_px": 0.4279897545502878,
+            "median_label_noise_rgb_px": 0.24756731941591062,
+            "median_lag_frames(best model)": 0.09562465458169571,
+            "share_abs_lag_gt_1_frame": 0.56875,
+            "median_lag_gain": 0.08867149487852954,
+            "median_zoom_ratio_win100": 1.364492164873409,
+            "share_zoom_change_gt_5pct": 0.9875,
+            "share_videos_err_gt_24px": 0.0875,
+            "between_video_spread_px": 19.74044582248362,
+            "residual_over_between": 0.2997341257548255,
+            "p90_err_px_whole_video": 22.183843477373763,
+            "drift_share": 0.42528956687372643,
+            "G1_pass": true,
+            "verdict": "G1 pass, D1 go: the per-video prior removes most of the misalignment (residual 5.9 px vs 20 px between videos); the geometry drifts within videos (43 % of the residual): use a time-varying prior and tune PriorConfig.process_sigma on train"
+          }
+        },
+        "fine": {
+          "n": 159,
+          "within_var_mean": 0.0036147992573755537,
+          "between_var": 0.0020552535533712984,
+          "within_over_between": 1.7588093943183227,
+          "H1_pass(<=0.30)": false,
+          "median_rms_px": {
+            "translation": 20.689027850693122,
+            "zoom": 11.03608737394941,
+            "scale_translation": 11.008454896925803,
+            "similarity": 17.84858508093338,
+            "affine": 10.983738192541662
+          },
+          "median_explained_by_sequence_transform": {
+            "translation": 0.19894939001852407,
+            "zoom": 0.7352668435002789,
+            "scale_translation": 0.739171140465755,
+            "similarity": 0.4062995453163213,
+            "affine": 0.7573365247116177
+          },
+          "best_model_counts": {
+            "scale_translation": 29,
+            "zoom": 32,
+            "affine": 94,
+            "similarity": 1,
+            "translation": 3
+          },
+          "median_lag_frames": 0.09746304641899531,
+          "share_lag_significant(|tau|>2se)": 0.9245283018867925,
+          "median_speed_resid_spearman": 0.3743992368995555,
+          "diagnostics": {
+            "median_err_px_whole_video": 5.942160626659217,
+            "median_err_px_window": {
+              "50": 3.400833440689541,
+              "100": 3.928331419054066,
+              "200": 4.682809290744001
+            },
+            "median_label_floor_px": 0.5514031215346041,
+            "median_label_noise_ir_px": 0.4279897545502878,
+            "median_label_noise_rgb_px": 0.24756731941591062,
+            "median_lag_frames(best model)": 0.09746304641899531,
+            "share_abs_lag_gt_1_frame": 0.5723270440251572,
+            "median_lag_gain": 0.08938939064328288,
+            "median_zoom_ratio_win100": 1.3645994648463298,
+            "share_zoom_change_gt_5pct": 0.9874213836477987,
+            "share_videos_err_gt_24px": 0.0880503144654088,
+            "between_video_spread_px": 19.723703579385415,
+            "residual_over_between": 0.30127002277958453,
+            "p90_err_px_whole_video": 22.225714141984977,
+            "drift_share": 0.4276772954551471,
+            "G1_pass": false,
+            "verdict": "G1 borderline: the geometry drifts within videos (43 % of the residual): use a time-varying prior and tune PriorConfig.process_sigma on train"
+          }
+        },
+        "coarse": {
+          "n": 1
+        }
+      },
+      "val": {
+        "sequences": 67,
+        "usable": 64,
+        "excluded_known_label_issues": {
+          "20190925_130434_1_2": "infrared labels: start frame 16",
+          "20190925_194211_1_3": "visible labels: start frame 150",
+          "20190925_194211_1_4": "visible labels: start frame 1"
+        },
+        "all": {
+          "n": 64,
+          "within_var_mean": 0.002447089307404611,
+          "between_var": 0.002032132262615558,
+          "within_over_between": 1.204197852877431,
+          "H1_pass(<=0.30)": false,
+          "median_rms_px": {
+            "translation": 17.478320186511716,
+            "zoom": 9.811515326690389,
+            "scale_translation": 9.820808419226129,
+            "similarity": 15.780578423802705,
+            "affine": 9.753392727371594
+          },
+          "median_explained_by_sequence_transform": {
+            "translation": 0.21668800346132383,
+            "zoom": 0.7445660553333352,
+            "scale_translation": 0.7530262226273721,
+            "similarity": 0.360067403962471,
+            "affine": 0.7584465065251671
+          },
+          "best_model_counts": {
+            "affine": 36,
+            "scale_translation": 15,
+            "zoom": 12,
+            "similarity": 1
+          },
+          "median_lag_frames": 0.1003955364387645,
+          "share_lag_significant(|tau|>2se)": 0.984375,
+          "median_speed_resid_spearman": 0.39114246488481785,
+          "diagnostics": {
+            "median_err_px_whole_video": 5.115365731673302,
+            "median_err_px_window": {
+              "50": 2.891953839647471,
+              "100": 3.4891978454968378,
+              "200": 4.098545141080216
+            },
+            "median_label_floor_px": 0.532752883863939,
+            "median_label_noise_ir_px": 0.4279897545502878,
+            "median_label_noise_rgb_px": 0.2475673194159156,
+            "median_lag_frames(best model)": 0.1003955364387645,
+            "share_abs_lag_gt_1_frame": 0.578125,
+            "median_lag_gain": 0.08125943064270608,
+            "median_zoom_ratio_win100": 1.2891906341279507,
+            "share_zoom_change_gt_5pct": 0.96875,
+            "share_videos_err_gt_24px": 0.015625,
+            "between_video_spread_px": 27.376821817168146,
+            "residual_over_between": 0.18685024017161225,
+            "p90_err_px_whole_video": 18.83684327076256,
+            "drift_share": 0.4346535533635294,
+            "G1_pass": true,
+            "verdict": "G1 pass, D1 go: the per-video prior removes most of the misalignment (residual 5.1 px vs 27 px between videos); the geometry drifts within videos (43 % of the residual): use a time-varying prior and tune PriorConfig.process_sigma on train"
+          }
+        },
+        "fine": {
+          "n": 63,
+          "within_var_mean": 0.0024856768157220754,
+          "between_var": 0.002006505544905685,
+          "within_over_between": 1.23880884457706,
+          "H1_pass(<=0.30)": false,
+          "median_rms_px": {
+            "translation": 17.48240207171729,
+            "zoom": 9.95079070464733,
+            "scale_translation": 9.954812353824051,
+            "similarity": 15.785531104959086,
+            "affine": 9.808997553412569
+          },
+          "median_explained_by_sequence_transform": {
+            "translation": 0.21882476417231178,
+            "zoom": 0.7457915326404616,
+            "scale_translation": 0.7572161483785691,
+            "similarity": 0.3533416060911968,
+            "affine": 0.7602277394168615
+          },
+          "best_model_counts": {
+            "affine": 36,
+            "scale_translation": 15,
+            "zoom": 12
+          },
+          "median_lag_frames": 0.1308335520729915,
+          "share_lag_significant(|tau|>2se)": 1.0,
+          "median_speed_resid_spearman": 0.39242733227911947,
+          "diagnostics": {
+            "median_err_px_whole_video": 5.151143799937662,
+            "median_err_px_window": {
+              "50": 2.945326317356411,
+              "100": 3.5805596640771515,
+              "200": 4.143042625474424
+            },
+            "median_label_floor_px": 0.5329489899906973,
+            "median_label_noise_ir_px": 0.4279897545502878,
+            "median_label_noise_rgb_px": 0.24756731941592058,
+            "median_lag_frames(best model)": 0.1308335520729915,
+            "share_abs_lag_gt_1_frame": 0.5873015873015873,
+            "median_lag_gain": 0.08204668306003515,
+            "median_zoom_ratio_win100": 1.2936962988939111,
+            "share_zoom_change_gt_5pct": 0.9841269841269841,
+            "share_videos_err_gt_24px": 0.015873015873015872,
+            "between_video_spread_px": 27.58529248005122,
+            "residual_over_between": 0.18673515256953685,
+            "p90_err_px_whole_video": 18.925779649525854,
+            "drift_share": 0.42821896810722804,
+            "G1_pass": true,
+            "verdict": "G1 pass, D1 go: the per-video prior removes most of the misalignment (residual 5.2 px vs 28 px between videos); the geometry drifts within videos (43 % of the residual): use a time-varying prior and tune PriorConfig.process_sigma on train"
+          }
+        },
+        "coarse": {
+          "n": 1
+        }
+      }
+    }
+  }
+}
