@@ -3,6 +3,7 @@ from pathlib import Path
 import gzip
 import hashlib
 import json
+import re
 import zipfile
 
 V = Path(__file__).resolve().parent
@@ -96,7 +97,9 @@ summary = {'snapshot': snapshot, 'ablation': scores, 'complementarity': cp, 'rec
 readme = repo / 'README.md'
 text = readme.read_text()
 note = '\nThe [v6 fusion diagnostics](artifacts/v6/REPORT.md) are complete: two blank-input ablations, one 100-epoch scratch RGB baseline, full RGB validation inference and fixed-detector complementarity. Complete predictions and the portable RGB model are published. Test remains unevaluated.\n'
-assert 'The [v6 fusion diagnostics]' not in text
-text = text.replace('## Contents\n', note + '\n## Contents\n')
+if '<!-- V6_STATUS -->' in text:
+    text = re.sub(r'<!-- V6_STATUS -->.*?<!-- /V6_STATUS -->', '<!-- V6_STATUS -->\n' + note.strip() + '\n<!-- /V6_STATUS -->', text, flags=re.S)
+else:
+    text = text.replace('## Contents\n', note + '\n## Contents\n')
 readme.write_text(text, encoding='ascii', newline='\n')
 print('Validated completed coverage, training budget, model hashes and fixed-detector counts; final report written.')

@@ -1,0 +1,56 @@
+{
+  "builder_command": [
+    "experiments/v6/venv/bin/python",
+    "experiments/v6/kit/tools/make_rgb_only.py",
+    "--root",
+    "data/raw",
+    "--source",
+    "data/converted",
+    "--out",
+    "experiments/v6/data",
+    "--splits",
+    "train",
+    "val"
+  ],
+  "splits": {
+    "train": {
+      "images": 29708,
+      "positive_rgb_labels": 28407,
+      "sequences": 160,
+      "all_actual_loader_label_paths_correct": true,
+      "all_loader_boxes_match_original_rgb_normalization": true,
+      "all_images_hardlinked": true,
+      "sample_tensor_shape": [
+        3,
+        640,
+        640
+      ],
+      "metadata_sha256": "b56833170dcca80eb17204ea5bb30abdcf8c4a8aa1a3f53bba4b2f56b1414db1"
+    },
+    "val": {
+      "images": 12158,
+      "positive_rgb_labels": 11616,
+      "sequences": 67,
+      "all_actual_loader_label_paths_correct": true,
+      "all_loader_boxes_match_original_rgb_normalization": true,
+      "all_images_hardlinked": true,
+      "sample_tensor_shape": [
+        3,
+        640,
+        640
+      ],
+      "metadata_sha256": "6a58711aa22eb0dee3667679dafdace6517f0c3416506f8a07ee9022f0b18fed"
+    }
+  },
+  "test_processed": false,
+  "sampling": "Exactly the old IR-existence-based sampled train/val image lists",
+  "shared_source_labels_unchanged": true,
+  "private_visualizations": [
+    "val_20190925_101846_1_4_000000_rgb_boxes.jpg",
+    "val_20190925_101846_1_5_000000_rgb_boxes.jpg",
+    "val_20190925_130434_1_1_000000_rgb_boxes.jpg",
+    "val_20190925_130434_1_2_000011_rgb_boxes.jpg"
+  ],
+  "hardlinked_images_policy": "Images are read-only inputs; JPEG EOF precheck prevents the loader repair path",
+  "dataset_yaml_sha256": "a34ea356e9914780248ce66781d6924a538cfe17920783c40cd4b7489b1bcb1e"
+}

@@ -40,7 +40,7 @@ class FinalReport(unittest.TestCase):
             root = Path(tmp)
             study = root / 'experiment/v6'; study.mkdir(parents=True)
             repo = root / 'github/SPLA'; repo.mkdir(parents=True)
-            (repo / 'README.md').write_text('# Study\n\n## Contents\n')
+            (repo / 'README.md').write_text('# Study\n\n<!-- V6_STATUS -->\nOld progress snapshot\n<!-- /V6_STATUS -->\n\n## Contents\n')
             shutil.copy2(V / 'finish_publication.py', study / 'finish_publication.py')
             files = {}
             def js(rel, obj):
@@ -75,6 +75,7 @@ class FinalReport(unittest.TestCase):
             self.assertIn('null (undefined)', report)
             self.assertIn('inconclusive', report)
             self.assertNotIn('NaN', (study / 'final_summary.json').read_text())
+            self.assertNotIn('Old progress snapshot', (repo / 'README.md').read_text())
 
 if __name__ == '__main__':
     unittest.main()

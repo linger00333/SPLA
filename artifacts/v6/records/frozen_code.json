@@ -1,0 +1,28 @@
+{
+  "sha256": {
+    "kit/tests/test_fusion_diagnostics.py": "0dee75fd50f263324028c70a097f5ddd7e732e977af2da0d127947d286762b68",
+    "kit/tests/test_score_per_seq.py": "2715cec0113b367e680a4b2d32f773f4e6606b47f6d73d35bcd1f37bad6f6458",
+    "kit/tools/run_sequences.py": "65196ccce2f9038d0c9f6db51a777f4fdc47c62407948ec2c72acc292fba4bb5",
+    "kit/tools/tune_prior.py": "7c8da30fb0ed8dc77a30d36860eefa2412378cb782bc9514f32b04e2c60c2a23",
+    "kit/tools/inspect_dataset.py": "2bf4fd62e941ce6e53f930ce2eced203d2c2ecb6bae760d5afb4444e69905536",
+    "kit/tools/run_retention_pilot.py": "c1918ecc1bbe709c8ccce93fe283d2ee39959ce89025a868b2c031f7b33a7412",
+    "kit/tools/complementarity.py": "8abb0e5810c399239cab0d12915561007453cbae4241ab95847fcc3bf26336bf",
+    "kit/tools/score_runs.py": "487800e5cc8cd26df89cfe544d77fc7ba2acbb1f95c8d9a298553478dcb39bba",
+    "kit/tools/patch_ultralytics.py": "e8a18968920daa620a3900ff7d01444eb6fa24012914b8fd98b9058570b266f7",
+    "kit/tools/convert_antiuav.py": "9f5e3b4c4c82224b1ae1a703436ae94c50a11311549eab3a83ed72ab13fdbe95",
+    "kit/tools/make_rgb_only.py": "09c658daa613be8a179ce05812a28458927b8b936d795fa04b8da45f86ba04ac",
+    "kit/tools/check_retention_pilot.py": "00adf057247439370a5d1171e5a045ff0b81f7b7c83f71bc5ae28c980bec9654",
+    "kit/tools/audit_offsets.py": "18aaa382e08447c808ec515d249519c2680f0e2fccdf256fa4c62087b4224d66",
+    "kit/tools/train_spla.py": "429fd48835882a9a96e671272e7bcfbdcb301822d49272d4cdbe28ed98422134",
+    "kit/spla/modules.py": "b4dd4c482becee9f0525a64dec45cde45ba9dab12d29d4beaa0d1a80ad101106",
+    "kit/spla/ultralytics_hooks.py": "72087c203645285e6f1fda9eaaa859ed194ec0fa38a53b5540505572caac2bfe",
+    "kit/spla/__init__.py": "7461e9256f9069823a3fcde8d51a49448c9f6ac926beeba03900e998d39b4611",
+    "kit/spla/prior_estimator.py": "b74583361f00154215d61c1e1ea811be7f2aa26a9ac118f719d03fecba9f6bca",
+    "kit/spla/antiuav_io.py": "fd25dcc1f8284528756bc350631d23e966c419117b16ab6febbd6fb305d62e07",
+    "kit/spla/geometry.py": "109206f634f7dd6f4936e2d8b60e44a4a63a01cdce1317793266140aeaa27fe3",
+    "kit/spla/checkpoints.py": "8a399fb156f08081532f66a07f6738d371416e884e017243b7a727bfca0de7a5",
+    "controller_step2.py": "756f34c59a8be2664d640602f5d5339fd3331f205dce09177b0d1d740ad05060",
+    "runtime.py": "940118c3b4527e9c41e175e6bf7ecced232814d9eb1d66b3ce522df1bbd7cb1a",
+    "PROTOCOL.md": "e9c98ce13dcf91b84bf41b9b8fc8930131ea964e1a0621267b4a92602251770b"
+  }
+}

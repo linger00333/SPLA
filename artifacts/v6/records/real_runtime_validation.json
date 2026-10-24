@@ -1,0 +1,463 @@
+{
+  "default": {
+    "command": [
+      "experiments/v6/venv/bin/python",
+      "experiments/v6/kit/tools/run_sequences.py",
+      "--weights",
+      "experiments/legacy/framework/runs/detect/A1_s0/weights/best.pt",
+      "--root",
+      "data/raw",
+      "--split",
+      "val",
+      "--out",
+      "experiments/v6/results/runtime_default",
+      "--seq-theta",
+      "experiments/v6/inputs/seq_theta_val.json",
+      "--train-theta",
+      "experiments/v6/inputs/seq_theta_train.json",
+      "--prior",
+      "zero",
+      "--process-sigma",
+      "0.001",
+      "--meas-sigma",
+      "0.008",
+      "--device",
+      "cuda:1",
+      "--conf",
+      "0.25",
+      "--imgsz",
+      "640",
+      "--max-seq",
+      "1",
+      "--max-frames",
+      "5"
+    ],
+    "frames": 5,
+    "gpu_tensor_checks": [
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.04968741908669472,
+          0.053072553128004074,
+          0.04746341332793236,
+          0.13472424447536469
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.049865368753671646,
+          0.05341832712292671,
+          0.04773889482021332,
+          0.13472001254558563
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.04982106015086174,
+          0.053463827818632126,
+          0.047739654779434204,
+          0.13471446931362152
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.049730412662029266,
+          0.05345981940627098,
+          0.047715071588754654,
+          0.13444988429546356
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.049712274223566055,
+          0.0535285547375679,
+          0.04774840176105499,
+          0.13442544639110565
+        ]
+      }
+    ],
+    "original_A1_prefix_exact_match": true,
+    "output_coordinates": "IR_pixels",
+    "note": null
+  },
+  "rgb": {
+    "command": [
+      "experiments/v6/venv/bin/python",
+      "experiments/v6/kit/tools/run_sequences.py",
+      "--weights",
+      "experiments/legacy/framework/runs/detect/A1_s0/weights/best.pt",
+      "--root",
+      "data/raw",
+      "--split",
+      "val",
+      "--out",
+      "experiments/v6/results/runtime_rgb",
+      "--seq-theta",
+      "experiments/v6/inputs/seq_theta_val.json",
+      "--train-theta",
+      "experiments/v6/inputs/seq_theta_train.json",
+      "--prior",
+      "zero",
+      "--process-sigma",
+      "0.001",
+      "--meas-sigma",
+      "0.008",
+      "--device",
+      "cuda:1",
+      "--conf",
+      "0.25",
+      "--imgsz",
+      "640",
+      "--max-seq",
+      "1",
+      "--max-frames",
+      "5",
+      "--blank",
+      "rgb"
+    ],
+    "frames": 5,
+    "gpu_tensor_checks": [
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.0,
+          0.0,
+          0.0,
+          0.13472424447536469
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.0,
+          0.0,
+          0.0,
+          0.13472001254558563
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.0,
+          0.0,
+          0.0,
+          0.13471446931362152
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.0,
+          0.0,
+          0.0,
+          0.13444988429546356
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.0,
+          0.0,
+          0.0,
+          0.13442544639110565
+        ]
+      }
+    ],
+    "original_A1_prefix_exact_match": false,
+    "output_coordinates": "IR_pixels",
+    "note": null
+  },
+  "ir": {
+    "command": [
+      "experiments/v6/venv/bin/python",
+      "experiments/v6/kit/tools/run_sequences.py",
+      "--weights",
+      "experiments/legacy/framework/runs/detect/A1_s0/weights/best.pt",
+      "--root",
+      "data/raw",
+      "--split",
+      "val",
+      "--out",
+      "experiments/v6/results/runtime_ir",
+      "--seq-theta",
+      "experiments/v6/inputs/seq_theta_val.json",
+      "--train-theta",
+      "experiments/v6/inputs/seq_theta_train.json",
+      "--prior",
+      "zero",
+      "--process-sigma",
+      "0.001",
+      "--meas-sigma",
+      "0.008",
+      "--device",
+      "cuda:1",
+      "--conf",
+      "0.25",
+      "--imgsz",
+      "640",
+      "--max-seq",
+      "1",
+      "--max-frames",
+      "5",
+      "--blank",
+      "ir"
+    ],
+    "frames": 5,
+    "gpu_tensor_checks": [
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.04968741908669472,
+          0.053072553128004074,
+          0.04746341332793236,
+          0.0
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.049865368753671646,
+          0.05341832712292671,
+          0.04773889482021332,
+          0.0
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.04982106015086174,
+          0.053463827818632126,
+          0.047739654779434204,
+          0.0
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.049730412662029266,
+          0.05345981940627098,
+          0.047715071588754654,
+          0.0
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          4,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.049712274223566055,
+          0.0535285547375679,
+          0.04774840176105499,
+          0.0
+        ]
+      }
+    ],
+    "original_A1_prefix_exact_match": false,
+    "output_coordinates": "IR_pixels",
+    "note": null
+  },
+  "rgb_input": {
+    "command": [
+      "experiments/v6/venv/bin/python",
+      "experiments/v6/kit/tools/run_sequences.py",
+      "--weights",
+      "experiments/legacy/framework/runs/detect/A0_s0/weights/best.pt",
+      "--root",
+      "data/raw",
+      "--split",
+      "val",
+      "--out",
+      "experiments/v6/results/runtime_rgb_input",
+      "--seq-theta",
+      "experiments/v6/inputs/seq_theta_val.json",
+      "--train-theta",
+      "experiments/v6/inputs/seq_theta_train.json",
+      "--prior",
+      "zero",
+      "--process-sigma",
+      "0.001",
+      "--meas-sigma",
+      "0.008",
+      "--device",
+      "cuda:1",
+      "--conf",
+      "0.25",
+      "--imgsz",
+      "640",
+      "--max-seq",
+      "1",
+      "--max-frames",
+      "5",
+      "--input",
+      "rgb"
+    ],
+    "frames": 5,
+    "gpu_tensor_checks": [
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.04968741908669472,
+          0.05307255685329437,
+          0.047463417053222656
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.049865368753671646,
+          0.053418323397636414,
+          0.04773889482021332
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.04982106387615204,
+          0.053463827818632126,
+          0.047739654779434204
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.049730412662029266,
+          0.05345982313156128,
+          0.04771507531404495
+        ]
+      },
+      {
+        "device": "cuda:1",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "channel_sd": [
+          0.049712274223566055,
+          0.0535285547375679,
+          0.04774840176105499
+        ]
+      }
+    ],
+    "original_A1_prefix_exact_match": false,
+    "output_coordinates": "RGB_pixels",
+    "note": "RGB input smoke uses old IR weights solely to verify the real runner; not an RGB baseline result"
+  }
+}

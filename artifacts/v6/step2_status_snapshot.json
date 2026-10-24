@@ -1,0 +1,10 @@
+{
+  "phase": "waiting_for_step1",
+  "pid": 2878178,
+  "jobs": {},
+  "training_launched": false,
+  "authorized_training_runs": 1,
+  "test_evaluated": false,
+  "recurring_automation": false,
+  "updated_at": "2026-10-25T00:10:33.773619+08:00"
+}

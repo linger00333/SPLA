@@ -53,6 +53,17 @@ underlying cause remains unresolved. No further recipe search was launched.
 The four-parameter `scale_translation` model is retained. Test evaluation has
 not been executed. The validation shift diagnostic is complete.
 
+<!-- V6_STATUS -->
+The [v6 reliance and complementarity study](docs/FUSION_DIAGNOSTICS.md) is
+running under a separate authorization: two A1 blank-input validation runs,
+then one independent 100-epoch RGB scratch baseline after the audit gates.
+The frozen protocol, code, real-GPU checks and full RGB loader audit are
+published in [artifacts/v6](artifacts/v6). The initial timestamped export is
+an execution snapshot, not a completed result. No new benchmark scores or
+training completion are claimed yet. Test and follow-up fusion training
+remain unexecuted.
+<!-- /V6_STATUS -->
+
 ## Contents
 
 The evaluation-only [persistent RGB shift study](docs/SHIFT_DIAGNOSTICS.md)
