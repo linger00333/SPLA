@@ -1,0 +1,35 @@
+{
+  "global_axis_canvas_px": [
+    96
+  ],
+  "local_layers": [
+    {
+      "stride": 8,
+      "radius": 3,
+      "local_axis_canvas_px": 24,
+      "global_plus_local_axis_canvas_px": 120
+    },
+    {
+      "stride": 16,
+      "radius": 3,
+      "local_axis_canvas_px": 48,
+      "global_plus_local_axis_canvas_px": 144
+    },
+    {
+      "stride": 32,
+      "radius": 3,
+      "local_axis_canvas_px": 96,
+      "global_plus_local_axis_canvas_px": 192
+    }
+  ],
+  "shift_scope": "RGB only, after stretching to IR dimensions and before letterbox; constant vector per video; same direction across weights, prior modes and amplitudes",
+  "padding": "cv2.warpAffine default zero border; shifted content outside frame is clipped",
+  "annotation_policy": "IR labels unchanged; shifted RGB labels used only for geometry/alignment diagnostics; never for online prior updates",
+  "n_sequences": 67,
+  "n_shift_rows": 134,
+  "beyond_P3_axis_bound_counts": {
+    "48": 0,
+    "128": 25
+  },
+  "limitation": "Requested shifts are not guaranteed to exceed every per-image correction bound; clipping is a confound."
+}

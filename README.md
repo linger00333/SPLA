@@ -50,10 +50,17 @@ audits and gate reports are in [artifacts/v4](artifacts/v4); see the
 not retain the original score; freezing backbone parameters also failed.
 Batch-normalization running statistics were not explicitly frozen, and the
 underlying cause remains unresolved. No further recipe search was launched.
-The four-parameter `scale_translation` model is retained. Test and stress
-evaluation have not been executed.
+The four-parameter `scale_translation` model is retained. Test evaluation has
+not been executed. Newly authorized validation stress inference is in progress.
 
 ## Contents
+
+The evaluation-only [persistent RGB shift study](docs/SHIFT_DIAGNOSTICS.md) is
+now running at 48 and 128 IR pixels, with A1 zero, A4 online and A4 zero at each
+magnitude. The completed per-video clean analysis finds two of 67 videos where
+A1 exceeds A0 by more than 0.02 SA. Full CSVs and a timestamped execution
+snapshot are under [artifacts/v5](artifacts/v5). No new training was launched;
+unfinished stress runs are not reported as completed results.
 
 - `kit/spla`: geometry, online estimator, alignment layers, training integration,
   and portable tensor-only checkpoint loading.
@@ -64,6 +71,7 @@ evaluation have not been executed.
 - `artifacts/predictions`: completed predictions, compressed per file.
 - `artifacts/v3`: complete seven-condition scores, coverage and old A1c curves.
 - `artifacts/v4`: low-LR pilot evidence and a timestamped execution snapshot.
+- `artifacts/v5`: per-video RGB gains, shift geometry and stress-study status.
 - `docs`: evaluation protocol, experiment scope, installation, and model use.
 - `scripts/check_release.py`: publication content and manifest verification.
 

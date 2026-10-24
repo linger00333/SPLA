@@ -7012,8 +7012,8 @@
     },
     {
       "path": "artifacts/v4/records/cleanup_summary.json",
-      "bytes": 487,
-      "sha256": "4f7746840742c6cdd4e89a1c520138951b3627da8ffd6691c61dc2d97b10d7ec"
+      "bytes": 477,
+      "sha256": "5ceb730b61af2015e1b70485ae5ef33d74481402f177f5cb29e36518d423b9c5"
     },
     {
       "path": "artifacts/v4/records/cleanup_superseded.json",
@@ -7061,14 +7061,64 @@
       "sha256": "3cd415bca740742f5378cb6bbd6833f913c25c4f1db4d6f735c9fa9022d5381c"
     },
     {
+      "path": "artifacts/v5/export_snapshot.json",
+      "bytes": 338,
+      "sha256": "a433d3bc374100ba6660a705eaa7305589f739784cfd61b528d11cc27dc58a4b"
+    },
+    {
+      "path": "artifacts/v5/PROTOCOL.md",
+      "bytes": 2683,
+      "sha256": "5cfa01a983b6f1df38183634a670e0c67e91ad5298a48cae0af46ead78c6bc05"
+    },
+    {
+      "path": "artifacts/v5/records/input_manifest.json",
+      "bytes": 1091,
+      "sha256": "54a6deeff3021598e646143518b64b4a7856a6b4f40854901ad163d4974396bf"
+    },
+    {
+      "path": "artifacts/v5/records/per_seq_verification_and_review.json",
+      "bytes": 1990,
+      "sha256": "bde20f91b9f48ea90d9910dcd7b674b0541683aae447af2c8221f0c45f34057b"
+    },
+    {
+      "path": "artifacts/v5/reports/shift_geometry.csv",
+      "bytes": 17444,
+      "sha256": "a168d2626e4d42fab3a62cbf143a4a384bb012327b3631379e8717286825d938"
+    },
+    {
+      "path": "artifacts/v5/reports/shift_geometry_summary.json",
+      "bytes": 1104,
+      "sha256": "7d63daaaa0019b4cba5d6fd1b7c14f153cfad003532f79837ac16f6f35c88591"
+    },
+    {
+      "path": "artifacts/v5/reports/val_per_seq.csv",
+      "bytes": 10267,
+      "sha256": "6c6adc3b28998e3b802b1886dfdd5a8e4a747fe2768f9038305b006d8ccf28f4"
+    },
+    {
+      "path": "artifacts/v5/reports/val_rgb_gain.csv",
+      "bytes": 5961,
+      "sha256": "3e06730d89288eeb13e52b94776c73f420846225da46ed113f183fae5a1e0ba5"
+    },
+    {
+      "path": "artifacts/v5/reports/val_rgb_gain_summary.json",
+      "bytes": 735,
+      "sha256": "f2d6c0ff103fc68d8d350e360458863a89729e01706eb029efa04435df014540"
+    },
+    {
+      "path": "artifacts/v5/status_snapshot.json",
+      "bytes": 3886,
+      "sha256": "24a189621bc220600f682632d1dd01a4ad01cfa267f64157a3b09d96e0e1cb51"
+    },
+    {
       "path": "docs/EVALUATION.md",
-      "bytes": 5840,
-      "sha256": "99235590333a0ed1b1429a2997fe3d2868064c2d2655cc1b59ba48adc18ad7a4"
+      "bytes": 6219,
+      "sha256": "8a7689db8de1995301be81f0418a9f427b24e901f5cfc98fd4bb7a0090492927"
     },
     {
       "path": "docs/EXPERIMENTS.md",
-      "bytes": 6633,
-      "sha256": "c3a91f0e04cc3d134e2a36a3e4312411b164f9c9416017844b5093a477a8f0ab"
+      "bytes": 7157,
+      "sha256": "639f2cac9db54bc20861f7f042c6f75fdec719f9e72abaca5ec934f093923631"
     },
     {
       "path": "docs/INSTALL.md",
@@ -7079,6 +7129,11 @@
       "path": "docs/MODELS.md",
       "bytes": 1854,
       "sha256": "fa843cf230b9298845809bb72b47078a130fb8de75d24a25f56eace3be9e5f4a"
+    },
+    {
+      "path": "docs/SHIFT_DIAGNOSTICS.md",
+      "bytes": 4733,
+      "sha256": "d0112f1f54f8c075dccc0588b60ba45fe74d13ced1a68a3ab1a8c6a9880e9976"
     },
     {
       "path": "framework/LICENSE",
@@ -9791,6 +9846,11 @@
       "sha256": "72087c203645285e6f1fda9eaaa859ed194ec0fa38a53b5540505572caac2bfe"
     },
     {
+      "path": "kit/tests/test_score_per_seq.py",
+      "bytes": 3159,
+      "sha256": "2715cec0113b367e680a4b2d32f773f4e6606b47f6d73d35bcd1f37bad6f6458"
+    },
+    {
       "path": "kit/tools/audit_offsets.py",
       "bytes": 20541,
       "sha256": "18aaa382e08447c808ec515d249519c2680f0e2fccdf256fa4c62087b4224d66"
@@ -9827,13 +9887,13 @@
     },
     {
       "path": "kit/tools/score_runs.py",
-      "bytes": 9978,
-      "sha256": "0654fdf5ce7ee8fa9d92d8415dd587c9a65f7a5b308832dc5ac654a308d86f84"
+      "bytes": 10873,
+      "sha256": "487800e5cc8cd26df89cfe544d77fc7ba2acbb1f95c8d9a298553478dcb39bba"
     },
     {
       "path": "kit/tools/train_spla.py",
-      "bytes": 7400,
-      "sha256": "d32b010edb037c59495dd746f6363b48fb53721c2a84d4ed7d2cdcffab88c0c7"
+      "bytes": 7278,
+      "sha256": "429fd48835882a9a96e671272e7bcfbdcb301822d49272d4cdbe28ed98422134"
     },
     {
       "path": "kit/tools/tune_prior.py",
@@ -9901,9 +9961,14 @@
       "sha256": "3a96a711e418c6486bc0f53d03e959b0115aec0d1ab90d163c736f000f7f2e90"
     },
     {
+      "path": "patches/per_seq_scores.patch",
+      "bytes": 2045,
+      "sha256": "44306ee8b2b0c70be43050c1a1f1f3ef040b31c2c09071bd75a3f5f574932e64"
+    },
+    {
       "path": "README.md",
-      "bytes": 5287,
-      "sha256": "eb7c6730d4c833e5eff703109dab1ae6670b23bb97a2d24d8598307215d40dcd"
+      "bytes": 5870,
+      "sha256": "7e8f911e1b2de675f898cb3ee1de6e7875fb7c06a06f2a53d0f30f97c3e7bb78"
     },
     {
       "path": "requirements.txt",

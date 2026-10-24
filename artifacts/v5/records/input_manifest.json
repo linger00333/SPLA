@@ -1,0 +1,21 @@
+{
+  "source_runtime": "validated v3; runner unchanged; only optional per-sequence scorer export added",
+  "patch_origin": "per_seq_scores.patch was not attached or found; equivalent requested behavior implemented and regression checked",
+  "weights": {
+    "A0_s0": "de42b636e29e67c44b532a0549814cc6e9cd2ae41a67194fad8a29996db8e1a8",
+    "A1_s0": "48e301f12dcd20e9356a3e2fc6f668bccc886d2efd067b90f573dcabd8c36354",
+    "A3_s0": "a1405fac17edaa82946dc602d02a3ed50c48119f169faef3af6e61a8dd201009",
+    "A4_s0": "f2171efd45b5a634aa630baf19d5781961411ba40b74bbd6e334c349232e6143"
+  },
+  "inputs": {
+    "seq_theta_train.json": "b5e7b9698f834d4b9ee167ae1a55a086834f5b79fb284b25725ea3283f5bdb63",
+    "seq_theta_val.json": "f5262977d5b7295e46db80595f289bce75ade5ad608f0383485a61eafa241de8"
+  },
+  "runner_sha256": "f0be2a3549de69f809791b996b243f7462994997f9d4c30c5788386f0eea4f2e",
+  "scorer_sha256": "487800e5cc8cd26df89cfe544d77fc7ba2acbb1f95c8d9a298553478dcb39bba",
+  "split": "val",
+  "gpu": 1,
+  "max_gpu_jobs": 2,
+  "training_requested_or_launched": false,
+  "recurring_automation": false
+}

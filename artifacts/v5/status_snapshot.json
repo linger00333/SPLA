@@ -1,0 +1,142 @@
+{
+  "phase": "per_sequence_scoring_and_shift_inference",
+  "controller_pid": 2742390,
+  "jobs": {
+    "score_old_per_sequence": {
+      "kind": "score",
+      "state": "running",
+      "pid": 2742391,
+      "command": [
+        "experiments/v5/venv/bin/python",
+        "experiments/v5/kit/tools/score_runs.py",
+        "--root",
+        "data/raw",
+        "--split",
+        "val",
+        "--baseline",
+        "A1",
+        "--run",
+        "A0=experiments/v3/results/val/A0_s0",
+        "--run",
+        "A1=experiments/v3/results/val/A1_s0",
+        "--run",
+        "A3=experiments/v3/results/val/A3_s0",
+        "--run",
+        "A4=experiments/v3/results/val/A4_online_s0",
+        "--run",
+        "A4-fix=experiments/v3/results/val/A4_dataset_s0",
+        "--run",
+        "A4-orc=experiments/v3/results/val/A4_oracle_s0",
+        "--run",
+        "A4-zero=experiments/v3/results/val/A4_zero_s0",
+        "--out",
+        "experiments/v5/reports/val_scores_all.json",
+        "--per-seq",
+        "experiments/v5/reports/val_per_seq.csv"
+      ],
+      "started_at": 1792841215.018592
+    },
+    "A1_shift48": {
+      "kind": "eval",
+      "state": "running",
+      "pid": 2742394,
+      "command": [
+        "experiments/v5/venv/bin/python",
+        "experiments/v5/kit/tools/run_sequences.py",
+        "--root",
+        "data/raw",
+        "--split",
+        "val",
+        "--weights",
+        "experiments/legacy/framework/runs/detect/A1_s0/weights/best.pt",
+        "--prior",
+        "zero",
+        "--seq-theta",
+        "experiments/v5/inputs/seq_theta_val.json",
+        "--train-theta",
+        "experiments/v5/inputs/seq_theta_train.json",
+        "--process-sigma",
+        "0.001",
+        "--meas-sigma",
+        "0.008",
+        "--shift-mode",
+        "persistent",
+        "--shift-px",
+        "48",
+        "--device",
+        "cuda:1",
+        "--out",
+        "experiments/v5/results/A1_shift48"
+      ],
+      "started_at": 1792841215.0519788
+    },
+    "A4_shift48": {
+      "kind": "eval",
+      "state": "running",
+      "pid": 2742397,
+      "command": [
+        "experiments/v5/venv/bin/python",
+        "experiments/v5/kit/tools/run_sequences.py",
+        "--root",
+        "data/raw",
+        "--split",
+        "val",
+        "--weights",
+        "experiments/legacy/framework/runs/detect/A4_s0/weights/best.pt",
+        "--prior",
+        "online",
+        "--seq-theta",
+        "experiments/v5/inputs/seq_theta_val.json",
+        "--train-theta",
+        "experiments/v5/inputs/seq_theta_train.json",
+        "--process-sigma",
+        "0.001",
+        "--meas-sigma",
+        "0.008",
+        "--shift-mode",
+        "persistent",
+        "--shift-px",
+        "48",
+        "--device",
+        "cuda:1",
+        "--out",
+        "experiments/v5/results/A4_shift48"
+      ],
+      "started_at": 1792841215.084728
+    }
+  },
+  "queued": [
+    "A4z_shift48",
+    "A1_shift128",
+    "A4_shift128",
+    "A4z_shift128"
+  ],
+  "training_launched": false,
+  "recurring_automation": false,
+  "updated_at": "2026-10-24T19:27:10.182090+08:00",
+  "RGB_gain_screen": {
+    "n_sequences": 67,
+    "threshold_strictly_greater_than": 0.02,
+    "n_A1_beats_A0_gt_0.02": 2,
+    "n_A0_beats_A1_gt_0.02": 4,
+    "RGB_gain_videos": [
+      {
+        "sequence": "20190926_200510_1_3",
+        "A0_SA": 0.7341195891528755,
+        "A1_SA": 0.797626388275432,
+        "A1_minus_A0_SA": 0.06350679912255652,
+        "RGB_gain_gt_0.02": true,
+        "known_issue": ""
+      },
+      {
+        "sequence": "20190925_101846_1_4",
+        "A0_SA": 0.731997424989029,
+        "A1_SA": 0.7522792664307599,
+        "A1_minus_A0_SA": 0.020281841441730952,
+        "RGB_gain_gt_0.02": true,
+        "known_issue": ""
+      }
+    ],
+    "selection": "post-hoc descriptive screen on validation; not a new independent benchmark; all 67 videos retained in stress runs"
+  }
+}

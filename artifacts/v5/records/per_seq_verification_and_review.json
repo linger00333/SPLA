@@ -1,0 +1,44 @@
+{
+  "reviewed_at": "2026-10-24T19:32:01.750162",
+  "change": "Optional per-video SA export; aggregate metric and bootstrap implementations unchanged",
+  "validation": {
+    "regression_tests": 3,
+    "expected_prechange_failure": "Missing write_per_sequence and unrecognized --per-seq",
+    "local_and_actual_remote_environment_passed": true,
+    "CSV_sequences": 67,
+    "CSV_seed_means_match_existing_all_seven_aggregate_SA": true,
+    "full_10000_bootstrap_rerun": "running; final report is not yet claimed"
+  },
+  "scope": {
+    "GPU_inference_conditions": 6,
+    "new_training": false,
+    "split": "val",
+    "test_evaluated": false,
+    "periodic_automation": false
+  },
+  "review": "Checked missing values, seed means, CSV quoting, optional CLI behavior, unchanged random draws, unchanged runner and weights, and portable exports; no dependencies added",
+  "line_endings": "Normalize text to LF before manifest hashing so checks match Git-stored bytes",
+  "LF_normalized_files": [
+    {
+      "path": "artifacts/v4/records/cleanup_summary.json",
+      "before_sha256": "4f7746840742c6cdd4e89a1c520138951b3627da8ffd6691c61dc2d97b10d7ec",
+      "after_sha256": "5ceb730b61af2015e1b70485ae5ef33d74481402f177f5cb29e36518d423b9c5"
+    },
+    {
+      "path": "kit/tools/train_spla.py",
+      "before_sha256": "d32b010edb037c59495dd746f6363b48fb53721c2a84d4ed7d2cdcffab88c0c7",
+      "after_sha256": "429fd48835882a9a96e671272e7bcfbdcb301822d49272d4cdbe28ed98422134"
+    },
+    {
+      "path": "patches/per_seq_scores.patch",
+      "before_sha256": "39eb00b49190a66a429592536acdee4a068e66abe2e50a5edc98a628d6878bd4",
+      "after_sha256": "44306ee8b2b0c70be43050c1a1f1f3ef040b31c2c09071bd75a3f5f574932e64"
+    }
+  ],
+  "evidence_limits": [
+    "Exploratory validation subset, not an independent test",
+    "RGB clipping is recorded",
+    "48/128 shifts do not necessarily exceed all per-image correction bounds",
+    "EMA/BN mechanism and universal RGB/prior claims remain unproven"
+  ]
+}

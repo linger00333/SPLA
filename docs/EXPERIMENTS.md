@@ -78,7 +78,8 @@ the corresponding seed's original A1 initialization and the same passing LR,
 warmup and freeze settings. Pilot-finetuned weights are not reused as the
 formal initialization. Maximum concurrency is two GPU tasks on the authorized
 GPU. The status files are timestamped snapshots; queued work is not a result.
-Test and stress evaluation have not been run.
+Test evaluation has not been run. The newly authorized validation stress
+conditions are tracked separately below.
 
 ## Necessary fixes already applied
 
@@ -98,6 +99,13 @@ concise validation summary. New portable model loading has its own export
 verification artifact.
 
 ## Interpretation limits
+
+The newly authorized evaluation-only study adds per-video clean SA and six
+validation stress conditions (persistent RGB shift 48/128 IR pixels, A1 zero,
+A4 online and A4 zero). See [shift diagnostics](SHIFT_DIAGNOSTICS.md) for the
+completed clean screen, fixed protocol, clipping limitations and actual model
+correction bounds. The six runs are in progress in the published snapshot.
+This authorizes no new training and leaves test evaluation unexecuted.
 
 - A4 versus A3 changes the training prior within the same architecture and
   initialization, as well as the inference prior; A4-zero helps distinguish

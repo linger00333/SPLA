@@ -104,3 +104,9 @@ parallel. CPU/GPU synchronization and repeated AP sorting in the bootstrap add
 overhead. No stage profiler has been run, so no single bottleneck is claimed.
 
 Saved predictions can be rescored on a CPU without repeating GPU inference.
+
+Optional `--per-seq reports/val_per_seq.csv` writes seed-mean SA for every
+video and named run; unavailable scores are blank. This output is written
+before the bootstrap starts and does not change existing aggregate scores or
+random draws. See [shift diagnostics](SHIFT_DIAGNOSTICS.md) for the current
+per-video analysis and six validation-only persistent RGB shift conditions.
