@@ -14207,8 +14207,8 @@
     },
     {
       "path": "study/v6/finish_publication.py",
-      "bytes": 9874,
-      "sha256": "77f9c7817ec519b7c1acc314c6f39ca0c54ac295fbc4f547f15de7d1eb409ea8"
+      "bytes": 10405,
+      "sha256": "7fb074cd066e0975c0be0e4b04911a61c80fc66cfc89cbd543e18a0f0d9a5cfc"
     },
     {
       "path": "study/v6/launch_step1.py",
@@ -14257,8 +14257,8 @@
     },
     {
       "path": "study/v6/test_finish_publication.py",
-      "bytes": 5016,
-      "sha256": "c3a7ccf387d9f6c1a80cbcea959cf11afb861934c0888088b84574f687e1d9fb"
+      "bytes": 5138,
+      "sha256": "e286dea6080a1f4a156a3ddc2c663d0b9897203e36dbf721a47e2651a4aaf621"
     },
     {
       "path": "study/v6/validate_runtime.py",

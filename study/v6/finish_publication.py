@@ -61,17 +61,25 @@ lines = ['# V6 completed fusion diagnostics', '',
          'The original A1 weights, four-parameter prior tables, zero prior, thresholds and IR-coordinate scorer are retained. The unchanged scorer uses 10,000 paired sequence bootstrap draws. Flat 114 inputs are out of distribution; these differences do not identify a strict causal contribution or reliance upper bound.', '',
          '| Condition | SA | Penalized SA | AP50 |', '|---|---:|---:|---:|']
 for name, row in scores['runs'].items():
-    lines.append(f"| {name} | {row['SA']:.6f} | {row['SA_pen']:.6f} | {row['AP50']:.6f} |")
+    cells = ['null (undefined)' if row[k] is None else f'{row[k]:.6f}' for k in ('SA', 'SA_pen', 'AP50')]
+    lines.append('| ' + name + ' | ' + ' | '.join(cells) + ' |')
 lines += ['', '| Difference from A1 | SA point delta [95% CI] | Penalized SA point delta [95% CI] | AP50 point delta [95% CI] |', '|---|---|---|---|']
 for key, comparison in scores['vs_baseline'].items():
     name = key.rsplit('-A1', 1)[0]
     cells = []
     for metric in ('SA', 'SA_pen', 'AP50'):
+        if scores['runs'][name][metric] is None or scores['runs']['A1'][metric] is None:
+            cells.append('null (undefined)')
+            continue
         delta = scores['runs'][name][metric] - scores['runs']['A1'][metric]
-        lo, hi = comparison[metric]['ci95']
-        cells.append(f'{delta:+.6f} [{lo:+.6f}, {hi:+.6f}]')
+        interval = comparison.get(metric, {}).get('ci95')
+        if interval is None:
+            cells.append(f'{delta:+.6f} [CI undefined]')
+        else:
+            lo, hi = interval
+            cells.append(f'{delta:+.6f} [{lo:+.6f}, {hi:+.6f}]')
     lines.append('| ' + key + ' | ' + ' | '.join(cells) + ' |')
-lines += ['', '## RGB-only baseline and fixed-detector selection', '',
+lines += ['', 'Undefined values from the unchanged legacy scorer, including AP when no candidate exists, are retained as null rather than converted to zero.', '', '## RGB-only baseline and fixed-detector selection', '',
           'A0rgb_s0 completed exactly 100 epochs with the old A0 scratch recipe: YOLO11n, seed 0, 640, batch 16 and workers 4. Its selected checkpoint uses validation performance in RGB labels. Training and validation use exactly the old 29,708/12,158 sampled images. The original sampling depends on IR existence, and the visible images are stretched to the IR dimensions. This is not a native-resolution RGB benchmark.', '',
           'The actual framework loader was checked against every RGB-normalized label; all images were hard-linked, source labels remained unchanged, and four real validation overlays were inspected. A decimal-format audit mismatch was corrected without changing labels; its failure evidence was retained. Source images and overlays are not published.', '',
           'Complementarity compares old A0 and new A0rgb_s0, each against its own modality labels. Saved RGB boxes use original RGB pixels despite the historical filename suffix. On the intersection of valid positive annotations, the highest-confidence saved box succeeds at IoU >= 0.5. Missing files and unequal lengths are errors. These conditional success rates are not official-style SA and do not directly quantify IR-coordinate improvements.', '',

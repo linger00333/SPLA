@@ -53,8 +53,9 @@ class FinalReport(unittest.TestCase):
                 js('reports/' + name + '.json', {'run': {'n_sequences': 67, 'frames': 61999, 'length_mismatches': []}})
             row = {'SA': .8, 'SA_pen': .7, 'AP50': .99}
             comparison = {k: {'ci95': [-.01, .01]} for k in row}
-            js('reports/ablation_scores.json', {'n_sequences': 67, 'runs': {'A1': row, 'A1_blankrgb': row, 'A1_blankir': row},
-                                               'vs_baseline': {'A1_blankrgb-A1': comparison, 'A1_blankir-A1': comparison}})
+            js('reports/ablation_scores.json', {'n_sequences': 67, 'runs': {'A1': row, 'A1_blankrgb': row, 'A1_blankir': dict(row, AP50=None)},
+                                               'vs_baseline': {'A1_blankrgb-A1': comparison,
+                                                               'A1_blankir-A1': {k: v for k, v in comparison.items() if k != 'AP50'}}})
             per = {str(i): {'n': 0, 'both': 0, 'ir_only': 0, 'rgb_only': 0, 'neither': 0} for i in range(67)}
             pooled = {'frames': 0, 'ir_failures': 0, **{k: None for k in ('ir_success', 'rgb_success', 'oracle_success', 'oracle_gain', 'rescue_share')}}
             js('reports/complementarity_val.json', {'videos': 67, 'coverage': {'total_frames': 61999},
