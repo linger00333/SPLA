@@ -1,0 +1,47 @@
+{
+  "completed_at": "2026-10-24T19:02:01.781029+08:00",
+  "baseline_mAP50_95": 0.6464,
+  "pilots": {
+    "A1c_lr1e-4_s0": {
+      "epochs": 10,
+      "final_mAP50_95": 0.63524,
+      "best_mAP50_95": 0.6419,
+      "last3_mean": 0.6361333333333333,
+      "drop_from_baseline": 0.011159999999999948,
+      "training_seconds": 2049.87,
+      "passed": false,
+      "checks": {
+        "final_within_0.003": false,
+        "last3_within_0.003": false,
+        "minimum_within_0.005": false,
+        "first3_to_last3_drop_at_most_0.003": false
+      },
+      "frozen_parameters": 16,
+      "trainable_parameters": 3795075,
+      "all_backbone_parameters_frozen": false
+    },
+    "A1c_lr1e-4_freeze21_s0": {
+      "epochs": 10,
+      "final_mAP50_95": 0.63691,
+      "best_mAP50_95": 0.64253,
+      "last3_mean": 0.6378466666666667,
+      "drop_from_baseline": 0.009489999999999998,
+      "training_seconds": 1893.27,
+      "passed": false,
+      "checks": {
+        "final_within_0.003": false,
+        "last3_within_0.003": false,
+        "minimum_within_0.005": false,
+        "first3_to_last3_drop_at_most_0.003": false
+      },
+      "frozen_parameters": 1902000,
+      "trainable_parameters": 1893091,
+      "all_backbone_parameters_frozen": true
+    }
+  },
+  "formal_training_started": false,
+  "selected_recipe": null,
+  "test_or_stress_evaluated": false,
+  "recurring_automation": false,
+  "interpretation": "Lowering LR alone did not retain the original model. Freezing backbone parameters also failed the predefined retention gate. The cause is not uniquely identified; BN running statistics were not explicitly frozen."
+}

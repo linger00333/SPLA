@@ -1,7 +1,7 @@
 {
-  "phase": "waiting_pilot_gate",
+  "phase": "not_started_pilot_gate_failed",
   "jobs": {},
   "recurring_automation": false,
   "controller_pid": 2703571,
-  "updated_at": "2026-10-24T18:05:47.896969+08:00"
+  "updated_at": "2026-10-24T19:02:21.277564+08:00"
 }

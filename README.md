@@ -36,11 +36,22 @@ checkpoint has SA 0.812468, penalized SA 0.796586, and AP50 0.990555; see the
 A3/A4 and cannot be used as their matched fine-tuning control.
 
 The supplied [fine-tuning patch](patches/finetune_recipe.patch) is applied.
-Fine-tuning now defaults to constant LR 0.0001 with no warmup. A full-data,
-10-epoch A1c pilot is running under a predeclared retention gate; the three-seed
-study waits for a passing pilot. The four-parameter `scale_translation` model
-is retained. See [experiment scope](docs/EXPERIMENTS.md) for the gate and live
-snapshot limitations. Test and stress evaluation have not been executed.
+Fine-tuning now defaults to constant LR 0.0001 with no warmup. Both full-data,
+10-epoch A1c pilots completed and failed the predeclared retention gate:
+
+| Pilot | Initial mAP50-95 | Final mAP50-95 | Gate |
+|---|---:|---:|---|
+| LR 0.0001, unfrozen | 0.64640 | 0.63524 | Failed |
+| LR 0.0001, freeze 21 | 0.64640 | 0.63691 | Failed |
+
+The matched three-seed study was not launched. Both complete CSVs, runtime
+audits and gate reports are in [artifacts/v4](artifacts/v4); see the
+[pilot summary](artifacts/v4/reports/pilot_summary.json). Lowering LR alone did
+not retain the original score; freezing backbone parameters also failed.
+Batch-normalization running statistics were not explicitly frozen, and the
+underlying cause remains unresolved. No further recipe search was launched.
+The four-parameter `scale_translation` model is retained. Test and stress
+evaluation have not been executed.
 
 ## Contents
 

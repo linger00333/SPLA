@@ -11,16 +11,17 @@
     "CLI contract passed for scratch, stage1 continuation, stage2 and explicit overrides",
     "actual full-data baseline validation passed at mAP50-95 0.64640",
     "callback failure before any batches preserved and fixed",
-    "formal training gated; no failed pilot treated as a pass"
+    "formal training gated; no failed pilot treated as a pass",
+    "Both full 10-epoch pilots complete; all CSV rows, all three constant LR groups, common baseline and real parameter freeze verified; formal job list remains empty"
   ],
   "readability_architecture": "Focused training defaults; pilot diagnostics stay in optional tools; no runtime dependencies added",
   "security": "No credentials, host addresses or private absolute machine paths in release; tensor bundles unchanged; compressed JSON checked after decompression",
   "performance": "One matched baseline validation adds 33.39 seconds; no new validation work in the per-batch hot path",
   "limitations": [
-    "low-LR pilot still running at review time",
     "freeze21 does not explicitly freeze BN statistics",
     "single training seed for the completed seven-condition report",
     "source patch help describes theoretical final LR; empirical log difference disclosed"
   ],
-  "release_checks": "Run check_release.py after every final artifact update"
+  "release_checks": "Run check_release.py after every final artifact update",
+  "updated_at": "2026-10-24T19:02:54.805547"
 }

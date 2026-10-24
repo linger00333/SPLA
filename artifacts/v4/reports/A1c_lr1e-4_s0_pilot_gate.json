@@ -1,0 +1,26 @@
+{
+  "run": "A1c_lr1e-4_s0",
+  "baseline_mAP50_95": 0.6464,
+  "per_epoch_mAP50_95": [
+    0.6419,
+    0.63999,
+    0.63969,
+    0.63947,
+    0.63851,
+    0.63835,
+    0.63746,
+    0.63714,
+    0.63602,
+    0.63524
+  ],
+  "last3_mean": 0.6361333333333333,
+  "first3_mean": 0.6405266666666667,
+  "checks": {
+    "final_within_0.003": false,
+    "last3_within_0.003": false,
+    "minimum_within_0.005": false,
+    "first3_to_last3_drop_at_most_0.003": false
+  },
+  "passed": false,
+  "criterion_fixed_before_training": true
+}

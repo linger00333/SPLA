@@ -1,9 +1,9 @@
 {
-  "phase": "pilot_A1c_lr1e-4_s0",
+  "phase": "both_pilots_failed_no_formal_training",
   "controller_pid": 2703518,
   "jobs": {
     "A1c_lr1e-4_s0": {
-      "state": "running",
+      "state": "complete",
       "pid": 2703519,
       "command": [
         "experiments/v4/venv/bin/python",
@@ -31,9 +31,44 @@
         "0"
       ],
       "started_at": 1792835625.1241472,
-      "log": "experiments/v4/A1c_lr1e-4_s0.log"
+      "log": "experiments/v4/A1c_lr1e-4_s0.log",
+      "returncode": 0,
+      "finished_at": 1792837755.149963
+    },
+    "A1c_lr1e-4_freeze21_s0": {
+      "state": "complete",
+      "pid": 2721097,
+      "command": [
+        "experiments/v4/venv/bin/python",
+        "experiments/v4/launch_pilot.py",
+        "--stage",
+        "1",
+        "--continue-recipe",
+        "--pretrained",
+        "experiments/v4/init/A1_s0_best_frozen.pt",
+        "--data",
+        "data/converted/antiuav_rgbt.yaml",
+        "--epochs",
+        "10",
+        "--seed",
+        "0",
+        "--name",
+        "A1c_lr1e-4_freeze21_s0",
+        "--project",
+        "experiments/v4/runs/detect",
+        "--workers",
+        "4",
+        "--device",
+        "1",
+        "--freeze",
+        "21"
+      ],
+      "started_at": 1792837755.1603613,
+      "log": "experiments/v4/A1c_lr1e-4_freeze21_s0.log",
+      "returncode": 0,
+      "finished_at": 1792839721.7799814
     }
   },
   "recurring_automation": false,
-  "updated_at": "2026-10-24T17:53:45.124160+08:00"
+  "updated_at": "2026-10-24T19:02:01.781029+08:00"
 }

@@ -18,7 +18,7 @@ are preserved under `artifacts/legacy/training` with portable path aliases.
 ## Current control study
 
 The completed study has seven whole-video conditions on the original validation
-split: A0 zero, A1 zero, A3 zero, and A4 online/dataset/oracle/zero. It also trains
+split: A0 zero, A1 zero, A3 zero, and A4 online/dataset/oracle/zero. It also completed
 the old A1c continuation control. All seven are complete and scored in one
 `score_runs.py` call, with A1 as the bootstrap reference. Every condition covers
 67 sequences and 61,999 frames without prediction/annotation length mismatches.
@@ -27,7 +27,7 @@ and arguments are preserved. Its mAP50-95 ends at 0.62089, below the original
 A1 best of 0.64640; this does not by itself identify a unique cause.
 
 Automatic follow-up is disabled. There is no user crontab for this experiment.
-The current server controller is a single launched job, not recurring training.
+The experiment controllers were single launched jobs, not recurring training.
 No scheduler, credential, host address, or machine-specific controller is
 installed by this repository.
 
@@ -55,11 +55,15 @@ after this measurement. The gate was fixed before training:
 - The minimum epoch must be at least B - 0.005.
 - The last-three mean must be at least the first-three mean - 0.003.
 
-The published pilot CSV is a progress snapshot until it contains all 10 epochs
-and has a gate report. Its pre-training baseline is 0.64640. Early values of
-0.64190, 0.63999 and 0.63969 show that lowering LR alone has not retained the
-original score; the complete curve is still being collected before the fresh
-frozen-backbone retry. No passing result is inferred from these partial rows.
+Both pilots are now complete. The unfrozen pilot ended at
+0.63524; the fresh freeze-21 pilot ended at
+0.63691, from the same measured baseline 0.64640.
+Both failed the unchanged gate. The runtime audit confirms 1,902,000 frozen
+parameters and 1,893,091 trainable parameters in the freeze-21 run.
+All 10 epochs in both runs logged LR 0.0001 in all three optimizer groups.
+The one-shot controllers exited with no matched-study jobs launched.
+The complete CSVs and gate reports, including every failed check, are published.
+The protocol below is preserved as the rule used before these results.
 
 If the unfrozen pilot fails, a fresh pilot uses the original A1 checkpoint with
 `--freeze 21`. Both backbones' parameters are frozen; batch-normalization

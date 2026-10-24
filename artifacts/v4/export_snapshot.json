@@ -1,9 +1,9 @@
 {
-  "exported_at": "2026-10-24T18:06:04.684464+08:00",
+  "exported_at": "2026-10-24T19:02:47.277289+08:00",
   "legacy_seven_conditions_complete": true,
   "old_A1c_complete": true,
-  "pilot_status": "pilot_A1c_lr1e-4_s0",
-  "formal_status": "waiting_pilot_gate",
+  "pilot_status": "both_pilots_failed_no_formal_training",
+  "formal_status": "not_started_pilot_gate_failed",
   "recurring_automation": false,
   "test_or_stress_evaluated": false
 }
