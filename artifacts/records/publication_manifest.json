@@ -6958,12 +6958,12 @@
     {
       "path": "artifacts/v4/export_snapshot.json",
       "bytes": 280,
-      "sha256": "20503cbc1dbf243951afc3b499867a2b8dac43fcb1fc42c4b2eb05e518985a71"
+      "sha256": "a7d1dace2e91a8ef2068336bc1cf69f90e66b9343744e0ad1ee024c786113fd8"
     },
     {
       "path": "artifacts/v4/formal_status.json",
       "bytes": 164,
-      "sha256": "3bdf12bfea222b8d1e330b34295caeba9ca985813d41fc2a191e4c590207df6b"
+      "sha256": "7835fa1a0d25ca94ce50a893b9a6df4b6ff848743da550e018d14e865ea103d8"
     },
     {
       "path": "artifacts/v4/patch_verification.json",
@@ -6981,9 +6981,19 @@
       "sha256": "633840c65f8cbc54942b33a284a3b778121f7d445ff53c2db846d047af5e6a53"
     },
     {
+      "path": "artifacts/v4/pilots/A1c_lr1e-4_s0/results.csv",
+      "bytes": 523,
+      "sha256": "7102d4d87d5853bf7103c8bf9aa99295f361913054f479e5705cf747fe93270f"
+    },
+    {
       "path": "artifacts/v4/pilots/A1c_lr1e-4_s0/runtime_audit.json",
       "bytes": 2997,
       "sha256": "a1e1335de324a090853e795880ca1642e868171409433e3da6e7e8bf26c972d4"
+    },
+    {
+      "path": "artifacts/v4/records/cleanup_summary.json",
+      "bytes": 487,
+      "sha256": "4f7746840742c6cdd4e89a1c520138951b3627da8ffd6691c61dc2d97b10d7ec"
     },
     {
       "path": "artifacts/v4/records/cleanup_superseded.json",
@@ -6992,8 +7002,8 @@
     },
     {
       "path": "artifacts/v4/records/input_manifest.json",
-      "bytes": 2269,
-      "sha256": "96793621a6ce0c04a2eea02bf06da8e3d017c04d3eac4846c83773b76af9e144"
+      "bytes": 2793,
+      "sha256": "4b8457e88ad0fcc3b2cccb3fa20898be2f44b19491d50e698d5eba21e4136c38"
     },
     {
       "path": "artifacts/v4/records/pretrain_callback_failure.json",
@@ -7022,8 +7032,8 @@
     },
     {
       "path": "docs/EXPERIMENTS.md",
-      "bytes": 6039,
-      "sha256": "39fcd451442889a6ab1bb24e572d21046b0e15ad153221ccb2d3a134042e454c"
+      "bytes": 6429,
+      "sha256": "e07ae04af049c09c0f4257c9b6426f14a0461a0f4adf3645ce09651fa2ae3cac"
     },
     {
       "path": "docs/INSTALL.md",

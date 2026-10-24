@@ -55,6 +55,12 @@ after this measurement. The gate was fixed before training:
 - The minimum epoch must be at least B - 0.005.
 - The last-three mean must be at least the first-three mean - 0.003.
 
+The published pilot CSV is a progress snapshot until it contains all 10 epochs
+and has a gate report. Its pre-training baseline is 0.64640. Early values of
+0.64190, 0.63999 and 0.63969 show that lowering LR alone has not retained the
+original score; the complete curve is still being collected before the fresh
+frozen-backbone retry. No passing result is inferred from these partial rows.
+
 If the unfrozen pilot fails, a fresh pilot uses the original A1 checkpoint with
 `--freeze 21`. Both backbones' parameters are frozen; batch-normalization
 running statistics are not explicitly frozen. If both pilots fail, formal

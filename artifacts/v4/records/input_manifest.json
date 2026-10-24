@@ -1,6 +1,6 @@
 {
   "created_from": "v3 tested runtime; only train_spla.py recipe changed",
-  "patch_origin": "reconstructed from the explicit user instructions; no patch attachment was found",
+  "patch_origin": "supplied finetune_recipe.patch; original bytes and clean-apply verification preserved",
   "transform": "scale_translation",
   "test_metadata_included": false,
   "A1_s0_best_sha256": "48e301f12dcd20e9356a3e2fc6f668bccc886d2efd067b90f573dcabd8c36354",
@@ -19,7 +19,7 @@
     "tools/patch_ultralytics.py": "e8a18968920daa620a3900ff7d01444eb6fa24012914b8fd98b9058570b266f7",
     "tools/convert_antiuav.py": "9f5e3b4c4c82224b1ae1a703436ae94c50a11311549eab3a83ed72ab13fdbe95",
     "tools/audit_offsets.py": "18aaa382e08447c808ec515d249519c2680f0e2fccdf256fa4c62087b4224d66",
-    "tools/train_spla.py": "651f9948efa8c640534e9f18431dcadd8dddb4a60e74edb3bd5e756a5b5023fe",
+    "tools/train_spla.py": "d32b010edb037c59495dd746f6363b48fb53721c2a84d4ed7d2cdcffab88c0c7",
     "spla/modules.py": "b4dd4c482becee9f0525a64dec45cde45ba9dab12d29d4beaa0d1a80ad101106",
     "spla/ultralytics_hooks.py": "72087c203645285e6f1fda9eaaa859ed194ec0fa38a53b5540505572caac2bfe",
     "spla/__init__.py": "7461e9256f9069823a3fcde8d51a49448c9f6ac926beeba03900e998d39b4611",
@@ -28,5 +28,15 @@
     "spla/geometry.py": "109206f634f7dd6f4936e2d8b60e44a4a63a01cdce1317793266140aeaa27fe3"
   },
   "reused_runtime": "experiments/v3",
-  "merged_replay_coverage": 41866
+  "merged_replay_coverage": 41866,
+  "source_revision_history": [
+    {
+      "file": "tools/train_spla.py",
+      "previous_sha256": "651f9948efa8c640534e9f18431dcadd8dddb4a60e74edb3bd5e756a5b5023fe",
+      "current_sha256": "d32b010edb037c59495dd746f6363b48fb53721c2a84d4ed7d2cdcffab88c0c7",
+      "reason": "Supplied original patch replaces the equivalent reconstructed change before successful pilot start"
+    }
+  ],
+  "patch_sha256": "3a96a711e418c6486bc0f53d03e959b0115aec0d1ab90d163c736f000f7f2e90",
+  "updated_at": "2026-10-24T18:06:04.640645"
 }
