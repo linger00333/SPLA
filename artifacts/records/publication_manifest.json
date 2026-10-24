@@ -11241,6 +11241,11 @@
       "sha256": "b038cc6e54c21e71ea957c5e794f1bebc7c322274a6803818d67a04184c3fe03"
     },
     {
+      "path": "artifacts/v6/records/publication_scope.json",
+      "bytes": 898,
+      "sha256": "455e090a0a666084b15be69fd0a8fbc0a9c310cacd05b17d6df9bf04905bb72e"
+    },
+    {
       "path": "artifacts/v6/records/visual_review.json",
       "bytes": 700,
       "sha256": "5cc873a530b4000d24a286711a53c9a6a0dfa41c5d0c9966cba22ea8c77c843b"
@@ -14146,6 +14151,11 @@
       "sha256": "a38c303c3466e2f1d690c543618f08a746c719c09a45426ddb2e3c90042f9267"
     },
     {
+      "path": "study/v6/cleanup_study.py",
+      "bytes": 1254,
+      "sha256": "a921d5aa2cde1c032b2440accd17cba8e71aa37da5c8cdbd3032b3dca9ed56d5"
+    },
+    {
       "path": "study/v6/controller_step1.py",
       "bytes": 2601,
       "sha256": "c3659f7730cb4e9a96086839a01837a42b834fa0a290b88aa866c8baa4dd6c3f"
@@ -14161,6 +14171,11 @@
       "sha256": "e40de4921e8b88e4c1c1f33102d5e188fa054498022c6908aad68a1c6a1c16a3"
     },
     {
+      "path": "study/v6/finish_publication.py",
+      "bytes": 9724,
+      "sha256": "5bf0f743d8516a4751d3a222e75a8c771c950e93b5f092a0535bd223cc736b57"
+    },
+    {
       "path": "study/v6/launch_step1.py",
       "bytes": 443,
       "sha256": "8514e92cc7842266f87c7b2881aa3dab03a74b187a624baec5c3e35e2fda87ec"
@@ -14171,9 +14186,19 @@
       "sha256": "21b5476d2cefa6982d7ec8ba346a7e919229f15b6d8c92e1bd5a3abddaa1a324"
     },
     {
+      "path": "study/v6/prepare_api_publication.py",
+      "bytes": 2191,
+      "sha256": "acb165d663b46aff1863c1d33a03bdcd0d902d1023adee63cd6141ba76be1b0a"
+    },
+    {
       "path": "study/v6/prepare_dataset.py",
       "bytes": 5935,
       "sha256": "cb8a6e94a283eeccf36f1858e0f0587dc96f0f280874982332f551d1d6465a3e"
+    },
+    {
+      "path": "study/v6/publish_via_api.ps1",
+      "bytes": 3686,
+      "sha256": "47b18edb5e6d0b8f00d0765b499e2a3b735ef48b9bc91b6b42077292fbb64d81"
     },
     {
       "path": "study/v6/runtime.py",
@@ -14186,9 +14211,34 @@
       "sha256": "ec4548769bb5546f36fe16af512a4082a364411051552c87bdc84e115c61fdae"
     },
     {
+      "path": "study/v6/snapshot.py",
+      "bytes": 1972,
+      "sha256": "3223fcba8f2abe7d912020e93e956356f9653b70db1d1447ebcd01cdf475eae7"
+    },
+    {
+      "path": "study/v6/sync_api_commits.py",
+      "bytes": 1917,
+      "sha256": "e121e4c781bc6651970f7fd587e1b8ecba0f76ce65acd2334a84c6d6492e2a77"
+    },
+    {
+      "path": "study/v6/test_finish_publication.py",
+      "bytes": 4862,
+      "sha256": "030081f891846c245f71d01aa31d4279d95af20662f92f7b17e2a5b5f7b07f21"
+    },
+    {
       "path": "study/v6/validate_runtime.py",
       "bytes": 2922,
       "sha256": "cc041cb3eea67e6acdb396e31c6adfc93f13d931baa7a0778d2f220077388d51"
+    },
+    {
+      "path": "study/v6/verify_publication.py",
+      "bytes": 1857,
+      "sha256": "7384f794bb90a035aa23c1388a3638d9baca37cff48806b3d8da20d416572603"
+    },
+    {
+      "path": "study/v6/watch_once.py",
+      "bytes": 7194,
+      "sha256": "fc2949b0d866e513ca04fbc6a4e8373e8584b338c2d4c42b74540269088c46f3"
     }
   ],
   "text_policy": "ASCII filenames, source, configuration, decompressed predictions and model headers; tensor payloads are binary numerical data"

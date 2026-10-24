@@ -1,0 +1,9 @@
+{
+  "authorization": "The user explicitly confirmed the A100 v6 execution scope and public GitHub publication scope in the current chat.",
+  "destination": "https://github.com/linger00333/SPLA main",
+  "included": ["English diagnostic source and protocol", "verified audits", "complete final reports", "portable RGB model", "complete per-frame derived predictions"],
+  "excluded": ["raw videos", "dataset images and overlays", "original annotations", "machine-specific paths", "credentials"],
+  "execution": "Physical GPU 1 only; two A1 ablations and one independent 100-epoch scratch RGB baseline followed by validation and fixed-detector complementarity",
+  "follow_up_training": "Not authorized by this queue; previous failed-pilot gate remains in force",
+  "continuation": "One running task continuation finishes this queue and then exits. No recurring automation or scheduler is installed."
+}
