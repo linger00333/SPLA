@@ -70,9 +70,38 @@ show prior dependence under this perturbation; it would not by itself prove a
 general deployment contribution. Similar degradation would not uniquely prove
 that the prior was never learned or that one retraining recipe must work.
 
-The six runs are in progress in the exported snapshot. Only completed
-prediction sets are exported; queued work is not a measured result. Follow-up
-automation remains disabled. No retraining is authorized by this diagnostic.
+All six runs and eight 10,000-resample paired sequence comparisons completed
+at 22:21 on 2026-10-24 (UTC+08:00). Each condition covers 67 videos and 61,999
+frames without length mismatches. The original seven clean scores and their
+bootstrap results were reproduced exactly. All six prediction sets are now
+exported. Follow-up automation remains disabled; no training was launched.
+
+## Completed results
+
+| Shift (IR px) | A1 SA | A4 online SA | A4 zero SA |
+|---:|---:|---:|---:|
+| 0 | 0.814932 | 0.815502 | 0.815502 |
+| 48 | 0.813671 | 0.815280 | 0.815145 |
+| 128 | 0.811516 | 0.814700 | 0.814257 |
+
+At 128 pixels, online versus zero A4 improves SA by 0.000444 with a 95%
+interval [-0.000939, 0.001845] and AP50 by 0.000529 with an interval
+[-0.000117, 0.001263]. Both cross zero. Penalized SA improves by 0.003124,
+interval [0.000703, 0.005763]. These unadjusted, exploratory sequence intervals
+do not cover training-seed uncertainty or establish general superiority.
+
+Target alignment error is 1.7456 px online versus 12.1529 px with zero prior;
+online target-prior error remains 3.7838 px. Alignment clearly benefits under
+this perturbation while aggregate detection gains remain modest. The 48-pixel
+online/zero intervals cross zero for all three detection metrics. A1 loses only
+0.003417 SA at 128 pixels, indicating modest aggregate sensitivity in this
+specific protocol, rather than proving that misregistration never matters.
+
+Shifted RGB boxes remain fully inside the image on 99.71% of paired target
+frames at 48 pixels and 98.17% at 128. The clipping and theoretical correction
+bounds above still limit interpretation. No automatic retraining follows.
+See [the complete report](../artifacts/v5/REPORT.md) for every contrast,
+coverage, per-video scores and the two selected videos' shifted results.
 
 ## Boundaries of the earlier interpretation
 

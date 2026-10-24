@@ -1,0 +1,5 @@
+{
+  "all_seven_aggregate_and_bootstrap_results_identical": true,
+  "n_sequences": 67,
+  "new_optional_output": "val_per_seq.csv"
+}

@@ -51,16 +51,19 @@ not retain the original score; freezing backbone parameters also failed.
 Batch-normalization running statistics were not explicitly frozen, and the
 underlying cause remains unresolved. No further recipe search was launched.
 The four-parameter `scale_translation` model is retained. Test evaluation has
-not been executed. Newly authorized validation stress inference is in progress.
+not been executed. The validation shift diagnostic is complete.
 
 ## Contents
 
-The evaluation-only [persistent RGB shift study](docs/SHIFT_DIAGNOSTICS.md) is
-now running at 48 and 128 IR pixels, with A1 zero, A4 online and A4 zero at each
-magnitude. The completed per-video clean analysis finds two of 67 videos where
-A1 exceeds A0 by more than 0.02 SA. Full CSVs and a timestamped execution
-snapshot are under [artifacts/v5](artifacts/v5). No new training was launched;
-unfinished stress runs are not reported as completed results.
+The evaluation-only [persistent RGB shift study](docs/SHIFT_DIAGNOSTICS.md)
+completed all six conditions and eight paired bootstrap comparisons. At 128 IR
+pixels, online A4 has target alignment error 1.75 px versus 12.15 px with zero
+prior, but its SA and AP50 advantages have intervals crossing zero. Penalized
+SA improves by 0.003124, with an unadjusted 95% sequence interval
+[0.000703, 0.005763]. This is a small exploratory robustness signal, not a broad
+detection superiority claim. See the [full report](artifacts/v5/REPORT.md).
+All 67 videos are retained. No new training was launched. The completed clean
+screen also finds two videos where A1 exceeds A0 by more than 0.02 SA.
 
 - `kit/spla`: geometry, online estimator, alignment layers, training integration,
   and portable tensor-only checkpoint loading.

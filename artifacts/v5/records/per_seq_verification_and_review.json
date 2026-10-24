@@ -7,7 +7,8 @@
     "local_and_actual_remote_environment_passed": true,
     "CSV_sequences": 67,
     "CSV_seed_means_match_existing_all_seven_aggregate_SA": true,
-    "full_10000_bootstrap_rerun": "running; final report is not yet claimed"
+    "full_10000_bootstrap_rerun": "complete; all seven aggregate and bootstrap results identical to the original report",
+    "six_shift_conditions_and_eight_10000_resample_comparisons_complete": true
   },
   "scope": {
     "GPU_inference_conditions": 6,

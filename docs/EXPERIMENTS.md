@@ -104,7 +104,9 @@ The newly authorized evaluation-only study adds per-video clean SA and six
 validation stress conditions (persistent RGB shift 48/128 IR pixels, A1 zero,
 A4 online and A4 zero). See [shift diagnostics](SHIFT_DIAGNOSTICS.md) for the
 completed clean screen, fixed protocol, clipping limitations and actual model
-correction bounds. The six runs are in progress in the published snapshot.
+correction bounds. All six runs and eight paired bootstrap contrasts are
+complete; the [final report](../artifacts/v5/REPORT.md) separates alignment
+improvements from the small, metric-dependent detection changes.
 This authorizes no new training and leaves test evaluation unexecuted.
 
 - A4 versus A3 changes the training prior within the same architecture and

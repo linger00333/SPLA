@@ -1,13 +1,15 @@
 {
-  "exported_at": "2026-10-24T19:29:21.777607+08:00",
-  "phase": "per_sequence_scoring_and_shift_inference",
-  "completed_stress_prediction_sets": [],
-  "queued": [
+  "exported_at": "2026-10-24T22:30:27.044175+08:00",
+  "phase": "complete_report_ready",
+  "completed_stress_prediction_sets": [
+    "A1_shift48",
+    "A4_shift48",
     "A4z_shift48",
     "A1_shift128",
     "A4_shift128",
     "A4z_shift128"
   ],
+  "queued": [],
   "training_launched": false,
   "test_evaluated": false,
   "recurring_automation": false

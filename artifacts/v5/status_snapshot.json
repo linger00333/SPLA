@@ -1,10 +1,10 @@
 {
-  "phase": "per_sequence_scoring_and_shift_inference",
+  "phase": "complete_report_ready",
   "controller_pid": 2742390,
   "jobs": {
     "score_old_per_sequence": {
       "kind": "score",
-      "state": "running",
+      "state": "complete",
       "pid": 2742391,
       "command": [
         "experiments/v5/venv/bin/python",
@@ -34,11 +34,13 @@
         "--per-seq",
         "experiments/v5/reports/val_per_seq.csv"
       ],
-      "started_at": 1792841215.018592
+      "started_at": 1792841215.018592,
+      "returncode": 0,
+      "finished_at": 1792843031.982051
     },
     "A1_shift48": {
       "kind": "eval",
-      "state": "running",
+      "state": "complete",
       "pid": 2742394,
       "command": [
         "experiments/v5/venv/bin/python",
@@ -68,11 +70,13 @@
         "--out",
         "experiments/v5/results/A1_shift48"
       ],
-      "started_at": 1792841215.0519788
+      "started_at": 1792841215.0519788,
+      "returncode": 0,
+      "finished_at": 1792843422.3720686
     },
     "A4_shift48": {
       "kind": "eval",
-      "state": "running",
+      "state": "complete",
       "pid": 2742397,
       "command": [
         "experiments/v5/venv/bin/python",
@@ -102,18 +106,171 @@
         "--out",
         "experiments/v5/results/A4_shift48"
       ],
-      "started_at": 1792841215.084728
+      "started_at": 1792841215.084728,
+      "returncode": 0,
+      "finished_at": 1792844068.0520701
+    },
+    "A4z_shift48": {
+      "kind": "eval",
+      "state": "complete",
+      "pid": 2757961,
+      "command": [
+        "experiments/v5/venv/bin/python",
+        "experiments/v5/kit/tools/run_sequences.py",
+        "--root",
+        "data/raw",
+        "--split",
+        "val",
+        "--weights",
+        "experiments/legacy/framework/runs/detect/A4_s0/weights/best.pt",
+        "--prior",
+        "zero",
+        "--seq-theta",
+        "experiments/v5/inputs/seq_theta_val.json",
+        "--train-theta",
+        "experiments/v5/inputs/seq_theta_train.json",
+        "--process-sigma",
+        "0.001",
+        "--meas-sigma",
+        "0.008",
+        "--shift-mode",
+        "persistent",
+        "--shift-px",
+        "48",
+        "--device",
+        "cuda:1",
+        "--out",
+        "experiments/v5/results/A4z_shift48"
+      ],
+      "started_at": 1792843422.4063923,
+      "returncode": 0,
+      "finished_at": 1792846215.249072
+    },
+    "A1_shift128": {
+      "kind": "eval",
+      "state": "complete",
+      "pid": 2762100,
+      "command": [
+        "experiments/v5/venv/bin/python",
+        "experiments/v5/kit/tools/run_sequences.py",
+        "--root",
+        "data/raw",
+        "--split",
+        "val",
+        "--weights",
+        "experiments/legacy/framework/runs/detect/A1_s0/weights/best.pt",
+        "--prior",
+        "zero",
+        "--seq-theta",
+        "experiments/v5/inputs/seq_theta_val.json",
+        "--train-theta",
+        "experiments/v5/inputs/seq_theta_train.json",
+        "--process-sigma",
+        "0.001",
+        "--meas-sigma",
+        "0.008",
+        "--shift-mode",
+        "persistent",
+        "--shift-px",
+        "128",
+        "--device",
+        "cuda:1",
+        "--out",
+        "experiments/v5/results/A1_shift128"
+      ],
+      "started_at": 1792844068.103969,
+      "returncode": 0,
+      "finished_at": 1792846275.3440661
+    },
+    "A4_shift128": {
+      "kind": "eval",
+      "state": "complete",
+      "pid": 2776736,
+      "command": [
+        "experiments/v5/venv/bin/python",
+        "experiments/v5/kit/tools/run_sequences.py",
+        "--root",
+        "data/raw",
+        "--split",
+        "val",
+        "--weights",
+        "experiments/legacy/framework/runs/detect/A4_s0/weights/best.pt",
+        "--prior",
+        "online",
+        "--seq-theta",
+        "experiments/v5/inputs/seq_theta_val.json",
+        "--train-theta",
+        "experiments/v5/inputs/seq_theta_train.json",
+        "--process-sigma",
+        "0.001",
+        "--meas-sigma",
+        "0.008",
+        "--shift-mode",
+        "persistent",
+        "--shift-px",
+        "128",
+        "--device",
+        "cuda:1",
+        "--out",
+        "experiments/v5/results/A4_shift128"
+      ],
+      "started_at": 1792846215.2834463,
+      "returncode": 0,
+      "finished_at": 1792849068.1680655
+    },
+    "A4z_shift128": {
+      "kind": "eval",
+      "state": "complete",
+      "pid": 2777138,
+      "command": [
+        "experiments/v5/venv/bin/python",
+        "experiments/v5/kit/tools/run_sequences.py",
+        "--root",
+        "data/raw",
+        "--split",
+        "val",
+        "--weights",
+        "experiments/legacy/framework/runs/detect/A4_s0/weights/best.pt",
+        "--prior",
+        "zero",
+        "--seq-theta",
+        "experiments/v5/inputs/seq_theta_val.json",
+        "--train-theta",
+        "experiments/v5/inputs/seq_theta_train.json",
+        "--process-sigma",
+        "0.001",
+        "--meas-sigma",
+        "0.008",
+        "--shift-mode",
+        "persistent",
+        "--shift-px",
+        "128",
+        "--device",
+        "cuda:1",
+        "--out",
+        "experiments/v5/results/A4z_shift128"
+      ],
+      "started_at": 1792846275.3778112,
+      "returncode": 0,
+      "finished_at": 1792849128.2280738
+    },
+    "score_shift_diagnostics": {
+      "kind": "score",
+      "state": "complete",
+      "pid": 2796146,
+      "command": [
+        "experiments/v5/venv/bin/python",
+        "experiments/v5/score_shift_diagnostics.py"
+      ],
+      "started_at": 1792849144.8908746,
+      "returncode": 0,
+      "finished_at": 1792851667.4210498
     }
   },
-  "queued": [
-    "A4z_shift48",
-    "A1_shift128",
-    "A4_shift128",
-    "A4z_shift128"
-  ],
+  "queued": [],
   "training_launched": false,
   "recurring_automation": false,
-  "updated_at": "2026-10-24T19:27:10.182090+08:00",
+  "updated_at": "2026-10-24T22:21:22.435966+08:00",
   "RGB_gain_screen": {
     "n_sequences": 67,
     "threshold_strictly_greater_than": 0.02,
