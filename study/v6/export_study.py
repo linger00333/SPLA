@@ -44,7 +44,8 @@ for name in states:
 for src in (V / 'reports').iterdir():
     if src.suffix in ('.json', '.csv'):
         export(src, Path('artifacts/v6/reports') / src.name)
-for name in ('input_manifest.json', 'frozen_code.json', 'real_runtime_validation.json', 'visual_review.json', 'training_recipe_audit.json'):
+for name in ('input_manifest.json', 'frozen_code.json', 'real_runtime_validation.json', 'real_rgb_coordinate_audit.json',
+             'runtime_source_audit.json', 'visual_review.json', 'training_recipe_audit.json'):
     src = V / 'records' / name
     if src.exists():
         export(src, Path('artifacts/v6/records') / name)

@@ -1,0 +1,16 @@
+{
+  "sequence": "20190925_101846_1_4",
+  "real_frames": 5,
+  "candidate_boxes_checked": 7,
+  "IR_dimensions": [
+    640,
+    512
+  ],
+  "original_RGB_dimensions": [
+    1920,
+    1080
+  ],
+  "maximum_canvas_roundtrip_error_px": 0,
+  "device": "physical GPU 1",
+  "note": "Old IR weights used solely to test RGB plumbing and coordinate conversion; not RGB baseline performance"
+}
