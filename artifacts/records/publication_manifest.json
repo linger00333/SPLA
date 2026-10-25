@@ -13396,6 +13396,51 @@
       "sha256": "00e17148a0f42bb763e9c63d5d5c44ee6543b1b63f2049e8f5c9f66baca6ee7b"
     },
     {
+      "path": "artifacts/v7/patch_provenance.json",
+      "bytes": 438,
+      "sha256": "089d3e1827cc400d2c87c0b15902abe6999360d176a98f06c4a478741adf85b5"
+    },
+    {
+      "path": "artifacts/v7/prereg/fusion_summary_P_train_mean.json",
+      "bytes": 28996,
+      "sha256": "e15e5ce1f5548e265480e1a4f2c905aa6c0abdaf57667d33a5f7335d739c0917"
+    },
+    {
+      "path": "artifacts/v7/prereg/fusion_summary_R_seq.json",
+      "bytes": 29097,
+      "sha256": "1bb5f484ebdea0dcacf30fd483ce682f38b80a45fe2f82c39b1a2dccc31bf630"
+    },
+    {
+      "path": "artifacts/v7/prereg/fusion_summary_S_online.json",
+      "bytes": 29386,
+      "sha256": "a70a49700c36573c98732e865cf27f281047c18c64bf2ad9b420ff71efc683e9"
+    },
+    {
+      "path": "artifacts/v7/prereg/README.md",
+      "bytes": 654,
+      "sha256": "1d41508d4235b1f5d8fcac95620240bd32a212b6f2976db08b2c440c716b2e0d"
+    },
+    {
+      "path": "artifacts/v7/prereg/sync_audit_predictions_val.json",
+      "bytes": 15934,
+      "sha256": "5322ce274fee93c8b1681f75c862f7f132f25be586281f0dd88aa6a50123a86e"
+    },
+    {
+      "path": "artifacts/v7/prereg/sync_flagged_predictions_val.json",
+      "bytes": 818,
+      "sha256": "45d75a6f455c67f462146a8ccd1a943889902d885bcd7a66fc907ae90748344c"
+    },
+    {
+      "path": "artifacts/v7/PROTOCOL.md",
+      "bytes": 7182,
+      "sha256": "15c591b1f42bc7b8aa03464799be89a734b0232d544411589e0768a51cb9b3f4"
+    },
+    {
+      "path": "artifacts/v7/PROTOCOL_DRAFT.md",
+      "bytes": 5428,
+      "sha256": "8180f70c358ed2df4bf8b5a61b924b15219684db737eded1bf1906021cf314a9"
+    },
+    {
       "path": "docs/EVALUATION.md",
       "bytes": 6219,
       "sha256": "8a7689db8de1995301be81f0418a9f427b24e901f5cfc98fd4bb7a0090492927"
@@ -16126,6 +16171,11 @@
       "sha256": "b4dd4c482becee9f0525a64dec45cde45ba9dab12d29d4beaa0d1a80ad101106"
     },
     {
+      "path": "kit/spla/prediction_io.py",
+      "bytes": 1895,
+      "sha256": "5672b4d2a1fe62e10ef40f09ffdff7bb274a42504ecac93d7080b1574941298d"
+    },
+    {
       "path": "kit/spla/prior_estimator.py",
       "bytes": 8287,
       "sha256": "b74583361f00154215d61c1e1ea811be7f2aa26a9ac118f719d03fecba9f6bca"
@@ -16136,6 +16186,11 @@
       "sha256": "72087c203645285e6f1fda9eaaa859ed194ec0fa38a53b5540505572caac2bfe"
     },
     {
+      "path": "kit/tests/test_decision_fusion.py",
+      "bytes": 10379,
+      "sha256": "4469cc56647ccbe045144370c70127222aa9e48dce98678a124dddfd86bd1c81"
+    },
+    {
       "path": "kit/tests/test_fusion_diagnostics.py",
       "bytes": 8831,
       "sha256": "db26b5fcda30aa2ecd5ab26b38bc6d4fd9b8cbe4ef975686dbae8a244d7b8601"
@@ -16144,6 +16199,11 @@
       "path": "kit/tests/test_score_per_seq.py",
       "bytes": 3159,
       "sha256": "2715cec0113b367e680a4b2d32f773f4e6606b47f6d73d35bcd1f37bad6f6458"
+    },
+    {
+      "path": "kit/tests/test_v7_hardening.py",
+      "bytes": 3963,
+      "sha256": "1648888eafe20cdd8f929be928bc08074cadada7abd964ed364b94e555bb839e"
     },
     {
       "path": "kit/tools/audit_offsets.py",
@@ -16164,6 +16224,16 @@
       "path": "kit/tools/convert_antiuav.py",
       "bytes": 9353,
       "sha256": "9f5e3b4c4c82224b1ae1a703436ae94c50a11311549eab3a83ed72ab13fdbe95"
+    },
+    {
+      "path": "kit/tools/decision_fusion.py",
+      "bytes": 17766,
+      "sha256": "75d843a1b947eddd6e18587a24f53ca3cc638b598f28b0b620da4465fe931e82"
+    },
+    {
+      "path": "kit/tools/fusion_breakdown.py",
+      "bytes": 4020,
+      "sha256": "410e56054aca0a047c2f8b720131fef384467d9342d73173d439ec7744b80cc1"
     },
     {
       "path": "kit/tools/inspect_dataset.py",
@@ -16192,8 +16262,18 @@
     },
     {
       "path": "kit/tools/score_runs.py",
-      "bytes": 10873,
-      "sha256": "487800e5cc8cd26df89cfe544d77fc7ba2acbb1f95c8d9a298553478dcb39bba"
+      "bytes": 12718,
+      "sha256": "2b93be9ae10cd27aba8f7555ad2032fb3564c5612a042551733558c13c3f0a82"
+    },
+    {
+      "path": "kit/tools/subset_bootstrap.py",
+      "bytes": 3564,
+      "sha256": "a8c10a187a2fae86b9c72b2b06aed2556b2bf145b30274478c74bbcba863dd05"
+    },
+    {
+      "path": "kit/tools/sync_audit.py",
+      "bytes": 9547,
+      "sha256": "9031d8edcca5583733e5588fb9a748d414f430b24e25e50088c4f80e50e1c4e9"
     },
     {
       "path": "kit/tools/train_spla.py",
@@ -16269,6 +16349,11 @@
       "path": "NOTICE.md",
       "bytes": 1326,
       "sha256": "1eeb2eeee60e27799c869902b6af6be1fb480617229c0d76be62ad9763028dc2"
+    },
+    {
+      "path": "patches/decision_fusion_supplied.patch",
+      "bytes": 161317,
+      "sha256": "af3166d4e8860cef0224df62d8d99341117d8f83016103778e5ad90e71d953ac"
     },
     {
       "path": "patches/finetune_recipe.patch",
@@ -16409,6 +16494,46 @@
       "path": "study/v6/watch_once.py",
       "bytes": 7194,
       "sha256": "fc2949b0d866e513ca04fbc6a4e8373e8584b338c2d4c42b74540269088c46f3"
+    },
+    {
+      "path": "study/v7/controller.py",
+      "bytes": 5968,
+      "sha256": "044c39772c0c0cb6aa625584761a3028bf252cf0104ae68199a54df790bfc5be"
+    },
+    {
+      "path": "study/v7/export_results.py",
+      "bytes": 2708,
+      "sha256": "7a179cbd716c379464e84b8aa8e9225195e013a2b2a75bdc776af313c3ada67f"
+    },
+    {
+      "path": "study/v7/freeze_and_audit.py",
+      "bytes": 2434,
+      "sha256": "bc2dcf16d8dca85b18159c07660827b43eaaf3a0f9ce78a60c1837d8a159388d"
+    },
+    {
+      "path": "study/v7/heldout_sync.py",
+      "bytes": 3362,
+      "sha256": "426d0c23ad4e808840cd68b42ffc3a5b0c79c7674b9271b7b528f212006ea00d"
+    },
+    {
+      "path": "study/v7/runtime.py",
+      "bytes": 591,
+      "sha256": "d8584f64c551b4171c16fcbbbefc9fde0302cf2b77adffecc05b81bfcb37d684"
+    },
+    {
+      "path": "study/v7/setup_remote.py",
+      "bytes": 1053,
+      "sha256": "4cae67809a41112f6343b90e571886e9489b4cdbd10d1092b6c04d30e9b8dec6"
+    },
+    {
+      "path": "study/v7/test_execution.py",
+      "bytes": 1639,
+      "sha256": "72e8c4db84f66679b9fa6dcd89de28b880c813e4c380313dca7cddd25aba8a3c"
+    },
+    {
+      "path": "study/v7/visual_precheck.py",
+      "bytes": 3179,
+      "sha256": "bb10f1b57e1cb7acdd6c69e4f6e69530bdc7c740e6ae55404873e0a93a2a448e"
     }
   ],
   "text_policy": "ASCII filenames, source, configuration, decompressed predictions and model headers; tensor payloads are binary numerical data"

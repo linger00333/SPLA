@@ -1,0 +1,5177 @@
+From 72a3e120f57c60c58ed5db97d014feea30614001 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 24 Oct 2026 19:32:08 -0700
+Subject: [PATCH] feat: add decision-level fusion, sync audit and v7 protocol
+ draft
+
+Adds a no-training IR/RGB decision-fusion tool (train-mean, per-video and
+causal online mappings), a label-aware breakdown of replaced frames, a subset
+SA bootstrap that reproduces score_runs.py, and a label-free audit of IR/RGB
+temporal synchronisation. Label-free pre-registration summaries and a protocol
+draft are under artifacts/v7. No label or test data was read.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ artifacts/v7/PROTOCOL_DRAFT.md                |  110 ++
+ .../prereg/fusion_summary_P_train_mean.json   | 1080 ++++++++++++++++
+ artifacts/v7/prereg/fusion_summary_R_seq.json | 1086 ++++++++++++++++
+ .../v7/prereg/fusion_summary_S_online.json    | 1092 +++++++++++++++++
+ .../v7/prereg/sync_audit_predictions_val.json |  737 +++++++++++
+ .../prereg/sync_flagged_predictions_val.json  |   36 +
+ kit/tests/test_decision_fusion.py             |  233 ++++
+ kit/tools/decision_fusion.py                  |  367 ++++++
+ kit/tools/fusion_breakdown.py                 |   83 ++
+ kit/tools/subset_bootstrap.py                 |   74 ++
+ kit/tools/sync_audit.py                       |  167 +++
+ 11 files changed, 5065 insertions(+)
+ create mode 100644 artifacts/v7/PROTOCOL_DRAFT.md
+ create mode 100644 artifacts/v7/prereg/fusion_summary_P_train_mean.json
+ create mode 100644 artifacts/v7/prereg/fusion_summary_R_seq.json
+ create mode 100644 artifacts/v7/prereg/fusion_summary_S_online.json
+ create mode 100644 artifacts/v7/prereg/sync_audit_predictions_val.json
+ create mode 100644 artifacts/v7/prereg/sync_flagged_predictions_val.json
+ create mode 100644 kit/tests/test_decision_fusion.py
+ create mode 100644 kit/tools/decision_fusion.py
+ create mode 100644 kit/tools/fusion_breakdown.py
+ create mode 100644 kit/tools/subset_bootstrap.py
+ create mode 100644 kit/tools/sync_audit.py
+
+diff --git a/artifacts/v7/PROTOCOL_DRAFT.md b/artifacts/v7/PROTOCOL_DRAFT.md
+new file mode 100644
+index 0000000..a738d55
+--- /dev/null
++++ b/artifacts/v7/PROTOCOL_DRAFT.md
+@@ -0,0 +1,110 @@
++# V7 decision-level fusion: protocol DRAFT
++
++Status: **draft, not registered.** Rename to `PROTOCOL.md` and commit it before
++running `score_runs.py`, `fusion_breakdown.py` or `subset_bootstrap.py` on any
++fusion output. No label has been read for anything in this directory.
++
++## Scope
++
++- No training. Validation split only; test is refused by every new tool.
++- Inputs: the completed A0_s0 predictions (`artifacts/predictions/v3/A0_s0`, IR
++  pixels) and A0rgb_s0 predictions (`artifacts/predictions/v6/A0rgb_s0`,
++  original RGB pixels), and the existing four-parameter tables in
++  `artifacts/prior_scale_translation`.
++- Scoring: the unchanged `kit/tools/score_runs.py` (IR labels; SA, penalized
++  SA, AP50), baseline A0, 10,000 paired sequence draws, seed 0, `--per-seq`.
++- CPU only; no GPU job is needed.
++
++## Conditions
++
++All conditions share the gates `--ir-conf 0.5 --rgb-conf 0.5 --pair-conf 0.5
++--window 30 --online-k 5`: the IR output is replaced only when its top
++confidence is below 0.5 (empty or low confidence) and the RGB top confidence is
++at least 0.5. Mapped boxes whose centre leaves the IR frame are discarded.
++
++| Name | `--map` | `--size` | Uses val labels | Role |
++|---|---|---|---|---|
++| P | `train_mean` | `mapped` | no | primary (handoff step 2) |
++| S | `online` | `ir_recent` | no | secondary: causal, label-free correction |
++| R | `seq` | `mapped` | **yes** | reference only; never decides |
++
++## Decision rule for the follow-up gate
++
++A condition shows a clear gain when its SA difference from A0 has a 95% sequence
++interval with lower bound > 0 **and** point difference >= +0.003 (the v6
++small-change band). The gate to propose one learned-fusion experiment opens if
++P or S shows a clear gain. Two comparisons, unadjusted; both are reported.
++Penalized SA and AP50 are secondary and cannot open the gate. R is descriptive.
++If neither P nor S shows a clear gain, the write-up path ("complementary but
++redundant at decision level") applies, with the caveats below.
++
++## Pre-declared sensitivity analyses (reported whatever the primary result)
++
++1. Without `20190925_213001_1_1`, which receives 349 of P's 633 replacements.
++2. Without the videos in `KNOWN_LABEL_ISSUES`.
++3. Without the 34 videos flagged as desynchronised in
++   `prereg/sync_flagged_predictions_val.json`.
++4. `fusion_breakdown.py` for P, S and R: replaced frames split into IR-positive
++   (fused IoU >= 0.5 or not) and IR-negative (each costs 1 SA frame unit).
++
++Analyses 1 to 3 use `subset_bootstrap.py` on the `--per-seq` CSV (SA only,
++same draw scheme). They describe dependence, not new primary tests.
++
++## Label-free facts recorded before scoring
++
++Computed from the two prediction sets only (`prereg/`):
++
++| | P | S | R |
++|---|---:|---:|---:|
++| Replaced frames (of 61,999) | 633 | 647 | 633 |
++| Transfer fidelity: share IoU >= 0.5 vs confident IR box | 0.259 | 0.820 | 0.587 |
++| Median IoU vs confident IR box | 0.257 | 0.905 | 0.560 |
++
++Transfer fidelity is measured on the 57,531 frames where both detectors are
++confident (>= 0.5); there IR is almost always right, so it estimates how well a
++mapped RGB box can reproduce an IR box. S's figure is optimistic for replaced
++frames: 358 of its 647 replacements have no recent pair and fall back to the
++training mean (348 of them in `20190925_213001_1_1`).
++
++`sync_audit.py` on the same predictions flags 34 of 67 videos whose IR and RGB
++streams fit better with a frame offset (median residual 4.8 px at lag 0 versus
++3.1 px at the best lag; up to 57 px to 5 px). This is a data property, not a
++result of any fusion condition.
++
++## Interpretation limits
++
++- The maximum number of frames this rule can change is about 1.1% of frames,
++  so the SA effect is bounded near +/-0.01 by construction.
++- A null P or S does not show RGB is uninformative: IR failures with a
++  confident wrong IR box are not reachable by confidence gating, and temporal
++  desynchronisation is not compensated.
++- Single detector seeds; validation is also the checkpoint-selection split.
++
++## Commands
++
++```bash
++P=artifacts/prior_scale_translation
++for spec in "P train_mean mapped" "S online ir_recent" "R seq mapped"; do set -- $spec
++  python kit/tools/decision_fusion.py --ir-run results/A0_s0 --rgb-run results/A0rgb_s0 \
++    --train-theta $P/seq_theta_train.json --seq-theta $P/seq_theta_val.json \
++    --map $2 --size $3 --out results/fusion/$1
++done
++python kit/tools/score_runs.py --root data/raw --split val --run A0=results/A0_s0 \
++  --run P=results/fusion/P --run S=results/fusion/S --run R=results/fusion/R \
++  --baseline A0 --boot 10000 --per-seq reports/fusion_val_per_seq.csv --out reports/fusion_val.json
++python kit/tools/subset_bootstrap.py --per-seq reports/fusion_val_per_seq.csv --a P --b A0 \
++  --exclude 20190925_213001_1_1 --label without_213001_1_1 --out reports/fusion_P_wo213001.json
++# repeat for S; KNOWN_LABEL_ISSUES and --exclude-file artifacts/v7/prereg/sync_flagged_predictions_val.json
++python kit/tools/fusion_breakdown.py --root data/raw --split val --ir-run results/A0_s0 \
++  --fused results/fusion/P --out reports/fusion_P_breakdown.json
++```
++
++The `results/A0_s0` and `results/A0rgb_s0` paths may also point at the
++compressed copies under `artifacts/predictions`; `score_runs.py` needs the
++plain A0 files.
++
++## Frozen code (SHA-256)
++
++Filled in at registration with `sha256sum` of `kit/tools/decision_fusion.py`,
++`fusion_breakdown.py`, `subset_bootstrap.py`, `sync_audit.py` and the unchanged
++`score_runs.py`.
+diff --git a/artifacts/v7/prereg/fusion_summary_P_train_mean.json b/artifacts/v7/prereg/fusion_summary_P_train_mean.json
+new file mode 100644
+index 0000000..a5a88a9
+--- /dev/null
++++ b/artifacts/v7/prereg/fusion_summary_P_train_mean.json
+@@ -0,0 +1,1080 @@
++{
++ "split": "val",
++ "videos": 67,
++ "pooled": {
++  "frames": 61999,
++  "actions": {
++   "keep_ir": 60062,
++   "keep_ir_rgb_not_confident": 1276,
++   "keep_ir_outside_fov": 28,
++   "replace": 633
++  },
++  "replaced_map_sources": {
++   "train_mean": 633
++  },
++  "replaced_size_sources": {
++   "mapped": 633
++  },
++  "transfer_fidelity": {
++   "frames": 57531,
++   "median_iou_vs_confident_ir": 0.25678377228608573,
++   "share_iou_ge_0.5": 0.2591820062227321,
++   "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++  }
++ },
++ "per_video": {
++  "20190925_101846_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.003815044598159012,
++    "share_iou_ge_0.5": 0.004,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_101846_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 999,
++    "median_iou_vs_confident_ir": 0.0,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 998,
++    "median_iou_vs_confident_ir": 0.7396810919282959,
++    "share_iou_ge_0.5": 0.8627254509018036,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir_rgb_not_confident": 909,
++    "keep_ir_outside_fov": 7,
++    "keep_ir": 80,
++    "replace": 4
++   },
++   "replaced_map_sources": {
++    "train_mean": 4
++   },
++   "replaced_size_sources": {
++    "mapped": 4
++   },
++   "transfer_fidelity": {
++    "frames": 67,
++    "median_iou_vs_confident_ir": 0.06967526505381978,
++    "share_iou_ge_0.5": 0.04477611940298507,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.3648869402020602,
++    "share_iou_ge_0.5": 0.126,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.1965196813154079,
++    "share_iou_ge_0.5": 0.011,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_8": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 995,
++    "replace": 2,
++    "keep_ir_outside_fov": 1,
++    "keep_ir_rgb_not_confident": 2
++   },
++   "replaced_map_sources": {
++    "train_mean": 2
++   },
++   "replaced_size_sources": {
++    "mapped": 2
++   },
++   "transfer_fidelity": {
++    "frames": 946,
++    "median_iou_vs_confident_ir": 0.06756320507968602,
++    "share_iou_ge_0.5": 0.0306553911205074,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_131530_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 989,
++    "replace": 11
++   },
++   "replaced_map_sources": {
++    "train_mean": 11
++   },
++   "replaced_size_sources": {
++    "mapped": 11
++   },
++   "transfer_fidelity": {
++    "frames": 986,
++    "median_iou_vs_confident_ir": 0.06068305764977011,
++    "share_iou_ge_0.5": 0.007099391480730223,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_133630_1_9": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 984,
++    "keep_ir_rgb_not_confident": 9,
++    "replace": 7
++   },
++   "replaced_map_sources": {
++    "train_mean": 7
++   },
++   "replaced_size_sources": {
++    "mapped": 7
++   },
++   "transfer_fidelity": {
++    "frames": 869,
++    "median_iou_vs_confident_ir": 0.04302485715033534,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_140917_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 976,
++    "replace": 12,
++    "keep_ir_outside_fov": 4,
++    "keep_ir_rgb_not_confident": 8
++   },
++   "replaced_map_sources": {
++    "train_mean": 12
++   },
++   "replaced_size_sources": {
++    "mapped": 12
++   },
++   "transfer_fidelity": {
++    "frames": 944,
++    "median_iou_vs_confident_ir": 0.07220717862474581,
++    "share_iou_ge_0.5": 0.014830508474576272,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_140917_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 952,
++    "replace": 48
++   },
++   "replaced_map_sources": {
++    "train_mean": 48
++   },
++   "replaced_size_sources": {
++    "mapped": 48
++   },
++   "transfer_fidelity": {
++    "frames": 935,
++    "median_iou_vs_confident_ir": 0.014543630764150592,
++    "share_iou_ge_0.5": 0.0010695187165775401,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_141417_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 983,
++    "keep_ir_rgb_not_confident": 3,
++    "replace": 14
++   },
++   "replaced_map_sources": {
++    "train_mean": 14
++   },
++   "replaced_size_sources": {
++    "mapped": 14
++   },
++   "transfer_fidelity": {
++    "frames": 966,
++    "median_iou_vs_confident_ir": 0.049272627578299255,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_141417_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 986,
++    "replace": 14
++   },
++   "replaced_map_sources": {
++    "train_mean": 14
++   },
++   "replaced_size_sources": {
++    "mapped": 14
++   },
++   "transfer_fidelity": {
++    "frames": 977,
++    "median_iou_vs_confident_ir": 0.16132354138349836,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_141417_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.15483158837722477,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_143900_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.202969717999778,
++    "share_iou_ge_0.5": 0.124,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_143900_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 997,
++    "replace": 3
++   },
++   "replaced_map_sources": {
++    "train_mean": 3
++   },
++   "replaced_size_sources": {
++    "mapped": 3
++   },
++   "transfer_fidelity": {
++    "frames": 981,
++    "median_iou_vs_confident_ir": 0.20120751429416542,
++    "share_iou_ge_0.5": 0.03669724770642202,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_143900_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 999,
++    "replace": 1
++   },
++   "replaced_map_sources": {
++    "train_mean": 1
++   },
++   "replaced_size_sources": {
++    "mapped": 1
++   },
++   "transfer_fidelity": {
++    "frames": 999,
++    "median_iou_vs_confident_ir": 0.074883608588451,
++    "share_iou_ge_0.5": 0.055055055055055056,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_152412_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 994,
++    "keep_ir_outside_fov": 1,
++    "replace": 5
++   },
++   "replaced_map_sources": {
++    "train_mean": 5
++   },
++   "replaced_size_sources": {
++    "mapped": 5
++   },
++   "transfer_fidelity": {
++    "frames": 958,
++    "median_iou_vs_confident_ir": 0.013073435425389312,
++    "share_iou_ge_0.5": 0.008350730688935281,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_152412_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 994,
++    "replace": 6
++   },
++   "replaced_map_sources": {
++    "train_mean": 6
++   },
++   "replaced_size_sources": {
++    "mapped": 6
++   },
++   "transfer_fidelity": {
++    "frames": 952,
++    "median_iou_vs_confident_ir": 0.1963932179121855,
++    "share_iou_ge_0.5": 0.02415966386554622,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_183946_1_1": {
++   "frames": 929,
++   "actions": {
++    "keep_ir": 929
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 924,
++    "median_iou_vs_confident_ir": 0.595601437085417,
++    "share_iou_ge_0.5": 0.7380952380952381,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_183946_1_2": {
++   "frames": 858,
++   "actions": {
++    "keep_ir": 858
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 854,
++    "median_iou_vs_confident_ir": 0.5312423441070646,
++    "share_iou_ge_0.5": 0.6533957845433255,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_183946_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 982,
++    "median_iou_vs_confident_ir": 0.637976888442628,
++    "share_iou_ge_0.5": 0.884928716904277,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_194211_1_3": {
++   "frames": 971,
++   "actions": {
++    "keep_ir_rgb_not_confident": 87,
++    "keep_ir": 884
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 827,
++    "median_iou_vs_confident_ir": 0.029156042573388583,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_194211_1_4": {
++   "frames": 944,
++   "actions": {
++    "keep_ir": 944
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 943,
++    "median_iou_vs_confident_ir": 0.004917555986931156,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_200320_1_4": {
++   "frames": 935,
++   "actions": {
++    "keep_ir": 935
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 935,
++    "median_iou_vs_confident_ir": 0.21241908079277308,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_200320_1_8": {
++   "frames": 39,
++   "actions": {
++    "keep_ir": 39
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 39,
++    "median_iou_vs_confident_ir": 0.0,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_205804_1_5": {
++   "frames": 961,
++   "actions": {
++    "keep_ir_rgb_not_confident": 54,
++    "keep_ir": 885,
++    "replace": 22
++   },
++   "replaced_map_sources": {
++    "train_mean": 22
++   },
++   "replaced_size_sources": {
++    "mapped": 22
++   },
++   "transfer_fidelity": {
++    "frames": 865,
++    "median_iou_vs_confident_ir": 0.3156337780463,
++    "share_iou_ge_0.5": 0.15838150289017341,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_205804_1_6": {
++   "frames": 924,
++   "actions": {
++    "keep_ir": 868,
++    "replace": 56
++   },
++   "replaced_map_sources": {
++    "train_mean": 56
++   },
++   "replaced_size_sources": {
++    "mapped": 56
++   },
++   "transfer_fidelity": {
++    "frames": 868,
++    "median_iou_vs_confident_ir": 0.5144262286764352,
++    "share_iou_ge_0.5": 0.5714285714285714,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_210802_1_3": {
++   "frames": 929,
++   "actions": {
++    "keep_ir": 917,
++    "replace": 12
++   },
++   "replaced_map_sources": {
++    "train_mean": 12
++   },
++   "replaced_size_sources": {
++    "mapped": 12
++   },
++   "transfer_fidelity": {
++    "frames": 885,
++    "median_iou_vs_confident_ir": 0.5067835272828493,
++    "share_iou_ge_0.5": 0.5525423728813559,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_210802_1_6": {
++   "frames": 938,
++   "actions": {
++    "keep_ir": 938
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 929,
++    "median_iou_vs_confident_ir": 0.407634939757185,
++    "share_iou_ge_0.5": 0.017222820236813777,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_210802_1_8": {
++   "frames": 706,
++   "actions": {
++    "keep_ir": 700,
++    "keep_ir_outside_fov": 6
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 700,
++    "median_iou_vs_confident_ir": 0.279504024022342,
++    "share_iou_ge_0.5": 0.018571428571428572,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_213001_1_1": {
++   "frames": 942,
++   "actions": {
++    "replace": 349,
++    "keep_ir": 593
++   },
++   "replaced_map_sources": {
++    "train_mean": 349
++   },
++   "replaced_size_sources": {
++    "mapped": 349
++   },
++   "transfer_fidelity": {
++    "frames": 409,
++    "median_iou_vs_confident_ir": 0.35191054515566866,
++    "share_iou_ge_0.5": 0.007334963325183374,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_213001_1_3": {
++   "frames": 926,
++   "actions": {
++    "keep_ir": 925,
++    "keep_ir_outside_fov": 1
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 925,
++    "median_iou_vs_confident_ir": 0.23186852708428776,
++    "share_iou_ge_0.5": 0.006486486486486486,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_222534_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 471,
++    "median_iou_vs_confident_ir": 0.0,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_222534_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 937,
++    "replace": 34,
++    "keep_ir_rgb_not_confident": 29
++   },
++   "replaced_map_sources": {
++    "train_mean": 34
++   },
++   "replaced_size_sources": {
++    "mapped": 34
++   },
++   "transfer_fidelity": {
++    "frames": 877,
++    "median_iou_vs_confident_ir": 0.24277304948309245,
++    "share_iou_ge_0.5": 0.05131128848346636,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_222534_1_8": {
++   "frames": 938,
++   "actions": {
++    "keep_ir": 938
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 938,
++    "median_iou_vs_confident_ir": 0.17573418420765122,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_103046_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 985,
++    "replace": 15
++   },
++   "replaced_map_sources": {
++    "train_mean": 15
++   },
++   "replaced_size_sources": {
++    "mapped": 15
++   },
++   "transfer_fidelity": {
++    "frames": 985,
++    "median_iou_vs_confident_ir": 0.5233099588303997,
++    "share_iou_ge_0.5": 0.5918781725888325,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_103046_1_8": {
++   "frames": 509,
++   "actions": {
++    "keep_ir": 509
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 509,
++    "median_iou_vs_confident_ir": 0.47281386447543133,
++    "share_iou_ge_0.5": 0.3889980353634578,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_130341_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 964,
++    "median_iou_vs_confident_ir": 0.7498528917907273,
++    "share_iou_ge_0.5": 0.975103734439834,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.6134264512680396,
++    "share_iou_ge_0.5": 0.843,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.6749833274712065,
++    "share_iou_ge_0.5": 0.888,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.49304342080493624,
++    "share_iou_ge_0.5": 0.477,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.48190049307112837,
++    "share_iou_ge_0.5": 0.418,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.07512341962685828,
++    "share_iou_ge_0.5": 0.01,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.3084918200207424,
++    "share_iou_ge_0.5": 0.193,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.20768059829616697,
++    "share_iou_ge_0.5": 0.099,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_9": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 927,
++    "keep_ir_rgb_not_confident": 73
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 866,
++    "median_iou_vs_confident_ir": 0.19404927825537943,
++    "share_iou_ge_0.5": 0.13625866050808313,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_142435_1_9": {
++   "frames": 299,
++   "actions": {
++    "keep_ir": 299
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 299,
++    "median_iou_vs_confident_ir": 0.14905553912929867,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_143632_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.4848301642442637,
++    "share_iou_ge_0.5": 0.45,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_143632_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.573983249298894,
++    "share_iou_ge_0.5": 0.651,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_143632_1_8": {
++   "frames": 584,
++   "actions": {
++    "keep_ir": 576,
++    "keep_ir_outside_fov": 8
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 576,
++    "median_iou_vs_confident_ir": 0.5691771970674009,
++    "share_iou_ge_0.5": 0.6180555555555556,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.6432991994899397,
++    "share_iou_ge_0.5": 0.859,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_10": {
++   "frames": 174,
++   "actions": {
++    "keep_ir": 174
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 174,
++    "median_iou_vs_confident_ir": 0.4254298874277306,
++    "share_iou_ge_0.5": 0.14942528735632185,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.6241935567130259,
++    "share_iou_ge_0.5": 0.78,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.5878715421483734,
++    "share_iou_ge_0.5": 0.649,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183400_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.0,
++    "share_iou_ge_0.5": 0.022,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183400_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.04112906988520446,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183400_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.043638944322964966,
++    "share_iou_ge_0.5": 0.003,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183941_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 906,
++    "keep_ir_rgb_not_confident": 76,
++    "replace": 18
++   },
++   "replaced_map_sources": {
++    "train_mean": 18
++   },
++   "replaced_size_sources": {
++    "mapped": 18
++   },
++   "transfer_fidelity": {
++    "frames": 817,
++    "median_iou_vs_confident_ir": 0.02733475793853041,
++    "share_iou_ge_0.5": 0.01346389228886169,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183941_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir_rgb_not_confident": 11,
++    "keep_ir": 989
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 943,
++    "median_iou_vs_confident_ir": 0.03053643025934436,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_195921_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.35038988394549825,
++    "share_iou_ge_0.5": 0.208,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_195921_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 560,
++    "median_iou_vs_confident_ir": 0.0455735360959792,
++    "share_iou_ge_0.5": 0.01607142857142857,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_195921_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 415,
++    "median_iou_vs_confident_ir": 0.1000722873162463,
++    "share_iou_ge_0.5": 0.05301204819277108,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.37984080439435675,
++    "share_iou_ge_0.5": 0.185,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.5978854295869,
++    "share_iou_ge_0.5": 0.742,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.5299613001060038,
++    "share_iou_ge_0.5": 0.527,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_8": {
++   "frames": 493,
++   "actions": {
++    "keep_ir": 478,
++    "keep_ir_rgb_not_confident": 15
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 475,
++    "median_iou_vs_confident_ir": 0.3247810926913484,
++    "share_iou_ge_0.5": 0.05894736842105263,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  }
++ },
++ "uses_evaluation_labels": false
++}
+\ No newline at end of file
+diff --git a/artifacts/v7/prereg/fusion_summary_R_seq.json b/artifacts/v7/prereg/fusion_summary_R_seq.json
+new file mode 100644
+index 0000000..cbed17d
+--- /dev/null
++++ b/artifacts/v7/prereg/fusion_summary_R_seq.json
+@@ -0,0 +1,1086 @@
++{
++ "split": "val",
++ "videos": 67,
++ "pooled": {
++  "frames": 61999,
++  "actions": {
++   "keep_ir": 60062,
++   "keep_ir_rgb_not_confident": 1276,
++   "keep_ir_outside_fov": 28,
++   "replace": 633
++  },
++  "replaced_map_sources": {
++   "seq": 633
++  },
++  "replaced_size_sources": {
++   "mapped": 633
++  },
++  "transfer_fidelity": {
++   "frames": 57531,
++   "median_iou_vs_confident_ir": 0.5602590498060017,
++   "share_iou_ge_0.5": 0.587370287323356,
++   "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++  }
++ },
++ "per_video": {
++  "20190925_101846_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.526394978678122,
++    "share_iou_ge_0.5": 0.623,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_101846_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 999,
++    "median_iou_vs_confident_ir": 0.45994195545722183,
++    "share_iou_ge_0.5": 0.25825825825825827,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 998,
++    "median_iou_vs_confident_ir": 0.7364791068479346,
++    "share_iou_ge_0.5": 0.8707414829659319,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir_rgb_not_confident": 909,
++    "keep_ir_outside_fov": 4,
++    "replace": 7,
++    "keep_ir": 80
++   },
++   "replaced_map_sources": {
++    "seq": 7
++   },
++   "replaced_size_sources": {
++    "mapped": 7
++   },
++   "transfer_fidelity": {
++    "frames": 67,
++    "median_iou_vs_confident_ir": 0.10953366355954704,
++    "share_iou_ge_0.5": 0.014925373134328358,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7774015206325187,
++    "share_iou_ge_0.5": 0.803,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.4866869953040296,
++    "share_iou_ge_0.5": 0.49,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_8": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 995,
++    "keep_ir_outside_fov": 2,
++    "replace": 1,
++    "keep_ir_rgb_not_confident": 2
++   },
++   "replaced_map_sources": {
++    "seq": 1
++   },
++   "replaced_size_sources": {
++    "mapped": 1
++   },
++   "transfer_fidelity": {
++    "frames": 946,
++    "median_iou_vs_confident_ir": 0.11831835287969347,
++    "share_iou_ge_0.5": 0.2219873150105708,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_131530_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 989,
++    "replace": 11
++   },
++   "replaced_map_sources": {
++    "seq": 11
++   },
++   "replaced_size_sources": {
++    "mapped": 11
++   },
++   "transfer_fidelity": {
++    "frames": 986,
++    "median_iou_vs_confident_ir": 0.2876699349814078,
++    "share_iou_ge_0.5": 0.23732251521298176,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_133630_1_9": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 984,
++    "keep_ir_rgb_not_confident": 9,
++    "replace": 7
++   },
++   "replaced_map_sources": {
++    "seq": 7
++   },
++   "replaced_size_sources": {
++    "mapped": 7
++   },
++   "transfer_fidelity": {
++    "frames": 869,
++    "median_iou_vs_confident_ir": 0.583896925244978,
++    "share_iou_ge_0.5": 0.6248561565017261,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_140917_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 976,
++    "replace": 12,
++    "keep_ir_outside_fov": 4,
++    "keep_ir_rgb_not_confident": 8
++   },
++   "replaced_map_sources": {
++    "seq": 12
++   },
++   "replaced_size_sources": {
++    "mapped": 12
++   },
++   "transfer_fidelity": {
++    "frames": 944,
++    "median_iou_vs_confident_ir": 0.6181003905975568,
++    "share_iou_ge_0.5": 0.7764830508474576,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_140917_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 952,
++    "replace": 48
++   },
++   "replaced_map_sources": {
++    "seq": 48
++   },
++   "replaced_size_sources": {
++    "mapped": 48
++   },
++   "transfer_fidelity": {
++    "frames": 935,
++    "median_iou_vs_confident_ir": 0.5668347509561773,
++    "share_iou_ge_0.5": 0.5786096256684492,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_141417_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 983,
++    "keep_ir_rgb_not_confident": 3,
++    "replace": 14
++   },
++   "replaced_map_sources": {
++    "seq": 14
++   },
++   "replaced_size_sources": {
++    "mapped": 14
++   },
++   "transfer_fidelity": {
++    "frames": 966,
++    "median_iou_vs_confident_ir": 0.6765806505850145,
++    "share_iou_ge_0.5": 0.8902691511387164,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_141417_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 986,
++    "replace": 14
++   },
++   "replaced_map_sources": {
++    "seq": 14
++   },
++   "replaced_size_sources": {
++    "mapped": 14
++   },
++   "transfer_fidelity": {
++    "frames": 977,
++    "median_iou_vs_confident_ir": 0.6996820314486337,
++    "share_iou_ge_0.5": 0.7103377686796315,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_141417_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7767993164658177,
++    "share_iou_ge_0.5": 0.826,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_143900_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7312018218250259,
++    "share_iou_ge_0.5": 0.815,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_143900_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 997,
++    "replace": 3
++   },
++   "replaced_map_sources": {
++    "seq": 3
++   },
++   "replaced_size_sources": {
++    "mapped": 3
++   },
++   "transfer_fidelity": {
++    "frames": 981,
++    "median_iou_vs_confident_ir": 0.8029653621128875,
++    "share_iou_ge_0.5": 0.7849133537206932,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_143900_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 999,
++    "replace": 1
++   },
++   "replaced_map_sources": {
++    "seq": 1
++   },
++   "replaced_size_sources": {
++    "mapped": 1
++   },
++   "transfer_fidelity": {
++    "frames": 999,
++    "median_iou_vs_confident_ir": 0.11581278189459307,
++    "share_iou_ge_0.5": 0.17117117117117117,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_152412_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 994,
++    "keep_ir_outside_fov": 3,
++    "replace": 3
++   },
++   "replaced_map_sources": {
++    "seq": 3
++   },
++   "replaced_size_sources": {
++    "mapped": 3
++   },
++   "transfer_fidelity": {
++    "frames": 958,
++    "median_iou_vs_confident_ir": 0.2305010964545232,
++    "share_iou_ge_0.5": 0.21816283924843424,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_152412_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 994,
++    "replace": 5,
++    "keep_ir_outside_fov": 1
++   },
++   "replaced_map_sources": {
++    "seq": 5
++   },
++   "replaced_size_sources": {
++    "mapped": 5
++   },
++   "transfer_fidelity": {
++    "frames": 952,
++    "median_iou_vs_confident_ir": 0.4357592450914426,
++    "share_iou_ge_0.5": 0.36134453781512604,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_183946_1_1": {
++   "frames": 929,
++   "actions": {
++    "keep_ir": 929
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 924,
++    "median_iou_vs_confident_ir": 0.7404784089920246,
++    "share_iou_ge_0.5": 0.9772727272727273,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_183946_1_2": {
++   "frames": 858,
++   "actions": {
++    "keep_ir": 858
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 854,
++    "median_iou_vs_confident_ir": 0.633843279136791,
++    "share_iou_ge_0.5": 0.8430913348946136,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_183946_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 982,
++    "median_iou_vs_confident_ir": 0.7797450366198652,
++    "share_iou_ge_0.5": 0.929735234215886,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_194211_1_3": {
++   "frames": 971,
++   "actions": {
++    "keep_ir_rgb_not_confident": 87,
++    "keep_ir": 884
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 827,
++    "median_iou_vs_confident_ir": 0.6889437729506012,
++    "share_iou_ge_0.5": 0.9250302297460702,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_194211_1_4": {
++   "frames": 944,
++   "actions": {
++    "keep_ir": 944
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 943,
++    "median_iou_vs_confident_ir": 0.737936794239884,
++    "share_iou_ge_0.5": 0.9809119830328739,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_200320_1_4": {
++   "frames": 935,
++   "actions": {
++    "keep_ir": 935
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 935,
++    "median_iou_vs_confident_ir": 0.378676724275129,
++    "share_iou_ge_0.5": 0.026737967914438502,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_200320_1_8": {
++   "frames": 39,
++   "actions": {
++    "keep_ir": 39
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 39,
++    "median_iou_vs_confident_ir": 0.45563993422246274,
++    "share_iou_ge_0.5": 0.07692307692307693,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_205804_1_5": {
++   "frames": 961,
++   "actions": {
++    "keep_ir_rgb_not_confident": 54,
++    "keep_ir": 885,
++    "replace": 22
++   },
++   "replaced_map_sources": {
++    "seq": 22
++   },
++   "replaced_size_sources": {
++    "mapped": 22
++   },
++   "transfer_fidelity": {
++    "frames": 865,
++    "median_iou_vs_confident_ir": 0.33740138817181897,
++    "share_iou_ge_0.5": 0.11098265895953757,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_205804_1_6": {
++   "frames": 924,
++   "actions": {
++    "keep_ir": 868,
++    "replace": 56
++   },
++   "replaced_map_sources": {
++    "seq": 56
++   },
++   "replaced_size_sources": {
++    "mapped": 56
++   },
++   "transfer_fidelity": {
++    "frames": 868,
++    "median_iou_vs_confident_ir": 0.48771425211083086,
++    "share_iou_ge_0.5": 0.3064516129032258,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_210802_1_3": {
++   "frames": 929,
++   "actions": {
++    "keep_ir": 917,
++    "replace": 12
++   },
++   "replaced_map_sources": {
++    "seq": 12
++   },
++   "replaced_size_sources": {
++    "mapped": 12
++   },
++   "transfer_fidelity": {
++    "frames": 885,
++    "median_iou_vs_confident_ir": 0.5148862219820316,
++    "share_iou_ge_0.5": 0.6779661016949152,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_210802_1_6": {
++   "frames": 938,
++   "actions": {
++    "keep_ir": 938
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 929,
++    "median_iou_vs_confident_ir": 0.4260715801844606,
++    "share_iou_ge_0.5": 0.15715823466092574,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_210802_1_8": {
++   "frames": 706,
++   "actions": {
++    "keep_ir": 700,
++    "keep_ir_outside_fov": 6
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 700,
++    "median_iou_vs_confident_ir": 0.33460090982659685,
++    "share_iou_ge_0.5": 0.12285714285714286,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_213001_1_1": {
++   "frames": 942,
++   "actions": {
++    "replace": 349,
++    "keep_ir": 593
++   },
++   "replaced_map_sources": {
++    "seq": 349
++   },
++   "replaced_size_sources": {
++    "mapped": 349
++   },
++   "transfer_fidelity": {
++    "frames": 409,
++    "median_iou_vs_confident_ir": 0.5543193228394323,
++    "share_iou_ge_0.5": 0.9290953545232273,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_213001_1_3": {
++   "frames": 926,
++   "actions": {
++    "keep_ir": 925,
++    "keep_ir_outside_fov": 1
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 925,
++    "median_iou_vs_confident_ir": 0.5032138193799127,
++    "share_iou_ge_0.5": 0.5210810810810811,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_222534_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 471,
++    "median_iou_vs_confident_ir": 0.7175439007008586,
++    "share_iou_ge_0.5": 0.9660297239915074,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_222534_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 937,
++    "replace": 34,
++    "keep_ir_rgb_not_confident": 29
++   },
++   "replaced_map_sources": {
++    "seq": 34
++   },
++   "replaced_size_sources": {
++    "mapped": 34
++   },
++   "transfer_fidelity": {
++    "frames": 877,
++    "median_iou_vs_confident_ir": 0.32238077122536374,
++    "share_iou_ge_0.5": 0.027366020524515394,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_222534_1_8": {
++   "frames": 938,
++   "actions": {
++    "keep_ir": 938
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 938,
++    "median_iou_vs_confident_ir": 0.4021961771100071,
++    "share_iou_ge_0.5": 0.09275053304904052,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_103046_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 985,
++    "replace": 15
++   },
++   "replaced_map_sources": {
++    "seq": 15
++   },
++   "replaced_size_sources": {
++    "mapped": 15
++   },
++   "transfer_fidelity": {
++    "frames": 985,
++    "median_iou_vs_confident_ir": 0.6723371813436386,
++    "share_iou_ge_0.5": 0.7736040609137056,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_103046_1_8": {
++   "frames": 509,
++   "actions": {
++    "keep_ir": 509
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 509,
++    "median_iou_vs_confident_ir": 0.6857892212151654,
++    "share_iou_ge_0.5": 0.8565815324165029,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_130341_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 964,
++    "median_iou_vs_confident_ir": 0.7542597617565154,
++    "share_iou_ge_0.5": 0.9719917012448133,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7614523292259681,
++    "share_iou_ge_0.5": 0.931,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7816409064465245,
++    "share_iou_ge_0.5": 0.886,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7141280645985664,
++    "share_iou_ge_0.5": 0.745,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.6750292221971027,
++    "share_iou_ge_0.5": 0.797,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7374230351442524,
++    "share_iou_ge_0.5": 0.836,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.60727110205685,
++    "share_iou_ge_0.5": 0.613,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.3593281583326906,
++    "share_iou_ge_0.5": 0.267,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_9": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 927,
++    "keep_ir_rgb_not_confident": 73
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 866,
++    "median_iou_vs_confident_ir": 0.2704673610587305,
++    "share_iou_ge_0.5": 0.15242494226327943,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_142435_1_9": {
++   "frames": 299,
++   "actions": {
++    "keep_ir": 299
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 299,
++    "median_iou_vs_confident_ir": 0.6794224490194456,
++    "share_iou_ge_0.5": 1.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_143632_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7308018070112452,
++    "share_iou_ge_0.5": 0.964,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_143632_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.6778308287156642,
++    "share_iou_ge_0.5": 0.733,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_143632_1_8": {
++   "frames": 584,
++   "actions": {
++    "keep_ir": 576,
++    "keep_ir_outside_fov": 7,
++    "replace": 1
++   },
++   "replaced_map_sources": {
++    "seq": 1
++   },
++   "replaced_size_sources": {
++    "mapped": 1
++   },
++   "transfer_fidelity": {
++    "frames": 576,
++    "median_iou_vs_confident_ir": 0.6315369274639879,
++    "share_iou_ge_0.5": 0.6458333333333334,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7240012990072663,
++    "share_iou_ge_0.5": 0.892,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_10": {
++   "frames": 174,
++   "actions": {
++    "keep_ir": 174
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 174,
++    "median_iou_vs_confident_ir": 0.8964518397979248,
++    "share_iou_ge_0.5": 1.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.7201057150832916,
++    "share_iou_ge_0.5": 0.908,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.6189348578042169,
++    "share_iou_ge_0.5": 0.754,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183400_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.41329744696476567,
++    "share_iou_ge_0.5": 0.315,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183400_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.4578265121175878,
++    "share_iou_ge_0.5": 0.394,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183400_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.39179751051678785,
++    "share_iou_ge_0.5": 0.115,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183941_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 906,
++    "keep_ir_rgb_not_confident": 76,
++    "replace": 18
++   },
++   "replaced_map_sources": {
++    "seq": 18
++   },
++   "replaced_size_sources": {
++    "mapped": 18
++   },
++   "transfer_fidelity": {
++    "frames": 817,
++    "median_iou_vs_confident_ir": 0.22612471899461953,
++    "share_iou_ge_0.5": 0.1003671970624235,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183941_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir_rgb_not_confident": 11,
++    "keep_ir": 989
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 943,
++    "median_iou_vs_confident_ir": 0.09223486924623232,
++    "share_iou_ge_0.5": 0.0,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_195921_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.5743519436307676,
++    "share_iou_ge_0.5": 0.893,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_195921_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 560,
++    "median_iou_vs_confident_ir": 0.09121786364771471,
++    "share_iou_ge_0.5": 0.025,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_195921_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 415,
++    "median_iou_vs_confident_ir": 0.13730434591085372,
++    "share_iou_ge_0.5": 0.03614457831325301,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.5898699685357498,
++    "share_iou_ge_0.5": 0.863,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.6196385117683845,
++    "share_iou_ge_0.5": 0.785,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.5763757946088424,
++    "share_iou_ge_0.5": 0.569,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_8": {
++   "frames": 493,
++   "actions": {
++    "keep_ir": 478,
++    "keep_ir_rgb_not_confident": 15
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 475,
++    "median_iou_vs_confident_ir": 0.6188194138876357,
++    "share_iou_ge_0.5": 0.9242105263157895,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  }
++ },
++ "uses_evaluation_labels": true
++}
+\ No newline at end of file
+diff --git a/artifacts/v7/prereg/fusion_summary_S_online.json b/artifacts/v7/prereg/fusion_summary_S_online.json
+new file mode 100644
+index 0000000..5cc78b2
+--- /dev/null
++++ b/artifacts/v7/prereg/fusion_summary_S_online.json
+@@ -0,0 +1,1092 @@
++{
++ "split": "val",
++ "videos": 67,
++ "pooled": {
++  "frames": 61999,
++  "actions": {
++   "keep_ir": 60062,
++   "keep_ir_rgb_not_confident": 1276,
++   "keep_ir_outside_fov": 14,
++   "replace": 647
++  },
++  "replaced_map_sources": {
++   "online": 289,
++   "online_fallback": 358
++  },
++  "replaced_size_sources": {
++   "ir_recent": 319,
++   "mapped_fallback": 328
++  },
++  "transfer_fidelity": {
++   "frames": 57531,
++   "median_iou_vs_confident_ir": 0.9049234650718446,
++   "share_iou_ge_0.5": 0.8201665189202343,
++   "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++  }
++ },
++ "per_video": {
++  "20190925_101846_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.8146509810978928,
++    "share_iou_ge_0.5": 0.77,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_101846_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 999,
++    "median_iou_vs_confident_ir": 0.8928522843441536,
++    "share_iou_ge_0.5": 0.8888888888888888,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 998,
++    "median_iou_vs_confident_ir": 0.9516924277573995,
++    "share_iou_ge_0.5": 0.874749498997996,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir_rgb_not_confident": 909,
++    "keep_ir_outside_fov": 3,
++    "keep_ir": 80,
++    "replace": 8
++   },
++   "replaced_map_sources": {
++    "online": 8
++   },
++   "replaced_size_sources": {
++    "ir_recent": 8
++   },
++   "transfer_fidelity": {
++    "frames": 67,
++    "median_iou_vs_confident_ir": 0.5107891780792977,
++    "share_iou_ge_0.5": 0.5074626865671642,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9282863401308038,
++    "share_iou_ge_0.5": 0.749,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.830113664812729,
++    "share_iou_ge_0.5": 0.734,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_130434_1_8": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 995,
++    "replace": 3,
++    "keep_ir_rgb_not_confident": 2
++   },
++   "replaced_map_sources": {
++    "online": 3
++   },
++   "replaced_size_sources": {
++    "ir_recent": 3
++   },
++   "transfer_fidelity": {
++    "frames": 946,
++    "median_iou_vs_confident_ir": 0.34766077666521267,
++    "share_iou_ge_0.5": 0.45454545454545453,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_131530_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 989,
++    "replace": 11
++   },
++   "replaced_map_sources": {
++    "online": 11
++   },
++   "replaced_size_sources": {
++    "ir_recent": 11
++   },
++   "transfer_fidelity": {
++    "frames": 986,
++    "median_iou_vs_confident_ir": 0.8616967916283558,
++    "share_iou_ge_0.5": 0.6460446247464503,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_133630_1_9": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 984,
++    "keep_ir_rgb_not_confident": 9,
++    "replace": 7
++   },
++   "replaced_map_sources": {
++    "online": 7
++   },
++   "replaced_size_sources": {
++    "ir_recent": 7
++   },
++   "transfer_fidelity": {
++    "frames": 869,
++    "median_iou_vs_confident_ir": 0.8080816365886743,
++    "share_iou_ge_0.5": 0.7721518987341772,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_140917_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 976,
++    "replace": 12,
++    "keep_ir_outside_fov": 4,
++    "keep_ir_rgb_not_confident": 8
++   },
++   "replaced_map_sources": {
++    "online": 12
++   },
++   "replaced_size_sources": {
++    "ir_recent": 12
++   },
++   "transfer_fidelity": {
++    "frames": 944,
++    "median_iou_vs_confident_ir": 0.8709040538370301,
++    "share_iou_ge_0.5": 0.8622881355932204,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_140917_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 952,
++    "replace": 48
++   },
++   "replaced_map_sources": {
++    "online": 48
++   },
++   "replaced_size_sources": {
++    "ir_recent": 48
++   },
++   "transfer_fidelity": {
++    "frames": 935,
++    "median_iou_vs_confident_ir": 0.7828877635216182,
++    "share_iou_ge_0.5": 0.7957219251336899,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_141417_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 983,
++    "keep_ir_rgb_not_confident": 3,
++    "replace": 14
++   },
++   "replaced_map_sources": {
++    "online": 14
++   },
++   "replaced_size_sources": {
++    "ir_recent": 14
++   },
++   "transfer_fidelity": {
++    "frames": 966,
++    "median_iou_vs_confident_ir": 0.7832662873406375,
++    "share_iou_ge_0.5": 0.8126293995859213,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_141417_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 986,
++    "replace": 14
++   },
++   "replaced_map_sources": {
++    "online": 14
++   },
++   "replaced_size_sources": {
++    "ir_recent": 14
++   },
++   "transfer_fidelity": {
++    "frames": 977,
++    "median_iou_vs_confident_ir": 0.847571045343165,
++    "share_iou_ge_0.5": 0.8638689866939611,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_141417_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9360693900505883,
++    "share_iou_ge_0.5": 0.904,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_143900_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9103802128561855,
++    "share_iou_ge_0.5": 0.835,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_143900_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 997,
++    "replace": 3
++   },
++   "replaced_map_sources": {
++    "online": 3
++   },
++   "replaced_size_sources": {
++    "ir_recent": 3
++   },
++   "transfer_fidelity": {
++    "frames": 981,
++    "median_iou_vs_confident_ir": 0.930478144300613,
++    "share_iou_ge_0.5": 0.8348623853211009,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_143900_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 999,
++    "replace": 1
++   },
++   "replaced_map_sources": {
++    "online": 1
++   },
++   "replaced_size_sources": {
++    "ir_recent": 1
++   },
++   "transfer_fidelity": {
++    "frames": 999,
++    "median_iou_vs_confident_ir": 0.6854430057933265,
++    "share_iou_ge_0.5": 0.5995995995995996,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_152412_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 994,
++    "replace": 6
++   },
++   "replaced_map_sources": {
++    "online": 6
++   },
++   "replaced_size_sources": {
++    "ir_recent": 6
++   },
++   "transfer_fidelity": {
++    "frames": 958,
++    "median_iou_vs_confident_ir": 0.7649740746470128,
++    "share_iou_ge_0.5": 0.6691022964509394,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_152412_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 994,
++    "replace": 6
++   },
++   "replaced_map_sources": {
++    "online": 6
++   },
++   "replaced_size_sources": {
++    "ir_recent": 6
++   },
++   "transfer_fidelity": {
++    "frames": 952,
++    "median_iou_vs_confident_ir": 0.8402549631780836,
++    "share_iou_ge_0.5": 0.759453781512605,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_183946_1_1": {
++   "frames": 929,
++   "actions": {
++    "keep_ir": 929
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 924,
++    "median_iou_vs_confident_ir": 0.9533843662068473,
++    "share_iou_ge_0.5": 0.974025974025974,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_183946_1_2": {
++   "frames": 858,
++   "actions": {
++    "keep_ir": 858
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 854,
++    "median_iou_vs_confident_ir": 0.9388401882175959,
++    "share_iou_ge_0.5": 0.8641686182669789,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_183946_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 982,
++    "median_iou_vs_confident_ir": 0.9615999150022732,
++    "share_iou_ge_0.5": 0.9063136456211812,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_194211_1_3": {
++   "frames": 971,
++   "actions": {
++    "keep_ir_rgb_not_confident": 87,
++    "keep_ir": 884
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 827,
++    "median_iou_vs_confident_ir": 0.8742133304424757,
++    "share_iou_ge_0.5": 0.9516324062877872,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_194211_1_4": {
++   "frames": 944,
++   "actions": {
++    "keep_ir": 944
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 943,
++    "median_iou_vs_confident_ir": 0.789708784274452,
++    "share_iou_ge_0.5": 0.9342523860021209,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_200320_1_4": {
++   "frames": 935,
++   "actions": {
++    "keep_ir": 935
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 935,
++    "median_iou_vs_confident_ir": 0.9195976575762194,
++    "share_iou_ge_0.5": 0.9454545454545454,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_200320_1_8": {
++   "frames": 39,
++   "actions": {
++    "keep_ir": 39
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 39,
++    "median_iou_vs_confident_ir": 0.8892014178973531,
++    "share_iou_ge_0.5": 0.9743589743589743,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_205804_1_5": {
++   "frames": 961,
++   "actions": {
++    "keep_ir_rgb_not_confident": 54,
++    "keep_ir": 885,
++    "replace": 22
++   },
++   "replaced_map_sources": {
++    "online": 21,
++    "online_fallback": 1
++   },
++   "replaced_size_sources": {
++    "ir_recent": 21,
++    "mapped_fallback": 1
++   },
++   "transfer_fidelity": {
++    "frames": 865,
++    "median_iou_vs_confident_ir": 0.9588083165749093,
++    "share_iou_ge_0.5": 0.9190751445086706,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_205804_1_6": {
++   "frames": 924,
++   "actions": {
++    "keep_ir": 868,
++    "replace": 56
++   },
++   "replaced_map_sources": {
++    "online": 50,
++    "online_fallback": 6
++   },
++   "replaced_size_sources": {
++    "ir_recent": 50,
++    "mapped_fallback": 6
++   },
++   "transfer_fidelity": {
++    "frames": 868,
++    "median_iou_vs_confident_ir": 0.9631512411213534,
++    "share_iou_ge_0.5": 0.9320276497695853,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_210802_1_3": {
++   "frames": 929,
++   "actions": {
++    "keep_ir": 917,
++    "replace": 12
++   },
++   "replaced_map_sources": {
++    "online": 12
++   },
++   "replaced_size_sources": {
++    "ir_recent": 12
++   },
++   "transfer_fidelity": {
++    "frames": 885,
++    "median_iou_vs_confident_ir": 0.9485818834988123,
++    "share_iou_ge_0.5": 0.96045197740113,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_210802_1_6": {
++   "frames": 938,
++   "actions": {
++    "keep_ir": 938
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 929,
++    "median_iou_vs_confident_ir": 0.9525064579251267,
++    "share_iou_ge_0.5": 0.8998923573735199,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_210802_1_8": {
++   "frames": 706,
++   "actions": {
++    "keep_ir": 700,
++    "keep_ir_outside_fov": 6
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 700,
++    "median_iou_vs_confident_ir": 0.8804779997918297,
++    "share_iou_ge_0.5": 0.6928571428571428,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_213001_1_1": {
++   "frames": 942,
++   "actions": {
++    "replace": 349,
++    "keep_ir": 593
++   },
++   "replaced_map_sources": {
++    "online_fallback": 348,
++    "online": 1
++   },
++   "replaced_size_sources": {
++    "mapped_fallback": 318,
++    "ir_recent": 31
++   },
++   "transfer_fidelity": {
++    "frames": 409,
++    "median_iou_vs_confident_ir": 0.950761005313743,
++    "share_iou_ge_0.5": 0.9877750611246944,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_213001_1_3": {
++   "frames": 926,
++   "actions": {
++    "keep_ir": 925,
++    "keep_ir_outside_fov": 1
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 925,
++    "median_iou_vs_confident_ir": 0.9435860205765094,
++    "share_iou_ge_0.5": 0.9318918918918919,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_222534_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 471,
++    "median_iou_vs_confident_ir": 0.6710862155894822,
++    "share_iou_ge_0.5": 0.9660297239915074,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_222534_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 937,
++    "replace": 34,
++    "keep_ir_rgb_not_confident": 29
++   },
++   "replaced_map_sources": {
++    "online": 31,
++    "online_fallback": 3
++   },
++   "replaced_size_sources": {
++    "ir_recent": 31,
++    "mapped_fallback": 3
++   },
++   "transfer_fidelity": {
++    "frames": 877,
++    "median_iou_vs_confident_ir": 0.928204080267083,
++    "share_iou_ge_0.5": 0.8095781071835804,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190925_222534_1_8": {
++   "frames": 938,
++   "actions": {
++    "keep_ir": 938
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 938,
++    "median_iou_vs_confident_ir": 0.9314724514947255,
++    "share_iou_ge_0.5": 0.9093816631130064,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_103046_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 985,
++    "replace": 15
++   },
++   "replaced_map_sources": {
++    "online": 15
++   },
++   "replaced_size_sources": {
++    "ir_recent": 15
++   },
++   "transfer_fidelity": {
++    "frames": 985,
++    "median_iou_vs_confident_ir": 0.8822404701979238,
++    "share_iou_ge_0.5": 0.8751269035532995,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_103046_1_8": {
++   "frames": 509,
++   "actions": {
++    "keep_ir": 509
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 509,
++    "median_iou_vs_confident_ir": 0.9068933516198845,
++    "share_iou_ge_0.5": 0.8290766208251473,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_130341_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 964,
++    "median_iou_vs_confident_ir": 0.9299894029963289,
++    "share_iou_ge_0.5": 0.9719917012448133,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.94974326167115,
++    "share_iou_ge_0.5": 0.929,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9490375650102559,
++    "share_iou_ge_0.5": 0.899,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.8956883052719093,
++    "share_iou_ge_0.5": 0.825,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_133516_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.8908376610660638,
++    "share_iou_ge_0.5": 0.826,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9285336148878309,
++    "share_iou_ge_0.5": 0.895,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.8650435356507167,
++    "share_iou_ge_0.5": 0.824,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.8412768877867548,
++    "share_iou_ge_0.5": 0.716,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_141816_1_9": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 927,
++    "keep_ir_rgb_not_confident": 73
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 866,
++    "median_iou_vs_confident_ir": 0.4537484752409328,
++    "share_iou_ge_0.5": 0.48036951501154734,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_142435_1_9": {
++   "frames": 299,
++   "actions": {
++    "keep_ir": 299
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 299,
++    "median_iou_vs_confident_ir": 0.9584778550539338,
++    "share_iou_ge_0.5": 0.9966555183946488,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_143632_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9596151922701459,
++    "share_iou_ge_0.5": 0.943,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_143632_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9082768552548572,
++    "share_iou_ge_0.5": 0.787,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_143632_1_8": {
++   "frames": 584,
++   "actions": {
++    "keep_ir": 576,
++    "replace": 8
++   },
++   "replaced_map_sources": {
++    "online": 8
++   },
++   "replaced_size_sources": {
++    "ir_recent": 8
++   },
++   "transfer_fidelity": {
++    "frames": 576,
++    "median_iou_vs_confident_ir": 0.8946149358831825,
++    "share_iou_ge_0.5": 0.8298611111111112,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9265885188587881,
++    "share_iou_ge_0.5": 0.907,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_10": {
++   "frames": 174,
++   "actions": {
++    "keep_ir": 174
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 174,
++    "median_iou_vs_confident_ir": 0.9435467253940836,
++    "share_iou_ge_0.5": 0.9942528735632183,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9317408521490018,
++    "share_iou_ge_0.5": 0.879,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_144550_1_7": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.914087356639333,
++    "share_iou_ge_0.5": 0.795,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183400_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.8611934695575019,
++    "share_iou_ge_0.5": 0.68,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183400_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9164957357110579,
++    "share_iou_ge_0.5": 0.733,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183400_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9268341550466861,
++    "share_iou_ge_0.5": 0.731,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183941_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 906,
++    "keep_ir_rgb_not_confident": 76,
++    "replace": 18
++   },
++   "replaced_map_sources": {
++    "online": 18
++   },
++   "replaced_size_sources": {
++    "ir_recent": 18
++   },
++   "transfer_fidelity": {
++    "frames": 817,
++    "median_iou_vs_confident_ir": 0.9092999382957137,
++    "share_iou_ge_0.5": 0.7515299877600979,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_183941_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir_rgb_not_confident": 11,
++    "keep_ir": 989
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 943,
++    "median_iou_vs_confident_ir": 0.8234816045418301,
++    "share_iou_ge_0.5": 0.5970307529162248,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_195921_1_1": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.919082770923191,
++    "share_iou_ge_0.5": 0.94,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_195921_1_5": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 560,
++    "median_iou_vs_confident_ir": 0.5350491840344997,
++    "share_iou_ge_0.5": 0.5214285714285715,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_195921_1_6": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 415,
++    "median_iou_vs_confident_ir": 0.434703342609295,
++    "share_iou_ge_0.5": 0.42891566265060244,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_2": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9048709990693855,
++    "share_iou_ge_0.5": 0.915,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_3": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.9315554808497858,
++    "share_iou_ge_0.5": 0.839,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_4": {
++   "frames": 1000,
++   "actions": {
++    "keep_ir": 1000
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 1000,
++    "median_iou_vs_confident_ir": 0.897572287832992,
++    "share_iou_ge_0.5": 0.746,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  },
++  "20190926_200510_1_8": {
++   "frames": 493,
++   "actions": {
++    "keep_ir": 478,
++    "keep_ir_rgb_not_confident": 15
++   },
++   "replaced_map_sources": {},
++   "replaced_size_sources": {},
++   "transfer_fidelity": {
++    "frames": 475,
++    "median_iou_vs_confident_ir": 0.9378216187104049,
++    "share_iou_ge_0.5": 0.9936842105263158,
++    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
++   }
++  }
++ },
++ "uses_evaluation_labels": false
++}
+\ No newline at end of file
+diff --git a/artifacts/v7/prereg/sync_audit_predictions_val.json b/artifacts/v7/prereg/sync_audit_predictions_val.json
+new file mode 100644
+index 0000000..05d273a
+--- /dev/null
++++ b/artifacts/v7/prereg/sync_audit_predictions_val.json
+@@ -0,0 +1,737 @@
++{
++ "split": "val",
++ "settings": {
++  "ir_run": "artifacts/predictions/v3/A0_s0",
++  "rgb_run": "artifacts/predictions/v6/A0rgb_s0",
++  "root": null,
++  "split": "val",
++  "box_format": "xywh",
++  "ir_wh": [
++   640,
++   512
++  ],
++  "rgb_wh": [
++   1920,
++   1080
++  ],
++  "conf": 0.5,
++  "model": "scale_translation",
++  "max_lag": 15,
++  "window": 0,
++  "min_pairs": 40,
++  "min_gain_px": 1.0,
++  "min_ratio": 1.5,
++  "allow_test": false,
++  "out": "<scratch>/sync_whole.json"
++ },
++ "sources": {
++  "predictions": {
++   "videos": 67,
++   "flagged": [
++    "20190925_130434_1_2",
++    "20190925_130434_1_6",
++    "20190925_130434_1_8",
++    "20190925_131530_1_3",
++    "20190925_141417_1_1",
++    "20190925_143900_1_2",
++    "20190925_143900_1_7",
++    "20190925_152412_1_3",
++    "20190925_183946_1_1",
++    "20190925_183946_1_2",
++    "20190925_194211_1_3",
++    "20190925_194211_1_4",
++    "20190925_205804_1_5",
++    "20190925_210802_1_3",
++    "20190925_210802_1_6",
++    "20190925_210802_1_8",
++    "20190925_213001_1_3",
++    "20190925_222534_1_7",
++    "20190925_222534_1_8",
++    "20190926_133516_1_2",
++    "20190926_133516_1_3",
++    "20190926_141816_1_2",
++    "20190926_141816_1_6",
++    "20190926_141816_1_9",
++    "20190926_144550_1_4",
++    "20190926_144550_1_7",
++    "20190926_183400_1_1",
++    "20190926_183400_1_4",
++    "20190926_183400_1_6",
++    "20190926_183941_1_5",
++    "20190926_195921_1_5",
++    "20190926_195921_1_6",
++    "20190926_200510_1_3",
++    "20190926_200510_1_4"
++   ],
++   "per_video": {
++    "20190925_101846_1_4": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 0,
++      "resid_px_best": 1.9940184777846528,
++      "resid_px_lag0": 1.9940184777846528,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190925_101846_1_5": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 0,
++      "resid_px_best": 1.451978131552219,
++      "resid_px_lag0": 1.451978131552219,
++      "pairs_lag0": 999
++     }
++    ],
++    "20190925_130434_1_1": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -2,
++      "resid_px_best": 1.8016751026152726,
++      "resid_px_lag0": 2.3184053441647086,
++      "pairs_lag0": 998
++     }
++    ],
++    "20190925_130434_1_2": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -4,
++      "resid_px_best": 5.430884598269376,
++      "resid_px_lag0": 56.68695482702568,
++      "pairs_lag0": 67
++     }
++    ],
++    "20190925_130434_1_5": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -5,
++      "resid_px_best": 3.8298576797728954,
++      "resid_px_lag0": 4.874291335693695,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190925_130434_1_6": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -4,
++      "resid_px_best": 5.627552575069371,
++      "resid_px_lag0": 12.271610779209102,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190925_130434_1_8": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -4,
++      "resid_px_best": 13.078025904157396,
++      "resid_px_lag0": 31.63372559955063,
++      "pairs_lag0": 946
++     }
++    ],
++    "20190925_131530_1_3": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 7,
++      "resid_px_best": 2.9267110929900175,
++      "resid_px_lag0": 27.985971048472628,
++      "pairs_lag0": 986
++     }
++    ],
++    "20190925_133630_1_9": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -1,
++      "resid_px_best": 3.828249977648655,
++      "resid_px_lag0": 4.2566017172863875,
++      "pairs_lag0": 869
++     }
++    ],
++    "20190925_140917_1_3": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 2,
++      "resid_px_best": 4.6691898788610136,
++      "resid_px_lag0": 4.91663542230857,
++      "pairs_lag0": 944
++     }
++    ],
++    "20190925_140917_1_6": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 2,
++      "resid_px_best": 4.624377712482001,
++      "resid_px_lag0": 6.134762528223467,
++      "pairs_lag0": 935
++     }
++    ],
++    "20190925_141417_1_1": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -1,
++      "resid_px_best": 2.131933031842911,
++      "resid_px_lag0": 3.282795788156135,
++      "pairs_lag0": 966
++     }
++    ],
++    "20190925_141417_1_6": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 0,
++      "resid_px_best": 2.0007009293930667,
++      "resid_px_lag0": 2.0007009293930667,
++      "pairs_lag0": 977
++     }
++    ],
++    "20190925_141417_1_7": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 2,
++      "resid_px_best": 0.7435083263000272,
++      "resid_px_lag0": 1.3335931232012859,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190925_143900_1_1": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 1,
++      "resid_px_best": 3.049241155885963,
++      "resid_px_lag0": 3.1488814794189013,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190925_143900_1_2": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -3,
++      "resid_px_best": 0.9331216395978787,
++      "resid_px_lag0": 1.9772675883742743,
++      "pairs_lag0": 981
++     }
++    ],
++    "20190925_143900_1_7": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -3,
++      "resid_px_best": 11.90740596219322,
++      "resid_px_lag0": 28.376696070593397,
++      "pairs_lag0": 999
++     }
++    ],
++    "20190925_152412_1_3": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -3,
++      "resid_px_best": 6.998275882617122,
++      "resid_px_lag0": 16.547307719574647,
++      "pairs_lag0": 958
++     }
++    ],
++    "20190925_152412_1_5": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -2,
++      "resid_px_best": 6.834041870473449,
++      "resid_px_lag0": 10.165787687581764,
++      "pairs_lag0": 952
++     }
++    ],
++    "20190925_183946_1_1": [
++     {
++      "start": 0,
++      "end": 929,
++      "best_lag": -1,
++      "resid_px_best": 2.163202751935477,
++      "resid_px_lag0": 4.2541456690758,
++      "pairs_lag0": 924
++     }
++    ],
++    "20190925_183946_1_2": [
++     {
++      "start": 0,
++      "end": 858,
++      "best_lag": 2,
++      "resid_px_best": 4.789005294150524,
++      "resid_px_lag0": 7.71435158526832,
++      "pairs_lag0": 854
++     }
++    ],
++    "20190925_183946_1_3": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 1,
++      "resid_px_best": 1.892684960155872,
++      "resid_px_lag0": 2.869073442031107,
++      "pairs_lag0": 982
++     }
++    ],
++    "20190925_194211_1_3": [
++     {
++      "start": 0,
++      "end": 971,
++      "best_lag": 3,
++      "resid_px_best": 1.2589212698375274,
++      "resid_px_lag0": 4.271070674470121,
++      "pairs_lag0": 827
++     }
++    ],
++    "20190925_194211_1_4": [
++     {
++      "start": 0,
++      "end": 944,
++      "best_lag": 1,
++      "resid_px_best": 0.9509348883716867,
++      "resid_px_lag0": 2.1829269628657326,
++      "pairs_lag0": 943
++     }
++    ],
++    "20190925_200320_1_4": [
++     {
++      "start": 0,
++      "end": 935,
++      "best_lag": 1,
++      "resid_px_best": 1.2239142119003987,
++      "resid_px_lag0": 1.490764221118105,
++      "pairs_lag0": 935
++     }
++    ],
++    "20190925_200320_1_8": [
++     {
++      "start": 0,
++      "end": 39,
++      "best_lag": null
++     }
++    ],
++    "20190925_205804_1_5": [
++     {
++      "start": 0,
++      "end": 961,
++      "best_lag": -4,
++      "resid_px_best": 4.1517160178170105,
++      "resid_px_lag0": 6.3418291399706535,
++      "pairs_lag0": 865
++     }
++    ],
++    "20190925_205804_1_6": [
++     {
++      "start": 0,
++      "end": 924,
++      "best_lag": 0,
++      "resid_px_best": 4.052865740775804,
++      "resid_px_lag0": 4.052865740775804,
++      "pairs_lag0": 868
++     }
++    ],
++    "20190925_210802_1_3": [
++     {
++      "start": 0,
++      "end": 929,
++      "best_lag": -1,
++      "resid_px_best": 1.3773498705495713,
++      "resid_px_lag0": 2.647036202935433,
++      "pairs_lag0": 885
++     }
++    ],
++    "20190925_210802_1_6": [
++     {
++      "start": 0,
++      "end": 938,
++      "best_lag": -4,
++      "resid_px_best": 1.9209641802576694,
++      "resid_px_lag0": 4.390033994311533,
++      "pairs_lag0": 929
++     }
++    ],
++    "20190925_210802_1_8": [
++     {
++      "start": 0,
++      "end": 706,
++      "best_lag": -5,
++      "resid_px_best": 3.2114409141200655,
++      "resid_px_lag0": 18.30883416137005,
++      "pairs_lag0": 700
++     }
++    ],
++    "20190925_213001_1_1": [
++     {
++      "start": 0,
++      "end": 942,
++      "best_lag": 0,
++      "resid_px_best": 1.0824133368331803,
++      "resid_px_lag0": 1.0824133368331803,
++      "pairs_lag0": 409
++     }
++    ],
++    "20190925_213001_1_3": [
++     {
++      "start": 0,
++      "end": 926,
++      "best_lag": 5,
++      "resid_px_best": 2.465757337499464,
++      "resid_px_lag0": 5.528335518459499,
++      "pairs_lag0": 925
++     }
++    ],
++    "20190925_222534_1_5": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 0,
++      "resid_px_best": 2.1518581614530286,
++      "resid_px_lag0": 2.1518581614530286,
++      "pairs_lag0": 471
++     }
++    ],
++    "20190925_222534_1_7": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 2,
++      "resid_px_best": 3.346017429748246,
++      "resid_px_lag0": 12.787402106008043,
++      "pairs_lag0": 877
++     }
++    ],
++    "20190925_222534_1_8": [
++     {
++      "start": 0,
++      "end": 938,
++      "best_lag": 1,
++      "resid_px_best": 3.0758387828866334,
++      "resid_px_lag0": 7.786949728823881,
++      "pairs_lag0": 938
++     }
++    ],
++    "20190926_103046_1_2": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 0,
++      "resid_px_best": 4.980415379982352,
++      "resid_px_lag0": 4.980415379982352,
++      "pairs_lag0": 985
++     }
++    ],
++    "20190926_103046_1_8": [
++     {
++      "start": 0,
++      "end": 509,
++      "best_lag": 0,
++      "resid_px_best": 4.620343338275897,
++      "resid_px_lag0": 4.620343338275897,
++      "pairs_lag0": 509
++     }
++    ],
++    "20190926_130341_1_5": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -2,
++      "resid_px_best": 3.437960381774263,
++      "resid_px_lag0": 4.5452464994595285,
++      "pairs_lag0": 964
++     }
++    ],
++    "20190926_133516_1_2": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -6,
++      "resid_px_best": 2.2395387056083065,
++      "resid_px_lag0": 5.011709114788918,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_133516_1_3": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -7,
++      "resid_px_best": 1.503741263137818,
++      "resid_px_lag0": 3.472832991058648,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_133516_1_5": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -5,
++      "resid_px_best": 3.424686325194972,
++      "resid_px_lag0": 4.563094119156361,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_133516_1_6": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 2,
++      "resid_px_best": 4.1505754151225,
++      "resid_px_lag0": 5.115926339593329,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_141816_1_2": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 7,
++      "resid_px_best": 3.009708470701045,
++      "resid_px_lag0": 6.613123879082092,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_141816_1_4": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 15,
++      "resid_px_best": 5.278828091167539,
++      "resid_px_lag0": 7.898065097690551,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_141816_1_6": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 9,
++      "resid_px_best": 3.044242856681734,
++      "resid_px_lag0": 21.328516223241174,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_141816_1_9": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 3,
++      "resid_px_best": 6.037253205242846,
++      "resid_px_lag0": 23.020594108605245,
++      "pairs_lag0": 866
++     }
++    ],
++    "20190926_142435_1_9": [
++     {
++      "start": 0,
++      "end": 299,
++      "best_lag": 1,
++      "resid_px_best": 1.0344488451836993,
++      "resid_px_lag0": 1.1144358895267006,
++      "pairs_lag0": 299
++     }
++    ],
++    "20190926_143632_1_2": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 1,
++      "resid_px_best": 1.8203945390329554,
++      "resid_px_lag0": 2.1100694139463956,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_143632_1_4": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 0,
++      "resid_px_best": 5.386842946897186,
++      "resid_px_lag0": 5.386842946897186,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_143632_1_8": [
++     {
++      "start": 0,
++      "end": 584,
++      "best_lag": 0,
++      "resid_px_best": 5.365938592223501,
++      "resid_px_lag0": 5.365938592223501,
++      "pairs_lag0": 576
++     }
++    ],
++    "20190926_144550_1_1": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 11,
++      "resid_px_best": 2.132151041129549,
++      "resid_px_lag0": 2.749591595137815,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_144550_1_10": [
++     {
++      "start": 0,
++      "end": 174,
++      "best_lag": 0,
++      "resid_px_best": 1.1954778707439884,
++      "resid_px_lag0": 1.1954778707439884,
++      "pairs_lag0": 174
++     }
++    ],
++    "20190926_144550_1_4": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 3,
++      "resid_px_best": 1.083993236549756,
++      "resid_px_lag0": 2.1501242097520046,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_144550_1_7": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 3,
++      "resid_px_best": 1.6652632636185014,
++      "resid_px_lag0": 3.961566962452091,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_183400_1_1": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 5,
++      "resid_px_best": 8.49404813692926,
++      "resid_px_lag0": 13.953633588653187,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_183400_1_4": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 2,
++      "resid_px_best": 1.4051179953705843,
++      "resid_px_lag0": 6.903011056263527,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_183400_1_6": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -3,
++      "resid_px_best": 1.4463458208223958,
++      "resid_px_lag0": 12.161937363492445,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_183941_1_3": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 4,
++      "resid_px_best": 10.939672085746855,
++      "resid_px_lag0": 14.567425567428717,
++      "pairs_lag0": 817
++     }
++    ],
++    "20190926_183941_1_5": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": 4,
++      "resid_px_best": 1.7223547192979658,
++      "resid_px_lag0": 33.47551458178699,
++      "pairs_lag0": 943
++     }
++    ],
++    "20190926_195921_1_1": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -1,
++      "resid_px_best": 3.664054300140581,
++      "resid_px_lag0": 4.599439156641518,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_195921_1_5": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -7,
++      "resid_px_best": 3.7830323103881054,
++      "resid_px_lag0": 30.908066034952896,
++      "pairs_lag0": 560
++     }
++    ],
++    "20190926_195921_1_6": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -7,
++      "resid_px_best": 3.0722178882941082,
++      "resid_px_lag0": 23.64417126967255,
++      "pairs_lag0": 415
++     }
++    ],
++    "20190926_200510_1_2": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -1,
++      "resid_px_best": 4.171758471514228,
++      "resid_px_lag0": 4.647762018858248,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_200510_1_3": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -5,
++      "resid_px_best": 1.4346460733170572,
++      "resid_px_lag0": 4.717474365196042,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_200510_1_4": [
++     {
++      "start": 0,
++      "end": 1000,
++      "best_lag": -5,
++      "resid_px_best": 5.790124316987209,
++      "resid_px_lag0": 10.452649063011933,
++      "pairs_lag0": 1000
++     }
++    ],
++    "20190926_200510_1_8": [
++     {
++      "start": 0,
++      "end": 493,
++      "best_lag": 0,
++      "resid_px_best": 4.6992079118073535,
++      "resid_px_lag0": 4.6992079118073535,
++      "pairs_lag0": 475
++     }
++    ]
++   }
++  }
++ }
++}
+\ No newline at end of file
+diff --git a/artifacts/v7/prereg/sync_flagged_predictions_val.json b/artifacts/v7/prereg/sync_flagged_predictions_val.json
+new file mode 100644
+index 0000000..ddc5571
+--- /dev/null
++++ b/artifacts/v7/prereg/sync_flagged_predictions_val.json
+@@ -0,0 +1,36 @@
++[
++ "20190925_130434_1_2",
++ "20190925_130434_1_6",
++ "20190925_130434_1_8",
++ "20190925_131530_1_3",
++ "20190925_141417_1_1",
++ "20190925_143900_1_2",
++ "20190925_143900_1_7",
++ "20190925_152412_1_3",
++ "20190925_183946_1_1",
++ "20190925_183946_1_2",
++ "20190925_194211_1_3",
++ "20190925_194211_1_4",
++ "20190925_205804_1_5",
++ "20190925_210802_1_3",
++ "20190925_210802_1_6",
++ "20190925_210802_1_8",
++ "20190925_213001_1_3",
++ "20190925_222534_1_7",
++ "20190925_222534_1_8",
++ "20190926_133516_1_2",
++ "20190926_133516_1_3",
++ "20190926_141816_1_2",
++ "20190926_141816_1_6",
++ "20190926_141816_1_9",
++ "20190926_144550_1_4",
++ "20190926_144550_1_7",
++ "20190926_183400_1_1",
++ "20190926_183400_1_4",
++ "20190926_183400_1_6",
++ "20190926_183941_1_5",
++ "20190926_195921_1_5",
++ "20190926_195921_1_6",
++ "20190926_200510_1_3",
++ "20190926_200510_1_4"
++]
+\ No newline at end of file
+diff --git a/kit/tests/test_decision_fusion.py b/kit/tests/test_decision_fusion.py
+new file mode 100644
+index 0000000..c91ef18
+--- /dev/null
++++ b/kit/tests/test_decision_fusion.py
+@@ -0,0 +1,233 @@
++"""Checks for the decision-level fusion tool (no video, no torch)."""
++import gzip
++import importlib.util
++import json
++import sys
++import tempfile
++import unittest
++from argparse import Namespace
++from pathlib import Path
++
++import numpy as np
++
++TOOLS = Path(__file__).parents[1] / "tools"
++sys.path.insert(0, str(TOOLS))
++
++
++def load(name):
++    spec = importlib.util.spec_from_file_location(name, TOOLS / f"{name}.py")
++    mod = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(mod)
++    return mod
++
++
++df = load("decision_fusion")
++IR_WH, RGB_WH = (640, 512), (1920, 1080)
++THETA = np.array([[0.8, 0.0, 0.1], [0.0, 1.2, -0.2]])
++
++
++def ir_to_rgb(box):
++    """Forward map of an IR-pixel box through THETA (the inverse of what the tool does)."""
++    x, y, w, h = box
++    p = np.array([[x, y], [x + w, y + h]]) / IR_WH
++    q = (p @ THETA[:, :2].T + THETA[:, 2]) * RGB_WH
++    return [q[0, 0], q[0, 1], q[1, 0] - q[0, 0], q[1, 1] - q[0, 1]]
++
++
++def args(**kw):
++    base = dict(map="train_mean", size="mapped", ir_conf=0.5, rgb_conf=0.5, pair_conf=0.5,
++                window=30, online_k=5)
++    base.update(kw)
++    return Namespace(**base)
++
++
++def theta_table(theta=THETA):
++    return {"a": {"model": "scale_translation", "theta": np.asarray(theta).tolist(), "n_pairs": 50,
++                  "ir_wh": list(IR_WH), "rgb_wh": list(RGB_WH)}}
++
++
++def write_run(d, split, coords, seqs, gz=False):
++    d.mkdir(parents=True)
++    cfg = {"split": split, "output_coordinates": coords, "weights": "w.pt"}
++    files = {"run_config.json": cfg}
++    for name, (res, dets) in seqs.items():
++        files[f"{name}_IR.txt"] = {"res": res}
++        files[f"{name}_dets.json"] = dets
++    for fname, obj in files.items():
++        if gz:
++            with gzip.open(d / (fname + ".gz"), "wt") as f:
++                f.write(json.dumps(obj))
++        else:
++            (d / fname).write_text(json.dumps(obj))
++
++
++class Geometry(unittest.TestCase):
++    def test_rgb_box_maps_back_to_the_ir_box(self):
++        box = [300.0, 200.0, 20.0, 16.0]
++        back = df.rgb_box_to_ir(ir_to_rgb(box), THETA, IR_WH, RGB_WH)
++        np.testing.assert_allclose(back, box, atol=1e-9)
++
++    def test_clip_and_outside(self):
++        self.assertIsNone(df.clip_to_frame(np.array([700.0, 10, 20, 20]), IR_WH))
++        np.testing.assert_allclose(df.clip_to_frame(np.array([-5.0, 10, 20, 20]), IR_WH), [0, 10, 15, 20])
++
++    def test_train_mean_ignores_unfitted_videos(self):
++        t = {"a": {"theta": [[1, 0, 0], [0, 1, 0]], "n_pairs": 10},
++             "b": {"theta": [[3, 0, 1], [0, 3, 1]], "n_pairs": 30},
++             "c": {"theta": [[9, 0, 9], [0, 9, 9]], "n_pairs": 0}}
++        np.testing.assert_allclose(df.train_mean_theta(t), [[2, 0, 0.5], [0, 2, 0.5]])
++
++
++class Rule(unittest.TestCase):
++    def run_one(self, ir_dets, rgb_dets, **kw):
++        res = [d[0][:4] if d and d[0][4] >= 0.25 else [] for d in ir_dets]
++        return df.fuse_video("s", res, ir_dets, rgb_dets, THETA, args(**kw), IR_WH, RGB_WH)
++
++    def test_gates(self):
++        gt = [300.0, 200.0, 20.0, 16.0]
++        rgb = ir_to_rgb(gt)
++        ir_dets = [[gt + [0.9]], [], [gt + [0.3]], [], [[10, 10, 5, 5, 0.1]]]
++        rgb_dets = [[rgb + [0.9]], [rgb + [0.9]], [rgb + [0.9]], [rgb + [0.4]], []]
++        res, dets, log, _ = self.run_one(ir_dets, rgb_dets)
++        self.assertEqual([r[4] for r in log],
++                         ["keep_ir", "replace", "replace", "keep_ir_rgb_not_confident", "keep_ir_rgb_not_confident"])
++        self.assertEqual(res[0], gt)
++        np.testing.assert_allclose(res[1], gt, atol=1e-9)
++        self.assertEqual(res[3], [])
++        self.assertEqual(dets[1][0][4], 0.9)                 # mapped box inserted with RGB confidence
++        self.assertEqual(dets[4], ir_dets[4])                # untouched candidates
++
++    def test_empty_only_threshold_keeps_low_confidence_ir(self):
++        gt = [300.0, 200.0, 20.0, 16.0]
++        res, _, log, _ = self.run_one([[gt + [0.3]]], [[ir_to_rgb([100, 100, 20, 16]) + [0.9]]], ir_conf=0.25)
++        self.assertEqual(log[0][4], "keep_ir")
++        self.assertEqual(res[0], gt)
++
++    def test_outside_fov_keeps_ir(self):
++        far = [[1.0, 0, 5.0], [0, 1.0, 0]]                    # RGB content maps far left of the IR frame
++        res, _, log, _ = df.fuse_video("s", [[]], [[]], [[[900, 500, 30, 20, 0.9]]], np.array(far), args(),
++                                       IR_WH, RGB_WH)
++        self.assertEqual(log[0][4], "keep_ir_outside_fov")
++        self.assertEqual(res[0], [])
++
++    def test_online_correction_is_causal(self):
++        """The offset learnt from past pairs is used; the current frame's own pair is not."""
++        n = 12
++        ir_dets, rgb_dets = [], []
++        for t in range(n):
++            gt = [300.0 + t, 200.0, 20.0, 16.0]
++            true_rgb = ir_to_rgb(gt)
++            shifted = [true_rgb[0] + 30.0, *true_rgb[1:]]      # constant +30 RGB px bias in the mapping
++            rgb_dets.append([shifted + [0.9]])
++            ir_dets.append([gt + [0.9]] if t != n - 1 else [])
++        _, _, log, fid = self.run_one(ir_dets, rgb_dets, map="online")
++        res, _, _, _ = self.run_one(ir_dets, rgb_dets, map="online")
++        self.assertEqual(log[-1][4:6], ["replace", "online"])
++        np.testing.assert_allclose(res[-1], [300.0 + n - 1, 200, 20, 16], atol=1e-6)
++        self.assertLess(fid[0], 1.0)                           # first pair: no history yet
++        self.assertAlmostEqual(fid[-1], 1.0, places=6)
++
++    def test_ir_recent_size(self):
++        gt = [300.0, 200.0, 20.0, 16.0]
++        wide = ir_to_rgb([295.0, 203.0, 30.0, 10.0])           # same centre, other shape
++        _, _, log, _ = self.run_one([[gt + [0.9]], []], [[wide + [0.9]], [wide + [0.9]]], size="ir_recent")
++        res, _, _, _ = self.run_one([[gt + [0.9]], []], [[wide + [0.9]], [wide + [0.9]]], size="ir_recent")
++        self.assertEqual(log[1][6], "ir_recent")
++        np.testing.assert_allclose(res[1], gt, atol=1e-6)
++
++
++class _Runs(unittest.TestCase):
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.root = Path(self.tmp.name)
++        gt = [300.0, 200.0, 20.0, 16.0]
++        self.ir = {"v1": ([gt, []], [[gt + [0.9]], []]), "v2": ([[]], [[]])}
++        self.rgb = {"v1": ([[], []], [[], [ir_to_rgb(gt) + [0.8]]]), "v2": ([[]], [[]])}
++        (self.root / "train.json").write_text(json.dumps(theta_table()))
++
++    def tearDown(self):
++        self.tmp.cleanup()
++
++    def call(self, split="val", gz=False, rgb_coords="RGB_pixels", extra=()):
++        write_run(self.root / "ir", split, "IR_pixels", self.ir, gz)
++        write_run(self.root / "rgb", split, rgb_coords, self.rgb, gz)
++        df.main(["--ir-run", str(self.root / "ir"), "--rgb-run", str(self.root / "rgb"),
++                 "--train-theta", str(self.root / "train.json"), "--out", str(self.root / "out"), *extra])
++        return self.root / "out"
++
++
++class EndToEnd(_Runs):
++    def test_outputs_and_compressed_inputs(self):
++        out = self.call(gz=True)
++        res = json.loads((out / "v1_IR.txt").read_text())["res"]
++        self.assertEqual(res[0], [300.0, 200.0, 20.0, 16.0])
++        np.testing.assert_allclose(res[1], [300.0, 200.0, 20.0, 16.0], atol=1e-6)
++        cfg = json.loads((out / "run_config.json").read_text())
++        self.assertEqual(cfg["output_coordinates"], "IR_pixels")
++        self.assertFalse(cfg["uses_evaluation_labels"])
++        summ = json.loads((out / "fusion_summary.json").read_text())
++        self.assertEqual(summ["pooled"]["actions"], {"keep_ir": 1, "replace": 1, "keep_ir_rgb_not_confident": 1})
++
++    def test_refusals(self):
++        with self.assertRaises(SystemExit):
++            self.call(split="test")
++        self.tmp.cleanup()
++        self.setUp()
++        with self.assertRaises(ValueError):
++            self.call(rgb_coords="IR_pixels")
++        self.tmp.cleanup()
++        self.setUp()
++        self.rgb["v1"] = ([[]], [[]])                           # length mismatch
++        with self.assertRaises(ValueError):
++            self.call()
++        self.tmp.cleanup()
++        self.setUp()
++        del self.rgb["v2"]                                      # missing video
++        with self.assertRaises(ValueError):
++            self.call()
++
++    def test_unchanged_scorer_reads_the_output(self):
++        out = self.call()
++        sr = load("score_runs")
++        labels = {"v1": (np.array([1, 1]), np.array([[300.0, 200, 20, 16]] * 2)),
++                  "v2": (np.array([0]), np.full((1, 4), np.nan))}
++        base, fused = sr.load_run([str(self.root / "ir")], labels), sr.load_run([str(out)], labels)
++        self.assertAlmostEqual(np.mean(base["v1"]["SA"]), 0.5)
++        self.assertAlmostEqual(np.mean(fused["v1"]["SA"]), 1.0, places=6)
++        self.assertEqual(fused["v2"]["SA"], [1.0])
++
++
++if __name__ == "__main__":
++    unittest.main()
++
++
++class SyncAudit(unittest.TestCase):
++    def test_recovers_a_known_lag(self):
++        sa = load("sync_audit")
++        rng = np.random.default_rng(0)
++        n, lag = 300, 4                                         # RGB frame t+4 shows IR frame t
++        path = np.cumsum(rng.normal(0, 0.01, (n + lag, 2)), 0) * 0.3 + 0.5
++        ir_c = path[:n]
++        rgb_c = np.full((n, 2), np.nan)
++        rgb_c[lag:] = path[: n - lag] @ THETA[:, :2].T + THETA[:, 2]
++        a = Namespace(window=0, max_lag=8, model="scale_translation", min_pairs=40)
++        win = sa.audit_video(ir_c, rgb_c, a, IR_WH)[0]
++        self.assertEqual(win["best_lag"], lag)
++        self.assertLess(win["resid_px_best"], 1e-6)
++        self.assertGreater(win["resid_px_lag0"], 0.5)
++
++
++class Breakdown(_Runs):
++    def test_replaced_frames_split_by_label_state(self):
++        out = self.call()
++        for name, exist, rect in (("v1", [1, 0], [[300, 200, 20, 16], []]), ("v2", [0], [[]])):
++            d = self.root / "raw" / "val" / name
++            d.mkdir(parents=True)
++            (d / "infrared.json").write_text(json.dumps({"exist": exist, "gt_rect": rect}))
++        fb = load("fusion_breakdown")
++        fb.main(["--root", str(self.root / "raw"), "--ir-run", str(self.root / "ir"), "--fused", str(out),
++                 "--out", str(self.root / "b.json")])
++        rep = json.loads((self.root / "b.json").read_text())
++        self.assertEqual(rep["replaced_frames"]["ir_negative"]["frames"], 1)
++        self.assertEqual(rep["replaced_frames"]["ir_negative"]["sum_score_fused"], 0.0)
++        self.assertAlmostEqual(rep["per_video"]["v1"]["sa_change_in_video"], -0.5)
+diff --git a/kit/tools/decision_fusion.py b/kit/tools/decision_fusion.py
+new file mode 100644
+index 0000000..a34ea63
+--- /dev/null
++++ b/kit/tools/decision_fusion.py
+@@ -0,0 +1,367 @@
++#!/usr/bin/env python3
++"""No-training decision-level fusion of a fixed IR detector and a fixed RGB detector.
++
++Inputs are two completed run_sequences.py outputs on the same split:
++  --ir-run   the IR-only detector (A0), boxes in IR pixels
++  --rgb-run  the RGB-only detector (run_sequences.py --input rgb), boxes in ORIGINAL RGB pixels
++
++Rule, per frame (nothing from any label is used unless --map seq):
++  keep the IR top box, unless its confidence is below --ir-conf (0.25 = only
++  empty IR frames) AND the RGB top box has confidence >= --rgb-conf. Then the
++  RGB box is mapped into IR pixels and replaces the IR output. A mapped box
++  whose centre falls outside the IR frame is discarded (the IR output is kept),
++  otherwise it is clipped to the IR frame.
++
++Mapping (--map), theta maps NORMALISED IR points to NORMALISED RGB points
++(spla.geometry), so an RGB point maps back through theta^-1:
++  train_mean  mean of the training-split per-video transforms; uses no validation label
++  seq         each video's own transform from --seq-theta, fitted on that split's labels.
++              This leaks evaluation labels and is a reference, not a method
++  online      train_mean plus a causal centre correction: the median IR-minus-mapped
++              centre offset of the last --online-k frames (within --window frames)
++              where both detectors were confident (>= --pair-conf). Uses only past
++              predictions; falls back to train_mean when no such frame exists
++
++Box size (--size):
++  mapped      the mapped RGB box itself
++  ir_recent   the mapped centre with the width and height of the most recent
++              confident IR box within --window frames (falls back to mapped)
++
++Outputs (same layout as run_sequences.py, so score_runs.py scores it unchanged):
++  OUT/<seq>_IR.txt      {"res": [[x, y, w, h] | [], ...]}, IR pixels
++  OUT/<seq>_dets.json   IR candidates unchanged; on replaced frames the mapped
++                        box is inserted first with the RGB confidence
++  OUT/run_config.json   arguments, input hashes, output_coordinates = IR_pixels
++  OUT/fusion_log.csv    one row per frame: confidences, action, mapping source
++  OUT/fusion_summary.json  label-free counts and a transfer-fidelity check: on
++                        frames where both detectors are confident, the IoU of
++                        the box this rule WOULD output against the IR box
++
++Accepts plain or .gz prediction files. Missing videos, unequal lengths, wrong
++coordinate metadata and the test split (unless --allow-test) are errors.
++
++Example:
++  python kit/tools/decision_fusion.py --ir-run results/A0_s0 --rgb-run results/A0rgb_s0 \
++     --train-theta data/converted/seq_theta_train.json --map train_mean --size mapped \
++     --out results/fusion/P_train_mean
++  python kit/tools/score_runs.py --root data/raw --split val --run A0=results/A0_s0 \
++     --run P=results/fusion/P_train_mean --baseline A0 --boot 10000 --out reports/fusion_val.json
++"""
++from __future__ import annotations
++
++import argparse
++import csv
++import gzip
++import hashlib
++import json
++from collections import deque
++from pathlib import Path
++
++import numpy as np
++
++SUFFIX_RES, SUFFIX_DETS = "_IR.txt", "_dets.json"
++
++
++# --------------------------------------------------------------------------
++# Input
++# --------------------------------------------------------------------------
++def _read_json(path: Path):
++    if path.exists():
++        return json.loads(path.read_text())
++    gz = path.with_name(path.name + ".gz")
++    if gz.exists():
++        return json.loads(gzip.open(gz, "rt").read())
++    raise FileNotFoundError(path)
++
++
++def run_sequences(directory: Path) -> list[str]:
++    names = set()
++    for p in Path(directory).iterdir():
++        n = p.name[:-3] if p.name.endswith(".gz") else p.name
++        if n.endswith(SUFFIX_RES):
++            names.add(n[: -len(SUFFIX_RES)])
++    return sorted(names)
++
++
++def run_config(directory: Path) -> dict:
++    return _read_json(Path(directory) / "run_config.json")
++
++
++def coordinates(cfg: dict) -> str:
++    return cfg.get("output_coordinates", "RGB_pixels" if cfg.get("input") == "rgb" else "IR_pixels")
++
++
++def load_pair(ir_dir: Path, rgb_dir: Path, seq: str):
++    ir_res = _read_json(ir_dir / f"{seq}{SUFFIX_RES}")["res"]
++    ir_dets = _read_json(ir_dir / f"{seq}{SUFFIX_DETS}")
++    rgb_dets = _read_json(rgb_dir / f"{seq}{SUFFIX_DETS}")
++    if not (len(ir_res) == len(ir_dets) == len(rgb_dets)):
++        raise ValueError(f"{seq}: frame counts differ (IR res {len(ir_res)}, IR dets {len(ir_dets)}, "
++                         f"RGB dets {len(rgb_dets)})")
++    return ir_res, ir_dets, rgb_dets
++
++
++def sha256(path: Path) -> str:
++    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
++
++
++# --------------------------------------------------------------------------
++# Geometry
++# --------------------------------------------------------------------------
++def train_mean_theta(train: dict) -> np.ndarray:
++    """Mean of the stored 2x3 matrices (equal to theta(mean params) for every linear model)."""
++    rows = [np.asarray(v["theta"], float) for v in train.values() if v.get("n_pairs", 0) > 0]
++    if not rows:
++        raise ValueError("training theta table has no fitted video")
++    return np.mean(rows, 0)
++
++
++def frame_sizes(table: dict) -> tuple[tuple[int, int], tuple[int, int]]:
++    ir = {tuple(v["ir_wh"]) for v in table.values()}
++    rgb = {tuple(v["rgb_wh"]) for v in table.values()}
++    if len(ir) != 1 or len(rgb) != 1:
++        raise ValueError(f"expected one IR and one RGB frame size, found {ir} and {rgb}")
++    return next(iter(ir)), next(iter(rgb))
++
++
++def rgb_box_to_ir(box, theta, ir_wh, rgb_wh) -> np.ndarray:
++    """Map an xywh RGB-pixel box into IR pixels through theta^-1 (axis-aligned hull)."""
++    x, y, w, h = map(float, box[:4])
++    corners = np.array([[x, y], [x + w, y], [x, y + h], [x + w, y + h]]) / np.asarray(rgb_wh, float)
++    m = np.vstack([np.asarray(theta, float), [0.0, 0.0, 1.0]])
++    inv = np.linalg.inv(m)
++    p = (corners @ inv[:2, :2].T + inv[:2, 2]) * np.asarray(ir_wh, float)
++    x0, y0 = p.min(0)
++    x1, y1 = p.max(0)
++    return np.array([x0, y0, x1 - x0, y1 - y0])
++
++
++def centre(b) -> np.ndarray:
++    return np.array([b[0] + b[2] / 2.0, b[1] + b[3] / 2.0])
++
++
++def box_from(c, wh) -> np.ndarray:
++    return np.array([c[0] - wh[0] / 2.0, c[1] - wh[1] / 2.0, wh[0], wh[1]])
++
++
++def clip_to_frame(b, wh):
++    """Clip to the frame; None when the centre is outside it or nothing remains."""
++    c = centre(b)
++    if not (0 <= c[0] < wh[0] and 0 <= c[1] < wh[1]):
++        return None
++    x0, y0 = max(b[0], 0.0), max(b[1], 0.0)
++    x1, y1 = min(b[0] + b[2], float(wh[0])), min(b[1] + b[3], float(wh[1]))
++    if x1 <= x0 or y1 <= y0:
++        return None
++    return np.array([x0, y0, x1 - x0, y1 - y0])
++
++
++def iou_xywh(a, b) -> float:
++    iw = min(a[0] + a[2], b[0] + b[2]) - max(a[0], b[0])
++    ih = min(a[1] + a[3], b[1] + b[3]) - max(a[1], b[1])
++    if iw <= 0 or ih <= 0:
++        return 0.0
++    inter = iw * ih
++    return float(inter / (a[2] * a[3] + b[2] * b[3] - inter))
++
++
++# --------------------------------------------------------------------------
++# Fusion of one video
++# --------------------------------------------------------------------------
++class CausalState:
++    """Recent confident IR/RGB pairs of one video; only past frames are ever read."""
++
++    def __init__(self, window: int, k: int):
++        self.window, self.k = window, k
++        self.pairs = deque()      # (frame, IR centre minus mapped centre)
++        self.ir_wh = deque()      # (frame, IR box width and height)
++
++    def _trim(self, t):
++        for q in (self.pairs, self.ir_wh):
++            while q and q[0][0] < t - self.window:
++                q.popleft()
++
++    def correction(self, t):
++        self._trim(t)
++        if not self.pairs:
++            return None
++        return np.median(np.array([d for _, d in list(self.pairs)[-self.k:]]), 0)
++
++    def recent_wh(self, t):
++        self._trim(t)
++        return None if not self.ir_wh else self.ir_wh[-1][1]
++
++    def observe(self, t, ir_box, mapped_box, both_confident: bool):
++        if ir_box is None:
++            return
++        self.ir_wh.append((t, np.asarray(ir_box[2:4], float)))
++        if both_confident:
++            self.pairs.append((t, centre(ir_box) - centre(mapped_box)))
++
++
++def propose(t, rgb_box, theta, state: CausalState, args, ir_wh, rgb_wh):
++    """The IR-pixel box the rule would output from this RGB box, and its sources."""
++    mapped = rgb_box_to_ir(rgb_box, theta, ir_wh, rgb_wh)
++    c, map_src = centre(mapped), args.map
++    if args.map == "online":
++        corr = state.correction(t)
++        if corr is None:
++            map_src = "online_fallback"
++        else:
++            c = c + corr
++    wh, size_src = mapped[2:], "mapped"
++    if args.size == "ir_recent":
++        rw = state.recent_wh(t)
++        if rw is None:
++            size_src = "mapped_fallback"
++        else:
++            wh, size_src = rw, "ir_recent"
++    return box_from(c, wh), mapped, map_src, size_src
++
++
++def fuse_video(seq, ir_res, ir_dets, rgb_dets, theta, args, ir_wh, rgb_wh):
++    state = CausalState(args.window, args.online_k)
++    res_out, dets_out, log, fidelity = [], [], [], []
++    for t, (res, di, dr) in enumerate(zip(ir_res, ir_dets, rgb_dets)):
++        ir_top = di[0] if di else None
++        rgb_top = dr[0] if dr else None
++        ci = float(ir_top[4]) if ir_top else 0.0
++        cr = float(rgb_top[4]) if rgb_top else 0.0
++        ir_box = np.asarray(ir_top[:4], float) if ir_top and ci >= args.pair_conf else None
++        out_res, out_dets = res, di
++        action, map_src, size_src = "keep_ir", "", ""
++        mapped = proposal = None
++        if rgb_top is not None:
++            proposal, mapped, map_src, size_src = propose(t, rgb_top[:4], theta, state, args, ir_wh, rgb_wh)
++        if ci < args.ir_conf and cr >= args.rgb_conf:
++            box = clip_to_frame(proposal, ir_wh)
++            if box is None:
++                action = "keep_ir_outside_fov"
++            else:
++                action = "replace"
++                out_res = [float(v) for v in box]
++                out_dets = [out_res + [cr]] + list(di)
++        elif ci < args.ir_conf:
++            action = "keep_ir_rgb_not_confident"
++        # label-free transfer fidelity: what the rule WOULD output where IR is confident
++        if ir_box is not None and cr >= args.pair_conf and proposal is not None:
++            fidelity.append(iou_xywh(proposal, ir_box))
++        state.observe(t, ir_box, mapped, ir_box is not None and cr >= args.pair_conf and mapped is not None)
++        res_out.append(out_res)
++        dets_out.append(out_dets)
++        log.append([seq, t, round(ci, 6), round(cr, 6), action, map_src if action == "replace" else "",
++                    size_src if action == "replace" else ""])
++    return res_out, dets_out, log, fidelity
++
++
++def summarise(log_rows, fidelity):
++    actions = {}
++    for r in log_rows:
++        actions[r[4]] = actions.get(r[4], 0) + 1
++    rep = [r for r in log_rows if r[4] == "replace"]
++    out = {"frames": len(log_rows), "actions": actions,
++           "replaced_map_sources": {}, "replaced_size_sources": {}}
++    for r in rep:
++        out["replaced_map_sources"][r[5]] = out["replaced_map_sources"].get(r[5], 0) + 1
++        out["replaced_size_sources"][r[6]] = out["replaced_size_sources"].get(r[6], 0) + 1
++    f = np.asarray(fidelity, float)
++    out["transfer_fidelity"] = {
++        "frames": int(len(f)),
++        "median_iou_vs_confident_ir": float(np.median(f)) if len(f) else None,
++        "share_iou_ge_0.5": float(np.mean(f >= 0.5)) if len(f) else None,
++        "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels",
++    }
++    return out
++
++
++# --------------------------------------------------------------------------
++# Main
++# --------------------------------------------------------------------------
++def parse_args(argv=None):
++    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    ap.add_argument("--ir-run", required=True, type=Path)
++    ap.add_argument("--rgb-run", required=True, type=Path)
++    ap.add_argument("--train-theta", required=True, type=Path, help="seq_theta_train.json")
++    ap.add_argument("--seq-theta", type=Path, help="seq_theta_<split>.json; required only for --map seq")
++    ap.add_argument("--map", default="train_mean", choices=["train_mean", "seq", "online"])
++    ap.add_argument("--size", default="mapped", choices=["mapped", "ir_recent"])
++    ap.add_argument("--ir-conf", type=float, default=0.5,
++                    help="replace the IR output when its top confidence is below this (0.25 = empty frames only)")
++    ap.add_argument("--rgb-conf", type=float, default=0.5, help="minimum RGB top confidence to replace")
++    ap.add_argument("--pair-conf", type=float, default=0.5,
++                    help="both detectors at least this confident -> a pair for the online correction")
++    ap.add_argument("--window", type=int, default=30, help="online/ir_recent memory, frames")
++    ap.add_argument("--online-k", type=int, default=5, help="online: median over the last k pairs")
++    ap.add_argument("--allow-test", action="store_true", help="permit split=test (off by protocol)")
++    ap.add_argument("--out", required=True, type=Path)
++    args = ap.parse_args(argv)
++    if not 0 < args.rgb_conf <= 1 or not 0 <= args.ir_conf <= 1 or not 0 < args.pair_conf <= 1:
++        ap.error("confidence thresholds must lie in (0, 1]")
++    if args.window < 1 or args.online_k < 1:
++        ap.error("--window and --online-k must be positive")
++    if args.map == "seq" and args.seq_theta is None:
++        ap.error("--map seq requires --seq-theta")
++    return args
++
++
++def main(argv=None):
++    args = parse_args(argv)
++    cfg_ir, cfg_rgb = run_config(args.ir_run), run_config(args.rgb_run)
++    if coordinates(cfg_ir) != "IR_pixels" or coordinates(cfg_rgb) != "RGB_pixels":
++        raise ValueError("--ir-run must hold IR-pixel boxes and --rgb-run RGB-pixel boxes")
++    split = cfg_ir.get("split")
++    if split != cfg_rgb.get("split"):
++        raise ValueError(f"runs come from different splits: {split} vs {cfg_rgb.get('split')}")
++    if split == "test" and not args.allow_test:
++        raise SystemExit("refusing split=test (protocol: no test evaluation); pass --allow-test to override")
++    seqs = run_sequences(args.ir_run)
++    if not seqs or seqs != run_sequences(args.rgb_run):
++        raise ValueError("the two runs must contain exactly the same, non-empty set of videos")
++
++    train = json.loads(args.train_theta.read_text())
++    ir_wh, rgb_wh = frame_sizes(train)
++    th_mean = train_mean_theta(train)
++    seq_table = json.loads(args.seq_theta.read_text()) if args.seq_theta else None
++    if seq_table is not None and frame_sizes(seq_table) != (ir_wh, rgb_wh):
++        raise ValueError("training and evaluation theta tables disagree on frame sizes")
++    if args.map == "seq":
++        missing = [s for s in seqs if s not in seq_table or seq_table[s].get("n_pairs", 0) <= 0]
++        if missing:
++            raise ValueError(f"--map seq: no fitted transform for {missing}")
++
++    args.out.mkdir(parents=True, exist_ok=True)
++    all_log, all_fid, per_video = [], [], {}
++    for seq in seqs:
++        ir_res, ir_dets, rgb_dets = load_pair(args.ir_run, args.rgb_run, seq)
++        theta = np.asarray(seq_table[seq]["theta"], float) if args.map == "seq" else th_mean
++        res, dets, log, fid = fuse_video(seq, ir_res, ir_dets, rgb_dets, theta, args, ir_wh, rgb_wh)
++        (args.out / f"{seq}{SUFFIX_RES}").write_text(json.dumps({"res": res}))
++        (args.out / f"{seq}{SUFFIX_DETS}").write_text(json.dumps(dets))
++        per_video[seq] = summarise(log, fid)
++        all_log += log
++        all_fid += fid
++    with open(args.out / "fusion_log.csv", "w", newline="") as f:
++        w = csv.writer(f)
++        w.writerow(["seq", "frame", "ir_conf", "rgb_conf", "action", "map_source", "size_source"])
++        w.writerows(all_log)
++    summary = {"split": split, "videos": len(seqs), "pooled": summarise(all_log, all_fid),
++               "per_video": per_video,
++               "uses_evaluation_labels": args.map == "seq"}
++    (args.out / "fusion_summary.json").write_text(json.dumps(summary, indent=1, allow_nan=False))
++    config = {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(args).items()}
++    config.update({"tool": "decision_fusion.py", "split": split, "output_coordinates": "IR_pixels",
++                   "prior": "zero", "ir_wh": list(ir_wh), "rgb_wh": list(rgb_wh),
++                   "train_mean_theta": th_mean.tolist(),
++                   "uses_evaluation_labels": args.map == "seq",
++                   "input_sha256": {"train_theta": sha256(args.train_theta),
++                                    **({"seq_theta": sha256(args.seq_theta)} if args.seq_theta else {})},
++                   "source_runs": {"ir": cfg_ir.get("weights"), "rgb": cfg_rgb.get("weights")}})
++    (args.out / "run_config.json").write_text(json.dumps(config, indent=1))
++    p = summary["pooled"]
++    print(f"videos {len(seqs)}, frames {p['frames']}, actions {p['actions']}")
++    print(f"transfer fidelity (label-free): {json.dumps(p['transfer_fidelity'])}")
++    print("written:", args.out)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/kit/tools/fusion_breakdown.py b/kit/tools/fusion_breakdown.py
+new file mode 100644
+index 0000000..d714a98
+--- /dev/null
++++ b/kit/tools/fusion_breakdown.py
+@@ -0,0 +1,83 @@
++#!/usr/bin/env python3
++"""Break down the frames a decision-fusion run replaced, against the IR labels.
++
++Run only AFTER the fusion protocol is registered: this reads evaluation labels.
++For every frame that decision_fusion.py replaced, it records whether the IR
++label is positive and, if so, the IoU of the IR detector's own output and of
++the fused output. SA counts a replaced frame on an IR-negative frame as a loss
++of 1, so the "negative" row is the false-positive cost.
++
++Usage:
++  python kit/tools/fusion_breakdown.py --root data/raw --split val \
++     --ir-run results/A0_s0 --fused results/fusion/P_train_mean --out reports/fusion_P_breakdown.json
++"""
++from __future__ import annotations
++
++import argparse
++import csv
++import json
++import sys
++from collections import defaultdict
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from spla.antiuav_io import find_files, read_labels  # noqa: E402
++
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++from decision_fusion import _read_json, iou_xywh  # noqa: E402
++
++
++def frame_score(pred, exist, box):
++    """The per-frame SA term of score_runs.state_accuracy."""
++    if not exist:
++        return 1.0 if len(pred) < 4 else 0.0
++    return iou_xywh(pred, box) if len(pred) == 4 else 0.0
++
++
++def main(argv=None):
++    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    ap.add_argument("--root", required=True, type=Path)
++    ap.add_argument("--split", default="val")
++    ap.add_argument("--box-format", default="xywh", choices=["xywh", "xyxy"])
++    ap.add_argument("--ir-run", required=True, type=Path)
++    ap.add_argument("--fused", required=True, type=Path)
++    ap.add_argument("--out", required=True, type=Path)
++    args = ap.parse_args(argv)
++    if args.split == "test":
++        raise SystemExit("refusing split=test (protocol)")
++    replaced = defaultdict(list)
++    with open(args.fused / "fusion_log.csv") as f:
++        for r in csv.DictReader(f):
++            if r["action"] == "replace":
++                replaced[r["seq"]].append(int(r["frame"]))
++    rows = {"ir_positive": defaultdict(float), "ir_negative": defaultdict(float)}
++    per_video = {}
++    for seq, frames in sorted(replaced.items()):
++        exist, boxes = read_labels(find_files(args.root / args.split / seq)["ir_label"], args.box_format)
++        base = _read_json(args.ir_run / f"{seq}_IR.txt")["res"]
++        fused = _read_json(args.fused / f"{seq}_IR.txt")["res"]
++        if not (len(exist) == len(base) == len(fused)):
++            raise ValueError(f"{seq}: label and prediction lengths differ")
++        delta = 0.0
++        for t in frames:
++            key = "ir_positive" if exist[t] else "ir_negative"
++            b, u = frame_score(base[t], exist[t], boxes[t]), frame_score(fused[t], exist[t], boxes[t])
++            rows[key]["frames"] += 1
++            rows[key]["sum_score_ir"] += b
++            rows[key]["sum_score_fused"] += u
++            if exist[t]:
++                rows[key]["fused_iou_ge_0.5"] += float(u >= 0.5)
++            delta += u - b
++        per_video[seq] = {"replaced": len(frames), "frames": len(exist),
++                          "sa_change_in_video": delta / len(exist)}
++    out = {"split": args.split, "fused_run": str(args.fused),
++           "replaced_frames": {k: dict(v) for k, v in rows.items()}, "per_video": per_video,
++           "note": "per-frame SA terms; sa_change_in_video is the change of that video's SA"}
++    args.out.parent.mkdir(parents=True, exist_ok=True)
++    args.out.write_text(json.dumps(out, indent=1))
++    print(json.dumps(out["replaced_frames"], indent=1))
++    print("written:", args.out)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/kit/tools/subset_bootstrap.py b/kit/tools/subset_bootstrap.py
+new file mode 100644
+index 0000000..6f6d43c
+--- /dev/null
++++ b/kit/tools/subset_bootstrap.py
+@@ -0,0 +1,74 @@
++#!/usr/bin/env python3
++"""Paired sequence bootstrap of the SA difference on a declared subset of videos.
++
++Reads the per-video SA CSV written by score_runs.py --per-seq, drops the listed
++videos, and repeats score_runs.py's SA bootstrap (resample videos with
++replacement, same draw for both runs, mean of per-video differences). With no
++exclusions it reproduces score_runs.py's SA interval exactly for the FIRST
++comparison of a score_runs.py invocation (checked against the v6 A1_blankrgb-A1
++result); later comparisons there share one generator, so their draws differ.
++
++Usage:
++  python kit/tools/subset_bootstrap.py --per-seq reports/fusion_val_per_seq.csv --a P --b A0 \
++     --exclude 20190925_213001_1_1 --label without_213001_1_1 --out reports/fusion_P_subset.json
++"""
++from __future__ import annotations
++
++import argparse
++import csv
++import json
++from pathlib import Path
++
++import numpy as np
++
++
++def load(path, a, b):
++    with open(path, newline="", encoding="utf-8") as f:
++        rows = list(csv.DictReader(f))
++    out = {}
++    for r in rows:
++        va, vb = r.get(f"{a}_SA", ""), r.get(f"{b}_SA", "")
++        if va != "" and vb != "":
++            out[r["sequence"]] = float(va) - float(vb)
++    return out
++
++
++def bootstrap(diffs, n_boot, seed):
++    seqs = sorted(diffs)
++    d = np.array([diffs[s] for s in seqs])
++    rng = np.random.default_rng(seed)
++    draws = np.array([d[rng.integers(0, len(d), len(d))].mean() for _ in range(n_boot)])
++    return {"point": float(d.mean()), "boot_mean": float(draws.mean()),
++            "ci95": [float(np.percentile(draws, 2.5)), float(np.percentile(draws, 97.5))],
++            "share_le_0": float(np.mean(draws <= 0)), "n_seq": len(d)}
++
++
++def main(argv=None):
++    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    ap.add_argument("--per-seq", required=True, type=Path)
++    ap.add_argument("--a", required=True, help="run name (column <a>_SA)")
++    ap.add_argument("--b", required=True, help="baseline run name")
++    ap.add_argument("--exclude", nargs="*", default=[])
++    ap.add_argument("--exclude-file", type=Path, help="JSON list of videos to exclude")
++    ap.add_argument("--label", default="subset")
++    ap.add_argument("--boot", type=int, default=10000)
++    ap.add_argument("--seed", type=int, default=0)
++    ap.add_argument("--out", required=True, type=Path)
++    args = ap.parse_args(argv)
++    excl = set(args.exclude) | set(json.loads(args.exclude_file.read_text()) if args.exclude_file else [])
++    diffs = load(args.per_seq, args.a, args.b)
++    unknown = excl - set(diffs)
++    if unknown:
++        raise ValueError(f"excluded videos not in the CSV: {sorted(unknown)}")
++    kept = {k: v for k, v in diffs.items() if k not in excl}
++    if not kept:
++        raise ValueError("no video left")
++    res = {"label": args.label, "comparison": f"{args.a}-{args.b}", "metric": "SA",
++           "excluded": sorted(excl), **bootstrap(kept, args.boot, args.seed)}
++    args.out.parent.mkdir(parents=True, exist_ok=True)
++    args.out.write_text(json.dumps(res, indent=1))
++    print(json.dumps(res))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/kit/tools/sync_audit.py b/kit/tools/sync_audit.py
+new file mode 100644
+index 0000000..a91ca7e
+--- /dev/null
++++ b/kit/tools/sync_audit.py
+@@ -0,0 +1,167 @@
++#!/usr/bin/env python3
++"""Audit temporal synchronisation of the IR and RGB streams, per video and per window.
++
++For each window of --window frames and each candidate lag k in [-max-lag, max-lag],
++pair the IR centre at frame t with the RGB centre at frame t + k, fit one
++transform (--model, spla.geometry, robust Huber fit) to the pairs, and record
++the median residual in IR pixels. The lag with the smallest residual is the
++window's estimate. A video is flagged when the best lag beats lag 0 by both
++--min-gain-px and the factor --min-ratio.
++
++Positive k means the RGB frame that matches IR frame t is RGB frame t + k (the
++RGB stream is late). A per-video spatial transform cannot absorb a lag: the
++induced offset is target or camera motion times the lag, and changes sign
++with the motion.
++
++Centre sources (choose one or both):
++  --ir-run/--rgb-run  saved predictions of two single-modality detectors (A0 and
++                      an --input rgb run): label-free, top box with confidence >= --conf
++  --root              the dataset annotations (IR and RGB label centres); this is
++                      a data audit, it scores no detector
++
++Usage:
++  python kit/tools/sync_audit.py --ir-run results/A0_s0 --rgb-run results/A0rgb_s0 \
++     --out reports/sync_audit_val.json
++  python kit/tools/sync_audit.py --root data/raw --split val --out reports/sync_audit_val_labels.json
++"""
++from __future__ import annotations
++
++import argparse
++import json
++import sys
++from pathlib import Path
++
++import numpy as np
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++from spla.antiuav_io import find_files, list_sequences, read_labels  # noqa: E402
++from spla.geometry import fit_transform  # noqa: E402
++
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++from decision_fusion import _read_json, run_sequences  # noqa: E402
++
++
++def centres_from_dets(dets, wh, conf):
++    c = np.full((len(dets), 2), np.nan)
++    for t, d in enumerate(dets):
++        if d and d[0][4] >= conf:
++            x, y, w, h = d[0][:4]
++            c[t] = [(x + w / 2) / wh[0], (y + h / 2) / wh[1]]
++    return c
++
++
++def centres_from_labels(exist, boxes, wh):
++    c = np.full((len(exist), 2), np.nan)
++    ok = exist == 1
++    c[ok] = (boxes[ok, :2] + boxes[ok, 2:] / 2) / np.asarray(wh, float)
++    return c
++
++
++def residual_px(a, b, model, ir_wh, min_pairs):
++    ok = np.all(np.isfinite(a), 1) & np.all(np.isfinite(b), 1)
++    if ok.sum() < min_pairs:
++        return None
++    fit = fit_transform(a[ok], b[ok], model)
++    lin = fit.theta[:, :2]
++    # residual in RGB-normalised units -> IR-normalised (through the fitted linear part) -> IR px
++    r = np.linalg.solve(lin, fit.residuals.T).T * np.asarray(ir_wh, float)
++    return float(np.median(np.linalg.norm(r, axis=1))), int(ok.sum())
++
++
++def audit_video(ir_c, rgb_c, args, ir_wh):
++    n = min(len(ir_c), len(rgb_c))
++    out = []
++    starts = range(0, n, args.window) if args.window > 0 else [0]
++    for s in starts:
++        e = n if args.window <= 0 else min(s + args.window, n)
++        scores = {}
++        for k in range(-args.max_lag, args.max_lag + 1):
++            idx = np.arange(s, e)
++            j = idx + k
++            keep = (j >= 0) & (j < n)
++            r = residual_px(ir_c[idx[keep]], rgb_c[j[keep]], args.model, ir_wh, args.min_pairs)
++            if r is not None:
++                scores[k] = r
++        if 0 not in scores:
++            out.append({"start": s, "end": e, "best_lag": None})
++            continue
++        k_best = min(scores, key=lambda k: scores[k][0])
++        out.append({"start": s, "end": e, "best_lag": k_best, "resid_px_best": scores[k_best][0],
++                    "resid_px_lag0": scores[0][0], "pairs_lag0": scores[0][1]})
++    return out
++
++
++def main(argv=None):
++    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    ap.add_argument("--ir-run", type=Path)
++    ap.add_argument("--rgb-run", type=Path)
++    ap.add_argument("--root", type=Path, help="dataset root with <split>/<video>/ label files")
++    ap.add_argument("--split", default="val")
++    ap.add_argument("--box-format", default="xywh", choices=["xywh", "xyxy"])
++    ap.add_argument("--ir-wh", nargs=2, type=int, default=[640, 512])
++    ap.add_argument("--rgb-wh", nargs=2, type=int, default=[1920, 1080])
++    ap.add_argument("--conf", type=float, default=0.5)
++    ap.add_argument("--model", default="scale_translation")
++    ap.add_argument("--max-lag", type=int, default=15)
++    ap.add_argument("--window", type=int, default=0, help="frames per window; 0 = whole video")
++    ap.add_argument("--min-pairs", type=int, default=40)
++    ap.add_argument("--min-gain-px", type=float, default=1.0)
++    ap.add_argument("--min-ratio", type=float, default=1.5)
++    ap.add_argument("--allow-test", action="store_true")
++    ap.add_argument("--out", required=True, type=Path)
++    args = ap.parse_args(argv)
++    if (args.ir_run is None) != (args.rgb_run is None) or (args.ir_run is None and args.root is None):
++        ap.error("give --ir-run and --rgb-run together, or --root")
++    if args.split == "test" and not args.allow_test:
++        raise SystemExit("refusing split=test (protocol); pass --allow-test to override")
++
++    report = {"split": args.split, "settings": {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(args).items()},
++              "sources": {}}
++    sources = []
++    if args.ir_run is not None:
++        seqs = run_sequences(args.ir_run)
++        if seqs != run_sequences(args.rgb_run):
++            raise ValueError("the two runs must contain the same videos")
++        for name, d in (("ir", args.ir_run), ("rgb", args.rgb_run)):
++            split = _read_json(d / "run_config.json").get("split")
++            if split != args.split:
++                raise ValueError(f"--{name}-run is split {split}, expected {args.split}")
++
++        def pred_centres(seq):
++            di = _read_json(args.ir_run / f"{seq}_dets.json")
++            dr = _read_json(args.rgb_run / f"{seq}_dets.json")
++            if len(di) != len(dr):
++                raise ValueError(f"{seq}: frame counts differ")
++            return centres_from_dets(di, args.ir_wh, args.conf), centres_from_dets(dr, args.rgb_wh, args.conf)
++        sources.append(("predictions", seqs, pred_centres))
++    if args.root is not None:
++        dirs = {p.name: p for p in list_sequences(args.root / args.split)}
++
++        def label_centres(seq):
++            fs = find_files(dirs[seq])
++            ei, bi = read_labels(fs["ir_label"], args.box_format)
++            er, br = read_labels(fs["rgb_label"], args.box_format)
++            return centres_from_labels(ei, bi, args.ir_wh), centres_from_labels(er, br, args.rgb_wh)
++        sources.append(("labels", sorted(dirs), label_centres))
++
++    for name, seqs, get in sources:
++        per, flagged = {}, []
++        for seq in seqs:
++            ir_c, rgb_c = get(seq)
++            wins = audit_video(ir_c, rgb_c, args, args.ir_wh)
++            per[seq] = wins
++            whole = [w for w in wins if w["best_lag"] is not None]
++            if whole:
++                best = float(np.median([w["resid_px_best"] for w in whole]))
++                zero = float(np.median([w["resid_px_lag0"] for w in whole]))
++                if zero - best > args.min_gain_px and zero > args.min_ratio * best:
++                    flagged.append(seq)
++        report["sources"][name] = {"videos": len(seqs), "flagged": flagged, "per_video": per}
++        print(f"{name}: {len(flagged)} of {len(seqs)} videos flagged as desynchronised")
++    args.out.parent.mkdir(parents=True, exist_ok=True)
++    args.out.write_text(json.dumps(report, indent=1, allow_nan=False))
++    print("written:", args.out)
++
++
++if __name__ == "__main__":
++    main()
+-- 
+2.43.0
+

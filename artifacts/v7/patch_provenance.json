@@ -1,0 +1,7 @@
+{
+  "original_patch_sha256": "25767ac7e69dd8e69342bb3d0e48f1985a0858c2cf904b4d0daef03dcca36adf",
+  "application_patch_sha256": "af3166d4e8860cef0224df62d8d99341117d8f83016103778e5ad90e71d953ac",
+  "change": "Removed only private external session URL from commit message; author and source changes preserved",
+  "external_commit": "72a3e120f57c60c58ed5db97d014feea30614001",
+  "baseline": "b6c96be70144b653948a6a24437170fcc80ea8b1"
+}
