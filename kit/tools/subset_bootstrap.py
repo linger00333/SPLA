@@ -4,9 +4,9 @@
 Reads the per-video SA CSV written by score_runs.py --per-seq, drops the listed
 videos, and repeats score_runs.py's SA bootstrap (resample videos with
 replacement, same draw for both runs, mean of per-video differences). With no
-exclusions it reproduces score_runs.py's SA interval exactly for the FIRST
-comparison of a score_runs.py invocation (checked against the v6 A1_blankrgb-A1
-result); later comparisons there share one generator, so their draws differ.
+exclusions it reproduces the current per_comparison SA interval. With the old
+legacy_shared stream it matches only the first comparison (checked against v6
+A1_blankrgb-A1); later legacy comparisons consumed different random draws.
 
 Usage:
   python kit/tools/subset_bootstrap.py --per-seq reports/fusion_val_per_seq.csv --a P --b A0 \

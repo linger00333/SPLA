@@ -93,7 +93,8 @@ windows. Also report a common-support audit: identical eligible IR indices at
 every candidate lag, avoiding improvements obtained by dropping different frames.
 Report eligible counts and windows with insufficient or singular spatial fits.
 If a held-out trajectory confirmation is added, fit/select lag on the first two
-thirds and evaluate its fixed transform/lag on the last third; keep it diagnostic.
+thirds and evaluate its fixed transform/lag on the last third, leaving a 15-frame
+gap on each side of the boundary so neither modality crosses it; keep it diagnostic.
 
 Flags are lag-fit candidates, not proof of temporal mismatch, clock drift or
 dropped acquisition frames. Constant-velocity motion can be absorbed by a fixed
