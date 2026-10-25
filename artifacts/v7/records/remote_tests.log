@@ -1,0 +1,67 @@
+videos 2, frames 3, actions {'keep_ir': 1, 'replace': 1, 'keep_ir_rgb_not_confident': 1}
+transfer fidelity (label-free): {"frames": 0, "median_iou_vs_confident_ir": null, "share_iou_ge_0.5": null, "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"}
+written: /tmp/tmpyv2k4qla/out
+{
+ "ir_positive": {},
+ "ir_negative": {
+  "frames": 1.0,
+  "sum_score_ir": 1.0,
+  "sum_score_fused": 0.0,
+  "sum_delta": -1.0
+ }
+}
+written: /tmp/tmpyv2k4qla/b.json
+.videos 2, frames 3, actions {'keep_ir': 1, 'replace': 1, 'keep_ir_rgb_not_confident': 1}
+transfer fidelity (label-free): {"frames": 0, "median_iou_vs_confident_ir": null, "share_iou_ge_0.5": null, "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"}
+written: /tmp/tmpwz11j4x9/out
+..videos 2, frames 3, actions {'keep_ir': 1, 'replace': 1, 'keep_ir_rgb_not_confident': 1}
+transfer fidelity (label-free): {"frames": 0, "median_iou_vs_confident_ir": null, "share_iou_ge_0.5": null, "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"}
+written: /tmp/tmp01xuusif/out
+..........videos 1, frames with both labels 4
+Pooled metrics: {"frames": 4, "ir_success": 0.5, "rgb_success": 0.5, "oracle_success": 0.75, "oracle_gain": 0.25, "rescue_share": 0.5, "ir_failures": 2}
+written: /tmp/tmpmbjj6yo_/c.json
+....videos 1, frames with both labels 0
+Pooled metrics: {"frames": 0, "ir_success": null, "rgb_success": null, "oracle_success": null, "oracle_gain": null, "rescue_share": null, "ir_failures": 0}
+written: /tmp/tmpronq667f/out.json
+...[ERROR:0@0.020] global cap.cpp:164 open VIDEOIO(CV_IMAGES): raised OpenCV exception:
+
+OpenCV(4.8.1) /io/opencv/modules/videoio/src/cap_images.cpp:253: error: (-5:Bad argument) CAP_IMAGES: can't find starting number (in the name of file): None in function 'icvExtractPattern'
+
+
+val: 2 images, 1 with an RGB target
+written: /tmp/tmp937e7lgl/yolo/antiuav_rgbonly.yaml
+...run                 SA  SA_pen    AP50  align_px  prior_px prior_tgt  conv_frm
+A0               0.500   0.300     nan       nan       nan       nan       nan
+A1               1.000   1.000     nan       nan       nan       nan       nan
+A1-A0 SA: +0.5000  95% CI [+0.5000, +0.5000]  P(diff<=0)=0.000  n_seq=1
+A1-A0 SA_pen: +0.7000  95% CI [+0.7000, +0.7000]  P(diff<=0)=0.000  n_seq=1
+written: /tmp/tmpos4esvd5/before.json
+run                 SA  SA_pen    AP50  align_px  prior_px prior_tgt  conv_frm
+A0               0.500   0.300     nan       nan       nan       nan       nan
+A1               1.000   1.000     nan       nan       nan       nan       nan
+A1-A0 SA: +0.5000  95% CI [+0.5000, +0.5000]  P(diff<=0)=0.000  n_seq=1
+A1-A0 SA_pen: +0.7000  95% CI [+0.7000, +0.7000]  P(diff<=0)=0.000  n_seq=1
+written: /tmp/tmpos4esvd5/after.json
+....run                 SA  SA_pen    AP50  align_px  prior_px prior_tgt  conv_frm
+A0               0.818   0.818     nan       nan       nan       nan       nan
+P                0.576   0.576     nan       nan       nan       nan       nan
+S                0.576   0.576     nan       nan       nan       nan       nan
+P-A0 SA: -0.2541  95% CI [-0.4206, -0.0796]  P(diff<=0)=0.990  n_seq=7
+P-A0 SA_pen: -0.2541  95% CI [-0.4206, -0.0796]  P(diff<=0)=0.990  n_seq=7
+S-A0 SA: -0.2265  95% CI [-0.3930, -0.0681]  P(diff<=0)=0.990  n_seq=7
+S-A0 SA_pen: -0.2265  95% CI [-0.3930, -0.0681]  P(diff<=0)=0.990  n_seq=7
+written: /tmp/tmp1xhblq63/A0_P_S.json
+run                 SA  SA_pen    AP50  align_px  prior_px prior_tgt  conv_frm
+A0               0.818   0.818     nan       nan       nan       nan       nan
+S                0.576   0.576     nan       nan       nan       nan       nan
+P                0.576   0.576     nan       nan       nan       nan       nan
+S-A0 SA: -0.2265  95% CI [-0.3930, -0.0681]  P(diff<=0)=0.990  n_seq=7
+S-A0 SA_pen: -0.2265  95% CI [-0.3930, -0.0681]  P(diff<=0)=0.990  n_seq=7
+P-A0 SA: -0.2541  95% CI [-0.4206, -0.0796]  P(diff<=0)=0.990  n_seq=7
+P-A0 SA_pen: -0.2541  95% CI [-0.4206, -0.0796]  P(diff<=0)=0.990  n_seq=7
+written: /tmp/tmp1xhblq63/A0_S_P.json
+.....
+----------------------------------------------------------------------
+Ran 32 tests in 0.773s
+
+OK

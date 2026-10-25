@@ -1,0 +1,117 @@
+{
+  "split": "val",
+  "fused_run": "experiments/v7/results/P",
+  "replaced_frames": {
+    "ir_positive": {
+      "frames": 373.0,
+      "sum_score_ir": 60.53898527376788,
+      "sum_score_fused": 47.9975927096389,
+      "sum_delta": -12.541392564128962,
+      "fused_iou_ge_0.5": 19.0
+    },
+    "ir_negative": {
+      "frames": 260.0,
+      "sum_score_ir": 257.0,
+      "sum_score_fused": 0.0,
+      "sum_delta": -257.0
+    }
+  },
+  "per_video": {
+    "20190925_130434_1_2": {
+      "replaced": 4,
+      "frames": 1000,
+      "sa_change_in_video": -0.0011780377020651758
+    },
+    "20190925_130434_1_8": {
+      "replaced": 2,
+      "frames": 1000,
+      "sa_change_in_video": 0.00027091508711088474
+    },
+    "20190925_131530_1_3": {
+      "replaced": 11,
+      "frames": 1000,
+      "sa_change_in_video": -0.0028976802051078254
+    },
+    "20190925_133630_1_9": {
+      "replaced": 7,
+      "frames": 1000,
+      "sa_change_in_video": 0.00048600810044475593
+    },
+    "20190925_140917_1_3": {
+      "replaced": 12,
+      "frames": 1000,
+      "sa_change_in_video": -0.004541854576522242
+    },
+    "20190925_140917_1_6": {
+      "replaced": 48,
+      "frames": 1000,
+      "sa_change_in_video": -0.008884783995847457
+    },
+    "20190925_141417_1_1": {
+      "replaced": 14,
+      "frames": 1000,
+      "sa_change_in_video": -0.004573274646442059
+    },
+    "20190925_141417_1_6": {
+      "replaced": 14,
+      "frames": 1000,
+      "sa_change_in_video": 0.0007700404703567345
+    },
+    "20190925_143900_1_2": {
+      "replaced": 3,
+      "frames": 1000,
+      "sa_change_in_video": -0.002299997386552633
+    },
+    "20190925_143900_1_7": {
+      "replaced": 1,
+      "frames": 1000,
+      "sa_change_in_video": 0.0
+    },
+    "20190925_152412_1_3": {
+      "replaced": 5,
+      "frames": 1000,
+      "sa_change_in_video": -0.002888537509752251
+    },
+    "20190925_152412_1_5": {
+      "replaced": 6,
+      "frames": 1000,
+      "sa_change_in_video": -0.0013656037668412532
+    },
+    "20190925_205804_1_5": {
+      "replaced": 22,
+      "frames": 961,
+      "sa_change_in_video": -0.01759104851635955
+    },
+    "20190925_205804_1_6": {
+      "replaced": 56,
+      "frames": 924,
+      "sa_change_in_video": -0.03236360169727426
+    },
+    "20190925_210802_1_3": {
+      "replaced": 12,
+      "frames": 929,
+      "sa_change_in_video": -0.009309223117716531
+    },
+    "20190925_213001_1_1": {
+      "replaced": 349,
+      "frames": 942,
+      "sa_change_in_video": -0.18103348502634214
+    },
+    "20190925_222534_1_7": {
+      "replaced": 34,
+      "frames": 1000,
+      "sa_change_in_video": 0.0073471372713494075
+    },
+    "20190926_103046_1_2": {
+      "replaced": 15,
+      "frames": 1000,
+      "sa_change_in_video": -0.006608170266654095
+    },
+    "20190926_183941_1_3": {
+      "replaced": 18,
+      "frames": 1000,
+      "sa_change_in_video": -0.017186776673929812
+    }
+  },
+  "note": "per-frame SA terms; sa_change_in_video is the change of that video's SA"
+}

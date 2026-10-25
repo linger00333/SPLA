@@ -1,0 +1,7 @@
+{
+  "inputs": {
+    "seq_theta_train.json": "b5e7b9698f834d4b9ee167ae1a55a086834f5b79fb284b25725ea3283f5bdb63",
+    "seq_theta_val.json": "f5262977d5b7295e46db80595f289bce75ade5ad608f0383485a61eafa241de8"
+  },
+  "scope": "CPU validation only; no training; old inputs immutable; no test access"
+}

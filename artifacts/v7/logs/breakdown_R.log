@@ -1,0 +1,16 @@
+{
+ "ir_positive": {
+  "frames": 373.0,
+  "sum_score_ir": 60.73515154188838,
+  "sum_score_fused": 147.74047378729992,
+  "sum_delta": 87.00532224541145,
+  "fused_iou_ge_0.5": 174.0
+ },
+ "ir_negative": {
+  "frames": 260.0,
+  "sum_score_ir": 258.0,
+  "sum_score_fused": 0.0,
+  "sum_delta": -258.0
+ }
+}
+written: experiments/v7/reports/breakdown_R.json

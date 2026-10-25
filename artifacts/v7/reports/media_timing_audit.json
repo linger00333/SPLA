@@ -1,0 +1,114 @@
+{
+  "scope": "Post-registration encoded media timing diagnostic; not used to change any lag or fusion input. Encoded timestamps are not synchronized acquisition-clock ground truth.",
+  "available": true,
+  "videos": {
+    "20190926_183941_1_5": {
+      "ir_video": {
+        "stream_metadata": [
+          {
+            "r_frame_rate": "20/1",
+            "avg_frame_rate": "20/1",
+            "time_base": "1/10240",
+            "start_time": "0.000000",
+            "duration": "50.000000",
+            "nb_frames": "1000"
+          }
+        ],
+        "packets_with_PTS": 1000,
+        "duplicate_PTS": 0,
+        "median_PTS_step_seconds": 0.05000000000000071,
+        "max_PTS_step_seconds": 0.05000000000000426,
+        "steps_above_1_5x_median": 0
+      },
+      "rgb_video": {
+        "stream_metadata": [
+          {
+            "r_frame_rate": "20/1",
+            "avg_frame_rate": "20/1",
+            "time_base": "1/10240",
+            "start_time": "0.000000",
+            "duration": "50.000000",
+            "nb_frames": "1000"
+          }
+        ],
+        "packets_with_PTS": 1000,
+        "duplicate_PTS": 0,
+        "median_PTS_step_seconds": 0.05000000000000071,
+        "max_PTS_step_seconds": 0.05000000000000426,
+        "steps_above_1_5x_median": 0
+      }
+    },
+    "20190925_131530_1_3": {
+      "ir_video": {
+        "stream_metadata": [
+          {
+            "r_frame_rate": "20/1",
+            "avg_frame_rate": "20/1",
+            "time_base": "1/10240",
+            "start_time": "0.000000",
+            "duration": "50.000000",
+            "nb_frames": "1000"
+          }
+        ],
+        "packets_with_PTS": 1000,
+        "duplicate_PTS": 0,
+        "median_PTS_step_seconds": 0.05000000000000071,
+        "max_PTS_step_seconds": 0.05000000000000426,
+        "steps_above_1_5x_median": 0
+      },
+      "rgb_video": {
+        "stream_metadata": [
+          {
+            "r_frame_rate": "20/1",
+            "avg_frame_rate": "20/1",
+            "time_base": "1/10240",
+            "start_time": "0.000000",
+            "duration": "50.000000",
+            "nb_frames": "1000"
+          }
+        ],
+        "packets_with_PTS": 1000,
+        "duplicate_PTS": 0,
+        "median_PTS_step_seconds": 0.05000000000000071,
+        "max_PTS_step_seconds": 0.05000000000000426,
+        "steps_above_1_5x_median": 0
+      }
+    },
+    "20190926_141816_1_6": {
+      "ir_video": {
+        "stream_metadata": [
+          {
+            "r_frame_rate": "20/1",
+            "avg_frame_rate": "20/1",
+            "time_base": "1/10240",
+            "start_time": "0.000000",
+            "duration": "50.000000",
+            "nb_frames": "1000"
+          }
+        ],
+        "packets_with_PTS": 1000,
+        "duplicate_PTS": 0,
+        "median_PTS_step_seconds": 0.05000000000000071,
+        "max_PTS_step_seconds": 0.05000000000000426,
+        "steps_above_1_5x_median": 0
+      },
+      "rgb_video": {
+        "stream_metadata": [
+          {
+            "r_frame_rate": "20/1",
+            "avg_frame_rate": "20/1",
+            "time_base": "1/10240",
+            "start_time": "0.000000",
+            "duration": "50.000000",
+            "nb_frames": "1000"
+          }
+        ],
+        "packets_with_PTS": 1000,
+        "duplicate_PTS": 0,
+        "median_PTS_step_seconds": 0.05000000000000071,
+        "max_PTS_step_seconds": 0.05000000000000426,
+        "steps_above_1_5x_median": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-25T11:11:22.255866",
+  "frozen_hashes_verified": 437,
+  "all_frozen_source_and_input_hashes_unchanged": true,
+  "jobs_complete": 24,
+  "experiment_processes_still_active": [],
+  "training": false,
+  "test": false,
+  "GPU_used": false
+}

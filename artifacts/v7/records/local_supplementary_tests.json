@@ -1,0 +1,23 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "study/v7",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "returncode": 0,
+  "executed_at": "2026-10-25T11:10:31.801255",
+  "tests_passed": 12,
+  "output": "test_later_block_does_not_choose_lag (test_execution.Heldout.test_later_block_does_not_choose_lag) ... ok\ntest_recovers_synthetic_lag_on_later_block (test_execution.Heldout.test_recovers_synthetic_lag_on_later_block) ... ok\ntest_static_track_is_not_sync_ground_truth (test_execution.Heldout.test_static_track_is_not_sync_ground_truth) ... ok\ntest_conflicting_dual_files_raise (test_io.Formats.test_conflicting_dual_files_raise) ... ok\ntest_existing_negative_false_positive_has_zero_added_cost (test_io.Formats.test_existing_negative_false_positive_has_zero_added_cost) ... ok\ntest_gzip_folder_is_scored (test_io.Formats.test_gzip_folder_is_scored) ... ok\ntest_rgb_metadata_refused_by_ir_scorer (test_io.Formats.test_rgb_metadata_refused_by_ir_scorer) ... ok\ntest_positive_interval_below_minimum_effect_fails (test_report.ReportGate.test_positive_interval_below_minimum_effect_fails) ... ok\ntest_positive_point_without_positive_interval_fails (test_report.ReportGate.test_positive_point_without_positive_interval_fails) ... ok\ntest_primary_both_conditions_pass (test_report.ReportGate.test_primary_both_conditions_pass) ... ok\ntest_secondary_success_does_not_open_gate (test_report.ReportGate.test_secondary_success_does_not_open_gate) ... ok\ntest_undefined_metric_is_not_formatted_as_zero (test_report.ReportGate.test_undefined_metric_is_not_formatted_as_zero) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.105s\n\nOK\n",
+  "source_sha256": {
+    "test_execution.py": "21d462a00457fe425df01e50e360c33b9580496d2692c1b583e2668352504408",
+    "test_io.py": "c1d36e7d3f6d40783e7690c095bd57bb757297d70de5e8a5e34b1f5e66088e09",
+    "test_report.py": "1971501a395236f29b5da6ba22f17437dfe3c2f1e205747c305b5a7c5658261f",
+    "finalize_report.py": "aa30d6817ca3ef07b75ded9ed40a3afdf9f27ec39841b0b1a3948e153b96cae8"
+  }
+}

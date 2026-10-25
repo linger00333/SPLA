@@ -1,0 +1,3 @@
+videos 67, frames 61999, actions {'keep_ir': 60062, 'keep_ir_rgb_not_confident': 1276, 'keep_ir_outside_fov': 28, 'replace': 633}
+transfer fidelity (label-free): {"frames": 57531, "median_iou_vs_confident_ir": 0.25678377228608573, "share_iou_ge_0.5": 0.2591820062227321, "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"}
+written: experiments/v7/results/P

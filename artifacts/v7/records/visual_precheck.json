@@ -1,0 +1,21 @@
+{
+  "sequence": "20190925_213001_1_1",
+  "frames": 942,
+  "primary_replacements": 349,
+  "selection": "Eight evenly spaced replacement indices plus first/last frame; no score-based selection",
+  "publication": "Images remain private; no protocol or thresholds tuned from this video",
+  "legend": "Green: own modality GT; blue: original detector; red on IR: mapped RGB replacement",
+  "inspected_frame_pairs": 9,
+  "selected_frame_indices": [
+    0,
+    49,
+    99,
+    149,
+    198,
+    248,
+    298,
+    649,
+    941
+  ],
+  "findings": "Early IR samples are strongly blurred; modality label presence differs. Original labels remain unchanged; frame-level label states and images stay private."
+}

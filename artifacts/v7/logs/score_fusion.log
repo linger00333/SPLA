@@ -1,0 +1,19 @@
+run                 SA  SA_pen    AP50  align_px  prior_px prior_tgt  conv_frm
+experiments/v7/kit/tools/score_runs.py:152: RuntimeWarning: Mean of empty slice
+  v = [np.nanmean(per[s][k]) for s in seqs if per[s].get(k)]
+experiments/v7/kit/tools/score_runs.py:154: RuntimeWarning: All-NaN slice encountered
+  out[k] = float(np.nanmean(v)) if k in ("SA", "SA_pen") else float(np.nanmedian(v))
+A0               0.815   0.800   0.990       nan    63.333    45.331       nan
+P                0.811   0.803   0.979       nan       nan       nan       nan
+S                0.812   0.804   0.980       nan       nan       nan       nan
+R                0.813   0.805   0.983       nan       nan       nan       nan
+P-A0 SA: -0.0042  95% CI [-0.0102, -0.0007]  P(diff<=0)=1.000  n_seq=67
+P-A0 SA_pen: +0.0036  95% CI [+0.0001, +0.0073]  P(diff<=0)=0.021  n_seq=67
+P-A0 AP50: -0.0107  95% CI [-0.0240, -0.0026]  P(diff<=0)=1.000  n_seq=67
+S-A0 SA: -0.0039  95% CI [-0.0098, -0.0003]  P(diff<=0)=0.996  n_seq=67
+S-A0 SA_pen: +0.0041  95% CI [+0.0004, +0.0080]  P(diff<=0)=0.015  n_seq=67
+S-A0 AP50: -0.0098  95% CI [-0.0229, -0.0020]  P(diff<=0)=1.000  n_seq=67
+R-A0 SA: -0.0027  95% CI [-0.0064, -0.0003]  P(diff<=0)=0.995  n_seq=67
+R-A0 SA_pen: +0.0051  95% CI [+0.0020, +0.0088]  P(diff<=0)=0.000  n_seq=67
+R-A0 AP50: -0.0074  95% CI [-0.0151, -0.0022]  P(diff<=0)=1.000  n_seq=67
+written: experiments/v7/reports/fusion_val.json

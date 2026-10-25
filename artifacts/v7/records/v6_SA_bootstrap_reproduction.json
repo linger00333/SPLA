@@ -1,0 +1,13 @@
+{
+  "exact_first_comparison_reproduction": true,
+  "result": {
+    "point": -0.01609749969607525,
+    "boot_mean": -0.01604420465457326,
+    "ci95": [
+      -0.02327373555939347,
+      -0.009368557729633057
+    ],
+    "share_le_0": 1.0,
+    "n_seq": 67
+  }
+}

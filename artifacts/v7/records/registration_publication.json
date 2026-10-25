@@ -1,0 +1,29 @@
+{
+  "local_registration_commit": "8060d8778753883702800db41cdecff292183832",
+  "public_registration_head": "8e306b20a4a8f9889effa6089f0d38cdde8a4377",
+  "public_tree": "87622dcff04a1652f48881d1e1198fe7b6b26977",
+  "verified_at": "2026-10-25T10:56:54.057658",
+  "note": "Local frozen registration hashes identify the pre-scoring Git commits. Git Data API canonicalized commit timestamps; tree contents were verified identical. No force update.",
+  "commit_mapping": [
+    {
+      "local": "0ec191723341f6b7c3ce5382f153db874d296ddd",
+      "published": "74ffc2829b9e00ae2d174f45a3176b47cf96a09d"
+    },
+    {
+      "local": "9c8a8a27cc5bb3948e9fee00bbfc6db58c89c6fe",
+      "published": "29338531237f3ecfdbe02f6d95b0d9ab56e0b217"
+    },
+    {
+      "local": "8060d8778753883702800db41cdecff292183832",
+      "published": "c1bc88bb27f96150df6028d6789dd4a8bb48a6d4"
+    },
+    {
+      "local": "f2fa4145226ce5dfb41cac5258e88e5ec7730cf1",
+      "published": "d4b5cfba5c729a1c66fce5c9650d83b9ef9c0d8c"
+    },
+    {
+      "local": "80806672297603ec017c891b5a42a6db4604cc5b",
+      "published": "8e306b20a4a8f9889effa6089f0d38cdde8a4377"
+    }
+  ]
+}

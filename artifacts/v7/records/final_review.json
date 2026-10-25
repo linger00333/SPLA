@@ -1,0 +1,34 @@
+{
+  "reviewed_at": "2026-10-25T11:12:28.586249",
+  "reviewer": "Primary execution agent",
+  "scope": "Supplied patch, hardened reusable tools, additional diagnostics, exporter, report generator and final derived evidence",
+  "axes": {
+    "correctness": "Strict length/coordinate/finite-box checks; paired bootstrap and negative-frame accounting verified; aggregate deltas reconstructed from replacements.",
+    "readability": "Protocol separates primary, exploratory, label-assisted and post-registration diagnostics; candidate flags are not claimed as acquisition truth.",
+    "architecture": "Isolated v7 with read-only old inputs; shared scoring formulas retained; no training controller or model changes.",
+    "security": "Portable ASCII sources/logs/metadata and decompressed predictions scanned; original labels/media excluded; original external session URL redacted.",
+    "performance": "Fixed-size lag search and CPU-only one-shot queue; completed without repeated jobs or background scheduler."
+  },
+  "validation": {
+    "remote_tool_tests": 32,
+    "local_supplementary_tests": 12,
+    "completed_jobs": 24,
+    "frozen_hashes": 437,
+    "prediction_sets": 3,
+    "sequences_each": 67,
+    "frames_each": 61999
+  },
+  "findings_resolved": [
+    "Silent input gaps and truncation",
+    "Run-order-dependent bootstrap streams",
+    "Incorrect blanket negative-frame replacement cost",
+    "Confusing prediction agreement with annotation accuracy",
+    "Overclaiming timing-fit flags as confirmed desynchronization"
+  ],
+  "remaining_limits": [
+    "Single detector seed and validation-only study",
+    "R uses evaluation-derived theta",
+    "Encoded PTS are not capture clocks",
+    "No new timing calibration, relabeling or training"
+  ]
+}

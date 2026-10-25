@@ -1,0 +1,419 @@
+{
+  "scope": "Post-registration explanatory label-geometry review; not used for thresholds, exclusions or gate. Identity mismatch characterizes the unregistered input; not a causal accuracy contribution.",
+  "paired_positive_frames": 57982,
+  "identity_center_error_IR_px": {
+    "median": 45.05964116587387,
+    "q25": 33.218593876876106,
+    "q75": 58.4457767483263
+  },
+  "label_derived_sequence_mapping_reference": {
+    "median_GT_IoU": 0.5464189607165121,
+    "share_GT_IoU_ge_0_5": 0.5720568452278293,
+    "median_IR_height_over_mapped_RGB_height": 1.1990846397384347,
+    "median_IR_width_over_mapped_RGB_width": 0.9959982621874489
+  },
+  "per_video": {
+    "20190925_101846_1_4": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 21.555740846776622,
+      "mapped_GT_IoU_median": 0.5059028867357785,
+      "known_label_issue": false
+    },
+    "20190925_101846_1_5": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 17.99745673310006,
+      "mapped_GT_IoU_median": 0.477166185020258,
+      "known_label_issue": false
+    },
+    "20190925_130434_1_1": {
+      "paired_frames": 998,
+      "identity_center_error_median_IR_px": 39.318890438200064,
+      "mapped_GT_IoU_median": 0.7239233184192486,
+      "known_label_issue": false
+    },
+    "20190925_130434_1_2": {
+      "paired_frames": 65,
+      "identity_center_error_median_IR_px": 72.29796835118668,
+      "mapped_GT_IoU_median": 0.13414527627647713,
+      "known_label_issue": true
+    },
+    "20190925_130434_1_5": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 24.291049626970732,
+      "mapped_GT_IoU_median": 0.7450936176967459,
+      "known_label_issue": false
+    },
+    "20190925_130434_1_6": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 35.315873266926,
+      "mapped_GT_IoU_median": 0.46798483828546894,
+      "known_label_issue": false
+    },
+    "20190925_130434_1_8": {
+      "paired_frames": 965,
+      "identity_center_error_median_IR_px": 49.00878410108964,
+      "mapped_GT_IoU_median": 0.10477230185281146,
+      "known_label_issue": false
+    },
+    "20190925_131530_1_3": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 54.339753336423335,
+      "mapped_GT_IoU_median": 0.288098453725831,
+      "known_label_issue": false
+    },
+    "20190925_133630_1_9": {
+      "paired_frames": 896,
+      "identity_center_error_median_IR_px": 24.0575832050889,
+      "mapped_GT_IoU_median": 0.573504286809696,
+      "known_label_issue": false
+    },
+    "20190925_140917_1_3": {
+      "paired_frames": 966,
+      "identity_center_error_median_IR_px": 28.610153626375322,
+      "mapped_GT_IoU_median": 0.6053996122614447,
+      "known_label_issue": false
+    },
+    "20190925_140917_1_6": {
+      "paired_frames": 979,
+      "identity_center_error_median_IR_px": 14.505364884250247,
+      "mapped_GT_IoU_median": 0.5504605940473617,
+      "known_label_issue": false
+    },
+    "20190925_141417_1_1": {
+      "paired_frames": 981,
+      "identity_center_error_median_IR_px": 19.399037281841544,
+      "mapped_GT_IoU_median": 0.6213495865315931,
+      "known_label_issue": false
+    },
+    "20190925_141417_1_6": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 37.174323333002036,
+      "mapped_GT_IoU_median": 0.6401791280919915,
+      "known_label_issue": false
+    },
+    "20190925_141417_1_7": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 38.86769349616525,
+      "mapped_GT_IoU_median": 0.6843346410601161,
+      "known_label_issue": false
+    },
+    "20190925_143900_1_1": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 28.02355969416387,
+      "mapped_GT_IoU_median": 0.6895627486868914,
+      "known_label_issue": false
+    },
+    "20190925_143900_1_2": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 33.011968059273386,
+      "mapped_GT_IoU_median": 0.6923977088416216,
+      "known_label_issue": false
+    },
+    "20190925_143900_1_7": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 57.57759501917569,
+      "mapped_GT_IoU_median": 0.13499893102642224,
+      "known_label_issue": false
+    },
+    "20190925_152412_1_3": {
+      "paired_frames": 980,
+      "identity_center_error_median_IR_px": 55.35634135996175,
+      "mapped_GT_IoU_median": 0.22049202946703467,
+      "known_label_issue": false
+    },
+    "20190925_152412_1_5": {
+      "paired_frames": 960,
+      "identity_center_error_median_IR_px": 55.19655381653673,
+      "mapped_GT_IoU_median": 0.4049338458962591,
+      "known_label_issue": false
+    },
+    "20190925_183946_1_1": {
+      "paired_frames": 929,
+      "identity_center_error_median_IR_px": 46.49365341588144,
+      "mapped_GT_IoU_median": 0.7166497842873008,
+      "known_label_issue": false
+    },
+    "20190925_183946_1_2": {
+      "paired_frames": 858,
+      "identity_center_error_median_IR_px": 42.585958396915615,
+      "mapped_GT_IoU_median": 0.632267429356369,
+      "known_label_issue": false
+    },
+    "20190925_183946_1_3": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 49.9023010957377,
+      "mapped_GT_IoU_median": 0.7461507357011579,
+      "known_label_issue": false
+    },
+    "20190925_194211_1_3": {
+      "paired_frames": 832,
+      "identity_center_error_median_IR_px": 55.69677195924626,
+      "mapped_GT_IoU_median": 0.6347995441311238,
+      "known_label_issue": true
+    },
+    "20190925_194211_1_4": {
+      "paired_frames": 944,
+      "identity_center_error_median_IR_px": 53.940776684036834,
+      "mapped_GT_IoU_median": 0.6752759334246243,
+      "known_label_issue": true
+    },
+    "20190925_200320_1_4": {
+      "paired_frames": 935,
+      "identity_center_error_median_IR_px": 23.25520901277195,
+      "mapped_GT_IoU_median": 0.3697155238073751,
+      "known_label_issue": false
+    },
+    "20190925_200320_1_8": {
+      "paired_frames": 39,
+      "identity_center_error_median_IR_px": 9.748781359598588,
+      "mapped_GT_IoU_median": 0.4516499495463719,
+      "known_label_issue": false
+    },
+    "20190925_205804_1_5": {
+      "paired_frames": 869,
+      "identity_center_error_median_IR_px": 60.15074068486831,
+      "mapped_GT_IoU_median": 0.393754491226439,
+      "known_label_issue": false
+    },
+    "20190925_205804_1_6": {
+      "paired_frames": 893,
+      "identity_center_error_median_IR_px": 44.2330332960323,
+      "mapped_GT_IoU_median": 0.48424401555119023,
+      "known_label_issue": false
+    },
+    "20190925_210802_1_3": {
+      "paired_frames": 885,
+      "identity_center_error_median_IR_px": 34.52481682327053,
+      "mapped_GT_IoU_median": 0.5216162770018783,
+      "known_label_issue": false
+    },
+    "20190925_210802_1_6": {
+      "paired_frames": 938,
+      "identity_center_error_median_IR_px": 47.583824796937655,
+      "mapped_GT_IoU_median": 0.43107331822083184,
+      "known_label_issue": false
+    },
+    "20190925_210802_1_8": {
+      "paired_frames": 705,
+      "identity_center_error_median_IR_px": 60.38357512937328,
+      "mapped_GT_IoU_median": 0.3196749007031061,
+      "known_label_issue": false
+    },
+    "20190925_213001_1_1": {
+      "paired_frames": 573,
+      "identity_center_error_median_IR_px": 45.831111206888274,
+      "mapped_GT_IoU_median": 0.5426441785854219,
+      "known_label_issue": false
+    },
+    "20190925_213001_1_3": {
+      "paired_frames": 922,
+      "identity_center_error_median_IR_px": 41.90992699935542,
+      "mapped_GT_IoU_median": 0.5361033951159548,
+      "known_label_issue": false
+    },
+    "20190925_222534_1_5": {
+      "paired_frames": 200,
+      "identity_center_error_median_IR_px": 85.59208643752719,
+      "mapped_GT_IoU_median": 0.729626288873227,
+      "known_label_issue": false
+    },
+    "20190925_222534_1_7": {
+      "paired_frames": 917,
+      "identity_center_error_median_IR_px": 54.799442414032754,
+      "mapped_GT_IoU_median": 0.32964211822768513,
+      "known_label_issue": false
+    },
+    "20190925_222534_1_8": {
+      "paired_frames": 938,
+      "identity_center_error_median_IR_px": 59.98344226331858,
+      "mapped_GT_IoU_median": 0.3704786362554889,
+      "known_label_issue": false
+    },
+    "20190926_103046_1_2": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 43.528961424982896,
+      "mapped_GT_IoU_median": 0.6268354174403423,
+      "known_label_issue": false
+    },
+    "20190926_103046_1_8": {
+      "paired_frames": 509,
+      "identity_center_error_median_IR_px": 43.379156841567614,
+      "mapped_GT_IoU_median": 0.6604107217018121,
+      "known_label_issue": false
+    },
+    "20190926_130341_1_5": {
+      "paired_frames": 970,
+      "identity_center_error_median_IR_px": 33.98148289024199,
+      "mapped_GT_IoU_median": 0.7092186250562649,
+      "known_label_issue": false
+    },
+    "20190926_133516_1_2": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 40.67348905256435,
+      "mapped_GT_IoU_median": 0.7110933280688341,
+      "known_label_issue": false
+    },
+    "20190926_133516_1_3": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 37.384333441225365,
+      "mapped_GT_IoU_median": 0.7065779024087631,
+      "known_label_issue": false
+    },
+    "20190926_133516_1_5": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 27.143209047620886,
+      "mapped_GT_IoU_median": 0.6551642849259878,
+      "known_label_issue": false
+    },
+    "20190926_133516_1_6": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 27.92862765493181,
+      "mapped_GT_IoU_median": 0.6113544988780206,
+      "known_label_issue": false
+    },
+    "20190926_141816_1_2": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 75.74763251412176,
+      "mapped_GT_IoU_median": 0.709947098187485,
+      "known_label_issue": false
+    },
+    "20190926_141816_1_4": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 51.49530287746799,
+      "mapped_GT_IoU_median": 0.5917248182692693,
+      "known_label_issue": false
+    },
+    "20190926_141816_1_6": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 55.4471477865375,
+      "mapped_GT_IoU_median": 0.37342974219794633,
+      "known_label_issue": false
+    },
+    "20190926_141816_1_9": {
+      "paired_frames": 877,
+      "identity_center_error_median_IR_px": 60.36214452025107,
+      "mapped_GT_IoU_median": 0.2760993214495078,
+      "known_label_issue": false
+    },
+    "20190926_142435_1_9": {
+      "paired_frames": 299,
+      "identity_center_error_median_IR_px": 60.396125612708474,
+      "mapped_GT_IoU_median": 0.6762633532765451,
+      "known_label_issue": false
+    },
+    "20190926_143632_1_2": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 54.542044017859126,
+      "mapped_GT_IoU_median": 0.6605212503773898,
+      "known_label_issue": false
+    },
+    "20190926_143632_1_4": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 39.88612160277613,
+      "mapped_GT_IoU_median": 0.5747920939424147,
+      "known_label_issue": false
+    },
+    "20190926_143632_1_8": {
+      "paired_frames": 580,
+      "identity_center_error_median_IR_px": 44.757420991190074,
+      "mapped_GT_IoU_median": 0.5430601623845905,
+      "known_label_issue": false
+    },
+    "20190926_144550_1_1": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 34.68009434528721,
+      "mapped_GT_IoU_median": 0.6537168268489378,
+      "known_label_issue": false
+    },
+    "20190926_144550_1_10": {
+      "paired_frames": 174,
+      "identity_center_error_median_IR_px": 45.33082980356188,
+      "mapped_GT_IoU_median": 0.8412563574309122,
+      "known_label_issue": false
+    },
+    "20190926_144550_1_4": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 39.37091442916234,
+      "mapped_GT_IoU_median": 0.7044981412468408,
+      "known_label_issue": false
+    },
+    "20190926_144550_1_7": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 42.60797818315228,
+      "mapped_GT_IoU_median": 0.6012605550294249,
+      "known_label_issue": false
+    },
+    "20190926_183400_1_1": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 92.2826467584232,
+      "mapped_GT_IoU_median": 0.41611706051567116,
+      "known_label_issue": false
+    },
+    "20190926_183400_1_4": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 64.79281302577445,
+      "mapped_GT_IoU_median": 0.39493913792891205,
+      "known_label_issue": false
+    },
+    "20190926_183400_1_6": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 66.57071872542741,
+      "mapped_GT_IoU_median": 0.3493929845790499,
+      "known_label_issue": false
+    },
+    "20190926_183941_1_3": {
+      "paired_frames": 867,
+      "identity_center_error_median_IR_px": 56.53681867216503,
+      "mapped_GT_IoU_median": 0.2051094212124014,
+      "known_label_issue": false
+    },
+    "20190926_183941_1_5": {
+      "paired_frames": 986,
+      "identity_center_error_median_IR_px": 61.638314510734,
+      "mapped_GT_IoU_median": 0.09407856995128047,
+      "known_label_issue": false
+    },
+    "20190926_195921_1_1": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 45.07321186997978,
+      "mapped_GT_IoU_median": 0.5431289187619205,
+      "known_label_issue": false
+    },
+    "20190926_195921_1_5": {
+      "paired_frames": 652,
+      "identity_center_error_median_IR_px": 56.93386201935931,
+      "mapped_GT_IoU_median": 0.06326983717644089,
+      "known_label_issue": false
+    },
+    "20190926_195921_1_6": {
+      "paired_frames": 427,
+      "identity_center_error_median_IR_px": 59.261923088275765,
+      "mapped_GT_IoU_median": 0.13753024852000292,
+      "known_label_issue": false
+    },
+    "20190926_200510_1_2": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 45.42076234330172,
+      "mapped_GT_IoU_median": 0.5653548882423698,
+      "known_label_issue": false
+    },
+    "20190926_200510_1_3": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 42.06018574567989,
+      "mapped_GT_IoU_median": 0.6573023364145179,
+      "known_label_issue": false
+    },
+    "20190926_200510_1_4": {
+      "paired_frames": 1000,
+      "identity_center_error_median_IR_px": 49.09592837415222,
+      "mapped_GT_IoU_median": 0.527032047675551,
+      "known_label_issue": false
+    },
+    "20190926_200510_1_8": {
+      "paired_frames": 474,
+      "identity_center_error_median_IR_px": 57.25301418557791,
+      "mapped_GT_IoU_median": 0.5866116845463505,
+      "known_label_issue": false
+    }
+  }
+}

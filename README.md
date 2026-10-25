@@ -57,6 +57,15 @@ not been executed. The validation shift diagnostic is complete.
 The [v6 fusion diagnostics](artifacts/v6/REPORT.md) are complete: two blank-input ablations, one 100-epoch scratch RGB baseline, full RGB validation inference and fixed-detector complementarity. Complete predictions and the portable RGB model are published. Test remains unevaluated.
 <!-- /V6_STATUS -->
 
+The [v7 decision-fusion study](artifacts/v7/REPORT.md) is complete. All three
+fixed rules cover 67 validation videos / 61,999 frames. Primary P reduces SA
+by 0.004237 (95% interval [-0.010231, -0.000673]); the proposal gate failed.
+S and label-assisted R also reduce SA. Full derived predictions, replacement
+costs, predeclared sensitivities and timing/geometry audits are included.
+Timing flags remain diagnostic candidates. No new training or test evaluation
+was run. The scorer now rejects incomplete inputs and supports order-invariant
+bootstrap draws; old reports and the legacy draw option are retained.
+
 ## Contents
 
 The evaluation-only [persistent RGB shift study](docs/SHIFT_DIAGNOSTICS.md)
@@ -79,6 +88,8 @@ screen also finds two videos where A1 exceeds A0 by more than 0.02 SA.
 - `artifacts/v3`: complete seven-condition scores, coverage and old A1c curves.
 - `artifacts/v4`: low-LR pilot evidence and a timestamped execution snapshot.
 - `artifacts/v5`: per-video RGB gains, shift geometry and stress-study status.
+- `artifacts/v6`: completed blanking, RGB baseline and complementarity study.
+- `artifacts/v7`: decision-fusion results, timing/geometry audits and protocol.
 - `docs`: evaluation protocol, experiment scope, installation, and model use.
 - `scripts/check_release.py`: publication content and manifest verification.
 

@@ -1,0 +1,35 @@
+{
+  "scope": "Post-registration explanatory diagnostics, not used for tuning, exclusions or the primary gate. No fusion inputs changed.",
+  "commands": [
+    [
+      "python",
+      "geometry_review.py"
+    ],
+    [
+      "python",
+      "media_timing_audit.py"
+    ]
+  ],
+  "CPU_only": true,
+  "training": false,
+  "test": false,
+  "recorded_at": "2026-10-25T11:08:03.299051",
+  "files": {
+    "geometry_review.py": {
+      "sha256": "ff41d125e623f4876e3358461daf68c018c5c4c1abc36ebb52345e18655163f8",
+      "last_modified": "2026-10-25T10:57:19.110907"
+    },
+    "media_timing_audit.py": {
+      "sha256": "9a91ad347308732e71bfc1809ba5c3272e100e1b6f859c33ab9dd977696f1c10",
+      "last_modified": "2026-10-25T11:01:34.714703"
+    },
+    "reports/geometry_review.json": {
+      "sha256": "b9751857691cc05753955cd17da63974b58c02c4f76e852e36d9d1e2d1db4712",
+      "last_modified": "2026-10-25T10:57:22.915842"
+    },
+    "reports/media_timing_audit.json": {
+      "sha256": "c4bf415e4ced0448669fa2c98977b608bb46630fa76a9d293592731b7778da6f",
+      "last_modified": "2026-10-25T11:01:36.600687"
+    }
+  }
+}
