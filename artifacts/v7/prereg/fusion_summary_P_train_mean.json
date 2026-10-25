@@ -1,0 +1,1080 @@
+{
+ "split": "val",
+ "videos": 67,
+ "pooled": {
+  "frames": 61999,
+  "actions": {
+   "keep_ir": 60062,
+   "keep_ir_rgb_not_confident": 1276,
+   "keep_ir_outside_fov": 28,
+   "replace": 633
+  },
+  "replaced_map_sources": {
+   "train_mean": 633
+  },
+  "replaced_size_sources": {
+   "mapped": 633
+  },
+  "transfer_fidelity": {
+   "frames": 57531,
+   "median_iou_vs_confident_ir": 0.25678377228608573,
+   "share_iou_ge_0.5": 0.2591820062227321,
+   "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+  }
+ },
+ "per_video": {
+  "20190925_101846_1_4": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.003815044598159012,
+    "share_iou_ge_0.5": 0.004,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_101846_1_5": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 999,
+    "median_iou_vs_confident_ir": 0.0,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_130434_1_1": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 998,
+    "median_iou_vs_confident_ir": 0.7396810919282959,
+    "share_iou_ge_0.5": 0.8627254509018036,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_130434_1_2": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir_rgb_not_confident": 909,
+    "keep_ir_outside_fov": 7,
+    "keep_ir": 80,
+    "replace": 4
+   },
+   "replaced_map_sources": {
+    "train_mean": 4
+   },
+   "replaced_size_sources": {
+    "mapped": 4
+   },
+   "transfer_fidelity": {
+    "frames": 67,
+    "median_iou_vs_confident_ir": 0.06967526505381978,
+    "share_iou_ge_0.5": 0.04477611940298507,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_130434_1_5": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.3648869402020602,
+    "share_iou_ge_0.5": 0.126,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_130434_1_6": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.1965196813154079,
+    "share_iou_ge_0.5": 0.011,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_130434_1_8": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 995,
+    "replace": 2,
+    "keep_ir_outside_fov": 1,
+    "keep_ir_rgb_not_confident": 2
+   },
+   "replaced_map_sources": {
+    "train_mean": 2
+   },
+   "replaced_size_sources": {
+    "mapped": 2
+   },
+   "transfer_fidelity": {
+    "frames": 946,
+    "median_iou_vs_confident_ir": 0.06756320507968602,
+    "share_iou_ge_0.5": 0.0306553911205074,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_131530_1_3": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 989,
+    "replace": 11
+   },
+   "replaced_map_sources": {
+    "train_mean": 11
+   },
+   "replaced_size_sources": {
+    "mapped": 11
+   },
+   "transfer_fidelity": {
+    "frames": 986,
+    "median_iou_vs_confident_ir": 0.06068305764977011,
+    "share_iou_ge_0.5": 0.007099391480730223,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_133630_1_9": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 984,
+    "keep_ir_rgb_not_confident": 9,
+    "replace": 7
+   },
+   "replaced_map_sources": {
+    "train_mean": 7
+   },
+   "replaced_size_sources": {
+    "mapped": 7
+   },
+   "transfer_fidelity": {
+    "frames": 869,
+    "median_iou_vs_confident_ir": 0.04302485715033534,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_140917_1_3": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 976,
+    "replace": 12,
+    "keep_ir_outside_fov": 4,
+    "keep_ir_rgb_not_confident": 8
+   },
+   "replaced_map_sources": {
+    "train_mean": 12
+   },
+   "replaced_size_sources": {
+    "mapped": 12
+   },
+   "transfer_fidelity": {
+    "frames": 944,
+    "median_iou_vs_confident_ir": 0.07220717862474581,
+    "share_iou_ge_0.5": 0.014830508474576272,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_140917_1_6": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 952,
+    "replace": 48
+   },
+   "replaced_map_sources": {
+    "train_mean": 48
+   },
+   "replaced_size_sources": {
+    "mapped": 48
+   },
+   "transfer_fidelity": {
+    "frames": 935,
+    "median_iou_vs_confident_ir": 0.014543630764150592,
+    "share_iou_ge_0.5": 0.0010695187165775401,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_141417_1_1": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 983,
+    "keep_ir_rgb_not_confident": 3,
+    "replace": 14
+   },
+   "replaced_map_sources": {
+    "train_mean": 14
+   },
+   "replaced_size_sources": {
+    "mapped": 14
+   },
+   "transfer_fidelity": {
+    "frames": 966,
+    "median_iou_vs_confident_ir": 0.049272627578299255,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_141417_1_6": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 986,
+    "replace": 14
+   },
+   "replaced_map_sources": {
+    "train_mean": 14
+   },
+   "replaced_size_sources": {
+    "mapped": 14
+   },
+   "transfer_fidelity": {
+    "frames": 977,
+    "median_iou_vs_confident_ir": 0.16132354138349836,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_141417_1_7": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.15483158837722477,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_143900_1_1": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.202969717999778,
+    "share_iou_ge_0.5": 0.124,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_143900_1_2": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 997,
+    "replace": 3
+   },
+   "replaced_map_sources": {
+    "train_mean": 3
+   },
+   "replaced_size_sources": {
+    "mapped": 3
+   },
+   "transfer_fidelity": {
+    "frames": 981,
+    "median_iou_vs_confident_ir": 0.20120751429416542,
+    "share_iou_ge_0.5": 0.03669724770642202,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_143900_1_7": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 999,
+    "replace": 1
+   },
+   "replaced_map_sources": {
+    "train_mean": 1
+   },
+   "replaced_size_sources": {
+    "mapped": 1
+   },
+   "transfer_fidelity": {
+    "frames": 999,
+    "median_iou_vs_confident_ir": 0.074883608588451,
+    "share_iou_ge_0.5": 0.055055055055055056,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_152412_1_3": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 994,
+    "keep_ir_outside_fov": 1,
+    "replace": 5
+   },
+   "replaced_map_sources": {
+    "train_mean": 5
+   },
+   "replaced_size_sources": {
+    "mapped": 5
+   },
+   "transfer_fidelity": {
+    "frames": 958,
+    "median_iou_vs_confident_ir": 0.013073435425389312,
+    "share_iou_ge_0.5": 0.008350730688935281,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_152412_1_5": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 994,
+    "replace": 6
+   },
+   "replaced_map_sources": {
+    "train_mean": 6
+   },
+   "replaced_size_sources": {
+    "mapped": 6
+   },
+   "transfer_fidelity": {
+    "frames": 952,
+    "median_iou_vs_confident_ir": 0.1963932179121855,
+    "share_iou_ge_0.5": 0.02415966386554622,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_183946_1_1": {
+   "frames": 929,
+   "actions": {
+    "keep_ir": 929
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 924,
+    "median_iou_vs_confident_ir": 0.595601437085417,
+    "share_iou_ge_0.5": 0.7380952380952381,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_183946_1_2": {
+   "frames": 858,
+   "actions": {
+    "keep_ir": 858
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 854,
+    "median_iou_vs_confident_ir": 0.5312423441070646,
+    "share_iou_ge_0.5": 0.6533957845433255,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_183946_1_3": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 982,
+    "median_iou_vs_confident_ir": 0.637976888442628,
+    "share_iou_ge_0.5": 0.884928716904277,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_194211_1_3": {
+   "frames": 971,
+   "actions": {
+    "keep_ir_rgb_not_confident": 87,
+    "keep_ir": 884
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 827,
+    "median_iou_vs_confident_ir": 0.029156042573388583,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_194211_1_4": {
+   "frames": 944,
+   "actions": {
+    "keep_ir": 944
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 943,
+    "median_iou_vs_confident_ir": 0.004917555986931156,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_200320_1_4": {
+   "frames": 935,
+   "actions": {
+    "keep_ir": 935
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 935,
+    "median_iou_vs_confident_ir": 0.21241908079277308,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_200320_1_8": {
+   "frames": 39,
+   "actions": {
+    "keep_ir": 39
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 39,
+    "median_iou_vs_confident_ir": 0.0,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_205804_1_5": {
+   "frames": 961,
+   "actions": {
+    "keep_ir_rgb_not_confident": 54,
+    "keep_ir": 885,
+    "replace": 22
+   },
+   "replaced_map_sources": {
+    "train_mean": 22
+   },
+   "replaced_size_sources": {
+    "mapped": 22
+   },
+   "transfer_fidelity": {
+    "frames": 865,
+    "median_iou_vs_confident_ir": 0.3156337780463,
+    "share_iou_ge_0.5": 0.15838150289017341,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_205804_1_6": {
+   "frames": 924,
+   "actions": {
+    "keep_ir": 868,
+    "replace": 56
+   },
+   "replaced_map_sources": {
+    "train_mean": 56
+   },
+   "replaced_size_sources": {
+    "mapped": 56
+   },
+   "transfer_fidelity": {
+    "frames": 868,
+    "median_iou_vs_confident_ir": 0.5144262286764352,
+    "share_iou_ge_0.5": 0.5714285714285714,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_210802_1_3": {
+   "frames": 929,
+   "actions": {
+    "keep_ir": 917,
+    "replace": 12
+   },
+   "replaced_map_sources": {
+    "train_mean": 12
+   },
+   "replaced_size_sources": {
+    "mapped": 12
+   },
+   "transfer_fidelity": {
+    "frames": 885,
+    "median_iou_vs_confident_ir": 0.5067835272828493,
+    "share_iou_ge_0.5": 0.5525423728813559,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_210802_1_6": {
+   "frames": 938,
+   "actions": {
+    "keep_ir": 938
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 929,
+    "median_iou_vs_confident_ir": 0.407634939757185,
+    "share_iou_ge_0.5": 0.017222820236813777,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_210802_1_8": {
+   "frames": 706,
+   "actions": {
+    "keep_ir": 700,
+    "keep_ir_outside_fov": 6
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 700,
+    "median_iou_vs_confident_ir": 0.279504024022342,
+    "share_iou_ge_0.5": 0.018571428571428572,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_213001_1_1": {
+   "frames": 942,
+   "actions": {
+    "replace": 349,
+    "keep_ir": 593
+   },
+   "replaced_map_sources": {
+    "train_mean": 349
+   },
+   "replaced_size_sources": {
+    "mapped": 349
+   },
+   "transfer_fidelity": {
+    "frames": 409,
+    "median_iou_vs_confident_ir": 0.35191054515566866,
+    "share_iou_ge_0.5": 0.007334963325183374,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_213001_1_3": {
+   "frames": 926,
+   "actions": {
+    "keep_ir": 925,
+    "keep_ir_outside_fov": 1
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 925,
+    "median_iou_vs_confident_ir": 0.23186852708428776,
+    "share_iou_ge_0.5": 0.006486486486486486,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_222534_1_5": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 471,
+    "median_iou_vs_confident_ir": 0.0,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_222534_1_7": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 937,
+    "replace": 34,
+    "keep_ir_rgb_not_confident": 29
+   },
+   "replaced_map_sources": {
+    "train_mean": 34
+   },
+   "replaced_size_sources": {
+    "mapped": 34
+   },
+   "transfer_fidelity": {
+    "frames": 877,
+    "median_iou_vs_confident_ir": 0.24277304948309245,
+    "share_iou_ge_0.5": 0.05131128848346636,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190925_222534_1_8": {
+   "frames": 938,
+   "actions": {
+    "keep_ir": 938
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 938,
+    "median_iou_vs_confident_ir": 0.17573418420765122,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_103046_1_2": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 985,
+    "replace": 15
+   },
+   "replaced_map_sources": {
+    "train_mean": 15
+   },
+   "replaced_size_sources": {
+    "mapped": 15
+   },
+   "transfer_fidelity": {
+    "frames": 985,
+    "median_iou_vs_confident_ir": 0.5233099588303997,
+    "share_iou_ge_0.5": 0.5918781725888325,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_103046_1_8": {
+   "frames": 509,
+   "actions": {
+    "keep_ir": 509
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 509,
+    "median_iou_vs_confident_ir": 0.47281386447543133,
+    "share_iou_ge_0.5": 0.3889980353634578,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_130341_1_5": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 964,
+    "median_iou_vs_confident_ir": 0.7498528917907273,
+    "share_iou_ge_0.5": 0.975103734439834,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_133516_1_2": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.6134264512680396,
+    "share_iou_ge_0.5": 0.843,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_133516_1_3": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.6749833274712065,
+    "share_iou_ge_0.5": 0.888,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_133516_1_5": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.49304342080493624,
+    "share_iou_ge_0.5": 0.477,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_133516_1_6": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.48190049307112837,
+    "share_iou_ge_0.5": 0.418,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_141816_1_2": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.07512341962685828,
+    "share_iou_ge_0.5": 0.01,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_141816_1_4": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.3084918200207424,
+    "share_iou_ge_0.5": 0.193,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_141816_1_6": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.20768059829616697,
+    "share_iou_ge_0.5": 0.099,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_141816_1_9": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 927,
+    "keep_ir_rgb_not_confident": 73
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 866,
+    "median_iou_vs_confident_ir": 0.19404927825537943,
+    "share_iou_ge_0.5": 0.13625866050808313,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_142435_1_9": {
+   "frames": 299,
+   "actions": {
+    "keep_ir": 299
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 299,
+    "median_iou_vs_confident_ir": 0.14905553912929867,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_143632_1_2": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.4848301642442637,
+    "share_iou_ge_0.5": 0.45,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_143632_1_4": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.573983249298894,
+    "share_iou_ge_0.5": 0.651,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_143632_1_8": {
+   "frames": 584,
+   "actions": {
+    "keep_ir": 576,
+    "keep_ir_outside_fov": 8
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 576,
+    "median_iou_vs_confident_ir": 0.5691771970674009,
+    "share_iou_ge_0.5": 0.6180555555555556,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_144550_1_1": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.6432991994899397,
+    "share_iou_ge_0.5": 0.859,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_144550_1_10": {
+   "frames": 174,
+   "actions": {
+    "keep_ir": 174
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 174,
+    "median_iou_vs_confident_ir": 0.4254298874277306,
+    "share_iou_ge_0.5": 0.14942528735632185,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_144550_1_4": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.6241935567130259,
+    "share_iou_ge_0.5": 0.78,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_144550_1_7": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.5878715421483734,
+    "share_iou_ge_0.5": 0.649,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_183400_1_1": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.0,
+    "share_iou_ge_0.5": 0.022,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_183400_1_4": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.04112906988520446,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_183400_1_6": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.043638944322964966,
+    "share_iou_ge_0.5": 0.003,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_183941_1_3": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 906,
+    "keep_ir_rgb_not_confident": 76,
+    "replace": 18
+   },
+   "replaced_map_sources": {
+    "train_mean": 18
+   },
+   "replaced_size_sources": {
+    "mapped": 18
+   },
+   "transfer_fidelity": {
+    "frames": 817,
+    "median_iou_vs_confident_ir": 0.02733475793853041,
+    "share_iou_ge_0.5": 0.01346389228886169,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_183941_1_5": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir_rgb_not_confident": 11,
+    "keep_ir": 989
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 943,
+    "median_iou_vs_confident_ir": 0.03053643025934436,
+    "share_iou_ge_0.5": 0.0,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_195921_1_1": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.35038988394549825,
+    "share_iou_ge_0.5": 0.208,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_195921_1_5": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 560,
+    "median_iou_vs_confident_ir": 0.0455735360959792,
+    "share_iou_ge_0.5": 0.01607142857142857,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_195921_1_6": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 415,
+    "median_iou_vs_confident_ir": 0.1000722873162463,
+    "share_iou_ge_0.5": 0.05301204819277108,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_200510_1_2": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.37984080439435675,
+    "share_iou_ge_0.5": 0.185,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_200510_1_3": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.5978854295869,
+    "share_iou_ge_0.5": 0.742,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_200510_1_4": {
+   "frames": 1000,
+   "actions": {
+    "keep_ir": 1000
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 1000,
+    "median_iou_vs_confident_ir": 0.5299613001060038,
+    "share_iou_ge_0.5": 0.527,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  },
+  "20190926_200510_1_8": {
+   "frames": 493,
+   "actions": {
+    "keep_ir": 478,
+    "keep_ir_rgb_not_confident": 15
+   },
+   "replaced_map_sources": {},
+   "replaced_size_sources": {},
+   "transfer_fidelity": {
+    "frames": 475,
+    "median_iou_vs_confident_ir": 0.3247810926913484,
+    "share_iou_ge_0.5": 0.05894736842105263,
+    "note": "label-free: IoU of the rule's proposal against a confident IR box, not against labels"
+   }
+  }
+ },
+ "uses_evaluation_labels": false
+}
