@@ -15621,6 +15621,11 @@
       "sha256": "8180f70c358ed2df4bf8b5a61b924b15219684db737eded1bf1906021cf314a9"
     },
     {
+      "path": "artifacts/v7/publication_scope.json",
+      "bytes": 727,
+      "sha256": "f2cc4dfa714632c984bfe2e8b98c8f4fcfabd5348f49182562d41a136dffc396"
+    },
+    {
       "path": "artifacts/v7/records/final_integrity.json",
       "bytes": 263,
       "sha256": "665c796b8b99d3e7a3a10f9ea184d86e709736bf835116a1d2d6400d6adb1641"

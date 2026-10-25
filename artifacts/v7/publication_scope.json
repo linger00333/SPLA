@@ -1,0 +1,16 @@
+{
+  "authorized_at": "2026-10-25T11:14:13.252169",
+  "authority": "Direct user confirmation in this conversation",
+  "scope": "Publish v7 English code, final reports, audits and all P/S/R full-frame derived predictions to linger00333/SPLA main",
+  "destination": "https://github.com/linger00333/SPLA",
+  "branch": "main",
+  "excluded": [
+    "original videos",
+    "images",
+    "original annotations",
+    "machine paths",
+    "credentials"
+  ],
+  "new_training_authorized_by_this_publication": false,
+  "review_history": "Initial final-results push was automatically rejected because prior explicit release consent named v6. No workaround was used. The user then explicitly authorized v7 publication with the scope above."
+}
