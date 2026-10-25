@@ -6,6 +6,7 @@ import unittest
 import numpy as np
 V = Path(__file__).resolve().parent
 repo = V.parents[1] / 'github/SPLA'
+if not repo.exists(): repo = V.parents[1]
 sys.path[:0] = [str(repo / 'kit'), str(repo / 'kit/tools')]
 spec = importlib.util.spec_from_file_location('heldout_sync', V / 'heldout_sync.py')
 module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)

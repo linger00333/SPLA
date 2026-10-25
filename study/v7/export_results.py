@@ -21,14 +21,24 @@ def clean(x):
     return x
 def export(src, rel):
     dest = OUT / rel; dest.parent.mkdir(parents=True, exist_ok=True)
-    text = json.dumps(clean(json.loads(src.read_text())), indent=2, allow_nan=False) + '\n' if src.suffix == '.json' else portable(src.read_text())
+    if src.suffix == '.json':
+        obj = json.loads(src.read_text())
+        if src.name == 'visual_precheck.json':
+            obj = {k: v for k, v in obj.items() if k != 'samples'}
+            obj.update(inspected_frame_pairs=9, selected_frame_indices=[r['frame'] for r in json.loads(src.read_text())['samples']],
+                       findings='Early IR samples are strongly blurred; modality label presence differs. Original labels remain unchanged; frame-level label states and images stay private.')
+        text = json.dumps(clean(obj), indent=2, allow_nan=False) + '\n'
+    else:
+        text = portable(src.read_text())
     dest.write_text(text, encoding='ascii', newline='\n')
 state = json.loads((V / 'status.json').read_text())
 assert state['phase'] == 'complete_report_ready' and all(x['state'] == 'complete' for x in state['jobs'].values())
 export(V / 'status.json', Path('artifacts/v7/status_snapshot.json'))
 for folder in ('reports', 'records'):
     for src in (V / folder).iterdir():
-        if src.suffix in ('.json', '.csv'): export(src, Path('artifacts/v7') / folder / src.name)
+        if src.suffix in ('.json', '.csv', '.log'): export(src, Path('artifacts/v7') / folder / src.name)
+for src in V.glob('*.log'):
+    if src.stat().st_size: export(src, Path('artifacts/v7/logs') / src.name)
 for name in ('P', 'S', 'R'):
     for src in (V / 'results' / name).iterdir():
         if src.suffix not in ('.json', '.csv', '.txt'): continue
