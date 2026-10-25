@@ -13397,8 +13397,8 @@
     },
     {
       "path": "artifacts/v7/patch_provenance.json",
-      "bytes": 438,
-      "sha256": "089d3e1827cc400d2c87c0b15902abe6999360d176a98f06c4a478741adf85b5"
+      "bytes": 539,
+      "sha256": "3c4c2fb69416b8d8b9c5797b5d0a6ce9cb3fbf82477c66500c5ccfb5d2ce6acb"
     },
     {
       "path": "artifacts/v7/prereg/fusion_summary_P_train_mean.json",
