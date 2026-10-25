@@ -28,12 +28,18 @@ def load(path, a, b):
     out = {}
     for r in rows:
         va, vb = r.get(f"{a}_SA", ""), r.get(f"{b}_SA", "")
-        if va != "" and vb != "":
-            out[r["sequence"]] = float(va) - float(vb)
+        name = r.get('sequence')
+        if not name or name in out or va == '' or vb == '':
+            raise ValueError('Every video needs unique, complete paired SA values')
+        pair = np.asarray([float(va), float(vb)])
+        if not np.isfinite(pair).all(): raise ValueError('SA values must be finite')
+        out[name] = float(pair[0] - pair[1])
+    if not out: raise ValueError('Empty per-sequence CSV')
     return out
 
 
 def bootstrap(diffs, n_boot, seed):
+    if not diffs or n_boot < 1: raise ValueError('Nonempty differences and positive bootstrap count required')
     seqs = sorted(diffs)
     d = np.array([diffs[s] for s in seqs])
     rng = np.random.default_rng(seed)

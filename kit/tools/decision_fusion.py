@@ -54,10 +54,13 @@ import csv
 import gzip
 import hashlib
 import json
+import sys
 from collections import deque
 from pathlib import Path
 
 import numpy as np
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from spla.prediction_io import read_json, validate_frames
 
 SUFFIX_RES, SUFFIX_DETS = "_IR.txt", "_dets.json"
 
@@ -66,12 +69,7 @@ SUFFIX_RES, SUFFIX_DETS = "_IR.txt", "_dets.json"
 # Input
 # --------------------------------------------------------------------------
 def _read_json(path: Path):
-    if path.exists():
-        return json.loads(path.read_text())
-    gz = path.with_name(path.name + ".gz")
-    if gz.exists():
-        return json.loads(gzip.open(gz, "rt").read())
-    raise FileNotFoundError(path)
+    return read_json(path)
 
 
 def run_sequences(directory: Path) -> list[str]:
@@ -95,9 +93,12 @@ def load_pair(ir_dir: Path, rgb_dir: Path, seq: str):
     ir_res = _read_json(ir_dir / f"{seq}{SUFFIX_RES}")["res"]
     ir_dets = _read_json(ir_dir / f"{seq}{SUFFIX_DETS}")
     rgb_dets = _read_json(rgb_dir / f"{seq}{SUFFIX_DETS}")
-    if not (len(ir_res) == len(ir_dets) == len(rgb_dets)):
+    rgb_res = _read_json(rgb_dir / f"{seq}{SUFFIX_RES}")["res"]
+    if not (len(ir_res) == len(ir_dets) == len(rgb_dets) == len(rgb_res)):
         raise ValueError(f"{seq}: frame counts differ (IR res {len(ir_res)}, IR dets {len(ir_dets)}, "
                          f"RGB dets {len(rgb_dets)})")
+    for frames, det in ((ir_res, False), (rgb_res, False), (ir_dets, True), (rgb_dets, True)):
+        validate_frames(frames, len(ir_res), detections=det)
     return ir_res, ir_dets, rgb_dets
 
 
@@ -220,6 +221,8 @@ def propose(t, rgb_box, theta, state: CausalState, args, ir_wh, rgb_wh):
 
 
 def fuse_video(seq, ir_res, ir_dets, rgb_dets, theta, args, ir_wh, rgb_wh):
+    if not ir_res or not (len(ir_res) == len(ir_dets) == len(rgb_dets)):
+        raise ValueError(f'{seq}: empty or unequal frame lists')
     state = CausalState(args.window, args.online_k)
     res_out, dets_out, log, fidelity = [], [], [], []
     for t, (res, di, dr) in enumerate(zip(ir_res, ir_dets, rgb_dets)):
@@ -301,6 +304,8 @@ def parse_args(argv=None):
         ap.error("--window and --online-k must be positive")
     if args.map == "seq" and args.seq_theta is None:
         ap.error("--map seq requires --seq-theta")
+    if args.map != 'seq' and args.seq_theta is not None:
+        ap.error('--seq-theta is reserved for the label-dependent reference condition')
     return args
 
 
@@ -329,6 +334,8 @@ def main(argv=None):
         if missing:
             raise ValueError(f"--map seq: no fitted transform for {missing}")
 
+    if args.out.exists() and any(args.out.iterdir()):
+        raise FileExistsError('Refusing to overwrite an existing fusion run')
     args.out.mkdir(parents=True, exist_ok=True)
     all_log, all_fid, per_video = [], [], {}
     for seq in seqs:

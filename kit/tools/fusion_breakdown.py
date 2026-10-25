@@ -4,8 +4,8 @@
 Run only AFTER the fusion protocol is registered: this reads evaluation labels.
 For every frame that decision_fusion.py replaced, it records whether the IR
 label is positive and, if so, the IoU of the IR detector's own output and of
-the fused output. SA counts a replaced frame on an IR-negative frame as a loss
-of 1, so the "negative" row is the false-positive cost.
+the fused output. The false-positive cost is fused minus original SA; a negative
+frame with an existing IR false positive costs no additional SA when replaced.
 
 Usage:
   python kit/tools/fusion_breakdown.py --root data/raw --split val \
@@ -46,8 +46,12 @@ def main(argv=None):
     if args.split == "test":
         raise SystemExit("refusing split=test (protocol)")
     replaced = defaultdict(list)
+    seen = set()
     with open(args.fused / "fusion_log.csv") as f:
         for r in csv.DictReader(f):
+            key = (r['seq'], int(r['frame']))
+            if key in seen: raise ValueError('Duplicate fusion log frame')
+            seen.add(key)
             if r["action"] == "replace":
                 replaced[r["seq"]].append(int(r["frame"]))
     rows = {"ir_positive": defaultdict(float), "ir_negative": defaultdict(float)}
@@ -60,11 +64,13 @@ def main(argv=None):
             raise ValueError(f"{seq}: label and prediction lengths differ")
         delta = 0.0
         for t in frames:
+            if not 0 <= t < len(exist): raise ValueError('Fusion log frame outside annotation range')
             key = "ir_positive" if exist[t] else "ir_negative"
             b, u = frame_score(base[t], exist[t], boxes[t]), frame_score(fused[t], exist[t], boxes[t])
             rows[key]["frames"] += 1
             rows[key]["sum_score_ir"] += b
             rows[key]["sum_score_fused"] += u
+            rows[key]['sum_delta'] += u - b
             if exist[t]:
                 rows[key]["fused_iou_ge_0.5"] += float(u >= 0.5)
             delta += u - b

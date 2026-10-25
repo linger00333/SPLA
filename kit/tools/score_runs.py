@@ -32,6 +32,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from spla.antiuav_io import find_files, list_sequences, read_labels  # noqa: E402
+from spla.prediction_io import read_json, validate_frames  # noqa: E402
 
 
 def iou_xywh(a, b):
@@ -45,6 +46,8 @@ def iou_xywh(a, b):
 
 def state_accuracy(pred, exist, boxes):
     """Return (SA, SA_pen) for one sequence."""
+    if len(pred) != len(exist) or len(boxes) != len(exist):
+        raise ValueError('Prediction and annotation lengths must match exactly')
     m, empty_on_target, n_target = [], 0, 0
     for t, p in enumerate(pred[: len(exist)]):
         if not exist[t]:
@@ -63,6 +66,8 @@ def state_accuracy(pred, exist, boxes):
 
 def match_dets(dets, exist, boxes, thr=0.5):
     """Scores and TP flags of all detections in one sequence, plus the number of targets."""
+    if len(dets) != len(exist) or len(boxes) != len(exist):
+        raise ValueError('Detection and annotation lengths must match exactly')
     scores, tps = [], []
     for t, frame in enumerate(dets[: len(exist)]):
         matched = False
@@ -98,11 +103,18 @@ def frames_to_converge(errs, tol=2.0):
     return float(bad[-1] + 1) if bad[-1] + 1 < len(e) else float("nan")
 
 
-def load_run(dirs, labels):
+def load_run(dirs, labels, require_dets=False):
     """Per-sequence metrics for one model, averaged over its seed directories."""
     per = defaultdict(lambda: defaultdict(list))
     for d in dirs:
         d = Path(d)
+        if not d.is_dir() or not labels:
+            raise ValueError('Run directory and nonempty labels are required')
+        cfg = d / 'run_config.json'
+        if cfg.exists() or cfg.with_name(cfg.name + '.gz').exists():
+            meta = read_json(cfg)
+            if meta.get('output_coordinates', 'RGB_pixels' if meta.get('input') == 'rgb' else 'IR_pixels') != 'IR_pixels':
+                raise ValueError('The IR-label scorer requires IR-pixel predictions')
         curve = defaultdict(lambda: ([], [], []))
         cp = d / "prior_curve.csv"
         if cp.exists():
@@ -113,14 +125,15 @@ def load_run(dirs, labels):
                     curve[r["seq"]][2].append(float(r.get("prior_target_error_px") or "nan"))
         for seq, (exist, boxes) in labels.items():
             pf, df = d / f"{seq}_IR.txt", d / f"{seq}_dets.json"
-            if not pf.exists():
-                continue
-            pred = json.loads(pf.read_text())["res"]
+            pred = read_json(pf)["res"]
+            validate_frames(pred, len(exist))
             sa, sa_pen = state_accuracy(pred, exist, boxes)
             per[seq]["SA"].append(sa)
             per[seq]["SA_pen"].append(sa_pen)
-            if df.exists():
-                per[seq]["_dets"].append(match_dets(json.loads(df.read_text()), exist, boxes))
+            if df.exists() or df.with_name(df.name + '.gz').exists() or require_dets:
+                dets = read_json(df)
+                validate_frames(dets, len(exist), detections=True)
+                per[seq]["_dets"].append(match_dets(dets, exist, boxes))
             if seq in curve:
                 pe, ae, te = curve[seq]
                 per[seq]["align_px"].append(float(np.nanmedian(ae)) if np.any(np.isfinite(ae)) else np.nan)
@@ -211,19 +224,27 @@ def main(argv=None):
     ap.add_argument("--boot", type=int, default=10000)
     ap.add_argument("--out", default="scores.json")
     ap.add_argument("--per-seq", type=Path, help="optional CSV of per-video SA (averaged across seeds)")
+    ap.add_argument('--require-dets', action='store_true', help='require complete candidate files for AP')
+    ap.add_argument('--bootstrap-mode', choices=['per_comparison', 'legacy_shared'], default='per_comparison',
+                    help='per_comparison restarts seed 0 for order-invariant draws; legacy_shared reproduces old reports')
     args = ap.parse_args(argv)
+    if args.boot < 1: raise ValueError('Bootstrap count must be positive')
 
     labels = {}
     for seq in list_sequences(Path(args.root) / args.split, need=("ir_label",)):
         labels[seq.name] = read_labels(find_files(seq)["ir_label"], args.box_format)
     seqs = sorted(labels)
+    if not seqs: raise ValueError('No evaluation sequences found')
     runs = {}
     for spec in args.run:
         name, dirs = spec.split("=", 1)
-        runs[name] = load_run(dirs.split(","), labels)
+        if name in runs: raise ValueError(f'Duplicate run: {name}')
+        runs[name] = load_run(dirs.split(","), labels, args.require_dets)
+    if args.baseline and args.baseline not in runs: raise ValueError('Baseline run not supplied')
     if args.per_seq is not None:
         write_per_sequence(runs, seqs, args.per_seq)
     report = {"split": args.split, "n_sequences": len(seqs), "runs": {}, "vs_baseline": {}}
+    report.update(bootstrap_mode=args.bootstrap_mode, bootstrap_seed=0, bootstrap_resamples=args.boot)
     print(f"{'run':<14}{'SA':>8}{'SA_pen':>8}{'AP50':>8}{'align_px':>10}{'prior_px':>10}{'prior_tgt':>10}{'conv_frm':>10}")
     for name, per in runs.items():
         s = summarise(per, seqs)
@@ -236,7 +257,8 @@ def main(argv=None):
         for name, per in runs.items():
             if name == args.baseline:
                 continue
-            b = bootstrap(per, runs[args.baseline], seqs, args.boot, rng)
+            comparison_rng = np.random.default_rng(0) if args.bootstrap_mode == 'per_comparison' else rng
+            b = bootstrap(per, runs[args.baseline], seqs, args.boot, comparison_rng)
             report["vs_baseline"][f"{name}-{args.baseline}"] = b
             for k, v in b.items():
                 print(f"{name}-{args.baseline} {k}: {v['mean']:+.4f}  95% CI [{v['ci95'][0]:+.4f}, {v['ci95'][1]:+.4f}]"

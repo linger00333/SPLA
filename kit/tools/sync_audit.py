@@ -9,9 +9,9 @@ window's estimate. A video is flagged when the best lag beats lag 0 by both
 --min-gain-px and the factor --min-ratio.
 
 Positive k means the RGB frame that matches IR frame t is RGB frame t + k (the
-RGB stream is late). A per-video spatial transform cannot absorb a lag: the
-induced offset is target or camera motion times the lag, and changes sign
-with the motion.
+RGB stream is late). A constant-velocity lag can be absorbed by translation;
+low residuals alone do not identify synchronization or dropped frames. Flags
+are candidates for a data audit, not confirmed acquisition defects.
 
 Centre sources (choose one or both):
   --ir-run/--rgb-run  saved predictions of two single-modality detectors (A0 and
@@ -38,7 +38,7 @@ from spla.antiuav_io import find_files, list_sequences, read_labels  # noqa: E40
 from spla.geometry import fit_transform  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from decision_fusion import _read_json, run_sequences  # noqa: E402
+from decision_fusion import _read_json, run_sequences, coordinates  # noqa: E402
 
 
 def centres_from_dets(dets, wh, conf):
@@ -61,22 +61,37 @@ def residual_px(a, b, model, ir_wh, min_pairs):
     ok = np.all(np.isfinite(a), 1) & np.all(np.isfinite(b), 1)
     if ok.sum() < min_pairs:
         return None
-    fit = fit_transform(a[ok], b[ok], model)
+    try:
+        fit = fit_transform(a[ok], b[ok], model)
+    except np.linalg.LinAlgError:
+        return None
     lin = fit.theta[:, :2]
+    if not np.isfinite(lin).all() or np.linalg.cond(lin) > 1e8: return None
     # residual in RGB-normalised units -> IR-normalised (through the fitted linear part) -> IR px
     r = np.linalg.solve(lin, fit.residuals.T).T * np.asarray(ir_wh, float)
     return float(np.median(np.linalg.norm(r, axis=1))), int(ok.sum())
 
 
 def audit_video(ir_c, rgb_c, args, ir_wh):
-    n = min(len(ir_c), len(rgb_c))
+    if len(ir_c) != len(rgb_c) or not len(ir_c):
+        raise ValueError('Synchronization audit requires equal nonempty modality lengths')
+    n = len(ir_c)
     out = []
     starts = range(0, n, args.window) if args.window > 0 else [0]
     for s in starts:
         e = n if args.window <= 0 else min(s + args.window, n)
         scores = {}
+        common_idx = np.arange(s, e)
+        if getattr(args, 'support', 'per_lag') == 'common':
+            keep = np.all(np.isfinite(ir_c[common_idx]), axis=1)
+            for lag in range(-args.max_lag, args.max_lag + 1):
+                j = common_idx + lag
+                valid = (j >= 0) & (j < n)
+                valid[valid] &= np.isfinite(rgb_c[j[valid]]).all(axis=1)
+                keep &= valid
+            common_idx = common_idx[keep]
         for k in range(-args.max_lag, args.max_lag + 1):
-            idx = np.arange(s, e)
+            idx = common_idx if getattr(args, 'support', 'per_lag') == 'common' else np.arange(s, e)
             j = idx + k
             keep = (j >= 0) & (j < n)
             r = residual_px(ir_c[idx[keep]], rgb_c[j[keep]], args.model, ir_wh, args.min_pairs)
@@ -107,9 +122,13 @@ def main(argv=None):
     ap.add_argument("--min-pairs", type=int, default=40)
     ap.add_argument("--min-gain-px", type=float, default=1.0)
     ap.add_argument("--min-ratio", type=float, default=1.5)
+    ap.add_argument('--support', choices=['per_lag', 'common'], default='per_lag',
+                    help='per_lag reproduces the supplied screen; common fixes eligible IR indices across candidate lags')
     ap.add_argument("--allow-test", action="store_true")
     ap.add_argument("--out", required=True, type=Path)
     args = ap.parse_args(argv)
+    if args.max_lag < 0 or args.window < 0 or args.min_pairs < 4 or min(args.ir_wh + args.rgb_wh) <= 0:
+        raise ValueError('Invalid lag, window, pair count or frame dimensions')
     if (args.ir_run is None) != (args.rgb_run is None) or (args.ir_run is None and args.root is None):
         ap.error("give --ir-run and --rgb-run together, or --root")
     if args.split == "test" and not args.allow_test:
@@ -122,8 +141,12 @@ def main(argv=None):
         seqs = run_sequences(args.ir_run)
         if seqs != run_sequences(args.rgb_run):
             raise ValueError("the two runs must contain the same videos")
+        if not seqs: raise ValueError('Empty prediction sequence set')
         for name, d in (("ir", args.ir_run), ("rgb", args.rgb_run)):
-            split = _read_json(d / "run_config.json").get("split")
+            cfg = _read_json(d / 'run_config.json')
+            if coordinates(cfg) != ('IR_pixels' if name == 'ir' else 'RGB_pixels'):
+                raise ValueError('Incorrect modality coordinates')
+            split = cfg.get("split")
             if split != args.split:
                 raise ValueError(f"--{name}-run is split {split}, expected {args.split}")
 
@@ -136,9 +159,14 @@ def main(argv=None):
         sources.append(("predictions", seqs, pred_centres))
     if args.root is not None:
         dirs = {p.name: p for p in list_sequences(args.root / args.split)}
+        all_dirs = {p.name for p in (args.root / args.split).iterdir() if p.is_dir()}
+        if not dirs or set(dirs) != all_dirs: raise ValueError('Missing modality annotation files')
 
         def label_centres(seq):
             fs = find_files(dirs[seq])
+            for role in ('ir_label', 'rgb_label'):
+                obj = json.loads(fs[role].read_text())
+                if len(obj['exist']) != len(obj['gt_rect']): raise ValueError('Malformed annotation length')
             ei, bi = read_labels(fs["ir_label"], args.box_format)
             er, br = read_labels(fs["rgb_label"], args.box_format)
             return centres_from_labels(ei, bi, args.ir_wh), centres_from_labels(er, br, args.rgb_wh)
@@ -157,7 +185,7 @@ def main(argv=None):
                 if zero - best > args.min_gain_px and zero > args.min_ratio * best:
                     flagged.append(seq)
         report["sources"][name] = {"videos": len(seqs), "flagged": flagged, "per_video": per}
-        print(f"{name}: {len(flagged)} of {len(seqs)} videos flagged as desynchronised")
+        print(f"{name}: {len(flagged)} of {len(seqs)} videos flagged as lag-fit candidates")
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=1, allow_nan=False))
     print("written:", args.out)
